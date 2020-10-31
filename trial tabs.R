@@ -39,7 +39,7 @@ ui <- fluidPage(
                                                      line-height: 1.1}"
                                                ),
                                     
-                                    setBackgroundImage(src = "shiny_background5.png"),
+                                    setBackgroundImage(src = "Eclipse.png"),
                                     
                                     shinyjs::useShinyjs(),
                                     
@@ -48,17 +48,17 @@ ui <- fluidPage(
                                                      height = 160, 
                                                      width = 160, 
                                                      style = "float:right;margin-top:1px;"
-                                            ),
-                                            tags$style(HTML
-                                                           ("h1{
-                                                               font-family: 'Open Sans';
-                                                               font-weight: 500;
-                                                               line-height: 1.1;
-                                                               font-size: 60px;
-                                                               color: #FFFFFF;
-                                                               }"
-                                                            )
-                                                       )
+                                                     ),
+                                                       tags$style(HTML
+                                                                      ("h1{
+                                                                           font-family: 'Open Sans';
+                                                                           font-weight: 500;
+                                                                           line-height: 1.1;
+                                                                           font-size: 60px;
+                                                                           color: #FFFFFF;
+                                                                           }"
+                                                                       )
+                                                                  )
                                             ),
                                     
                                     tags$h2("Dedicated to providing a link between educational research and practice.",                        # h2 header is the subtitle underneath the h1 header
@@ -514,36 +514,28 @@ ui <- fluidPage(
 
 
 # Define server logic required ----
-server <- function(input, output, session) {
-  
+server <- function(input, output, session){
+
   # Enable the download button if you have the required inputs
   # if we don't have the required inputs, the button is not clickable
-  observeEvent(input$input_file, {
-    
-    if (length(input$input_file) > 0 &&
-        length(input$recommendations) > 0 && # because of the placeholder text, this is always satisfied
-        length(input$construct) > 0 && # same as above
-        length(input$population) > 0) # same as above
-      shinyjs::enable("report")
-    else
-      shinyjs::disable("report")
-  })
+                   observeEvent(
+                                input$input_file, {                                              # input$input_file is value received in the ui. This is recognised when the following conditions are met.
+                                                   if (length(input$input_file) > 0 &&           # The length of the input file is above zero
+                                                       length(input$recommendations) > 0 &&      # The recommendations are always entered (this is always true due to placeholder)
+                                                       length(input$construct) > 0 &&            # same as above "Test Topic"
+                                                       length(input$population) > 0              # same as above "Students"
+                                                       )                                    
+                                                        shinyjs::enable("report")                # handler logic
+                                                        else                                     # as above
+                                                        shinyjs::disable("report")               # as above
+                                                   }                                             # End of handler expression
+                               ) 
   
-  # The function that makes the download
-  output$report <- downloadHandler(
-    
-    filename = "psychometric_analysis.zip",
-    
-    content = function(file) {
-      
-      # Set a progress bar because it can take some time
-      withProgress(message = 'R Shiny Boosted Rendering', {
-        
-        # Copy the report file to a temporary directory before processing it, in
-        # case we don't have write permissions to the current working dir (which
-        # can happen when deployed).
-        
-        tempdir <- tempdir()
+                                output$report <- downloadHandler(                                                                                                               # The function that makes the download
+                                                                 filename = "psychometric_analysis.zip",                                                                        # The zip file created
+                                                                 content = function(file) {
+                                                                                           withProgress(message = 'R Shiny Boosted Rendering', {                                # Set a progress bar because it can take some time
+                                                                                                                                                tempdir <- tempdir()            # Copy the report file to a temporary directory before processing it, in case we don't have write permissions to the current working dir (which can happen when deployed).
         
         # Create the filepath where the tempory rmd file resides
         tempReport <- file.path(tempdir, "Testbuild.RUNNING2.Rmd")
