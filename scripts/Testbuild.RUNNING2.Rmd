@@ -72,7 +72,8 @@ header-includes:
 #### 1. Initial start time and data ####
 start.time <- Sys.time()
 resp <- read.csv(params$datapath)
-
+setwd("/Users/user/Desktop/Shiny/app/www")
+getwd()
 #### 2. Report settings ####
 Recommendations <- params$recommendations
 Construct <- params$construct
@@ -853,6 +854,7 @@ One way to assess the performance of an underfitting (often also low discriminat
 #### 3.4.6 Wright maps  
 \hfill\break
 A Wright map provides a means of assessing the relative distribution of person abilities and item difficulties. If the item is dichotomous (i.e., correct/incorrect), the position of the question on the Wright Map (right side, Item deltas) represents the point at which the student has a 50% chance of achieving the question. If the item is polytomous (partial credit), two or more Thurstonian thresholds are illustrated on the right side of the graph. In this instance, each Thurstonian threshold represents the point where a student has a 50% chance of achieving at least the indicated level of performance on an item.  
+  
 #### 3.4.7 Item expected score curves  
 \hfill\break
 Item expected score curves illustrate the difference between the observed and expected student ability for each item. For polytomous items, the $Y$ axis for these graphs represent the maximum score for that item. It is expected that as student ability increases, observed responses would follow a similar pattern. Major discepencies between these patterns provide insight into where the item may be functioning in an unexpected way.  
@@ -1168,7 +1170,7 @@ Following are a set of graphs illustrating all item expected score curves. There
 
 ```{r CHUNK34_Expected_curves, echo=FALSE, fig.height=6, fig.width=10, message=TRUE, warning=FALSE, trace=FALSE, results="hide"}
 knitr::opts_chunk$set(echo = FALSE)
-plot(mod1, type = "expected")
+plot(mod1, type = "expected", low = -6, high = 6)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.68)
@@ -1178,10 +1180,12 @@ if (params$rendered_by_shiny){
 \newpage
 ### 4.8 Polytomous Item Category Characteristic Curves  
 Following are a set of graphs illustrating all item category characteristic curves.  
+
+
 \vspace{2mm}
 ```{r CHUNK35_Cat_char_curves, echo=FALSE, fig.height=6, fig.width=10, message=TRUE, warning=FALSE, results="hide"}
 knitr::opts_chunk$set(echo = FALSE)
-plot(mod1, type = "items", lwd = 4)
+plot(mod1, type = "items", lwd = 4, low = -6, high = 6)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.70)
@@ -1211,7 +1215,9 @@ if (params$rendered_by_shiny){
 
 \newpage
 
-## 5. REFERENCES
+## 5. REFERENCES  
+Adams, R. J., Wu, M. L., Wilson, M. (2012) The Rasch rating model and the disordered threshold controversy. Educational Psychological Measurement, 72, 547–573.   
+  
 Adams, R. J. Wu, M. L., & Wilson, M. R. (2019). *ACER ConQuest: GeneralisedItem Response Modelling Software [Computer software]. Version 4*. Camberwell, Victoria: Australian Council for Educational Research.  
   
 Bock, R. D., & Aitkin, M. (1981). Marginal maximum likelihood estimation of item parameters: Application of an EM algorithm. *Psychometrika 46*,443–59.  
@@ -1340,7 +1346,7 @@ if (params$rendered_by_shiny){
 \fontsize{14}{12}  
   
 ## A3. The Item Delta Estimates  
-Note that in the Table 8, N represents the number of person responses for that item, M represents the mean raw score across all persons for that item, xsi represent the item deltas for that item, AXsi values represent the point at which adjacent score categories have equal probability; and s.e. represents the estimated standard error of associated with the item of interest. Note that it is normal for some disorderedness when the probability of reaching a middle category is small (where few persons reached that category). For a complete discussion, see Wu, Tam, & Jen (2016, pp. 162-165).  
+Note that in the Table 8, N represents the number of person responses for that item, M represents the mean raw score across all persons for that item, xsi represent the item deltas for that item, AXsi values represent the point at which adjacent score categories have equal probability; and s.e. represents the estimated standard error of associated with the item of interest. Note that it is normal for some disorderedness when the probability of reaching a middle category is small (where few persons reached that category). As Wu, Tam, and Jen explain, "this phenomenon of dis-ordering of the [delta] parameters is one disadvantage of using the delta (d) parameters to interpret item responses in relation to ability" (p. 165). For a full explanation of this phenomenon, see Wu, Tam, and Jen (2016, pp. 162 to 165, and Adams, Wu, & Wilson, 2012).  
   
 \vspace{5mm}  
    

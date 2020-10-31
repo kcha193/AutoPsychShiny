@@ -37,7 +37,7 @@ ui <- fluidPage(theme = shinytheme("cosmo"), #your theme (css means cascading st
                 # It can be either from an URL or you can put the image in your www folder
                 # I just added a simple background for you, so you can see how it looks.
                 setBackgroundImage(
-                  src = "shiny_background5.png"
+                  src = "Eclipse.png"
                 ),
                 
                 # This activies javascript in your application
