@@ -39,14 +39,14 @@ ui <- fluidPage(
                                                      line-height: 1.1}"
                                                ),
                                     
-                                    setBackgroundImage(src = "Eclipse.png"),
+                                    setBackgroundImage(src = "shiny_background8.png"),
                                     
                                     shinyjs::useShinyjs(),
                                     
                                     tags$h1("Automated Psychometrics",
                                             tags$img(src = "white psych.png", 
-                                                     height = 160, 
-                                                     width = 160, 
+                                                     height = 130, 
+                                                     width = 130, 
                                                      style = "float:right;margin-top:1px;"
                                                      ),
                                                        tags$style(HTML
@@ -61,7 +61,7 @@ ui <- fluidPage(
                                                                   )
                                             ),
                                     
-                                    tags$h2("Dedicated to providing a link between educational research and practice.",                        # h2 header is the subtitle underneath the h1 header
+                                    tags$h2("Toward Valid Assessments, Rubrics, and Educational Research",                        # h2 header is the subtitle underneath the h1 header
                                             tags$style(
                                                        HTML("h2{
                                                                 font-family: 'Open Sans';
@@ -74,7 +74,9 @@ ui <- fluidPage(
                                                       )
                                             ),
                                     
-                                    tags$h3("An application built by",                                                                      # h2 header is the subtitle underneath the h1 header
+                                    hr(),         
+                                    
+                                    tags$h3("Chief Architect & Psychometrician:",                                                                      # h2 header is the subtitle underneath the h1 header
                                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help", "Dr Matthew Courtney (PhD)"),
                                             tags$style(
                                                        HTML("
@@ -82,24 +84,173 @@ ui <- fluidPage(
                                                                font-family: 'Open Sans';
                                                                font-weight: 500;
                                                                line-height: 1.1;
-                                                               font-size: 12pt;
+                                                               font-size: 11pt;
                                                                color: #FFFFFF;
                                                                }
                                                            ")
                                                       )
-                                             )  #, keen for some sounds? Maybe user can select while wating for reports as gimmick...
-                                    
-                                    
-                                    #tags$audio(src = "Zimmer.mp3", type = "audio/mp3", autoplay = NA, controls = NA
-                                               #)
+
                                     ),
                             
-
-                            tabPanel("Rasch (JML)", fluid = TRUE
+                                    tags$h3("Chief Statistician:",                                                                      # h2 header is the subtitle underneath the h1 header
+                                            tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help", "Dr Kevin Chang (PhD)"),
+                                            tags$style(
+                                              HTML("
+                                                            h3{
+                                                               font-family: 'Open Sans';
+                                                               font-weight: 500;
+                                                               line-height: 1.1;
+                                                               font-size: 11pt;
+                                                               color: #FFFFFF;
+                                                               }
+                                                           ")
+                                            )
+                                            
                                     ),
+                                    
+                                    
+                                    tags$h3("Chief Psychometrician:",                                                                      # h2 header is the subtitle underneath the h1 header
+                                            tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help", "Dr Zhonghua Zhang (PhD)"),
+                                            tags$style(
+                                              HTML("
+                                                            h3{
+                                                               font-family: 'Open Sans';
+                                                               font-weight: 500;
+                                                               line-height: 1.1;
+                                                               font-size: 11pt;
+                                                               color: #FFFFFF;
+                                                               }
+                                                           ")
+                                            )
+                                            
+                                    ),
+                                    
+                                    
+                                    tags$h3("Psychometrician:",                                                                      # h2 header is the subtitle underneath the h1 header
+                                            tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help", "Dr Eric Mei (PhD)"),
+                                            tags$style(
+                                              HTML("
+                                                            h3{
+                                                               font-family: 'Open Sans';
+                                                               font-weight: 500;
+                                                               line-height: 1.1;
+                                                               font-size: 11pt;
+                                                               color: #FFFFFF;
+                                                               }
+                                                           ")
+                                            )
+                                            
+                                    ),
+                          
+                                    tags$h3("Psychometrician:",                                                                      # h2 header is the subtitle underneath the h1 header
+                                            tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help", "Dr Lan Ahn Nguyen Khoa (PhD)"),
+                                            tags$style(
+                                                       HTML("
+                                                            h3{
+                                                               font-family: 'Open Sans';
+                                                               font-weight: 500;
+                                                               line-height: 1.1;
+                                                               font-size: 11pt;
+                                                               color: #FFFFFF;
+                                                               }
+                                                           ")
+                                            )
+                                            
+                                    ),
+                                    
+                                    
+                                    
+                                    
+                                  
+                                    fluidRow(                                                                                              # Start writing interface here; fluidRow is a row on the page; 
+                                             column(11,                                                                                                           # You can also add multiple columns
+                                                      wellPanel(
+                                                                p("Welcome to Automated Psychometrics, a novel online tool that allows test developers, educational institutions, and researchers 
+                                                                  to automatically perform a range of psychometric analyses and statistical tests on student assessment and developmental rubric data."
+                                                                 ),
+                                                               
+                                                                p(""),
+                                                                
+                                                                p("The website provides automated Rasch-based analysis of student test data, uni- and multi-dimensional Rasch analysis, many facets analysis (to explore item bias, for example), 
+                                                                  and an introduction to fixed and concurrent equating. The website also provides extended options such as automated ANOVA- and regression-based analyses."
+                                                                ),
+
+                                                                p(""),
+                                                                
+                                                                p("This website was founded and created by the Chief Architect and Psychometrician, Dr Mattthew Courtney (PhD). His vision was to make these forms of analyses
+                                                                  ubiquitously available to test developers, educational institutions, and researchers. His main intention was to promote a high standard of educational assessment
+                                                                  and research in both the developed and developing world."
+                                                                ),
+                                                                
+                                                                p(""),
+                                                                
+                                                                p("Use of the website is free and users may make use of the following citation: "
+                                                                ),
+                                                                
+                                                                p(""),
+                                                                
+                                                                p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: a novel shiny app for the psychometric analysis and scoring of assessment and survey data. The X Journal, X(X), XXX-XXX. doi. XXXXXXXXXXXXX."
+                                                                ),
+                                                                
+                                                                p(""),
+                                                                ),
+                                                    ),
+                                             ),
+                            ),
+                                   
+                            tabPanel(
+                                     "Uni-Dim Rasch (JML)", 
+                                     fluid = TRUE,
+                                     theme = shinytheme("cosmo"),                                                                     # css means cascading style sheets, describing how html elements are displayed on screen
+                                     tags$style(type="text/css",
+                                                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",     # font
+                                                     "label {font-size: 12px;}",
+                                                     ".recalculating {opacity: 1.0;}",
+                                                     " * {font-family: Open Sans;
+                                                     font-weight: 500;
+                                                     line-height: 1.1}"
+                                               ),
+                                     
+                                     shinyjs::useShinyjs(),                                                                  # activate javascript in the application
+                                     
+                                     tags$h1("Automated Rasch Analysis",
+                                             tags$img(src = "white psych.png", 
+                                                      height = 130, 
+                                                      width = 130, 
+                                                      style = "float:right;margin-top:1px;"
+                                             ),
+                                     tags$style(HTML
+                                                    ("
+                                                      h1{
+                                                         font-family: 'Open Sans';
+                                                         font-weight: 500;
+                                                         line-height: 1.1;
+                                                         font-size: 60px;
+                                                         color: #FFFFFF;
+                                                         }"
+                                                     )
+                                                )
+                                     ),
+                                     
+                                     tags$h2("Toward Valid Assessments and Developmental Rubrics",                             # h2 header is the subtitle underneath the h1 header
+                                             tags$style(
+                                                        HTML(
+                                                             "h2{
+                                                                 font-family: 'Open Sans';
+                                                                 font-weight: 500;
+                                                                 line-height: 1.1;
+                                                                 font-size: 18pt;
+                                                                 color: #FFFFFF;
+                                                                 }"
+                                                            )
+                                                        )
+                                            ),
+                                     
+                                     hr(),                                                                                    # This is a basic line that creates a seperator
+                            ),
                             
                             tabPanel(
-                                     "Rasch (MML)", 
+                                     "Uni-Dim Rasch (MML)", 
                                      fluid = TRUE,
                                      theme = shinytheme("cosmo"),                                                             # css means cascading style sheets, describing how html elements are displayed on screen
                                      tags$style(type="text/css",
@@ -110,15 +261,13 @@ ui <- fluidPage(
                                                      font-weight: 500;
                                                      line-height: 1.1}"
                                                 ),
-                      
-                                      setBackgroundImage(src = "shiny_background5.png"),                                      # set a background image: it can be either from a URL or an image from the www folder
                                                          
                                       shinyjs::useShinyjs(),                                                                  # activate javascript in the application
                       
                                       tags$h1("Automated Rasch Analysis",
                                               tags$img(src = "white psych.png", 
-                                                       height = 160, 
-                                                       width = 160, 
+                                                       height = 130, 
+                                                       width = 130, 
                                                        style = "float:right;margin-top:1px;"
                                                        ),
                                               tags$style(HTML
@@ -134,7 +283,7 @@ ui <- fluidPage(
                                                          )
                                               ),
                       
-                                      tags$h2("Toward valid assessments and developmental rubrics",                             # h2 header is the subtitle underneath the h1 header
+                                      tags$h2("Toward Valid Assessments and Developmental Rubrics",                             # h2 header is the subtitle underneath the h1 header
                                               tags$style(
                                                          HTML(
                                                               "
@@ -149,31 +298,13 @@ ui <- fluidPage(
                                                               ")
                                                          )
                                               ),
-                      
-                                      tags$h3("An application built by",                                                                      # h2 header is the subtitle underneath the h1 header
-                                              tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help", "Dr Matthew Courtney (PhD)"),
-                                              tags$style(
-                                                         HTML("
-                                                               h3{
-                                                                  font-family: 'Open Sans';
-                                                                  font-weight: 500;
-                                                                  line-height: 1.1;
-                                                                  font-size: 12pt;
-                                                                  color: #FFFFFF;
-                                                                  }
-                                  
-                                                              ")
-                                                         )
-                                              ),
-
+                                     
                                       hr(),                                                                                                  # This is a basic line that creates a seperator
                       
                                       fluidRow(                                                                                              # Start writing interface here; fluidRow is a row on the page; 
                                                column(10,                                                                                                           # You can also add multiple columns
                                                       wellPanel(
-                                                                p("Welcome to Auto-Psych, a novel online tool that allows school test developers, subject-matter experts, educational institutions, and researchers to automatically perform psychometric analyses of student 
-                                                                  assessment data. The analysis provides information about the function and utility of test questions, test reliability, and the extent to which the test is suitable for the students. The tool produces a 
-                                                                  detailed narrated technical report and spreadsheets based on the application of classical test theory (CTT) and item-response theory (IRT; here, a unidimensional Rasch model)."),
+                                                                p("This tool produces a detailed narrated technical report and spreadsheets based on the application of classical test theory (CTT) and item-response theory (IRT; here, a unidimensional Rasch model)."),
                                          
                                                                 p(""),
                                          
@@ -201,7 +332,7 @@ ui <- fluidPage(
                                          
                                                                 p(""),
                                  
-                                                                fileInput("input_file",
+                                                                fileInput("input_file",                                                                              # The input file is observed by the server when the UI conditions are met
                                                                           "Choose your file (.csv)",
                                                                           multiple = FALSE,
                                                                           accept = c("text/csv",                                                                     # Only csv actually works now but we can expland to the others and sav files
@@ -472,7 +603,7 @@ ui <- fluidPage(
                                                                           options = list(container = "body")
                                                                           ),
 
-                                                                shinyjs::disabled(downloadButton("report",
+                                                                shinyjs::disabled(downloadButton("report",                                                           # 'report' is the official name of the download button (used in UI, disabled at the start and activated when conditions met in server logic), renamed as "Generate PDF report and spreadsheet'
                                                                                                  "Generate PDF report and spreadsheet"
                                                                                                  )
                                                                                   )
@@ -482,10 +613,10 @@ ui <- fluidPage(
                                               ) # fluidRow wrapper
                                     ), # Rasch tabPanel wrapper
              
-                            tabPanel("Many Facets Rasch", fluid = TRUE
+                            tabPanel("Multi-Dim Rasch", fluid = TRUE
                                     ),
              
-                            tabPanel("Multidimensional Rasch", fluid = TRUE
+                            tabPanel("Many Facets Rasch", fluid = TRUE
                                     ),
              
                             tabPanel("Rasch Equating", fluid = TRUE
@@ -497,38 +628,38 @@ ui <- fluidPage(
                             tabPanel("Multiple Regression", fluid = TRUE
                                     ),
                             
-                            tabPanel("Multilevel Modelling", fluid = TRUE,
-                                    ),
-             
-                            tabPanel("EFA", fluid = TRUE,
+                            tabPanel("MLM", fluid = TRUE,
                                     ),
                             
-                            tabPanel("Media", fluid = TRUE,
+                            tabPanel("IRR", fluid = TRUE,
+                            ),
+                            
+                            tabPanel("CVs/Blog", fluid = TRUE,
                                     ),
                             
                             tabPanel("Contact", fluid = TRUE,
                                     )
                             
                             ) # tabsetPanel wrapper
-               )
+               ) # ui fluidPage function wrapper
 
 
 # Define server logic required ----
 server <- function(input, output, session){
 
-  # Enable the download button if you have the required inputs
-  # if we don't have the required inputs, the button is not clickable
+  # Enable the download button if you have the required inputs.
+  # If we don't have the required inputs, the button is not clickable; specifically, for the observeEvent function means that the server only observes the input file (csv) when the four basic UI conditions are met:
                    observeEvent(
                                 input$input_file, {                                              # input$input_file is value received in the ui. This is recognised when the following conditions are met.
-                                                   if (length(input$input_file) > 0 &&           # The length of the input file is above zero
-                                                       length(input$recommendations) > 0 &&      # The recommendations are always entered (this is always true due to placeholder)
-                                                       length(input$construct) > 0 &&            # same as above "Test Topic"
-                                                       length(input$population) > 0              # same as above "Students"
+                                                   if (length(input$input_file) > 0 &&           # The length of the input file is above zero.
+                                                       length(input$recommendations) > 0 &&      # The recommendations are always entered (this is always true due to placeholder).
+                                                       length(input$construct) > 0 &&            # same as above "Test Topic".
+                                                       length(input$population) > 0              # same as above "Students".
                                                        )                                    
-                                                        shinyjs::enable("report")                # handler logic
-                                                        else                                     # as above
-                                                        shinyjs::disable("report")               # as above
-                                                   }                                             # End of handler expression
+                                                        shinyjs::enable("report")                # when the conditions above are met, shinyjs::enable is used to enable the report button to be clicked.
+                                                        else                                     # otherwise, when conditions not met,
+                                                        shinyjs::disable("report")               # button is disabled.
+                                                   }                                             
                                ) 
   
                                 output$report <- downloadHandler(                                                                                                               # The function that makes the download
@@ -537,61 +668,60 @@ server <- function(input, output, session){
                                                                                            withProgress(message = 'R Shiny Boosted Rendering', {                                # Set a progress bar because it can take some time
                                                                                                                                                 tempdir <- tempdir()            # Copy the report file to a temporary directory before processing it, in case we don't have write permissions to the current working dir (which can happen when deployed).
         
-        # Create the filepath where the tempory rmd file resides
-        tempReport <- file.path(tempdir, "Testbuild.RUNNING2.Rmd")
+                                                                                                                                                                                # Create the filepath where the tempory rmd file resides
+                                                                                                                                                tempReport <- file.path(tempdir, "Testbuild.RUNNING2.Rmd")
         
-        # Cope the rmd file from the scripts folder to the path above
-        file.copy("scripts/Testbuild.RUNNING2.Rmd", tempReport, overwrite = TRUE)
+                                                                                                                                                                                # Copy the rmd file from the scripts folder to the path above
+                                                                                                                                                file.copy("scripts/Testbuild.RUNNING2.Rmd", tempReport, overwrite = TRUE)
         
-        # The tempdir constantly changes at shinyapps.io, that why we have to repeat this process every time.
+                                                                                                                                                                                # The tempdir constantly changes at shinyapps.io, that is why we have to repeat this process every time.
         
-        # Now we can get our inputs and use them in the .Rmd
-        # For node.sequence we have to do some cleaning on the input first:
-        # This is the part where we use the strsplit. We seperate the character on ',' and make it numeric
-        node.sequence <- as.numeric(strsplit(input$node.sequence, ",")[[1]])
+                                                                                                                                                                                # Now we can get our inputs and use them in the .Rmd
+                                                                                                                                                                                # For node.sequence we have to do some cleaning on the input first:
+                                                                                                                                                                                # This is the part where we use the strsplit. We seperate the character on ',' and make it numeric
+                                                                                                                                                node.sequence <- as.numeric(strsplit(input$node.sequence, ",")[[1]])
         
-        # Set up parameters to pass to Rmd document
-        params <- list(  datapath = input$input_file$datapath,
-                         recommendations = input$recommendations,
-                         construct = input$construct,
-                         population = input$population,
-                         constraint = input$constraint,
-                         NA.Delete = input$NA.Delete,
-                         disc.threshold = as.numeric(input$disc.threshold),
-                         ci.level = as.numeric(input$ci.level),                       
-                         p.fit.threshold = as.numeric(input$p.fit.threshold),
-                         node.sequence.1 = node.sequence[1],
-                         node.sequence.2 = node.sequence[2],
-                         node.sequence.3 = node.sequence[3],
-                         conv = as.numeric(input$conv),
-                         maxiter = as.numeric(input$maxiter),
-                         color.choice = input$color.choice,
-                         binwidth = as.numeric(input$binwidth),
-                         rendered_by_shiny = TRUE) # we need rendered_by_shiny to update the progress bar
+                                                                                                                                                                                # Set up parameters to pass to Rmd document
+                                                                                                                                                params <- list(datapath = input$input_file$datapath,
+                                                                                                                                                               recommendations = input$recommendations,
+                                                                                                                                                               construct = input$construct,
+                                                                                                                                                               population = input$population,
+                                                                                                                                                               constraint = input$constraint,
+                                                                                                                                                               NA.Delete = input$NA.Delete,
+                                                                                                                                                               disc.threshold = as.numeric(input$disc.threshold),
+                                                                                                                                                               ci.level = as.numeric(input$ci.level),                       
+                                                                                                                                                               p.fit.threshold = as.numeric(input$p.fit.threshold),
+                                                                                                                                                               node.sequence.1 = node.sequence[1],
+                                                                                                                                                               node.sequence.2 = node.sequence[2],
+                                                                                                                                                               node.sequence.3 = node.sequence[3],
+                                                                                                                                                               conv = as.numeric(input$conv),
+                                                                                                                                                               maxiter = as.numeric(input$maxiter),
+                                                                                                                                                               color.choice = input$color.choice,
+                                                                                                                                                               binwidth = as.numeric(input$binwidth),
+                                                                                                                                                               rendered_by_shiny = TRUE
+                                                                                                                                                               )                                              # we need rendered_by_shiny to update the progress bar
         
-        # Knit the document, passing in the `params` list, and eval it in a
-        # child of the global environment (this isolates the code in the document
-        # from the code in this app).
+                                                                                                                                                                                                              # Knit the document, passing in the `params` list, and eval it in a child of the global environment (this isolates the code in the document from the code in this app).
+                                                                                                                                                 file1 <- file.path(tempdir, "report.pdf")                    # file1 is the path of the PDF output
         
-        file1 <- file.path(tempdir, "report.pdf") #file1 is the path of the PDF output
+                                                                                                                                                 rmarkdown::render(tempReport,
+                                                                                                                                                                   output_file = file1,
+                                                                                                                                                                   params = params,
+                                                                                                                                                                   envir = new.env(parent = globalenv())
+                                                                                                                                                                   )
         
-        rmarkdown::render(tempReport, output_file = file1,
-                          params = params,
-                          envir = new.env(parent = globalenv())
-        )
+                                                                                                                                                 file2 <- file.path(tempdir, "report.xlsx")                   # file2 is the path of the xlsx output coming from the markdown
         
-        file2 <- file.path(tempdir, "report.xlsx") #file2 is the path of the xlsx output coming from the markdown
+                                                                                                                                                 files <- c(file1, file2)                                     # combine all the files to zip them
         
-        files <- c(file1, file2) #, file3) # combine all the files to zip them
-        
-        zip(file, files, extras = "-j") # creating a zip. You need extras = "-j" to get a clean zip, not one with the whole paths
-        
-      })
-    }
-  )
+                                                                                                                                                 zip(file, files, extras = "-j")                              # creating a zip. You need extras = "-j" to get a clean zip, not one with the whole paths
+                                                                                                                                                 }
+                                                                                                        ) # with progress wrapper
+                                                                                          } # function file wrapper
+                                                                  ) # downloadHandler wrapper
   
   
-}
+                                      } # server function wrapper
 
 shinyApp(ui = ui, server = server)
 
