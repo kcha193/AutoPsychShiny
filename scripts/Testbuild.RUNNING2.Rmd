@@ -15,7 +15,7 @@ title:  |
   |
   |
   | 
-  | Technical Report, version 1PLM_Auto-Psych_1.0
+  | Technical Report, version 1PLM_1D_v1.0
   |
   |
   | 
@@ -23,7 +23,7 @@ title:  |
   |
   | 
   | 
-author: Created by Drs Matthew Courtney (PhD, Ed), Xxxxx Xxxxx (PhD, Xx), & Xxxxxx Xxxxx (PhD, Xx)
+author: Created by Drs Matthew Courtney (PhD, Ed), Xxxxx Xxxxx (PhD, Xx), Xxxxx Xxxxx (PhD, Xx), & Xxxxxx Xxxxx (PhD, Xx)
 
 output: pdf_document
 includes:
@@ -72,8 +72,7 @@ header-includes:
 #### 1. Initial start time and data ####
 start.time <- Sys.time()
 resp <- read.csv(params$datapath)
-setwd("/Users/user/Desktop/Shiny/app/www")
-getwd()
+
 #### 2. Report settings ####
 Recommendations <- params$recommendations
 Construct <- params$construct
@@ -701,7 +700,7 @@ if (params$rendered_by_shiny){
 This is an automatically-generated psychometric technical report based on the item-response data provided. The report includes a description of the general methodology used, descriptive statistics of the data, results for psychometric analysis based on classical test theory and item-response theory, and a summary of key results. If you would like to cite this tool, feel free: 
    
    
-   Courtney, M. G. R., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: a novel shiny app for the psychometric analysis and scoring of assessment and survey data. The X Journal.
+   Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: a novel shiny app for the psychometric analysis and scoring of assessment and survey data. The X Journal.
  
 The main author would like to thank Drs Zhang, Wu, Wilson, McGaw, and Nguyen for their support. This utility can be considered a public good. 
   
