@@ -43,7 +43,7 @@ anova_UI <- function(id) {
                tableOutput(ns("anova_tab"))),
       tabPanel("Estimated marginal means",
                tableOutput(ns("group_means"))),
-      tabPanel("TSD Pairwise comparison",
+      tabPanel("Tukey Pairwise comparison",
                tableOutput(ns("pairwise_compare")))
     )
   )
@@ -90,8 +90,7 @@ anova_Server <- function(id) {
         renderUI({
         
         group_dat <- 
-          group_data()%>% 
-          clean_names() 
+          group_data() %>% clean_names() 
         
         selectInput(ns("category"), "", names(group_dat)[-1])
         })

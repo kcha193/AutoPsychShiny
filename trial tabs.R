@@ -24,6 +24,8 @@ options(shiny.maxRequestSize = 3*1024^2)
 # "simplex" is a nice theme, though "cosmo" chosen here.
 # Themes at: https://rstudio.github.io/shinythemes/ 
 
+source("scripts/anova_module.R")
+
 ui <- fluidPage(
       tabsetPanel(
             tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
@@ -405,7 +407,9 @@ ui <- fluidPage(
            
             tabPanel("Rasch Equating", fluid = TRUE),                                               # Baseline build for (a) concurrent calibration and (b) fixed anchor collibration proposed (MC and ZZ)
 
-            tabPanel("ANOVA", fluid = TRUE),                                                        # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
+            tabPanel("ANOVA",  
+                     anova_UI("anova"), 
+                     fluid = TRUE),                                                        # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
 
             tabPanel("Multiple Regression", fluid = TRUE),
 
@@ -435,6 +439,9 @@ observeEvent(input$input_file,
                        }                                                                            # button is disabled.
                 }                                             
               )
+  
+  
+anova_Server("anova") # ANOVA module
   
 output$report <- downloadHandler(                                                                   # This function makes the download     
   filename = "psychometric_analysis.zip",                                                           # The zip file created
