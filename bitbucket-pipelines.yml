@@ -1,0 +1,15 @@
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: rocker/shiny:latest
+
+pipelines:
+  default:
+    - step:
+        script:
+        - cd /opt/atlassian/pipelines/agent/build
+        - Rscript -e 'install.packages(c("shiny", "googleAuthR", "dplyr", 
+          "googleAnalyticsR", "knitr", "rmarkdown", "jsonlite"), 
+          repos = "https://cran.rstudio.com/")'
+        - Rscript -e 'shiny::runApp(appDir = file.path("/opt/atlassian/pipelines/agent/build/", "app"))' & 'shiny::stopApp()'
