@@ -7,6 +7,10 @@ image: rocker/shiny:latest
 pipelines:
   default:
     - step: 
+        services:
+          - docker
+        caches:
+          - docker      
         script:
         - cd /opt/atlassian/pipelines/agent/build
         - Rscript -e 'install.packages(c("shiny", "googleAuthR", "dplyr", 
@@ -14,10 +18,6 @@ pipelines:
           "shinycssloaders","shinyjs", "shinythemes", "shinyFiles", "shinyBS",
           "bsplus", "shinyWidgets"), 
           repos = "https://cran.rstudio.com/")'
-        services:
-          - docker
-        caches:
-          - docker
     - step:
        script:
         - Rscript -e 'shiny::runApp(appDir = file.path("/opt/atlassian/pipelines/agent/build/"))' & Rscript -e 'shiny::stopApp()' 
