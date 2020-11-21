@@ -31,33 +31,33 @@ ui <- fluidPage(
             tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                      tags$style(type = "text/css", 
                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                               "label {font-size: 12px;}", ".recalculating {opacity: 1.0;}",
+                               "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
                                " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
                               ),
                     setBackgroundImage(src = "shiny_background8.png"),
                     shinyjs::useShinyjs(),
                     tags$h1("Automated Psychometrics",
-                            tags$img(src = "white psych.png", height = 130, width = 130, 
-                                    style = "float:right;margin-top:1px;"
+                            tags$img(src = "hex4.png", height = 149, width = 135, 
+                                    style = "float:right;margin-top:-18.5px;"
                                     ),
                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
                                              line-height: 1.1; font-size: 60px; color: #FFFFFF;}"
                                            )
                                       )
                             ),
-                    tags$h2("Toward Valid Assessments, Rubrics, and Educational Research",          # h2 header is the subtitle underneath the h1 header
+                    tags$h2("Toward Valid Assessments and Educational Research",                    # h2 header is the subtitle underneath the h1 header
                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
                                             line-height: 1.1; font-size: 18pt; color: #FFFFFF;}"
                                            )
                                       )
                             ),
                     hr(),
-                    tags$h3("Chief Architect",                                                      # h2 header is the subtitle underneath the h1 header
+                    tags$h3("Chief Architect:",                                                     # h2 header is the subtitle underneath the h1 header
                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
                                    "Dr Matthew Courtney (PhD)"
                                    ),
                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 11pt;
+                                                             line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
                                            )
                                       )
@@ -67,7 +67,7 @@ ui <- fluidPage(
                                    "Dr Kevin Chang (PhD)"
                                    ),
                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 11pt;
+                                                             line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
                                             )
                                        )
@@ -76,7 +76,7 @@ ui <- fluidPage(
                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
                                    "Dr Zhonghua Zhang (PhD)"),
                                    tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                                    line-height: 1.1; font-size: 11pt;
+                                                                    line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
                                                    )
                                               )
@@ -86,7 +86,7 @@ ui <- fluidPage(
                                    "Dr Eric Mei (PhD)"
                                    ),
                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1; font-size: 11pt;
+                                                              line-height: 1.1; font-size: 10pt;
                                                               color: #FFFFFF;}"
                                             )
                                       )
@@ -96,7 +96,7 @@ ui <- fluidPage(
                                    "Dr Lan Ahn Nguyen Khoa (PhD)"
                                    ),
                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 11pt;
+                                                             line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
                                             )
                                       )
@@ -105,44 +105,64 @@ ui <- fluidPage(
                     fluidRow(
                         column(11, 
                           wellPanel(
-                            p("Welcome to Automated Psychometrics, a novel online tool that allows test 
-                              developers, educational institutions, and researchers to automatically 
-                              perform a range of psychometric analyses and statistical tests on student 
-                              assessment and developmental rubric data."),
-                            p(""),
+                            h4("Introduction"),
+                            p("Welcome to Automated Psychometrics, a novel website that allows test 
+                              developers, educational institutions, and researchers to validate 
+                              student assessments, scales, instruments, and developmental rubrics, and 
+                              provide useful information about what students might be ready to learn 
+                              next.")
+                                   ),
+                          wellPanel(
+                            h4("Design"),
                             p("The website provides automated Rasch-based analysis of student test data, 
-                              uni- and multi-dimensional Rasch analysis, many facets analysis (to explore 
-                              item bias, for example), and an introduction to fixed and concurrent equating. 
+                              inclusive of uni- and multi-dimensional Rasch analysis, many facets analysis 
+                              (to explore item bias), and an option to carry out fixed and concurrent 
+                              equating for developing common ability scales across different test forms. 
                               The website also provides extended options such as automated ANOVA- and 
                               regression-based analyses."),
-                            p(""),
+                            p("")
+                                    ),
+                          wellPanel(
+                            h4("Vision"),
                             p("This website is the brainchild of Chief Architect and Psychometrician, 
-                            Dr Mattthew Courtney (PhD). Dr Courtney's vision was to make these forms 
-                            of analyses ubiquitously available to educators, test developers, educational 
-                            institutions, and researchers worldwide. The intention of Dr Courtney and 
-                            his team is to make the highest standard of educational assessment and research 
-                            accessible to both the developed and developing world."),
-                            p(""),
-                            p("Use of the website is free and users may make use of the following citation:"),
+                              Dr Mattthew Courtney (PhD). Dr Courtney's vision was to make these forms 
+                              of analyses ubiquitously accessible to test developers, educational institutions, 
+                              and researchers  in both the developed and developing world. The intention 
+                              of Dr Courtney and his team is to promote and enable the highest standard 
+                              of educational assessment, measurement, and research.")
+                                   ),
+                          wellPanel(
+                            h4("Team"),
+                            p("The development team, together, has extensive experience and expertise in 
+                              educational and psychological assessment, statistics, quantitative research 
+                              designs, computer programming, and computer science. The team views the 
+                              development of valid assessments, scales, and developmental rubrics as 
+                              foundational to valid educational research and the associated findings.")
+                                    ),   # WellPanel
+                          wellPanel(
+                            h4("Use"),
+                            p("The entire website is built using the open-source R programming language. 
+                              Use of the website is free and users may make use of the following citation:"),
                             p(""),
                             p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: 
                               a novel shiny app for the psychometric analysis and scoring of assessment
                               and survey data. The X Journal, X(X), XXX-XXX. doi. XXXXXXXXXXXXX."),
-                            p(""),
-                                    ),   # WelPanel
+                            p("")
+                                   ),   # WelPanel
                                ),        # Column
                             ),           # fluidRow
                    ),                    # Home
 
-           tabPanel("Uni-Dim Rasch (JML)", fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
+           tabPanel("Uni-Dim Rasch (JML)",
+                     fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
                      tags$style(type="text/css",
                                 "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                "label {font-size: 12px;}", ".recalculating {opacity: 1.0;}",
+                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
                                 " * {font-family: Open Sans; font-weight: 500;  line-height: 1.1}"),
                      shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                     tags$h1("Automated Rasch Analysis",
-                             tags$img(src = "white psych.png", height = 130, width = 130, 
-                                      style = "float:right;margin-top:1px;"
+                     tags$h1("Rasch Analysis",
+                             tags$img(src = "hex4.png", height = 149, width = 135, 
+                                      style = "float:right;margin-top:-18.5px;"
                                       ),
                              tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
                                                               line-height: 1.1;
@@ -157,19 +177,39 @@ ui <- fluidPage(
                                               )
                                         )
                               ),          
-                      hr(),                                                                         # This is a basic line that creates a seperator
-                     ),                  # Uni-Dim Rasch (JML) wrapper
+                      hr(), 
+                      tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
+                            tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                                   "Dr Matthew Courtney (PhD)"
+                                  ),
+                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                                            )
+                                      )
+                              ),
+                    tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                            tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                   "Dr Zhonghua Zhang (PhD)"),
+                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                           )
+                                      )
+                           ),                                                                       # This is a basic line that creates a seperator
+                     ),   # Uni-Dim Rasch (JML) wrapper
 
-            tabPanel("Uni-Dim Rasch (MML)", fluid = TRUE, theme = shinytheme("cosmo"),              # css means cascading style sheets, describing how html elements are displayed on screen
+            tabPanel("Uni-Dim Rasch (MML)", 
+                    fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
                     tags$style(type="text/css",
                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                               "label {font-size: 12px;}", ".recalculating {opacity: 1.0;}",
+                               "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
                                " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
                               ),
                     shinyjs::useShinyjs(),                                                          # activate javascript in the application
-                    tags$h1("Automated Rasch Analysis",
-                            tags$img(src = "white psych.png", height = 130, width = 130, 
-                                     style = "float:right;margin-top:1px;"
+                    tags$h1("Rasch Analysis",
+                            tags$img(src = "hex4.png", height = 149, width = 135, 
+                                     style = "float:right;margin-top:-18.5px;"
                                      ),
                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
                                                               line-height: 1.1; font-size: 60px;
@@ -184,32 +224,70 @@ ui <- fluidPage(
                                             )
                                       )
                             ),
-                    hr(),                                                                           # This is a basic line that creates a seperator
+                    hr(), 
+                    tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
+                            tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                                   "Dr Matthew Courtney (PhD)"
+                                  ),
+                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                                           )
+                                      )
+                            ),
+                    tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                            tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                   "Dr Zhonghua Zhang (PhD)"),
+                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                           )
+                                      )
+                           ),
                     fluidRow(
-                        column(10,
+                        column(11,
                          wellPanel(
-                           p("This tool produces a detailed narrated technical report and spreadsheets 
-                             based on the application of classical test theory (CTT) and item-response 
-                             theory (IRT; here, a unidimensional Rasch model)."),
+                           h4("Rasch analysis tool"),
+                           p("This tool is useful for improving the quality of tests and developmental 
+                             rubrics that focus on measuring a single construct or skill, such as student 
+                             reading abilility."),
                            p(""),
+                           p("The tool takes an item-response matrix (i.e., a spreadsheet of student 
+                             test results) and produces a detailed narrated technical report and organized 
+                             spreadsheets that reflect the function of the test and each question."),
+                           p(""),
+                           p("The report is based on the application of classical test theory (CTT) 
+                             and item-response theory (IRT; here, a unidimensional Rasch, or 1PL, model). 
+                             The analysis uses a specialized scoring algorithm that places estimates 
+                             of student ability and item difficulty on the same scale. This enables 
+                             educators to identify sets of questions and associated skills that students 
+                             might be ready to tackle with additional support. Analysts using this tool 
+                             (as opposed to the JML tool) will be primarily interested in generalizing 
+                             the results of the analysis to the broader population from which the sample 
+                             students were drawn."),
+                           p("")
+                                  ),
+                         wellPanel(
+                           h4("1. Prepare data"),
                            p("Before using the tool, ensure that your data meet the following requirements:"),
                            p(""),
-                           p("(1) The header of the csv file (top row) includes a brief description of 
+                           p("(a) The header of the csv file (top row) includes a brief description of 
                              each question (item) and should start with a letter, not a number (e.g., 
                              Item 1. Matching words and visual stimulus), very short descriptions also 
                              fine;"),
                            p(""),
-                           p("(2) Under the row of item descriptors (the header), item-responses may 
+                           p("(b) Under the row of item descriptors (the header), item-responses may 
                              include dichotomous (0,1) or polytomous (0,1,2... max 9) data;"),
                            p(""),
-                           p("(3) A column specifying student (case) identification cannot be included 
+                           p("(c) A column specifying student (case) identification cannot be included 
                              (simply, outputs specific to students, e.g., ability and student fit estimates, 
                              remain in the original order); and,"),
                            p(""),
-                           p("(4) Some missing data (blanks) are handled by the tool, though users should 
-                             consider the meaning of such instances and recode if appropriate."),
-                           p(""),
-                           p("To start, upload your item-response csv file:"),
+                           p("(d) Some missing data (blanks) are handled by the tool, though users should 
+                             consider the meaning of such instances and recode if appropriate.")
+                                   ),
+                           wellPanel(
+                           h4("2. Upload your item-response file (csv)"),
                            p(""),
                            fileInput("input_file", "Choose your file (.csv)",                       # The file is observed by the UI when it is uploaded successfully.
                                       multiple = FALSE, accept = c("text/csv", "text/comma-separated-values, 
@@ -222,15 +300,10 @@ ui <- fluidPage(
                                             shiny app for the psychometric analysis and scoring of assessment 
                                             and survey data. Xxxxxxxxx and Xxxxxxxxx."
                                             )
-                                                 ),                                                 # End of shinyInput_labelembed function (piping occurs withing that function)
-
-                           p("After completing the upload ('Upload complete'), specify the settings 
-                             for your customized report:"),
-                           p(""),
-                           p(""),
-
-                           p("1. Define your test/rubric construct and name your focal group 
-                             (students):"),                                                         # 1. input: construct
+                                                 )                                                 # End of shinyInput_labelembed function (piping occurs withing that function)
+                                   ),
+                         wellPanel(
+                           h4("3. Specify construct and focal group"),
                            p(""),
                            textInput("construct", "Construct:", placeholder = "Test Topic"),
                            bsTooltip("construct", "E.g., Numeracy or Literacy", "right",
@@ -240,9 +313,10 @@ ui <- fluidPage(
                            textInput("population", "Focal group:", placeholder = "Students"),       # 2. input: sample of interest (though modelling has population-bsed assumptions)
                            bsTooltip("population", "E.g., Central School Grade 10 Students", "right",
                                      options = list(container = "body")
-                                    ),
-
-                           p("2. Specify your settings for classical test theory (CTT) analysis:"), 
+                                    )
+                                  ),
+                         wellPanel(
+                           h4("4. Specify settings for CTT analysis"),
                            p(""),
                            p(""),
 
@@ -275,9 +349,10 @@ ui <- fluidPage(
                                            )
                                                  ),                                                 # End of shinyInput_labelembed function (piping occurs withing that function)
                            p(""),
-                           p(""),
-
-                           p("3. Specify your settings for Rasch analysis:"),
+                           p("")
+                                   ),
+                         wellPanel(
+                           h4("5. Specify settings for Rasch analysis"),
                            p(""),
 
                            selectizeInput("constraint", "Constraint:", 
@@ -348,9 +423,10 @@ ui <- fluidPage(
                                             )
                                                   ),
                            p(""),
-                           p(""),
-
-                           p("4. Customise your graphical settings:"),
+                           p("")
+                                 ),
+                         wellPanel(
+                           h4("6. Specify graphical settings"),
                            p(""),
 
                            selectizeInput("color.choice", "Graphical color scheme:",
@@ -376,9 +452,10 @@ ui <- fluidPage(
                                             )
                                                   ),
                            p(""),
-                           p(""),
-
-                           p("5. Include your own recommendations:"),
+                           p("")
+                                     ),
+                         wellPanel(
+                           h4("7. Include your own recommendations"),
                            p(""),
 
                            textAreaInput("recommendations", "Notes:", 
@@ -400,22 +477,412 @@ ui <- fluidPage(
                             )         # fluidRow
                     ),                # Rasch tabPanel
 
-            tabPanel("Multi-Dim Rasch", fluid = TRUE),                                              # Baseline build (MC to expand unidimensional build to account for item classiciation into dimensions.
-
-            tabPanel("Many Facets Rasch (DIF)", fluid = TRUE),                                      # Baseline build (MC, ZZ) includes csv file that takes item-response matrix with 1st column pertaining facet of interest.
+            tabPanel("Multi-Dim Rasch",  
+                     fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
+                     tags$style(type="text/css",
+                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                " * {font-family: Open Sans; font-weight: 500;  line-height: 1.1}"),
+                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                     tags$h1("Multi-Dimensional Rasch Analysis",
+                             tags$img(src = "hex4.png", height = 149, width = 135, 
+                                      style = "float:right;margin-top:-18.5px;"
+                                     ),
+                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1;
+                                                              font-size: 60px; color: #FFFFFF;}"
+                                            )
+                                       )
+                             ),
+                     tags$h2("Examining Dimensionality in Assessments and Developmental Rubrics",                 # h2 header is the subtitle underneath the h1 header
+                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                                 line-height: 1.1; font-size: 18pt;
+                                                                 color: #FFFFFF;}"
+                                            )
+                                        )
+                            ),          
+                     hr(), 
+                     tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                                    "Dr Matthew Courtney (PhD)"
+                                    ),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                                            )
+                                       )
+                            ),
+                     tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                    "Dr Zhonghua Zhang (PhD)"),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                            )
+                                       )
+                            ),
+                     tags$h3("Contributing Psychometrician:",                                       # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                    "Dr Lan Ahn Nguyen Khoa (PhD)"),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                             )
+                                        )
+                            ),
+                     ),           # Multi-Dim Rasch (JML) wrapper
+                                                                                                    # Baseline build (MC to expand unidimensional build to account for item classiciation into dimensions.
+            tabPanel("Many-Facets Rasch (DIF)",
+                     fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
+                     tags$style(type="text/css",
+                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                " * {font-family: Open Sans; font-weight: 500;  line-height: 1.1}"),
+                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                     tags$h1("Many-Facets Rasch Analysis",
+                             tags$img(src = "hex4.png", height = 149, width = 135, 
+                                      style = "float:right;margin-top:-18.5px;"
+                                     ),
+                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1;
+                                                              font-size: 60px; color: #FFFFFF;}"
+                                            )
+                                       )
+                             ),
+                     tags$h2("Examining Item Bias in Assessments and Developmental Rubrics",        # h2 header is the subtitle underneath the h1 header
+                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                                 line-height: 1.1; font-size: 18pt;
+                                                                 color: #FFFFFF;}"
+                                            )
+                                        )
+                            ),          
+                     hr(), 
+                     tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                                    "Dr Matthew Courtney (PhD)"
+                                   ),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                                            )
+                                       )
+                            ),
+                     tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                    "Dr Zhonghua Zhang (PhD)"),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                            )
+                                        )
+                            ),
+                     tags$h3("Contributing Psychometrician:",                                       # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                    "Dr Lan Ahn Nguyen Khoa (PhD)"),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                            )
+                                        )
+                            ),
+                    ),                                                                              # Baseline build (MC, ZZ) includes csv file that takes item-response matrix with 1st column pertaining facet of interest.
                                                                                                     # function to use TAM::tam.mml.mfr with two formula options: (a) TAM, EXAMPLE 8, formulaA =~ item*facet; where 'facet' is the column name of first column of df. Expand to =~ item+item:step, and others later.
            
-            tabPanel("Rasch Equating", fluid = TRUE),                                               # Baseline build for (a) concurrent calibration and (b) fixed anchor collibration proposed (MC and ZZ)
+            tabPanel("Rasch Equating",
+                     fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
+                     tags$style(type="text/css",
+                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                " * {font-family: Open Sans; font-weight: 500;  line-height: 1.1}"),
+                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                     tags$h1("Rasch Equating",
+                             tags$img(src = "hex4.png", height = 149, width = 135, 
+                                      style = "float:right;margin-top:-18.5px;"
+                             ),
+                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1;
+                                                              font-size: 60px; color: #FFFFFF;}"
+                             )
+                             )
+                     ),
+                     tags$h2("Toward Unified Valid Test Forms",                                     # h2 header is the subtitle underneath the h1 header
+                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                                 line-height: 1.1; font-size: 18pt;
+                                                                 color: #FFFFFF;}"
+                                             )
+                                       )
+                            ),          
+                     hr(), 
+                     tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                    "Dr Zhonghua Zhang (PhD)"
+                                   ),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                                             )
+                                        )
+                            ),
+                     tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                                    "Dr Matthew Courtney (PhD)"),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                             )
+                                       )
+                            ),
+                     tags$h3("Contributing Psychometrician:",                                       # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                    "Dr Lan Ahn Nguyen Khoa (PhD)"),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                            )
+                                        )
+                             ),
+                     ),                                                                             # Baseline build for (a) concurrent calibration and (b) fixed anchor collibration proposed (MC and ZZ)
 
-            tabPanel("ANOVA",  
-                     anova_UI("anova"), 
-                     fluid = TRUE),                                                        # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
+            tabPanel("ANOVA",
+                     fluid = TRUE, theme = shinytheme("cosmo"),
+                     tags$style(type = "text/css", 
+                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                                ),
+                     setBackgroundImage(src = "shiny_background8.png"),
+                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                     tags$h1("One-Way ANOVA Analysis",
+                             tags$img(src = "hex4.png", height = 149, width = 135, 
+                                      style = "float:right;margin-top:-18.5px;"
+                                     ),
+                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1;
+                                                              font-size: 60px; color: #FFFFFF;}"
+                                            )
+                                       )
+                            ),
+                     tags$h2("Toward Valid Examinations of Group Differences",                      # h2 header is the subtitle underneath the h1 header
+                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                                 line-height: 1.1; font-size: 18pt;
+                                                                 color: #FFFFFF;}"
+                                            )
+                                       )
+                            ),
+                     hr(),  
+                     tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
+                                    "Dr Kevin Chang (PhD)"
+                                   ),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                                            )
+                                        )
+                            ),
+                     tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                                    "Dr Matthew Courtney (PhD)"
+                             ),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                                            )
+                                        )
+                            ),
+                     fluidRow(
+                        column(11,
+                              wellPanel(
+                                h4("One-Way ANOVA Tool"),
+                                p("This tool provides a convenient way to examine the effect of groups,
+                                such as class or school classification, on educational or personal attributes."
+                                  ),
+                                p(""),
+                                p("On this tab, users upload their outputted spreadsheet from their 
+                                Rasch analysis. In addition, users also upload another dataset that 
+                                includes as many grouping variables (columns) as they like. Note that 
+                                the dataset needs to include an identical number of rows as the Rasch 
+                                spreadsheet as each grouping variable, e.g., gender, class, needs to 
+                                correspond to the same ability estimate"
+                                  )
+                                       )
+                               )
+                              ),
+                     anova_UI("anova")
+                    ),                                                                              # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
 
             tabPanel("Multiple Regression", fluid = TRUE),
 
             tabPanel("MLM", fluid = TRUE),
 
-            tabPanel("IRR", fluid = TRUE),                                                          # Baseline build ICC(1,k) or ICC(1,1), or whatever EBM thinks is most common as a means to examine inter-rater reliability in educational settings.
+            tabPanel("IRR",
+                     fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
+                     tags$style(type="text/css",
+                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                                ),
+                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                     tags$h1("Inter-Rater Reliability Analysis",
+                             tags$img(src = "hex4.png", height = 149, width = 135, 
+                                      style = "float:right;margin-top:-18.5px;"
+                                     ),
+                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1; font-size: 60px;
+                                                              color: #FFFFFF;}"
+                                             )
+                                        )
+                            ),
+                     tags$h2("Toward Valid Assessments and Developmental Rubrics",                  # h2 header is the subtitle underneath the h1 header
+                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 18pt;
+                                                             color: #FFFFFF;}"
+                                            )
+                                       )
+                            ),
+                     hr(), 
+                     tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                                    "Dr Eric 'Bing' Mei (PhD)"
+                                   ),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                                            )
+                                       )
+                             ),
+                     tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
+                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                                    "Dr Matthew Courtney (PhD)"),
+                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                                            )
+                                       )
+                             ),
+                     fluidRow(
+                       column(11,
+                              wellPanel(
+                                h4("Inter-Rater Reliability Tool"),
+                                p("This tool is particularly useful for test and rubric developers interested 
+                                   in improving and validating items and rubrics that involve multiple 
+                                   ratings for a single skill or developmental competence."),
+                                p(""),
+                                p("The tool computes different varieties of the intra-class correlation 
+                                  coefficient, which is an index of inter-rater reliability. In addition, 
+                                  an F test (for the measurement of between-rater effects) and confidence 
+                                  intervals are also computed."),
+                                p("")
+                              ),
+                              wellPanel(
+                                h4("1. Prepare data"),
+                                p("Before using the ICC tool, ensure that your data meet the following 
+                                  requirements:"),
+                                p(""),
+                                p("(a) A csv formatted spreadsheet with subject (students) as rows and 
+                                  raters (or, coders) as columns (e.g., Rater_1, Rater_2, Rater_3); and,"),
+                                p(""),
+                                p("(b) The ICC tool handles missing data listwise, meaning that when 
+                                  a missing value is identified, the entire row (case) is removed from 
+                                  the analysis (the Krippendorff's alpha, available below, may be more 
+                                  suitiable when missing data is present)")
+                              ),
+                              wellPanel(
+                                h4("2. Upload your inter-rater reliability data (csv)"),
+                                p(""),
+                                fileInput("input_file", "Choose your file (.csv)",                  # The file is observed by the UI when it is uploaded successfully.
+                                          multiple = FALSE, accept = c("text/csv", "text/comma-separated-values, 
+                                                                   text/plain", ".csv", ".xlsx", ".xls"
+                                                                      )
+                                         ) %>%                                                      # Pipe into new function
+                                  shinyInput_label_embed(icon("question-circle") %>%                # Pipe into other function; Other icons are also possible, see ?shiny::icon or https://fontawesome.com/icons?d=gallery&q=question 
+                                                           bs_embed_tooltip(title = "If you would like 
+                                                           to cite this tool, feel free: Courtney, M. 
+                                                           G. R., & Xxxxx, X. (XXXX). Auto-psych: a novel 
+                                                           shiny app for the psychometric analysis and 
+                                                           scoring of assessment and survey data. Xxxxxxxxx 
+                                                           and Xxxxxxxxx."
+                                                                           )
+                                                         )                                          # End of shinyInput_labelembed function (piping occurs withing that function)
+                                        ),
+                              wellPanel(
+                                h4("3. Specify the construct that the raters are measuring and identify the students"),
+                                p(""),
+                                textInput("construct", "Construct:", placeholder = "Test Topic"),
+                                bsTooltip("construct", "E.g., Numeracy or Literacy", "right",
+                                          options = list(container = "body")
+                                         ),
+                                
+                                textInput("population", "Focal group:", placeholder = "Students"),  # 2. input: sample of interest (though modelling has population-bsed assumptions)
+                                bsTooltip("population", "E.g., Central School Grade 10 Students", "right",
+                                          options = list(container = "body")
+                                         )
+                                        ),
+                              wellPanel(
+                                h4("4. Specify the model"),
+                                p(""),
+                                
+                                selectizeInput("model", "Select either the One-way or Two-way model",
+                                               choices = c("One-way" = "oneway", 
+                                                           "Two-way" = "twoway")
+                                              ) %>%              
+                                shinyInput_label_embed(icon("question-circle") %>%
+                                  bs_embed_tooltip(title = "(a) for One-way, raters randomly sampled for 
+                                                   each subject; (b) for Two-way, the same raters are 
+                                                   used across across subjects"
+                                                  )
+                                                      ),
+                                p("")
+                                        ),
+                              wellPanel(
+                                h4("5. Select the Type"),
+                                p(""),
+                                
+                                selectizeInput("type", "Select either Agreement or Consistency:", 
+                                               choices = c("Agreement" = "agreement", 
+                                                           "Consistency" = "consistency")
+                                              ) %>%                           
+                                  shinyInput_label_embed(icon("question-circle") %>%
+                                    bs_embed_tooltip(title = "(a) For agreement, IRR is characterized 
+                                                     by agreement in absolute terms across raters; (b) 
+                                                     for consistency, IRR is characterised by correlation 
+                                                     in scores across raters."
+                                                    )
+                                                        ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
+                                       ),
+                              wellPanel(
+                                h4("6. Select Confidence Intervals"),
+                                sliderInput("conf.level", 
+                                            "Specify confidence interval level for ICC statistic", 
+                                            min = 0.80, max = 0.99, value = 0.95, step = 0.01) %>%
+                                  shinyInput_label_embed(icon("question-circle") %>%
+                                    bs_embed_tooltip(title = "95 is a common confidnce interval for this statistic.")
+                                                        ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
+                                p("")
+                                       ),
+                              wellPanel(
+                                h4("7. Include your own recommendations"),
+                                p(""),
+                                
+                                textAreaInput("recommendations", "Notes:", 
+                                              placeholder = "There are no notes for this report",
+                                              height = '150px'),
+                                bsTooltip("recommendations",
+                                          "These notes will be reported at the start of the PDF technical 
+                                     report. Make any notes you like about the original data or report 
+                                     itself.",
+                                          "right",
+                                          options = list(container = "body")
+                                ),
+                                
+                                shinyjs::disabled(downloadButton("report", "Generate PDF report and 
+                                                            spreadsheet")                           # 'report' is the official name of the download button (used in UI, disabled at the start and activated...             
+                                )                                                       # when conditions met in server logic), renamed as "Generate PDF report and spreadsheet'
+                              )   # wellPanel
+                       )       # column
+                     )         # fluidRow
+            ),                # Rasch tabPanel
+           # Baseline build ICC(1,k) or ICC(1,1), or whatever EBM thinks is most common as a means to examine inter-rater reliability in educational settings.
                                                                                                     # Maybe consider this:https://www.uvm.edu/~statdhtx/methods8/Supplements/icc/More%20on%20ICCs.pdf  and   https://www.youtube.com/watch?v=1Avl7DzKmnc
             tabPanel("CVs/Blog/Contact", fluid = TRUE)                                              # These tabs are conceptual and subject to change...
                   )      # tabsetPanel
@@ -432,7 +899,7 @@ observeEvent(input$input_file,
                      length(input$recommendations) > 0 &&                                           # The recommendations are always entered (this is always true due to placeholder).
                      length(input$construct) > 0 &&                                                 # same as above "Test Topic".
                      length(input$population) > 0                                                   # same as above "Students".
-                    ){                                    
+                    ){ 
                       shinyjs::enable("report")                                                     # when the conditions above are met, shinyjs::enable is used to enable the report button to be clicked.
                      }else {                                                                        # otherwise, when conditions not met,
                      shinyjs::disable("report")  
@@ -445,7 +912,7 @@ anova_Server("anova") # ANOVA module
   
 output$report <- downloadHandler(                                                                   # This function makes the download     
   filename = "psychometric_analysis.zip",                                                           # The zip file created
-  content = function(file){
+  content = function(file){                                                                         # download handler is the main part of the application to make the RmD file. 
       withProgress(message = 'R Shiny Boosted Rendering',                                           # Set a progress bar because it can take some time
                     { tempdir <- tempdir()                                                          # Copy the report file to a temporary directory before processing it, in case we don't have write permissions to the current working dir (which can happen when deployed).
                       
@@ -485,9 +952,9 @@ output$report <- downloadHandler(                                               
                                         
                       file2 <- file.path(tempdir, "report.xlsx")                                    # file2 is the path of the xlsx output coming from the markdown
                                         
-                      files <- c(file1, file2)                                                      # combine all the files to zip them
+                      file_1_and_2 <- c(file1, file2)                                               # combine all the files to zip them
 
-                      zip(file, files, extras = "-j")                                               # creating a zip. You need extras = "-j" to get a clean zip, not one with the whole paths
+                      zip(file, file_1_and_2, extras = "-j")                                        # creating a zip. You need extras = "-j" to get a clean zip, not one with the whole paths
                     }
                   )                          # withProgress
                           }                  # function file wrapper

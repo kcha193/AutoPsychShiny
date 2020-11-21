@@ -13,44 +13,47 @@ anova_UI <- function(id) {
   
   tagList(
     fluidRow(                                                                                              
-      column(10,                                                                                                         
-             wellPanel(
-               
-    h4("Data inputs"),
-    fluidRow( column(6, 
-    fileInput(ns("anova_input_file"),                                                                            
-              "Choose your file from Uni-Dim Rasch tab",
-              accept = c(".xlsx",
-                         ".xls"))),
-    column(6,
-    fileInput(ns("anova_input_group"), 
-              "Choose your file from containing the groups", 
-              accept = c(".xlsx",
-                         ".xls")))),
-    
-    h4("Select a group variable to perform ANOVA test"),
-    uiOutput(ns("select_group")),
-    
-    h4("Diagnostic plots"),
-    tabsetPanel(
-      tabPanel("Box plot",  plotOutput(ns("bar_plot"))),
-      tabPanel("Normality check", plotOutput(ns("normcheck")))
-    ), 
-    
-    h4("ANOVA results"),
-    tabsetPanel(
-      tabPanel("ANOVA table", 
-               tableOutput(ns("anova_tab"))),
-      tabPanel("Estimated marginal means",
-               tableOutput(ns("group_means"))),
-      tabPanel("Tukey Pairwise comparison",
-               tableOutput(ns("pairwise_compare")))
-    )
-  )
-      ) # wellPanel wrapper
-    ) # column wrapper
-  ) # fluidRow wrapper
-}
+        column(11,                                                                                                         
+               wellPanel(h4("Data inputs"),
+                         fluidRow(column(6,
+                                         fileInput(ns("anova_input_file"),                                                                            
+                                                   "Choose your file from Uni-Dim Rasch tab",
+                                                   accept = c(".xlsx",".xls")
+                                                   )
+                                        ),
+                                  column(6,
+                                         fileInput(ns("anova_input_group"), 
+                                                   "Choose your file from containing the groups", 
+                                                   accept = c(".xlsx",".xls")
+                                                   )
+                                        )
+                                  ),                                                                # fluidRow
+                                  
+                                  h4("Select a group variable to perform ANOVA test"),
+                                  uiOutput(ns("select_group")),
+                                  h4("Diagnostic plots"),
+                                  tabsetPanel(tabPanel("Box plot",
+                                                       plotOutput(ns("bar_plot"))
+                                                       ),
+                                              tabPanel("Normality check", 
+                                                       plotOutput(ns("normcheck")))
+                                             ), 
+                                  h4("ANOVA results"),
+                                  tabsetPanel(tabPanel("ANOVA table", 
+                                                       tableOutput(ns("anova_tab"))
+                                                       ),
+                                              tabPanel("Estimated marginal means",
+                                                       tableOutput(ns("group_means"))
+                                                       ),
+                                              tabPanel("Tukey Pairwise comparison",
+                                                       tableOutput(ns("pairwise_compare"))
+                                                       )
+                                              )
+                                 ) # fluidRow wrapper
+                       ) # wellPanel wrapper
+             ) # column wrapper
+           ) # fluidRow wrapper
+                          }
 
 
 anova_Server <- function(id) {
