@@ -103,7 +103,16 @@ if(ncol.english > 0 & ncol.english < 10){
  ncol.english <- as.character(english::as.english(ncol.english))
 }
 
-#### 7. Give rendering progress in UI to communicate with user throughout report ####
+#### 7. Adjust placeholders (blank strings) for actual relevant string objects
+if(Construct == ""){
+  Construct <- "Test Topic"
+}
+
+if(Population == ""){
+  Population <- "Students"
+}
+
+#### 8. Give rendering progress in UI to communicate with user throughout report ####
 if (params$rendered_by_shiny){
     shiny::setProgress(0.02)
 }
@@ -1161,6 +1170,7 @@ if (params$rendered_by_shiny){
 }
 ```
 **Figure 4. The Wright Map**  
+Note. The Wright Map function is adapted from Martinková and Drabinová's ggWrightMap function from the ShinyItemAnalysis package (2018).  
   
 \newpage  
 ### 4.7 Item Expected Score Curves  
@@ -1249,6 +1259,7 @@ Olsson, U., Drasgow, F., & Dorans, N. J. (1982). The polyserial correlation coef
 Revelle, W. (2018). *psych: Procedures for Personality and Psychological Research, Version = 1.8.4*. Northwestern University, Evanston, Illinois, USA. Retreived from https://CRAN.R-project.org/package=psych  
   
 Robitzsch, A., Kiefer, T., & Wu, M. (2018). *TAM: Test analysis modules. R package version 2.10-24*. Retreived from  https://CRAN.R-project.org/package=TAM  
+  
 Martinková, P., & Drabinová, A. (2018). ShinyItemAnalysis for Teaching Psychometrics and to Enforce Routine Analysis of Educational Tests. *The R Journal*, 10(2), 503-515. doi: 10.32614/RJ-2018-074  
   
 Warm, T. A. (1989). Weighted likelihood estimation of ability in item response theory. *Psychometrika, 54*, 427-450.  
