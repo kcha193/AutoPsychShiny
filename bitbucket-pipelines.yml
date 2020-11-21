@@ -12,4 +12,5 @@ pipelines:
         - Rscript -e 'install.packages(c("shiny", "googleAuthR", "dplyr", 
           "googleAnalyticsR", "knitr", "rmarkdown", "jsonlite"), 
           repos = "https://cran.rstudio.com/")'
-        - Rscript -e 'shiny::runApp(appDir = file.path("/opt/atlassian/pipelines/agent/build/", "app"))' & 'shiny::stopApp()'
+        - Rscript -e 'shiny::runApp(appDir = file.path("/opt/atlassian/pipelines/agent/build/", "app"))' 
+        - Rscript -e 'shiny::stopApp()'
