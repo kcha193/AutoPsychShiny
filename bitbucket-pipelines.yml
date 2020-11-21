@@ -20,5 +20,5 @@ pipelines:
           - docker
     - step:
        script:
-        - Rscript -e 'shiny::runApp()' 
+        - Rscript -e 'shiny::runApp(appDir = file.path("/opt/atlassian/pipelines/agent/build/"))'
         - Rscript -e 'shiny::stopApp()'
