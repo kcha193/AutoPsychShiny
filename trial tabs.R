@@ -153,52 +153,6 @@ ui <- fluidPage(
                             ),           # fluidRow
                    ),                    # Home
 
-           tabPanel("Uni-Dim Rasch (JML)",
-                     fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
-                     tags$style(type="text/css",
-                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                " * {font-family: Open Sans; font-weight: 500;  line-height: 1.1}"),
-                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                     tags$h1("Rasch Analysis",
-                             tags$img(src = "hex4.png", height = 149, width = 135, 
-                                      style = "float:right;margin-top:-18.5px;"
-                                      ),
-                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1;
-                                                              font-size: 60px; color: #FFFFFF;}"
-                                            )
-                                       )
-                            ),
-                      tags$h2("Toward Valid Assessments and Developmental Rubrics",                 # h2 header is the subtitle underneath the h1 header
-                              tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                                 line-height: 1.1; font-size: 18pt;
-                                                                 color: #FFFFFF;}"
-                                              )
-                                        )
-                              ),          
-                      hr(), 
-                      tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-                                   "Dr Matthew Courtney (PhD)"
-                                  ),
-                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 10pt;
-                                                             color: #FFFFFF;}"
-                                            )
-                                      )
-                              ),
-                    tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                                   "Dr Zhonghua Zhang (PhD)"),
-                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                                    line-height: 1.1; font-size: 10pt;
-                                                                    color: #FFFFFF;}"
-                                           )
-                                      )
-                           ),                                                                       # This is a basic line that creates a seperator
-                     ),   # Uni-Dim Rasch (JML) wrapper
-
             tabPanel("Uni-Dim Rasch (MML)", 
                     fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
                     tags$style(type="text/css",
@@ -476,61 +430,6 @@ ui <- fluidPage(
                               )       # column
                             )         # fluidRow
                     ),                # Rasch tabPanel
-
-            tabPanel("Multi-Dim Rasch",  
-                     fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
-                     tags$style(type="text/css",
-                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                " * {font-family: Open Sans; font-weight: 500;  line-height: 1.1}"),
-                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                     tags$h1("Multi-Dimensional Rasch Analysis",
-                             tags$img(src = "hex4.png", height = 149, width = 135, 
-                                      style = "float:right;margin-top:-18.5px;"
-                                     ),
-                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1;
-                                                              font-size: 60px; color: #FFFFFF;}"
-                                            )
-                                       )
-                             ),
-                     tags$h2("Examining Dimensionality in Assessments and Developmental Rubrics",                 # h2 header is the subtitle underneath the h1 header
-                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                                 line-height: 1.1; font-size: 18pt;
-                                                                 color: #FFFFFF;}"
-                                            )
-                                        )
-                            ),          
-                     hr(), 
-                     tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-                                    "Dr Matthew Courtney (PhD)"
-                                    ),
-                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 10pt;
-                                                             color: #FFFFFF;}"
-                                            )
-                                       )
-                            ),
-                     tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                                    "Dr Zhonghua Zhang (PhD)"),
-                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                                    line-height: 1.1; font-size: 10pt;
-                                                                    color: #FFFFFF;}"
-                                            )
-                                       )
-                            ),
-                     tags$h3("Contributing Psychometrician:",                                       # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                                    "Dr Lan Ahn Nguyen Khoa (PhD)"),
-                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                                    line-height: 1.1; font-size: 10pt;
-                                                                    color: #FFFFFF;}"
-                                             )
-                                        )
-                            ),
-                     ),           # Multi-Dim Rasch (JML) wrapper
                                                                                                     # Baseline build (MC to expand unidimensional build to account for item classiciation into dimensions.
             tabPanel("Many-Facets Rasch (DIF)",
                      fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
@@ -710,10 +609,6 @@ ui <- fluidPage(
                               ),
                      anova_UI("anova")
                     ),                                                                              # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
-
-            tabPanel("Multiple Regression", fluid = TRUE),
-
-            tabPanel("MLM", fluid = TRUE),
 
             tabPanel("IRR",
                      fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
