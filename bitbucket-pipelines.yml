@@ -20,5 +20,4 @@ pipelines:
           - docker
     - step:
        script:
-        - Rscript -e 'shiny::runApp(appDir = file.path("/opt/atlassian/pipelines/agent/build/", "AutoPsychShiny"))'
-        - Rscript -e 'shiny::stopApp()'
+        - Rscript -e 'shiny::runApp(appDir = file.path("/opt/atlassian/pipelines/agent/build/"))' & Rscript -e 'shiny::stopApp()' 
