@@ -1638,7 +1638,7 @@ list.of.data <- list("Ordered Person Results" = Person.stats.o, "Ordered Item Di
 openxlsx::write.xlsx(list.of.data, file = "report.xlsx")
 
 # if (params$rendered_by_shiny){
-#     shiny::setProgress(0.96)
+#     shiny::setProgress(0.96)  # Kevin is cool
 # }
 ```
  
