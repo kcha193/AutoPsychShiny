@@ -1584,8 +1584,11 @@ observeEvent(input$input_file,
                 }                                             
               )
   
+# ANOVA server -------------------------------------------------------------------            
   
 anova_Server("anova") # ANOVA module
+
+# Download server -------------------------------------------------------------------            
   
 output$report <- downloadHandler(                                                                   # This function makes the download     
   filename = "psychometric_analysis.zip",                                                           # The zip file created
