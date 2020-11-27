@@ -30,8 +30,8 @@ MML_UI <- function(id) {
        h4("2. Upload your item-response file (csv)"),
        p(""),
        fileInput(ns("input_file"), "Choose your file (.csv)", # The file is observed by the UI when it is uploaded successfully.
-                  multiple = FALSE, accept = c("text/csv", "text/comma-separated-values, 
-                                               text/plain", ".csv", ".xlsx", ".xls"
+                  multiple = FALSE, accept = c("text/csv", "text/comma-separated-values", 
+                                               "text/plain", ".csv", ".xlsx", ".xls"
                                               )
                 ) %>%                                                           # Pipe into new function
        shinyInput_label_embed(icon("question-circle") %>%                       # Pipe into other function; Other icons are also possible, see ?shiny::icon or https://fontawesome.com/icons?d=gallery&q=question 
@@ -69,7 +69,7 @@ MML_UI <- function(id) {
                         only correlated slightly with the total score in the test 
                         by selecting a lower limit here."
                         )
-                              ),                                                # End of shinyInput_labelembed function (piping occurs withing that function)
+       ),                                                # End of shinyInput_labelembed function (piping occurs withing that function)
              
        sliderInput(ns("ci.level"), "Specify confidence interval level for item-total(rest) 
                    correlations:", min = 0.80, max = 0.99, value = 0.95, step = 0.01) %>%
@@ -210,7 +210,7 @@ MML_UI <- function(id) {
                  options = list(container = "body")
                 ),
     
-       shinyjs::disabled(downloadButton("report", "Generate PDF report and 
+       shinyjs::disabled(downloadButton(ns("report"), "Generate PDF report and 
                                         spreadsheet")                           # 'report' is the official name of the download button (used in UI, disabled at the start and activated...             
                         )                                                       # when conditions met in server logic), renamed as "Generate PDF report and spreadsheet'
               )   # wellPanel

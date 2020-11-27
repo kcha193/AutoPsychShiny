@@ -874,518 +874,518 @@ ui <- fluidPage(
 # Team -------------------------------------------------------------------------            
             tabPanel("Team",
                      tabsetPanel(tabPanel("Chief Architect", 
-                                          fluidRow(column(width = 6)),
-                                          theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                                          tags$style(type="text/css",
-                                                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                        fluidRow(column(width = 6)),
+                        theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
+                        tags$style(type="text/css",
+                                   "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                   "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                   " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                        ),
+                        shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                        tags$h1("Automated Psychometrics",
+                                tags$img(src = "hex5.png", 
+                                         height = 149, 
+                                         width = 135, 
+                                         style = "float:right;margin-top:-18.5px;"
+                                         ),
+                                tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                            line-height: 1.1; font-size: 60px;
+                                            color: #FFFFFF;}"
+                                                )
+                                           )
+                               ),
+                        tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                                tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                           line-height: 1.1; font-size: 18pt;
+                                           color: #FFFFFF;}"
+                                )
+                                )
+                        ),
+                        hr(), 
+                        fluidRow(
+                          column(11,
+                                 wellPanel(
+                                   h4("Chief Architect:"),
+                                   p(""),
+                                   p("Dr Matthew Gordon Ray Courtney (PhD)"),
+                                   p(""),
+                                   p("As Chief Architect, Dr Courtney is the founder of the website and provides expertise in UI design, 
+                                   overall website functionality, R scripts automating technical reports, and website related research and communication.")
                                           ),
-                                          shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                                          tags$h1("Automated Psychometrics",
-                                                  tags$img(src = "hex5.png", 
-                                                           height = 149, 
-                                                           width = 135, 
-                                                           style = "float:right;margin-top:-18.5px;"
-                                                           ),
-                                                  tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1; font-size: 60px;
-                                                              color: #FFFFFF;}"
-                                                                  )
-                                                             )
-                                                 ),
-                                          tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
-                                                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 18pt;
-                                                             color: #FFFFFF;}"
-                                                  )
-                                                  )
-                                          ),
-                                          hr(), 
-                                          fluidRow(
-                                            column(11,
-                                                   wellPanel(
-                                                     h4("Chief Architect:"),
-                                                     p(""),
-                                                     p("Dr Matthew Gordon Ray Courtney (PhD)"),
-                                                     p(""),
-                                                     p("As Chief Architect, Dr Courtney is the founder of the website and provides expertise in UI design, 
-                                                     overall website functionality, R scripts automating technical reports, and website related research and communication.")
-                                                            ),
-                                                   wellPanel(
-                                                     h4("Qualifications:"),
-                                                     p(""),
-                                                     p("Doctor of Education (specialization: Higher Education) [2015], The University of 
-                                                       Auckland, New Zealand"),
-                                                     p(""),                                                     
-                                                     p("Master of Education (specialization: Socio-linguistics), 1st class honours [2008], 
-                                                       The University of Waikato, New Zealand"),
-                                                     p(""),                                                      
-                                                     p("Bachelor of Teaching/Bachelor of Sports & Leisure Studies (conjoint, secondary) [2003], The University of 
-                                                       Waikato, New Zealand"),
-                                                     p("")
-                                                   ),
-                                                   wellPanel(
-                                                     h4("Bio:"),
-                                                     p("Dr Courtney is an applied psychometrician and R Shiny software developer 
-                                                     from New Zealand. He has expertise in both classical and item-response theories, automated statistical 
-                                                     analysis and reporting, web UI development, and online learning. Dr completed his PhD in Education from The 
-                                                     University of Auckland in 2015. For his doctorate he made use of advanced quantitative methods to 
-                                                     identify the drivers of educational commitment and learning of international university students 
-                                                     across Australasia."),
-                                                     p(""),
-                                                     p("After completing his PhD, he spent two years 
-                                                      as a Post-Doctoral Research Fellow in the Quantitative Data Analysis and Research Unit at The Faculty of 
-                                                      Education and Social Work at The University of Auckland. During his time there, Dr Courtney contributed 
-                                                      to multiple research projects and academic journal publications and provided consultation to staff 
-                                                      and post-graduate students. Thereafter, Dr Courtney worked for over three years as a Research Fellow 
-                                                      at the Assessment Research Centre, Graduate School of Education, The University of Melbourne. There 
-                                                      Dr Courtney contributed to multiple state, federal, and international research projects 
-                                                      which focussed on educational assessment. In addition, Dr Courtney undertook extensive training in the 
-                                                      fields of classical test theory, item-response theory, and R programming under the guidance of world-renowned 
-                                                      psychometrician, Professor Margaret Wu. Currently, Dr Courtney works as an Assistant Professor at the 
-                                                      Nazarbayev University Graduate School of Education, a research intensive university in Kazakhstan, Central 
-                                                      Asia. Dr Courtney enjoys learning new languages, introduciung post-graduate students fun topics including 
-                                                      educational assessment, educational statistics, classical and modern test theories, growth modelling, 
-                                                      and R programming. A list of Dr Courtney's published journal articles and statistical packages are 
-                                                      provided below:"),
-                                                            ),
-                                                   wellPanel(
-                                                     h4("ACADEMIC JOURNAL ARTICLES AND STATISTICAL PACKAGES:"),
-                                                     p(""),
-                                                     h4("Assessment Focus"),
-                                                     p(""),
-                                                     p("1. Courtney, M. G. R. (2013). Determining the number of factors to retain in EFA: Using the SPSS R-Menu 
-                                                     v-2.0 to make more judicious estimations. Practical Assessment, Research & Evaluation, 18(8). 
-                                                     Retrieved from http://pareonline.net/pdf/v18n8.pdf (H = 48; Q2)"),
-                                                     p("2. Panadero, E., Brown, G. T., & Courtney, M. 
-                                                      G. R. (2014). Teachers’ reasons for using self-assessment: A survey self-report of Spanish teachers. Assessment 
-                                                      in Education: Principles, Policy & Practice, 21(4), 365-383. doi: 10.1080/0969594X.2014.919247 (H = 39; 
-                                                      Q1)"),
-                                                     p(""),
-                                                     p("3. Langdon, F., Alexander, P. A., Tesar, M., 
-                                                      Courtney, M. G. R., & Palmer, M. (2016). Induction and mentoring in early childhood educational organizations: 
-                                                      embracing the complexity of teacher learning in contexts. Teaching and Teacher Education, 57, 150-160. doi: 
-                                                      10.1016/j.tate.2016.03.016 (H = 114; Q1)"),
-                                                     p(""),
-                                                     h4("Higher Education"),
-                                                     p(""),
-                                                     p("4. Qanay, G., Courtney, M. G. R., & Nam, A. (in press). Supporting teacher leadership development in schools 
-                                                     in Kazakhstan: a mixed-methods study. International Journal of Leadership Education (IF: 34; Q1)"),
-                                                     p(""),
-                                                     p("5.	Kitchen, M., Jeurissen, M., Gray, S., & Courtney, M. G. R. (2017). Teacher engagement with academic 
-                                                     reading in a post-service TESOL course. Indonesian Journal of Applied Linguistics, 6(2), 260-270. doi: 
-                                                     http://dx.doi.org/10.17509/ijal.v6i2 (H = 7, Q2)"),
-                                                     p(""),
-                                                     p("6. Courtney, M. G. R. (2018). Emerging Academic and Social Spaces: Toward a Modern Understanding of 
-                                                     International Student Integration in Australasia. International Journal of Cyber Behavior, Psychology, 
-                                                     and Learning, 8(3), 36-47. doi: 10.4018/IJCBPL.2018070104 (H = 14; Q4)"),
-                                                     p(""),
-                                                     p("7. Lee-Morgan, J., Courtney, M. G. R., & Muller, M. (2019). New Zealand Māori-Medium Teacher Education: 
-                                                     An Examination of Students' Academic Confidence and Preparedness. Asia-Pacific Journal of Teacher Education. 
-                                                     doi: 10.1080/1359866X.2018.1539214 (IF: 32; Q1)"),
-                                                     p(""),
-                                                     p("8. Lee, K., Courtney, M. G. R., McGlashan, A., Neveldsen, P., Toso, M. (2019). Initial teacher education 
-                                                     students’ perceptions of technology and technology education in New Zealand. International Journal of 
-                                                     Technology and Design Education. doi: 10.1007/s10798-019-09516-6 (IF: 37; Q1)"),
-                                                     p(""),
-                                                     h4("Youth Program Evaluation"),
-                                                     p("9.	Chapman, C. M., Deane, K. L., Harré, N., Courtney, M. G. R., & Moore, J. (2017). Engagement and mentor 
-                                                     support as drivers of social development in the Project K youth development program. Journal of Youth and 
-                                                     Adolescence, 1-12. doi: 10.1007/s10964-017-0640-5 (H = 110; Q1)"                                        ),
-                                                     p(""),
-                                                     p("10.	Deane, K., Harré, N., Moore, J., & Courtney, M. G. R. (2016). The impact of the Project K Youth Development 
-                                                     Program on self-efficacy: a randomized control trial. Journal of Youth and Adolescence, March 6, 1-22. doi: 
-                                                     10.1007/s10964-016-0463-9 (H = 110; Q1)"),
-                                                     h4("R Packages and Shiny Applications"),
-                                                     p("11.	Courtney, M. G. R., & Chang, K. (2018). Dealing with non-normality: An introduction and step-by-step 
-                                                     guide using R. Teaching Statistics, 40(2), 51-59. doi: https://doi.org/10.1111/test.12154 (IF: 12; Q4)"),
-                                                     p(""),
-                                                     p("R package details: https://cran.r-project.org/web/packages/normalr/normalr.pdf"),
-                                                     p(""),
-                                                     p("Online app: https://kcha193.shinyapps.io/normalr/")
-                                                            ) # End wellPanel
-                                                  )           # End column 11 units wide
-                                                )             # End Chief Architect fluid row
-                                         ),                   # End Chief Architect inner tab panel
-                                 
-                                 tabPanel("Chief Programmer", 
-                                          fluidRow(column(width = 6)),
-                                          theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                                          tags$style(type="text/css",
-                                                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                                          ),
-                                          shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                                          tags$h1("Automated Psychometrics",
-                                                  tags$img(src = "hex5.png", 
-                                                           height = 149, 
-                                                           width = 135, 
-                                                           style = "float:right;margin-top:-18.5px;"
-                                                  ),
-                                                  tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1; font-size: 60px;
-                                                              color: #FFFFFF;}"
-                                                  )
-                                                  )
-                                          ),
-                                          tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
-                                                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 18pt;
-                                                             color: #FFFFFF;}"
-                                                  )
-                                                  )
-                                          ),
-                                          hr(), 
-                                          fluidRow(
-                                            column(11,
-                                                   wellPanel(
-                                                     h4("Chief Programmer:"),
-                                                     p(""),
-                                                     p("Dr Kevin Chih-Tao Chang (PhD)"),
-                                                     p(""),
-                                                     p("As Chief Programmer, Dr Chang provides expertise in experimental methods, reactive programming, 
-                                                     R Shiny software development, IT operations, and software testing; AKA R Shiny DevOps ;-)")
-                                                            ),
-                                                   wellPanel(
-                                                     h4("Qualifications:"),
-                                                     p(""),
-                                                     p("Doctor of Philosophy in Statistics [2018], The University of 
-                                                       Auckland, New Zealand"),
-                                                     p(""),                                                     
-                                                     p("Bachelor of Science with 1st class honours (specialization: bio-informatics) in [2012], The University of 
-                                                       Auckland, New Zealand"),
-                                                     p("")
-                                                   ),
-                                                   wellPanel(
-                                                     h4("Bio:"),
-                                                     p("Dr Chang is an experienced Data Analyst with a demonstrated history working in the research inductry. He is highly 
-                                                       skilled in Research, Data Analysis, Experimental Design, and R Programming."),
-                                                     p(""),
-                                                     p("For his PhD, Dr Chang developed a method for optimally designing experiments 
-                                                       which involve two phases, the second phases to be needed for the observations to be made, such as in proteomics 
-                                                       experiments. Using a combination of theory and computing, his methods quickly find data collection protocols 
-                                                       which minimize the resources required to conduct such experiments while maximizing the information that can 
-                                                       be drawn from them."),
-                                                     p(""),
-                                                     p("After completing his PhD, he spent XXX years...Dr Chang is an  A list of Dr Chang's publications are provided below:"
-                                                     ),
-                                                   ),
-                                                   wellPanel(
-                                                     h4("ACADEMIC JOURNAL ARTICLES AND STATISTICAL PACKAGES:"),
-                                                     p(""),
-                                                     h4("Child and Youth Health and Wellbeing"),
-                                                     p(""),
-                                                     p("1. Shackleton, N., Chang, K., Lay-yee, R. et al. (2019). Microsimulation model of child and adolescent overweight: 
-                                                       making use of what we already know. International Journal of Obesity, 43, 2322–2332. doi: 10.1038/s41366-019-0426-9 
-                                                       (H = 218; Q1)"),
-                                                     p("2. Zhao, J., Mackay, L., Chang, K., Mavoa, S., Stewart, T., Ikeda, E., Donnellan, N., & Smith, M. (2019). Visualising 
-                                                     combined time use patterns of children’s zctivities and their association with weight status and neighbourhood context. 
-                                                     International Journal of Environmental Research and Public Health, 16(5), 1-17. doi. 10.3390/ijerph16050897 (H = 92; Q2)"),
-                                                     p(""),
-                                                     p("3. Lay-Yee, R., Milne, B. J., Shackleton, N., Chang, K., & Davis, P. (2018). Preventing youth depression: Simulating the 
-                                                     impact of parenting interventions. Advances in Life Course Research, 37, 15-22. doi. 10.1016/j.alcr.2018.05.001 (H = 30; Q2)"),
-                                                     p(""),
-                                                     h4("Psychometrics"),
-                                                     p("4. Chandra, N., Chang, K., Lee, A., Shekhawat, G. S., & Searchfield, G. D. (2018). Psychometric validity, reliability, 
-                                                       and responsiveness of the tinnitus functional index. Journal of the American Academy of Audiology, 29(7), 609-625. 
-                                                       doi 10.3766/jaaa.16171(H = 71, Q1)"),
-                                                     p(""),
-                                                     h4("R Packages and Shiny Applications"),
-                                                     p("5.	Courtney, M. G. R., & Chang, K. (2018). Dealing with non-normality: An introduction and step-by-step 
-                                                     guide using R. Teaching Statistics, 40(2), 51-59. doi: https://doi.org/10.1111/test.12154 (IF: 12; Q4)"),
-                                                     p(""),
-                                                     p("R package details: https://cran.r-project.org/web/packages/normalr/normalr.pdf"),
-                                                     p(""),
-                                                     p("Online app: https://kcha193.shinyapps.io/normalr/"),
-                                                     p(""),
-                                                     p("6. Chang, K., & Ruggiero, K. (2020). Package 'infoDecompuTE."),
-                                                     p(""),
-                                                     p("R package details: https://cran.r-project.org/web/packages/infoDecompuTE/index.html")
-                                                   ) # End wellPanel
-                                            )           # End column 11 units wide
-                                          )             # End Chief Architect fluid row
+                                 wellPanel(
+                                   h4("Qualifications:"),
+                                   p(""),
+                                   p("Doctor of Education (specialization: Higher Education) [2015], The University of 
+                                     Auckland, New Zealand"),
+                                   p(""),                                                     
+                                   p("Master of Education (specialization: Socio-linguistics), 1st class honours [2008], 
+                                     The University of Waikato, New Zealand"),
+                                   p(""),                                                      
+                                   p("Bachelor of Teaching/Bachelor of Sports & Leisure Studies (conjoint, secondary) [2003], The University of 
+                                     Waikato, New Zealand"),
+                                   p("")
                                  ),
-                                 
-                                 tabPanel("Chief Psychometrician", 
-                                          fluidRow(column(width = 6)),
-                                          theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                                          tags$style(type="text/css",
-                                                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                                                    ),
-                                          shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                                          tags$h1("Automated Psychometrics",
-                                                  tags$img(src = "hex5.png", 
-                                                           height = 149, 
-                                                           width = 135, 
-                                                           style = "float:right;margin-top:-18.5px;"
-                                                           ),
-                                                  tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1; font-size: 60px;
-                                                              color: #FFFFFF;}"
-                                                                  )
-                                                            )
-                                                 ),
-                                          tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
-                                                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 18pt;
-                                                             color: #FFFFFF;}"
-                                                                 )
-                                                            )
-                                                  ),
-                                          hr(), 
-                                          fluidRow(
-                                            column(11,
-                                                   wellPanel(
-                                                     h4("Chief Psychometrician:"),
-                                                     p(""),
-                                                     p("Dr Zhonghua Zhang (PhD)"),
-                                                     p(""),
-                                                     p("As Chief Psychometrician, Dr Chang provides expertise in item response theory (IRT), R programming, test equating 
-                                                     , and omputational efficiency.")
-                                                             ),
-                                                   wellPanel(
-                                                     h4("Qualifications:"),
-                                                     p(""),
-                                                     p("Doctor of Philosophy in Psychology [201X], The University of 
-                                                       XXXXXXX, XXXXXXXXX"),
-                                                     p(""),                                                     
-                                                     p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
-                                                       XXXXXXXXX, XXXXXXXXXXX"),
-                                                     p("")
-                                                             ),
-                                                   wellPanel(
-                                                     h4("Bio:"),
-                                                     p("Dr Zhang is an experienced psychometrician and educational statistician. He is highly skilled in psychometric 
-                                                     and educational research, quantitative methods, and R programming."),
-                                                     p(""),
-                                                     p("For his PhD, Dr Zhang"),
-                                                     p(""),
-                                                     p("After completing his PhD, he spent XXX years...Dr Zhang is an  A list of Dr Chang's publications are provided below:"),
-                                                             ),
-                                                   wellPanel(
-                                                     h4("ACADEMIC JOURNAL ARTICLES:"),
-                                                     p(""),
-                                                     h4("Psychometrics"),
-                                                     p(""),
-                                                     p("1. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("2. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("3. (H = XXX; QX)"),
-                                                     p(""),
-                                                     h4("Educational Psychology"),
-                                                     p("4. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("5. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("6. (H = XXX; QX)"),
-                                                     p(""),
-                                                     h4("Educational Measurement"),
-                                                     p("7.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("8.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("9.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("10.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("11.  (H = XXX; QX)"),
-                                                     p("")
-                                                   ) # End wellPanel
-                                            )           # End column 11 units wide
-                                          )             # End Chief Architect fluid row
+                                 wellPanel(
+                                   h4("Bio:"),
+                                   p("Dr Courtney is an applied psychometrician and R Shiny software developer 
+                                   from New Zealand. He has expertise in both classical and item-response theories, automated statistical 
+                                   analysis and reporting, web UI development, and online learning. Dr completed his PhD in Education from The 
+                                   University of Auckland in 2015. For his doctorate he made use of advanced quantitative methods to 
+                                   identify the drivers of educational commitment and learning of international university students 
+                                   across Australasia."),
+                                   p(""),
+                                   p("After completing his PhD, he spent two years 
+                                    as a Post-Doctoral Research Fellow in the Quantitative Data Analysis and Research Unit at The Faculty of 
+                                    Education and Social Work at The University of Auckland. During his time there, Dr Courtney contributed 
+                                    to multiple research projects and academic journal publications and provided consultation to staff 
+                                    and post-graduate students. Thereafter, Dr Courtney worked for over three years as a Research Fellow 
+                                    at the Assessment Research Centre, Graduate School of Education, The University of Melbourne. There 
+                                    Dr Courtney contributed to multiple state, federal, and international research projects 
+                                    which focussed on educational assessment. In addition, Dr Courtney undertook extensive training in the 
+                                    fields of classical test theory, item-response theory, and R programming under the guidance of world-renowned 
+                                    psychometrician, Professor Margaret Wu. Currently, Dr Courtney works as an Assistant Professor at the 
+                                    Nazarbayev University Graduate School of Education, a research intensive university in Kazakhstan, Central 
+                                    Asia. Dr Courtney enjoys learning new languages, introduciung post-graduate students fun topics including 
+                                    educational assessment, educational statistics, classical and modern test theories, growth modelling, 
+                                    and R programming. A list of Dr Courtney's published journal articles and statistical packages are 
+                                    provided below:"),
+                                          ),
+                                 wellPanel(
+                                   h4("ACADEMIC JOURNAL ARTICLES AND STATISTICAL PACKAGES:"),
+                                   p(""),
+                                   h4("Assessment Focus"),
+                                   p(""),
+                                   p("1. Courtney, M. G. R. (2013). Determining the number of factors to retain in EFA: Using the SPSS R-Menu 
+                                   v-2.0 to make more judicious estimations. Practical Assessment, Research & Evaluation, 18(8). 
+                                   Retrieved from http://pareonline.net/pdf/v18n8.pdf (H = 48; Q2)"),
+                                   p("2. Panadero, E., Brown, G. T., & Courtney, M. 
+                                    G. R. (2014). Teachers’ reasons for using self-assessment: A survey self-report of Spanish teachers. Assessment 
+                                    in Education: Principles, Policy & Practice, 21(4), 365-383. doi: 10.1080/0969594X.2014.919247 (H = 39; 
+                                    Q1)"),
+                                   p(""),
+                                   p("3. Langdon, F., Alexander, P. A., Tesar, M., 
+                                    Courtney, M. G. R., & Palmer, M. (2016). Induction and mentoring in early childhood educational organizations: 
+                                    embracing the complexity of teacher learning in contexts. Teaching and Teacher Education, 57, 150-160. doi: 
+                                    10.1016/j.tate.2016.03.016 (H = 114; Q1)"),
+                                   p(""),
+                                   h4("Higher Education"),
+                                   p(""),
+                                   p("4. Qanay, G., Courtney, M. G. R., & Nam, A. (in press). Supporting teacher leadership development in schools 
+                                   in Kazakhstan: a mixed-methods study. International Journal of Leadership Education (IF: 34; Q1)"),
+                                   p(""),
+                                   p("5.	Kitchen, M., Jeurissen, M., Gray, S., & Courtney, M. G. R. (2017). Teacher engagement with academic 
+                                   reading in a post-service TESOL course. Indonesian Journal of Applied Linguistics, 6(2), 260-270. doi: 
+                                   http://dx.doi.org/10.17509/ijal.v6i2 (H = 7, Q2)"),
+                                   p(""),
+                                   p("6. Courtney, M. G. R. (2018). Emerging Academic and Social Spaces: Toward a Modern Understanding of 
+                                   International Student Integration in Australasia. International Journal of Cyber Behavior, Psychology, 
+                                   and Learning, 8(3), 36-47. doi: 10.4018/IJCBPL.2018070104 (H = 14; Q4)"),
+                                   p(""),
+                                   p("7. Lee-Morgan, J., Courtney, M. G. R., & Muller, M. (2019). New Zealand Māori-Medium Teacher Education: 
+                                   An Examination of Students' Academic Confidence and Preparedness. Asia-Pacific Journal of Teacher Education. 
+                                   doi: 10.1080/1359866X.2018.1539214 (IF: 32; Q1)"),
+                                   p(""),
+                                   p("8. Lee, K., Courtney, M. G. R., McGlashan, A., Neveldsen, P., Toso, M. (2019). Initial teacher education 
+                                   students’ perceptions of technology and technology education in New Zealand. International Journal of 
+                                   Technology and Design Education. doi: 10.1007/s10798-019-09516-6 (IF: 37; Q1)"),
+                                   p(""),
+                                   h4("Youth Program Evaluation"),
+                                   p("9.	Chapman, C. M., Deane, K. L., Harré, N., Courtney, M. G. R., & Moore, J. (2017). Engagement and mentor 
+                                   support as drivers of social development in the Project K youth development program. Journal of Youth and 
+                                   Adolescence, 1-12. doi: 10.1007/s10964-017-0640-5 (H = 110; Q1)"                                        ),
+                                   p(""),
+                                   p("10.	Deane, K., Harré, N., Moore, J., & Courtney, M. G. R. (2016). The impact of the Project K Youth Development 
+                                   Program on self-efficacy: a randomized control trial. Journal of Youth and Adolescence, March 6, 1-22. doi: 
+                                   10.1007/s10964-016-0463-9 (H = 110; Q1)"),
+                                   h4("R Packages and Shiny Applications"),
+                                   p("11.	Courtney, M. G. R., & Chang, K. (2018). Dealing with non-normality: An introduction and step-by-step 
+                                   guide using R. Teaching Statistics, 40(2), 51-59. doi: https://doi.org/10.1111/test.12154 (IF: 12; Q4)"),
+                                   p(""),
+                                   p("R package details: https://cran.r-project.org/web/packages/normalr/normalr.pdf"),
+                                   p(""),
+                                   p("Online app: https://kcha193.shinyapps.io/normalr/")
+                                          ) # End wellPanel
+                                )           # End column 11 units wide
+                              )             # End Chief Architect fluid row
+                       ),                   # End Chief Architect inner tab panel
+               
+               tabPanel("Chief Programmer", 
+                        fluidRow(column(width = 6)),
+                        theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
+                        tags$style(type="text/css",
+                                   "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                   "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                   " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                        ),
+                        shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                        tags$h1("Automated Psychometrics",
+                                tags$img(src = "hex5.png", 
+                                         height = 149, 
+                                         width = 135, 
+                                         style = "float:right;margin-top:-18.5px;"
+                                ),
+                                tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                            line-height: 1.1; font-size: 60px;
+                                            color: #FFFFFF;}"
+                                )
+                                )
+                        ),
+                        tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                                tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                           line-height: 1.1; font-size: 18pt;
+                                           color: #FFFFFF;}"
+                                )
+                                )
+                        ),
+                        hr(), 
+                        fluidRow(
+                          column(11,
+                                 wellPanel(
+                                   h4("Chief Programmer:"),
+                                   p(""),
+                                   p("Dr Kevin Chih-Tao Chang (PhD)"),
+                                   p(""),
+                                   p("As Chief Programmer, Dr Chang provides expertise in experimental methods, reactive programming, 
+                                   R Shiny software development, IT operations, and software testing; AKA R Shiny DevOps ;-)")
+                                          ),
+                                 wellPanel(
+                                   h4("Qualifications:"),
+                                   p(""),
+                                   p("Doctor of Philosophy in Statistics [2018], The University of 
+                                     Auckland, New Zealand"),
+                                   p(""),                                                     
+                                   p("Bachelor of Science with 1st class honours (specialization: bio-informatics) in [2012], The University of 
+                                     Auckland, New Zealand"),
+                                   p("")
+                                 ),
+                                 wellPanel(
+                                   h4("Bio:"),
+                                   p("Dr Chang is an experienced Data Analyst with a demonstrated history working in the research inductry. He is highly 
+                                     skilled in Research, Data Analysis, Experimental Design, and R Programming."),
+                                   p(""),
+                                   p("For his PhD, Dr Chang developed a method for optimally designing experiments 
+                                     which involve two phases, the second phases to be needed for the observations to be made, such as in proteomics 
+                                     experiments. Using a combination of theory and computing, his methods quickly find data collection protocols 
+                                     which minimize the resources required to conduct such experiments while maximizing the information that can 
+                                     be drawn from them."),
+                                   p(""),
+                                   p("After completing his PhD, he spent XXX years...Dr Chang is an  A list of Dr Chang's publications are provided below:"
+                                   ),
+                                 ),
+                                 wellPanel(
+                                   h4("ACADEMIC JOURNAL ARTICLES AND STATISTICAL PACKAGES:"),
+                                   p(""),
+                                   h4("Child and Youth Health and Wellbeing"),
+                                   p(""),
+                                   p("1. Shackleton, N., Chang, K., Lay-yee, R. et al. (2019). Microsimulation model of child and adolescent overweight: 
+                                     making use of what we already know. International Journal of Obesity, 43, 2322–2332. doi: 10.1038/s41366-019-0426-9 
+                                     (H = 218; Q1)"),
+                                   p("2. Zhao, J., Mackay, L., Chang, K., Mavoa, S., Stewart, T., Ikeda, E., Donnellan, N., & Smith, M. (2019). Visualising 
+                                   combined time use patterns of children’s zctivities and their association with weight status and neighbourhood context. 
+                                   International Journal of Environmental Research and Public Health, 16(5), 1-17. doi. 10.3390/ijerph16050897 (H = 92; Q2)"),
+                                   p(""),
+                                   p("3. Lay-Yee, R., Milne, B. J., Shackleton, N., Chang, K., & Davis, P. (2018). Preventing youth depression: Simulating the 
+                                   impact of parenting interventions. Advances in Life Course Research, 37, 15-22. doi. 10.1016/j.alcr.2018.05.001 (H = 30; Q2)"),
+                                   p(""),
+                                   h4("Psychometrics"),
+                                   p("4. Chandra, N., Chang, K., Lee, A., Shekhawat, G. S., & Searchfield, G. D. (2018). Psychometric validity, reliability, 
+                                     and responsiveness of the tinnitus functional index. Journal of the American Academy of Audiology, 29(7), 609-625. 
+                                     doi 10.3766/jaaa.16171(H = 71, Q1)"),
+                                   p(""),
+                                   h4("R Packages and Shiny Applications"),
+                                   p("5.	Courtney, M. G. R., & Chang, K. (2018). Dealing with non-normality: An introduction and step-by-step 
+                                   guide using R. Teaching Statistics, 40(2), 51-59. doi: https://doi.org/10.1111/test.12154 (IF: 12; Q4)"),
+                                   p(""),
+                                   p("R package details: https://cran.r-project.org/web/packages/normalr/normalr.pdf"),
+                                   p(""),
+                                   p("Online app: https://kcha193.shinyapps.io/normalr/"),
+                                   p(""),
+                                   p("6. Chang, K., & Ruggiero, K. (2020). Package 'infoDecompuTE."),
+                                   p(""),
+                                   p("R package details: https://cran.r-project.org/web/packages/infoDecompuTE/index.html")
+                                 ) # End wellPanel
+                          )           # End column 11 units wide
+                        )             # End Chief Architect fluid row
+               ),
+               
+               tabPanel("Chief Psychometrician", 
+                        fluidRow(column(width = 6)),
+                        theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
+                        tags$style(type="text/css",
+                                   "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                   "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                   " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                                  ),
+                        shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                        tags$h1("Automated Psychometrics",
+                                tags$img(src = "hex5.png", 
+                                         height = 149, 
+                                         width = 135, 
+                                         style = "float:right;margin-top:-18.5px;"
                                          ),
-                                 
-                                 tabPanel("Psychometrician", 
-                                          fluidRow(column(width = 6)),
-                                          theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                                          tags$style(type="text/css",
-                                                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                                                     ),
-                                          shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                                          tags$h1("Automated Psychometrics",
-                                                  tags$img(src = "hex5.png", 
-                                                           height = 149, 
-                                                           width = 135, 
-                                                           style = "float:right;margin-top:-18.5px;"
-                                                           ),
-                                                  tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1; font-size: 60px;
-                                                              color: #FFFFFF;}"
-                                                                  )
-                                                            )
-                                                  ),
-                                          tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
-                                                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 18pt;
-                                                             color: #FFFFFF;}"
-                                                                  )
-                                                             )
-                                                 ),
-                                          hr(), 
-                                          fluidRow(
-                                            column(11,
-                                                   wellPanel(
-                                                     h4("Psychometrician"),
-                                                     p(""),
-                                                     p("Dr Eric 'Bing' Mei (PhD)"),
-                                                     p(""),
-                                                     p("As a Psychometrician, Dr Mei Chang expertise in educational statistics, automated reporting systems, R programming, 
-                                                     online learning.")
-                                                            ),
-                                                   wellPanel(
-                                                     h4("Qualifications:"),
-                                                     p(""),
-                                                     p("Doctor of Education [201X], The University of Auckland, 201X"),
-                                                     p(""),               
-                                                     p("Master of Education [201X], The University of Auckland, 201X"),
-                                                     p(""), 
-                                                     p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
-                                                       XXXXXXXXX, XXXXXXXXXXX"),
-                                                     p("")
-                                                            ),
-                                                   wellPanel(
-                                                     h4("Bio:"),
-                                                     p("Dr Mei is an experienced psychometrician and educational statistician. He has experience providing support to post-graduate 
-                                                     students looking to manage data and apply multivariate statistics for educational insights."),
-                                                     p(""),
-                                                     p("For his PhD, Dr Mei"),
-                                                     p(""),
-                                                     p("After completing his PhD, he spent XXX years...Dr Mei is an  A list of Dr Mei's publications are provided below:"),
-                                                             ),
-                                                   wellPanel(
-                                                     h4("ACADEMIC JOURNAL ARTICLES:"),
-                                                     p(""),
-                                                     h4("Psychometrics"),
-                                                     p(""),
-                                                     p("1. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("2. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("3. (H = XXX; QX)"),
-                                                     p(""),
-                                                     h4("Educational Psychology"),
-                                                     p("4. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("5. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("6. (H = XXX; QX)"),
-                                                     p(""),
-                                                     h4("Educational Measurement"),
-                                                     p("7.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("8.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("9.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("10.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("11.  (H = XXX; QX)"),
-                                                     p("")
-                                                            ) # End wellPanel
-                                            )           # End column 11 units wide
-                                          )             # End Chief Architect fluid row
+                                tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                            line-height: 1.1; font-size: 60px;
+                                            color: #FFFFFF;}"
+                                                )
+                                          )
+                               ),
+                        tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                                tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                           line-height: 1.1; font-size: 18pt;
+                                           color: #FFFFFF;}"
+                                               )
+                                          )
+                                ),
+                        hr(), 
+                        fluidRow(
+                          column(11,
+                                 wellPanel(
+                                   h4("Chief Psychometrician:"),
+                                   p(""),
+                                   p("Dr Zhonghua Zhang (PhD)"),
+                                   p(""),
+                                   p("As Chief Psychometrician, Dr Chang provides expertise in item response theory (IRT), R programming, test equating 
+                                   , and omputational efficiency.")
+                                           ),
+                                 wellPanel(
+                                   h4("Qualifications:"),
+                                   p(""),
+                                   p("Doctor of Philosophy in Psychology [201X], The University of 
+                                     XXXXXXX, XXXXXXXXX"),
+                                   p(""),                                                     
+                                   p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
+                                     XXXXXXXXX, XXXXXXXXXXX"),
+                                   p("")
+                                           ),
+                                 wellPanel(
+                                   h4("Bio:"),
+                                   p("Dr Zhang is an experienced psychometrician and educational statistician. He is highly skilled in psychometric 
+                                   and educational research, quantitative methods, and R programming."),
+                                   p(""),
+                                   p("For his PhD, Dr Zhang"),
+                                   p(""),
+                                   p("After completing his PhD, he spent XXX years...Dr Zhang is an  A list of Dr Chang's publications are provided below:"),
+                                           ),
+                                 wellPanel(
+                                   h4("ACADEMIC JOURNAL ARTICLES:"),
+                                   p(""),
+                                   h4("Psychometrics"),
+                                   p(""),
+                                   p("1. (H = XXX; QX)"),
+                                   p(""),
+                                   p("2. (H = XXX; QX)"),
+                                   p(""),
+                                   p("3. (H = XXX; QX)"),
+                                   p(""),
+                                   h4("Educational Psychology"),
+                                   p("4. (H = XXX; QX)"),
+                                   p(""),
+                                   p("5. (H = XXX; QX)"),
+                                   p(""),
+                                   p("6. (H = XXX; QX)"),
+                                   p(""),
+                                   h4("Educational Measurement"),
+                                   p("7.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("8.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("9.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("10.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("11.  (H = XXX; QX)"),
+                                   p("")
+                                 ) # End wellPanel
+                          )           # End column 11 units wide
+                        )             # End Chief Architect fluid row
+                       ),
+               
+               tabPanel("Psychometrician", 
+                        fluidRow(column(width = 6)),
+                        theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
+                        tags$style(type="text/css",
+                                   "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                   "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                   " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                                   ),
+                        shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                        tags$h1("Automated Psychometrics",
+                                tags$img(src = "hex5.png", 
+                                         height = 149, 
+                                         width = 135, 
+                                         style = "float:right;margin-top:-18.5px;"
                                          ),
-                                 
-                                 tabPanel("Contributing Psychometrician", 
-                                          fluidRow(column(width = 6)),
-                                          theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                                          tags$style(type="text/css",
-                                                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                                tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                            line-height: 1.1; font-size: 60px;
+                                            color: #FFFFFF;}"
+                                                )
+                                          )
+                                ),
+                        tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                                tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                           line-height: 1.1; font-size: 18pt;
+                                           color: #FFFFFF;}"
+                                                )
+                                           )
+                               ),
+                        hr(), 
+                        fluidRow(
+                          column(11,
+                                 wellPanel(
+                                   h4("Psychometrician"),
+                                   p(""),
+                                   p("Dr Eric 'Bing' Mei (PhD)"),
+                                   p(""),
+                                   p("As a Psychometrician, Dr Mei Chang expertise in educational statistics, automated reporting systems, R programming, 
+                                   online learning.")
                                           ),
-                                          shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                                          tags$h1("Automated Psychometrics",
-                                                  tags$img(src = "hex5.png", 
-                                                           height = 149, 
-                                                           width = 135, 
-                                                           style = "float:right;margin-top:-18.5px;"
-                                                  ),
-                                                  tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1; font-size: 60px;
-                                                              color: #FFFFFF;}"
-                                                  )
-                                                  )
+                                 wellPanel(
+                                   h4("Qualifications:"),
+                                   p(""),
+                                   p("Doctor of Education [201X], The University of Auckland, 201X"),
+                                   p(""),               
+                                   p("Master of Education [201X], The University of Auckland, 201X"),
+                                   p(""), 
+                                   p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
+                                     XXXXXXXXX, XXXXXXXXXXX"),
+                                   p("")
                                           ),
-                                          tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
-                                                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 18pt;
-                                                             color: #FFFFFF;}"
-                                                  )
-                                                  )
-                                          ),
-                                          hr(), 
-                                          fluidRow(
-                                            column(11,
-                                                   wellPanel(
-                                                     h4("Contributing Psychometrician"),
-                                                     p(""),
-                                                     p("Dr Luke Rowe (PhD)"),
-                                                     p(""),
-                                                     p("As a Contributing Psychometrician, Dr Luke Rowe expertise in educational statistics, meta-analysis, online education, and R programming.")
-                                                   ),
-                                                   wellPanel(
-                                                     h4("Qualifications:"),
-                                                     p(""),
-                                                     p("Doctor of Education [201X], The University of Melbourne, 201X"),
-                                                     p(""),               
-                                                     p("Master of Education [201X], The University of XXXXXXXX, 201X"),
-                                                     p(""), 
-                                                     p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
-                                                       XXXXXXXXX, XXXXXXXXXXX"),
-                                                     p("")
-                                                   ),
-                                                   wellPanel(
-                                                     h4("Bio:"),
-                                                     p("Dr Rowe is an expert quantitative educational researcher and has worked on a number of projects devoted to 
-                                                     measuring and understanding student learning, collective intelligence, and computer supported collaborative learning."),
-                                                     p(""),
-                                                     p("For his PhD, Dr Rowe..."),
-                                                     p(""),
-                                                     p("After completing his PhD, he spent XXX years...Dr Rowe is an...  A list of Dr Rowe's publications are provided below:"),
-                                                   ),
-                                                   wellPanel(
-                                                     h4("ACADEMIC "),
-                                                     p(""),
-                                                     h4("Psychometrics"),
-                                                     p(""),
-                                                     p("1. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("2. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("3. (H = XXX; QX)"),
-                                                     p(""),
-                                                     h4("Educational Psychology"),
-                                                     p("4. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("5. (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("6. (H = XXX; QX)"),
-                                                     p(""),
-                                                     h4("Educational Measurement"),
-                                                     p("7.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("8.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("9.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("10.  (H = XXX; QX)"),
-                                                     p(""),
-                                                     p("11.  (H = XXX; QX)"),
-                                                     p("")
-                                                   ) # End wellPanel
-                                            )           # End column 11 units wide
-                                          )             # End Chief Architect fluid row
-                                         )                    # End Contributing Psychometrician tabset panel
-                                 ),                           # End embedded tabset panel
-                     ),                                       # End main Team tabset
+                                 wellPanel(
+                                   h4("Bio:"),
+                                   p("Dr Mei is an experienced psychometrician and educational statistician. He has experience providing support to post-graduate 
+                                   students looking to manage data and apply multivariate statistics for educational insights."),
+                                   p(""),
+                                   p("For his PhD, Dr Mei"),
+                                   p(""),
+                                   p("After completing his PhD, he spent XXX years...Dr Mei is an  A list of Dr Mei's publications are provided below:"),
+                                           ),
+                                 wellPanel(
+                                   h4("ACADEMIC JOURNAL ARTICLES:"),
+                                   p(""),
+                                   h4("Psychometrics"),
+                                   p(""),
+                                   p("1. (H = XXX; QX)"),
+                                   p(""),
+                                   p("2. (H = XXX; QX)"),
+                                   p(""),
+                                   p("3. (H = XXX; QX)"),
+                                   p(""),
+                                   h4("Educational Psychology"),
+                                   p("4. (H = XXX; QX)"),
+                                   p(""),
+                                   p("5. (H = XXX; QX)"),
+                                   p(""),
+                                   p("6. (H = XXX; QX)"),
+                                   p(""),
+                                   h4("Educational Measurement"),
+                                   p("7.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("8.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("9.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("10.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("11.  (H = XXX; QX)"),
+                                   p("")
+                                          ) # End wellPanel
+                          )           # End column 11 units wide
+                        )             # End Chief Architect fluid row
+                       ),
+               
+               tabPanel("Contributing Psychometrician", 
+                        fluidRow(column(width = 6)),
+                        theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
+                        tags$style(type="text/css",
+                                   "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                   "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                   " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                        ),
+                        shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                        tags$h1("Automated Psychometrics",
+                                tags$img(src = "hex5.png", 
+                                         height = 149, 
+                                         width = 135, 
+                                         style = "float:right;margin-top:-18.5px;"
+                                ),
+                                tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                            line-height: 1.1; font-size: 60px;
+                                            color: #FFFFFF;}"
+                                )
+                                )
+                        ),
+                        tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                                tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                           line-height: 1.1; font-size: 18pt;
+                                           color: #FFFFFF;}"
+                                )
+                                )
+                        ),
+                        hr(), 
+                        fluidRow(
+                          column(11,
+                                 wellPanel(
+                                   h4("Contributing Psychometrician"),
+                                   p(""),
+                                   p("Dr Luke Rowe (PhD)"),
+                                   p(""),
+                                   p("As a Contributing Psychometrician, Dr Luke Rowe expertise in educational statistics, meta-analysis, online education, and R programming.")
+                                 ),
+                                 wellPanel(
+                                   h4("Qualifications:"),
+                                   p(""),
+                                   p("Doctor of Education [201X], The University of Melbourne, 201X"),
+                                   p(""),               
+                                   p("Master of Education [201X], The University of XXXXXXXX, 201X"),
+                                   p(""), 
+                                   p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
+                                     XXXXXXXXX, XXXXXXXXXXX"),
+                                   p("")
+                                 ),
+                                 wellPanel(
+                                   h4("Bio:"),
+                                   p("Dr Rowe is an expert quantitative educational researcher and has worked on a number of projects devoted to 
+                                   measuring and understanding student learning, collective intelligence, and computer supported collaborative learning."),
+                                   p(""),
+                                   p("For his PhD, Dr Rowe..."),
+                                   p(""),
+                                   p("After completing his PhD, he spent XXX years...Dr Rowe is an...  A list of Dr Rowe's publications are provided below:"),
+                                 ),
+                                 wellPanel(
+                                   h4("ACADEMIC "),
+                                   p(""),
+                                   h4("Psychometrics"),
+                                   p(""),
+                                   p("1. (H = XXX; QX)"),
+                                   p(""),
+                                   p("2. (H = XXX; QX)"),
+                                   p(""),
+                                   p("3. (H = XXX; QX)"),
+                                   p(""),
+                                   h4("Educational Psychology"),
+                                   p("4. (H = XXX; QX)"),
+                                   p(""),
+                                   p("5. (H = XXX; QX)"),
+                                   p(""),
+                                   p("6. (H = XXX; QX)"),
+                                   p(""),
+                                   h4("Educational Measurement"),
+                                   p("7.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("8.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("9.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("10.  (H = XXX; QX)"),
+                                   p(""),
+                                   p("11.  (H = XXX; QX)"),
+                                   p("")
+                                 ) # End wellPanel
+                          )           # End column 11 units wide
+                        )             # End Chief Architect fluid row
+                       )                    # End Contributing Psychometrician tabset panel
+               ),                           # End embedded tabset panel
+   ),                                       # End main Team tabset
 
 # Highlights -------------------------------------------------------------------            
             tabPanel("Highlights",
@@ -1399,19 +1399,8 @@ ui <- fluidPage(
 
 # Server file starts here -------------------------------------------------- 
 server <- function(input, output, session){
-                                                                                # the main  input, input$input_file (csv), is recognised when the following conditions are met.
-    observeEvent(input$input_file,
-                    {if (length(input$input_file) > 0 &&                        # The length of the input file is above zero.
-                         length(input$recommendations) > 0 &&                   # The recommendations are always entered (this is always true due to placeholder).
-                         length(input$construct) > 0 &&                         # same as above "Test Topic".
-                         length(input$population) > 0                           # same as above "Students".
-                        ){ 
-                          shinyjs::enable(ns("report"))                         # when the conditions above are met, shinyjs::enable is used to enable the report button to be clicked.
-                         }else {                                                # otherwise, when conditions not met,
-                         shinyjs::disable(ns("report"))  
-                         }                                                    # button is disabled.
-                    }                                             
-    )  
+                                                                                
+
   
 # ANOVA server -------------------------------------------------------------------            
   

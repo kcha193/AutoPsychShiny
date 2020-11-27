@@ -9,6 +9,19 @@ download_Server <- function(id) {
       
       ns <- NS(id)
       
+      # the main  input, input$input_file (csv), is recognised when the following conditions are met.
+      observeEvent(input$input_file,{
+        if (length(input$input_file) > 0 &&                        # The length of the input file is above zero.
+            length(input$recommendations) > 0 &&                   # The recommendations are always entered (this is always true due to placeholder).
+            length(input$construct) > 0 &&                         # same as above "Test Topic".
+            length(input$population) > 0                           # same as above "Students".
+        ){ 
+          shinyjs::enable(ns("report"))                         # when the conditions above are met, shinyjs::enable is used to enable the report button to be clicked.
+        }else {                                                # otherwise, when conditions not met,
+          shinyjs::disable(ns("report"))  
+        }                                                    # button is disabled.
+      }                                             
+      )  
       
       output$report <- downloadHandler(                                                                   # This function makes the download     
         filename = "psychometric_analysis.zip",                                                           # The zip file created
@@ -21,6 +34,7 @@ download_Server <- function(id) {
                        file.copy("scripts/Testbuild.RUNNING2.Rmd", tempReport, overwrite = TRUE)     # Copy the rmd file from the scripts folder to the path above
                        
                        node.sequence <- as.numeric(strsplit(input$node.sequence,",")[[1]])           # The tempdir constantly changes at shinyapps.io, that is why we have to repeat this process every time.
+                       
                        # Now we can get our inputs and use them in the .Rmd
                        params <- list(datapath = input$input_file$datapath,                          # Set up parameters to pass to Rmd document
                                       recommendations = input$recommendations,
