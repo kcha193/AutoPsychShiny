@@ -1,3 +1,6 @@
+
+version_number <- "0.1.0"
+
 # Loading the libraries that are related to the Shiny interface
 
 # Other options: bootstrap, 
@@ -26,8 +29,12 @@ options(shiny.maxRequestSize = 3*1024^2)
 
 source("scripts/anova_module.R")
 
+# UI file starts here -------------------------------------------------- 
+
 ui <- fluidPage(
       tabsetPanel(
+
+# Title -------------------------------------------------------------------
             tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                      tags$style(type = "text/css", 
                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
@@ -149,6 +156,9 @@ ui <- fluidPage(
                                ),        # Column
                             ),           # fluidRow
                    ),                    # Home
+
+# Uni-Dim Rasch (MML) -----------------------------------------------------
+
 
             tabPanel("Uni-Dim Rasch (MML)", 
                     fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
@@ -394,6 +404,11 @@ ui <- fluidPage(
                               )       # column
                             )         # fluidRow
                     ),                # Rasch tabPanel
+
+
+
+# Many-Facets Rasch (DIF) -------------------------------------------------
+
                                                                                                     # Baseline build (MC to expand unidimensional build to account for item classiciation into dimensions.
             tabPanel("Many-Facets Rasch (DIF)",
                      fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
@@ -661,6 +676,8 @@ ui <- fluidPage(
                              )              # fluidRow
                     ),                                                                              # Baseline DIF build (MC, ZZ).
                                                                                                     # function also uses TAM::tam.mml.mfr with two formula options: (a) TAM, EXAMPLE 8, formulaA =~ item*facet; where 'facet' is the column name of first column of df. Expand to =~ item+item:step, and others later.
+
+# Rasch Equating ----------------------------------------------------------
            
             tabPanel("Rasch Equating",
                      fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
@@ -716,6 +733,9 @@ ui <- fluidPage(
                                         )
                              ),
                      ),                                                                             # Baseline build for (a) concurrent calibration and (b) fixed anchor collibration proposed (MC and ZZ)
+
+
+# ANOVA ----------------------------------------------------------
 
             tabPanel("ANOVA",
                      fluid = TRUE, theme = shinytheme("cosmo"),
@@ -785,6 +805,8 @@ ui <- fluidPage(
                      anova_UI("anova")
                     ),                                                                              # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
 
+
+# Inter-Rater Reliability ------------------------------------------------------
             tabPanel("Inter-Rater Reliability",
                      fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
                      tags$style(type="text/css",
@@ -951,14 +973,16 @@ ui <- fluidPage(
                      )         # fluidRow
             ),                # IRR tabPanel
 
-            tabPanel("autopsych Version 0.1.0", fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
+
+# Version number
+            tabPanel(paste0("autopsych Version", version_number), fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
                      tags$style(type="text/css",
                                 "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
                                 "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
                                 " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
                                 ),
                      shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                     tags$h1("Current Version: autopsych_0.1.0",
+                     tags$h1(paste0("Current Version: autopsych_", version_number),
                              tags$img(src = "hex5.png", height = 149, width = 135, 
                                       style = "float:right;margin-top:-18.5px;"
                                      ),
@@ -1016,7 +1040,9 @@ ui <- fluidPage(
                               )       # column
                              )        # fluidRow
                      ),               # autopsych Versions tabPanel
-            
+
+
+# Team -------------------------------------------------------------------------            
             tabPanel("Team",
                      tabsetPanel(tabPanel("Chief Architect", 
                                           fluidRow(column(width = 6)),
@@ -1531,16 +1557,18 @@ ui <- fluidPage(
                                          )                    # End Contributing Psychometrician tabset panel
                                  ),                           # End embedded tabset panel
                      ),                                       # End main Team tabset
-            
+
+# Highlights -------------------------------------------------------------------            
             tabPanel("Highlights",
                      fluid = TRUE),
-            
+
+# Contact -------------------------------------------------------------------                
             tabPanel("Contact",
                      fluid = TRUE)
                   )      # tabsetPanel
                )         # fluidPage
 
-# Define server logic required ----
+# Server file starts here -------------------------------------------------- 
 server <- function(input, output, session){
                                                                                                     # the main  input, input$input_file (csv), is recognised when the following conditions are met.
 observeEvent(input$input_file,
@@ -1561,6 +1589,7 @@ anova_Server("anova") # ANOVA module
   
 output$report <- downloadHandler(                                                                   # This function makes the download     
   filename = "psychometric_analysis.zip",                                                           # The zip file created
+
   content = function(file){                                                                         # download handler is the main part of the application to make the RmD file. 
       withProgress(message = 'R Shiny Boosted Rendering',                                           # Set a progress bar because it can take some time
                     { tempdir <- tempdir()                                                          # Copy the report file to a temporary directory before processing it, in case we don't have write permissions to the current working dir (which can happen when deployed).
