@@ -15,7 +15,7 @@ title:  |
   |
   |
   | 
-  | Technical Report, version 1PLM_FACETS_v1.0
+  | Technical Report, version 1PLM_FACETS 0.1.0
   |
   |
   | 
@@ -31,6 +31,27 @@ includes:
 
 date: "`r format(Sys.time(), 'Report produced: %B %d, %Y, %H:%M:%OS')`" 
  
+params:
+  datapath: NA
+  recommendations: NA
+  construct: NA
+  population: NA
+  constraint: NA
+  disc.threshold: NA
+  ci.level: NA
+  NA.Delete: NA
+  p.fit.threshold: NA
+  node.sequence.1: NA
+  node.sequence.2: NA
+  node.sequence.3: NA
+  conv: NA
+  maxiter: NA
+  facets.cut.p: NA
+  facets.cut.logit: NA
+  color.choice: NA
+  binwidth: NA 
+  rendered_by_shiny: FALSE
+  
 header-includes:
 - \usepackage{longtable}
 - \usepackage{booktabs}
@@ -49,42 +70,28 @@ header-includes:
 \tableofcontents  
  
  
+ 
 ```{r CHUNK1 Input parameters, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Initial start time and data ####
-rm(list=ls())
-setwd("/Users/user/Desktop/Shiny")
 start.time <- Sys.time()
-
-full.resp <- read.csv("facet.p.resp.csv")         # Note: First row of df is a facet.
-
-resp <- full.resp[, -1]                           # Remove facet column to run regular 1dim 1plm report (facet model to run in the appendix)
-facet <- as.data.frame(full.resp[, 1])            # Subset facet df to enable facet report in the additional appendix
-colnames(facet) <- colnames(full.resp)[1]         # Rename first column in facet df so as to prepare it for analysis in appendix
-
-facet.df <- as.data.frame(table(facet))           # Generate tabular results to present in appendix
-colnames(facet.df)[1] <- colnames(full.resp)[1]   # Rename the facet df first column the facet of interest
-
-summary(resp)
-summary(facet)
+resp <- read.csv(params$datapath)
 
 #### 2. Report settings ####
-Recommendations <- "These are the recommendations"
-Construct <- "Maths"
-Population <- "Kenyans"
-constraint <- "items"
-disc.threshold <- 0.2
-ci.level <- .95
-NA.Delete <- T
-p.fit.threshold <- 3.0
-node.sequence <- seq(-6, 6, len= 21)
-conv <- .0001
-maxiter <- 1000
-color.choice <- "Eurasian Steppe"
-binwidth <- 0.25
-
-# Facets Analysis
-Facets.cut.p <- 0.05
-Facets.cut.logit <- 0.5
+Recommendations <- params$recommendations
+Construct <- params$construct
+Population <- params$population
+constraint <- params$constraint
+disc.threshold <- params$disc.threshold
+ci.level <- params$ci.level
+NA.Delete <- params$NA.Delete
+p.fit.threshold <- params$p.fit.threshold
+node.sequence <- seq(params$node.sequence.1, params$node.sequence.2, len= params$node.sequence.3)
+conv <- params$conv
+maxiter <- params$maxiter
+facets.cut.p <- params$facets.cut.p
+facets.cut.logit <- params$facets.cut.logit
+color.choice <- params$color.choice
+binwidth <- params$binwidth
 
 #### 3. Capitalization of construct ####
 Construct.C <- toupper(Construct) 
@@ -111,9 +118,9 @@ if(Population == ""){
 }
 
 #### 8. Give rendering progress in UI to communicate with user throughout report ####
-#if (params$rendered_by_shiny){
-#    shiny::setProgress(0.02)
-#}
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.02)
+}
 ```
   
 ```{r CHUNK2 Load packages, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -146,9 +153,9 @@ library("rmarkdown")
 library("reshape2")
 library("NCmisc")
 
-#if (params$rendered_by_shiny){
-#    shiny::setProgress(0.04)
-#}
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.04)
+}
 
 #### use 'option t ††' to denote instances of embedded narrations if useful ####
 ```
@@ -169,9 +176,9 @@ if(MCAR.tot.miss == 0){
    MCAR.tot.miss <- "none"
 }
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.06)
-#}
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.06)
+}
 ```
   
 ```{r CHUNK4 Internal consistency freq table and max for item, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -209,9 +216,9 @@ rownames(freq.uneven) <- colnames(resp)
 max.score.item.vector <- apply(resp, 2, max, na.rm = TRUE)
 max.raw <- sum(max.score.item.vector, na.rm = TRUE)
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.08)
-#}
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.08)
+}
 ```
 
 ```{r CHUNK5 Observed stats for persons, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -220,9 +227,9 @@ Scoring <- apply(resp, 1, sum, na.rm=TRUE)
 mean.total <- round(mean(Scoring), 2)
 sd.total <- round(sd(Scoring), 2)
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.10)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.10)
+}
 ```
   
 ```{r CHUNK6 Item descriptions, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -231,9 +238,9 @@ Item.table <- cbind(Item.Names, Full.Item.Names)
 Item.table <- as.data.frame(Item.table)
 names(Item.table) <- c("Item abbreviation", "Full item description")
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.12)
-# }
+if (params$rendered_by_shiny){ 
+    shiny::setProgress(0.12)
+}
 ```
   
 ```{r CHUNK7 Correlations, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -266,9 +273,9 @@ disc.disc1 <- cbind.data.frame(Item.Names, disc, Cor.LowCI, Cor.HiCI, disc1)
 #disc.disc1 <- cbind.data.frame(Item.Names, disc, disc1)
 names(disc.disc1)<- c("Item Abbreviation","Point Biserial or Pearson", "Lower CI", "Upper CI", "Bi- or Poly-serial")
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.14)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.14)
+}
 ```
 
 ```{r CHUNK8 Items lower discrimination threshold, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -283,9 +290,9 @@ if (poor.disc.n.Eng == "zero"){
   poor.disc.n.Eng <- "none"
 }
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.16)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.16)
+}
 ```
   
 ```{r CHUNK9 Correlation matrix, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -340,9 +347,9 @@ corstars <<-function(x, method=c("pearson", "spearman"), removeTriangle=c("upper
 #### 3. Create final correlation matrix with function ####
 matrix.r.p <- corstars(resp2)
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.18)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.18)
+}
 ```
   
 ```{r CHUNK10 Run 1plm mml model, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -363,9 +370,9 @@ model.deviance <- round(mod1$deviance, 2)
 Plausible.values <- TAM::tam.pv(mod1, nplausible=10, ntheta=2000, normal.approx=FALSE) # last three arguments are defaults
 Plausible.values <- Plausible.values$pv
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.20)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.20)
+}
 ```
  
 ```{r CHUNK11 Manage thresholds and Generate WrightMap, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -472,9 +479,9 @@ ggWrightMapnew <<- function(theta, b, binwidth = 0.3, color = "blue", size = 2, 
   plot_grid(g1, g2)
 }
    
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.22)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.22)
+}
 ```
   
 ```{r CHUNK12 Item difficulty estimates, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -486,9 +493,9 @@ sd.item.diff <- round(sd(item.difficulties), 2)
 item.diff.df<-cbind.data.frame(Item.Names,item.difficulties)
 names(item.diff.df) <- c("Item Abbreviation", "Item Difficulties")
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.24)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.24)
+}
 ```
  
 ```{r CHUNK13 Model reliability information, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -523,9 +530,9 @@ if (EAP.reliability < .50) {
   alpha.result <- "excellent"
 }
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.26)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.26)
+}
 ```
   
 ```{r CHUNK14 Item fit stats, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -557,9 +564,9 @@ item.fit.stats <- cbind.data.frame(Item.Names, outfit, outfitt, outfitp, infit, 
 names(item.fit.stats) <- c("Item Abbreviation", "Outfit", "Outfit t", "Outfit p", "Infit", "Infit t", "Infit p")
 round.item.fit.stats <- item.fit.stats
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.28)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.28)
+}
 ```
   
 ```{r CHUNK15 Internal consistency rule table, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -569,18 +576,18 @@ Cronbachs_Alpha <- c("0.90 & up", "0.80-0.89", "0.70-0.79", "0.60-0.69", "0.50-0
 Crony <- as.data.frame(cbind(Internal_Consitency, Cronbachs_Alpha))
 colnames(Crony) <- c("Internal Consistency", "Cronbach's alpha")
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.30)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.30)
+}
 ```
   
 ```{r CHUNK16 WLE Estimates, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Extract WLE estimates to include in the Excel outputs (developer may choose to include, currently excluded from output) ####
 Ability.theta <- tam.wle(mod1)$theta
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.32)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.32)
+}
 ```
   
 ```{r CHUNK17 Color pallette, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -601,9 +608,9 @@ if (color.choice == "Eurasian Steppe") {
 
 color.palette <- color.palette[1:length(Item.Names)]
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.34)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.34)
+}
 ```
   
 ```{r CHUNK18_Set_mnsq_min_and_max_values_for_graphs, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -611,9 +618,9 @@ color.palette <- color.palette[1:length(Item.Names)]
 Theoretical.mnsq.max <- 1 + 2 * (sqrt(2/ nrow(resp)))
 Theoretical.mnsq.min <- 1 - 2 * (sqrt(2/ nrow(resp)))
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.36)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.36)
+}
 ```
   
 ```{r CHUNK19_Extract_details_for_polytomous_analysis, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -674,9 +681,9 @@ colnames(ctt_raw.df) <- c("Item", "Total", "Category", "Count", "Percent", "Pbs"
 #### 15. Remove col 8 and 9 as CIs too busy (consider for later) ####
 ctt_raw.df <- ctt_raw.df[, -c(8, 9)]
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.38)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.38)
+}
 ```
 
 ```{r CHINK20_Person_fit_stats, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -697,10 +704,71 @@ Theoretical.mnsq.minP <- 1 - 2 * (sqrt(2/ sum(apply(resp, 2, function(x)max(x, n
 Theoretical.mnsq.minP <- round(Theoretical.mnsq.minP, 2)
 Theoretical.mnsq.maxP <- round(Theoretical.mnsq.maxP, 2)
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.40)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.40)
+}
 ```
+
+
+```{r CHUNK21a_Facets_analysis, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+# Establish facet formula
+facet.name <- colnames(facet)
+string.formula <- paste("~item*", facet.name, sep="")
+formulaA <- as.formula(string.formula)
+
+# Run facet model
+facet.results <- TAM::tam.mml.mfr(resp = resp,
+                                  facets = facet, 
+                                  formulaA = formulaA, 
+                                  constraint = constraint, 
+                                  control=list(nodes=node.sequence, conv = conv, maxiter = maxiter)
+                                  )
+# Extract facet results
+facet.df.results <- facet.results$xsi.facets
+facet.df.results <- facet.df.results[-c(1:ncol(resp)), ]
+rownames(facet.df.results) <- NULL
+
+# Create df
+facet.z <- facet.df.results$xsi / facet.df.results$se.xsi
+facet.df.results <- cbind.data.frame(facet.df.results, facet.z)
+options(scipen=999)
+facet.p <- NCmisc::Z.to.p(facet.z)
+facet.df.results <- cbind.data.frame(facet.df.results, facet.p)
+facet.df.results <- cbind.data.frame(facet.df.results, facet.df.results$xsi*2)
+colnames(facet.df.results)[7] <- "Overall Group Effect"
+facet.df.results[,3:7] <- apply(facet.df.results[,3:7], 2, FUN=function(x)round(x, 3))
+
+facet.number <- as.character(english(length(table(facet))))
+Facet.caption.name <- paste("Effect of the ", facet.name, " Facet on Item Difficulty", sep = "")
+
+# Establish flag cut points
+facet.z.cut <- NCmisc:::p.to.Z(facets.cut.p)
+
+# Extract group effect
+facet.df.results.a <- facet.df.results[-c(1,2), ]                            # remove first 2 rows
+facet.df.results.b <- facet.df.results.a[1:(nrow(facet.df.results.a)/2), ]   # extract first 10 rows
+
+stat.sig.facet.n <- as.character(english::as.english(sum(facet.df.results.b$facet.p <= facets.cut.p)))
+prac.sig.facet.n <- as.character(english::as.english(sum(facet.df.results.b$`Overall Group Effect` >= facets.cut.logit)))
+
+# Grammar
+if(stat.sig.facet.n == "one"){
+  item.statsig.si.pl <- "item"
+} else if (!stat.sig.facet.n == "one"){
+  item.statsig.si.pl <- "items"
+}
+
+if(prac.sig.facet.n == "one"){
+  item.pracsig.si.pl <- "item"
+} else if (!prac.sig.facet.n == "one"){
+  item.pracsig.si.pl <- "items"
+}
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.41)
+}
+```
+  
 
 \newpage
 
@@ -727,6 +795,8 @@ The reliability for the test was `r EAP.reliability` suggestive of `r alpha.resu
 Point biserial correlations ranged from `r min.disc` to `r max.disc` and, of the total `r ncol.english` items, `r poor.disc.n.Eng` were under the minimum correlation of `r disc.threshold` (Table 4).  
   
 The mean ability (logit) of the sample of interest was `r mean.EAP.person` (with `r constraint` centered) and the associated standard deviation was `r EAP.SD`. The mean item difficulty was `r mean.item.diff` with a standard deviation of `r SD.thresh` (across all item thresholds). Visual inspection of the Wright Map (Figure 3) helps to illustrate test targeting.  
+ 
+Many facets Rasch analysis was also carried out on the data to check for item bias. The facet of interest was `r colnames(facet)`. Analysis checked for items that exhibited an overall group effects of `r facets.cut.logit` logits and associated p values of less than `r facets.cut.p`. To this end, of the `r ncol(resp)` items, `r prac.sig.facet.n` `r item.pracsig.si.pl` exhibited an overall group effect of `r facets.cut.logit` logits, while `r stat.sig.facet.n` `r item.statsig.si.pl` exhibited p values less than the pre-specified cut of value of `r facets.cut.p`. Details can be found in Appendix 8, Table 12.  
   
 # NOTES  
 `r Recommendations`.  
@@ -739,13 +809,13 @@ The purpose of this document is to present the methodology and results of the an
 ## 2. ITEMS INCLUDED IN THE `r Construct.C` INSTRUMENT
 Table 1 presents the `r ncol(resp)` items included in the `r Construct` instrument:  
   
-```{r CHUNK21_Item_table, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
+```{r CHUNK21b_Item_table, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
 kable(Item.table, format = "latex", booktabs = T, align = 'l', caption = "List of Items", longtable = T) %>%
   kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.42)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.42)
+}
 ```
 
 \newpage  
@@ -780,9 +850,9 @@ In accordance with DeVellis (2012, pp. 109-110), Table 2 presents some general r
 kable(Crony, "latex", booktabs = T, align = 'l', caption = "Interpreting the Cronbach's Alpha") %>% 
   kable_styling(latex_options = c("striped"), font_size = 11)
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.44)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.44)
+}
 ```
   
 It should be noted that the Cronbach's $\alpha$ coefficient assumes an equivalent contribution of each item to the total score (tau, $\tau$, equivalence), consequently the $\alpha$ coefficient is considered lower bound estimate of reliability. Based on the 1PLM undertaken, the expected *a posteriori* (EAP; Bock & Aitken, 1981) estimate (for the individual scores; see subsection 3.4) for instrument reliability is also estimated.
@@ -896,6 +966,8 @@ Basically, Equation 9 specifies that the probability of success on each item dep
   
 In addition to the reporting of $D_{gi}$ for each item, with negative values suggesitng that the item favours the focal group, standard errors for each $D_{gi}$ are also given. By dividing the $D_{gi}$ estimate by its standard error, we are able to generate a z-statistic. The z-statistic can be transformed to a p value and hence a level of statistical significance can be determined for each DIF estimate. Though, statistical significance is often reached when sample sizes are very large so practical significance is also important. An overall difference in logits of 0.5 is commonly used as a cut-off value (Wu, Tam, & Jen, p. 215). There are different appraoches to dealing with items that exhibit DIF. Items exhibiting DIF may be removed, split as items for different groups, and left in the test (see Wu, Tam, & Jen, pp. 217-223 for a complete discussion).  
   
+For this analysis, the cut point for identifying practical significance between groups is set at `r facets.cut.logit` logits, while the level of statistical significance is set at p = `r facets.cut.p`. 
+  
 ### 3.5 Statistical packages  
 Analysis was undertaken with the assistance of the $CTT$ ($version\hspace{.1cm}2.3.2$; Willse, 2018), $psych$ ($version\hspace{.1cm}1.8.4$; Revelle, 2018), $TAM$ ($version\hspace{.1cm}2.10{\text -}24$; Robitzsch, Kiefer, & Wu, 2018), $xtable$ ($version\hspace{.1cm}1.8{\text -}3$; Dahl, Scott, Roosen, Magnusson & Swinton, 2018), $Hmisc$ ($version\hspace{.1cm}4.1{\text -}1$; Harrell & Dupont, 2018), and $ShinyItemAnalysis$ ($version\hspace{.1cm}1.3.0$; Martinková & Drabinová, 2018) R packages.  
   
@@ -918,9 +990,9 @@ A total `r nrow(resp)` students participated in the `r Construct` assessment. Th
 kable(freq.uneven, format = "latex", booktabs = T, align = 'cc', caption = "Frequency of Categories for Each Item", longtable = T) %>%
   kable_styling(latex_options = c("striped","repeat_header"), font_size = 11)
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.46)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.46)
+}
 ```
   
 \newpage  
@@ -948,9 +1020,9 @@ disc.disc1 %>%
   kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
   footnote(general = "Correlations under predefined limit (if any) in blue while negative values (if any) in red.")
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.48)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.48)
+}
 ```
   
 \newpage
@@ -975,9 +1047,9 @@ round.item.fit.stats  %>%
   kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
   footnote(general = "Statistically significant results (equal to or above t = |1.96|) are highlighted in red.") 
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.50)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.50)
+}
 ```
 
 \newpage
@@ -1001,9 +1073,9 @@ if(Item.n.over.outfit.limit == 0){
    Item.n.over.outfit.limit <- "none"
 }
 
-# if (params$rendered_by_shiny){
-#   shiny::setProgress(0.52)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.52)
+}
 ```
 
 ```{r CHUNK27_Fit_language, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE, results="hide"}
@@ -1029,9 +1101,9 @@ if(Item.n.over.infit.limit == 0){
 full.fit.vector <- c(Outfit, Infit, Theoretical.mnsq.max)
 y.limit <- max(full.fit.vector) + 0.03
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.54)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.54)
+}
 ```
 
 The item outfit statistics are also graphed in Figure 1. In accordance with Formula 7, the red lines on the graph illustrate the upper- and lower-bound 95% confidence intervals for item outfit distribution (these values are `r round(Theoretical.mnsq.max, 2)` and `r round(Theoretical.mnsq.min, 2)`, respectively). As illustrated by Figure 1, of the `r ncol(resp)` items in the instrument, `r Item.n.over.outfit.limit` were over the upper-bound confidence interval for the outfit distribution.  
@@ -1056,9 +1128,9 @@ ggplot(Outfit.data, aes(x = Item.Names, y = Outfit)) +
   theme(axis.text.x = element_text(angle=60,hjust=1))  +
   scale_y_continuous(limits=c(0, y.limit), oob = rescale_none)
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.56)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.56)
+}
 ```
   
 **Figure 1. Unweighted Fit Statistics**  
@@ -1088,9 +1160,9 @@ ggplot(Infit.data, aes(x = Item.Names, y = Infit)) +
   theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   scale_y_continuous(limits = c(0, y.limit), oob = rescale_none)
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.60)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.60)
+}
 ```
   
 **Figure 2. Weighted Fit Statistics**  
@@ -1142,9 +1214,9 @@ ggplot(alpha.data, aes(x = Item.Names, y = alphaIfDeleted)) +
         panel.background = element_rect(fill = "grey85", colour = "white")) +
   geom_hline(yintercept = alpha1, color="red", cex = .5)
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.62)
-# }
+if (params$rendered_by_shiny){ 
+    shiny::setProgress(0.62)
+}
 ```
 **Figure 3. The Alpha Full Minus the Alpha Deleted Values**  
 Note. The red line is the $\alpha$ estimate for all items, i.e., `r alpha1`; illustrated alpha-if-deleted values positionally accurate but rounded to two decimal places.  
@@ -1160,9 +1232,9 @@ The item difficulties (deltas) had a mean of `r mean.item.diff` and a standard d
 kable(item.diff.df, format = "latex", booktabs = T, align = 'cc', caption = "Item Difficulties", longtable = T) %>% 
   kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.64)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.64)
+}
 ```
   
 The Cronbach's alpha was `r round(Cronbachs, 2)` and the population-related MML reliability estimate was `r round(mod1$EAP.rel,2)` (Wu, Tam, and Jen, 2016).  
@@ -1177,9 +1249,9 @@ The Wright Map is presented in Figure 4. It should be noted that EAP ability est
 ```{r CHUNK33_Wright_Map, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
 ggWrightMapnew(mod1$person$EAP, thr.v, binwidth = binwidth, size=12, color = color.palette[1], item.names = names) # note thr.v and names exported in xlsx file.
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.66)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.66)
+}
 ```
 **Figure 4. The Wright Map**  
   
@@ -1193,9 +1265,9 @@ Following are a set of graphs illustrating all item expected score curves. There
 knitr::opts_chunk$set(echo = FALSE)
 plot(mod1, type = "expected", low = -6, high = 6)
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.68)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.68)
+}
 ```
 
 \newpage
@@ -1208,9 +1280,9 @@ Following are a set of graphs illustrating all item category characteristic curv
 knitr::opts_chunk$set(echo = FALSE)
 plot(mod1, type = "items", lwd = 4)
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.70)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.70)
+}
 ```
 
 \newpage
@@ -1229,9 +1301,9 @@ rownames(thr) <- colnames(resp)
 kable(thr, format = "latex", booktabs = T, align = 'cc', caption = "Thurstonian Thresholds", longtable = T) %>%
   kable_styling(latex_options = c("striped", "repeat_header", font_size = 11)) 
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.72)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.72)
+}
 ```
 
 \newpage
@@ -1319,9 +1391,9 @@ if(number.neg.elem == 0){
    number.neg.elem <- "none"
 }
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.74)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.74)
+}
 ``` 
   
 **Figure 5. The Correlational Heatmap Matrix**  
@@ -1358,9 +1430,9 @@ Note. Negative correlations (if any) in red represent unexpected relationships b
 options(width = 120) # seems to work well retaining most information
 print(matrix.r.p)
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.78)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.78)
+}
 ``` 
   
 \newpage  
@@ -1395,9 +1467,9 @@ rownames(Item.cat.param) <- colnames(resp)
 kable(Item.cat.param, format = "latex", booktabs = T, align = 'cc', caption = "Item Delta Parameters", longtable = T) %>%
   kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.80)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.80)
+}
 ```
   
   
@@ -1443,9 +1515,9 @@ ctt_raw.df %>%
 #    kable_styling(latex_options = c("striped", "repeat_header"), font_size = 9) %>%
 #    footnote(general = "Disorderedness point bi-serials, where lower category correlation is larger (toward 1.00), in red.")
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.82)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.82)
+}
 ```
  
  
@@ -1477,9 +1549,9 @@ upscales.SEs <- imod1$se_curve * SE.scale.multiplier
 info.plus.se.df <- cbind.data.frame(imod1$test_info_curve, upscales.SEs, as.numeric(imod1$theta))
 colnames(info.plus.se.df) <- c("Information", "SE", "Theta")
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.86)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.86)
+}
 ```
   
 The test information and standard error curve graph is presented in Figure 6. Test information at the lower end of theta was estimated at `r TI.lower` whilst test information at the higher end was estimated at `r TI.upper`. Test information was maximised where $\theta$=`r max.theta` (test information = `r TI.max.r`). The standard errors for theta (which have an inverse relationship to the test information) are also presented in Figure 5. The standard error at the lower end of theta was estimated at `r SE.lower` and at the higher end of theta was `r SE.upper`, and, where test information was maximised, the minimum standard error was `r SE.min.r`.  
@@ -1498,9 +1570,9 @@ ggplot(info.plus.se.df, aes(x=Theta)) +
   ylab("Test Information")   
 )
 
-# if (params$rendered_by_shiny){
-#  shiny::setProgress(0.88)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.88)
+}
 ``` 
   
 **Figure 6. Test Information and Standard Error Curve**  
@@ -1536,9 +1608,9 @@ if(sum.over.pfit == "none"|sum.over.pfit == "one"){          # introduces altern
    p.fit.grammar <- "a person fit value above"
 }
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.90)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.90)
+}
 ```
 
 Results for the mean square person fit are presented in Figure 7. The minimum person fit was `r round(min.person.fit, 2)` and the maximum person fit was `r round(max.person.fit, 2)`. Of the total `r nrow(resp)` respondents, `r sum.over.pfit` (`r percent.high.pfit`%) had `r p.fit.grammar` `r round(p.fit.threshold,2)`. To note, an outputted csv file with individual student IDs personfit estimates and respective ability scores was generated as part of this report and can be used to identify atypical respondents (this file may be obtained by contacting the main author).  
@@ -1561,9 +1633,9 @@ qplot(seq_along(ordered_resp$Person_fit_stats), ordered_resp$Person_fit_stats) +
   geom_hline(yintercept = Theoretical.mnsq.minP, color = "blue") +
   geom_hline(yintercept = Theoretical.mnsq.maxP, color = "blue") 
 
-# if (params$rendered_by_shiny){
-#    shiny::setProgress(0.92)
-#}
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.92)
+}
 ```
 **Figure 7. Personfit Statistics (Ordered Descendingly)**  
 Note. Blue lines represent 95% CIs.  
@@ -1588,9 +1660,9 @@ colnames(missingness.df) <- c("Item Name", "Count of Missing Values", "Percent M
 kable(missingness.df, format = "latex", booktabs = T, align = 'cc', caption = "Missingness for Each Item", longtable = T) %>%
   kable_styling(latex_options = c("striped","repeat_header"), font_size = 11) #%>%
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.94)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.94)
+}
 ```
   
 ```{r CHUNK48_Compile_xlsx_output, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -1633,66 +1705,33 @@ list.of.data <- list("Ordered Person Results" = Person.stats.o, "Ordered Item Di
                      "Person Results" = Person.stats, "Item Results" = Item.details, "Item Thresholds" = thr.df, 
                      "Item Frequency Categories" = freq.df, "Item Discrimination" = disc.disc1,
                      "Item Fit Stats" = round.item.fit.stats, "Item Correlation Matrix" = matrix.r.p,
-                     "CTT Item Analysis" = ctt_raw.df, "Plausible Values" = Plausible.values)
+                     "CTT Item Analysis" = ctt_raw.df, "Plausible Values" = Plausible.values, 
+                     "Many Facets Analysis" = facet.df.results)
 
 openxlsx::write.xlsx(list.of.data, file = "report.xlsx")
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(0.96)  # Kevin is cool
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.96)
+}
 ```
  
  
 \newpage  
 
 ## A8. Facet Analysis 
-This section provides a summary of the results of the facets analysis. The facet of interest was the "`r colnames(facet)`" variable. This analysis was undertaken with the intention to identify possible item bias due "`r colnames(facet)`" effects. The frequency with which each "`r colnames(facet)`" facet occured for each case is presented in Table 11.  
+This section provides a summary of the results of the facets analysis. The facet of interest was the "`r colnames(facet)`" variable. This analysis was undertaken with the intention to identify possible item bias due to student classification for the "`r colnames(facet)`" variable The frequency with which each "`r colnames(facet)`" facet occured for each student is presented in Table 11.  
   
 ```{r CHUNK49_facet, echo=FALSE, message=TRUE, warning=FALSE}
 kable(facet.df, format="latex", booktabs=T, align = 'l', caption = "Summary of Coding for Facet Variable", longtable=T) %>%
   kable_styling(latex_options = c("striped","repeat_header"), font_size = 11)
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.97)
+}
 ```
 
 
-```{r CHUNK49_Facets_analysis, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
-# Establish facet formula
-facet.name <- colnames(facet)
-string.formula <- paste("~item*", facet.name, sep="")
-formulaA <- as.formula(string.formula)
-
-# Run facet model
-facet.results <- TAM::tam.mml.mfr(resp = resp,
-                                  facets = facet, 
-                                  formulaA = formulaA, 
-                                  constraint = constraint, 
-                                  control=list(nodes=node.sequence, conv = conv, maxiter = maxiter)
-                                  )
-# Extract facet results
-facet.df.results <- facet.results$xsi.facets
-facet.df.results <- facet.df.results[-c(1:ncol(resp)), ]
-rownames(facet.df.results) <- NULL
-
-# Create df
-facet.z <- facet.df.results$xsi / facet.df.results$se.xsi
-facet.df.results <- cbind.data.frame(facet.df.results, facet.z)
-options(scipen=999)
-facet.p <- NCmisc::Z.to.p(facet.z)
-facet.df.results <- cbind.data.frame(facet.df.results, facet.p)
-facet.df.results <- cbind.data.frame(facet.df.results, facet.df.results$xsi*2)
-colnames(facet.df.results)[7] <- "Overall Group Effect"
-facet.df.results[,3:7] <- apply(facet.df.results[,3:7], 2, FUN=function(x)round(x, 3))
-
-facet.number <- as.character(english(length(table(facet))))
-Facet.caption.name <- paste("Effect of the ", facet.name, " Facet on Item Difficulty", sep = "")
-
-# Establish flag cut points
-facet.z.cut <- NCmisc:::p.to.Z(Facets.cut.p)
-# Facets.cut.p is global parameter
-# Facets.cut.logit is global parameter
-```
-
-
-Many facets analysis was undertaken to investigate the effect of "`r colnames(facet)`" differential item function (DIF) on all items in accordance with Equation 9. Results of the full analysis are provided in Table 12. Results are broken into two sections in the table. The first `r facet.number` rows reflect the overall effect of the facet categories on item difficulty in `r Construct`. The rows beyond the first `r facet.number` rows represent the effect of the student grouping facet on each of the `r ncol(resp)` test item difficulties.  
+Many facets analysis was undertaken to investigate the effect of "`r colnames(facet)`" differential item function (DIF) on all items in accordance with Equation 9. Results of the full analysis are provided in Table 12. Results are broken into two sections in the table. The first `r facet.number` rows reflect the overall effect of the facet categories on average item difficulty in the `r Construct` construct. The rows beyond the first `r facet.number` rows represent the effect of the student grouping facet on each of the `r ncol(resp)` test item difficulties.  
   
 ```{r CHUNK49_Facets_table_test, echo=FALSE, message=TRUE, warning=FALSE}
 # parameter  facet  xsi  se.xsi  facet.z   facet.p  Overall Group Effect
@@ -1703,13 +1742,17 @@ facet.df.results  %>%
     `xsi` = facet.df.results$xsi,
     `se.xsi` = facet.df.results$se.xsi,
     `facet.z` = cell_spec(`facet.z`, "latex", color = ifelse(`facet.z` >= facet.z.cut | `facet.z` <= -facet.z.cut, "red", "black")),
-    `facet.p` = cell_spec(`facet.p`, "latex", color = ifelse(`facet.p` <= Facets.cut.p, "red", "black")),
-    `Overall Group Effect` = cell_spec(`Overall Group Effect`, "latex", color = ifelse(`Overall Group Effect` >= Facets.cut.logit | `Overall Group Effect` <= -Facets.cut.logit, "blue", "black"))
+    `facet.p` = cell_spec(`facet.p`, "latex", color = ifelse(`facet.p` <= facets.cut.p, "red", "black")),
+    `Overall Group Effect` = cell_spec(`Overall Group Effect`, "latex", color = ifelse(`Overall Group Effect` >= facets.cut.logit | `Overall Group Effect` <= -facets.cut.logit, "blue", "black"))
                ) %>%
   dplyr::select(`parameter`, facet, `xsi`, `se.xsi`, facet.z, `facet.p`, `Overall Group Effect`) %>%
   kable(format="latex", escape = F, booktabs = T, linesep = "", align='cc', caption= "Examination of DIF through Facets Analysis", longtable=T) %>%
   kable_styling(latex_options = c("striped", "repeat_header"), font_size = 10) %>%
   footnote(general = "(a) Statistically significant results in red, practically significant results in blue.")
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.98)
+}
 ```
 
 
@@ -1735,8 +1778,8 @@ conv <- as.character(conv)
 
 Input.setting <- c("Assessment Topic (construct)", "Target group (students)", "Total number of cases (students)", "Total number of items", "Cases Deleted Listwise for CTT?", "Internal Consistency (alpha)", "Reliability of test (EAP)", "Overall model deviance (measure of fit)", "Minimum item-rest correlation", "CI level for item-rest cor", "Minimum person fit", "Model Type", "Model constraint", "Number of dimensions", "Assumed discretized population profile", "Maximum number of iterations (maxiter)","Convergence criterion for item parameters (conv)", "Build version of Shiny app", "Computation time for 1PLM model (sec)", "Computation time for full report (sec)")
 
-Input.measure <- c(Construct, Population, nrow(resp), ncol(resp), NA.Delete, Cronbachs, EAP.reliability, model.deviance, disc.threshold, ci.level, p.fit.threshold, "1PLM", constraint, 
-                   "1", node.sequence1, maxiter, conv, "1PLM_Auto-Psych_1.0", mod.time_sec, full.rep.time)
+Input.measure <- c(Construct, Population, nrow(resp), ncol(resp), NA.Delete, Cronbachs, EAP.reliability, model.deviance, disc.threshold, ci.level, p.fit.threshold, "1PLM_FACETS 0.1.0", constraint, 
+                   "1", node.sequence1, maxiter, conv, "autopsych 0.1.0", mod.time_sec, full.rep.time)
 
 summary.df <- cbind.data.frame(Input.setting, Input.measure)
 colnames(summary.df) <- c("Report Criteria", "Setting/Ouput")
@@ -1744,11 +1787,8 @@ colnames(summary.df) <- c("Report Criteria", "Setting/Ouput")
 kable(summary.df, format="latex", booktabs=T, align = 'l', caption = "Technical Settings for Report", longtable=T) %>%
   kable_styling(latex_options = c("striped","repeat_header"), font_size = 11)
 
-# if (params$rendered_by_shiny){
-#     shiny::setProgress(1)
-# }
+if (params$rendered_by_shiny){
+    shiny::setProgress(1)
+}
 # END
 ```
-
-
-

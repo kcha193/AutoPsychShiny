@@ -603,13 +603,13 @@ ui <- fluidPage(
                                 h4("6. Specify settings for many-facets Rasch analysis"),
                                 p(""),
                                 p(""),
-                                sliderInput("Facets.cut.logit", "Flag overall group differences in item difficulty higher than:",
+                                sliderInput("facets.cut.logit", "Flag overall group differences in item difficulty higher than:",
                                             min = 0.1, max = 1.0, value = 0.5, step = 0.01) %>%
                                   shinyInput_label_embed(icon("question-circle") %>%
                                                            bs_embed_tooltip(title = "Items that are bias against one particular student group can be automatically flagged with this tool. A common cut-off value is 0.5 logit, (Wu, Tam, & Jen, 2016, p. 216), though users can specify their own level of practical significance here."
                                                                             )
                                                            ),                                       # End of shinyInput_labelembed function (piping occurs withing that function)
-                                sliderInput("Facets.cut.p", "Flag overall group differences in item difficulty with levels of 
+                                sliderInput("facets.cut.p", "Flag overall group differences in item difficulty with levels of 
                                              statistical significance lower than:", min = 0.001, max = 0.10, value = 0.05, step = 0.005) %>%
                                   shinyInput_label_embed(icon("question-circle") %>%
                                                            bs_embed_tooltip(title = "Items that are bias against one particular student group can be automatically flagged with this tool. A common cut-off value  is p = .05. Though, users can specify their own level of statistical significance here."
