@@ -27,7 +27,7 @@ anova_UI <- function(id) {
                                                    accept = c(".xlsx",".xls")
                                                    )
                                         )
-                                  ),                                                                # fluidRow
+                                  ),  # fluidRow                                                               
                                   
                                   h4("Select a group variable to perform ANOVA test"),
                                   uiOutput(ns("select_group")),
@@ -49,11 +49,11 @@ anova_UI <- function(id) {
                                                        tableOutput(ns("pairwise_compare"))
                                                        )
                                               )
-                                 ) # fluidRow wrapper
-                       ) # wellPanel wrapper
-             ) # column wrapper
-           ) # fluidRow wrapper
-                          }
+                                 ) # wellPanel wrapper
+                       ) # column wrapper
+             ) # fluidRow wrapper
+  ) 
+  }
 
 
 anova_Server <- function(id) {
