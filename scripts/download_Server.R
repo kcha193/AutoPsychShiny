@@ -9,19 +9,6 @@ download_Server <- function(id) {
       
       ns <- NS(id)
       
-    observeEvent(input$input_file,
-                    {if (length(input$input_file) > 0 &&                        # The length of the input file is above zero.
-                         length(input$recommendations) > 0 &&                   # The recommendations are always entered (this is always true due to placeholder).
-                         length(input$construct) > 0 &&                         # same as above "Test Topic".
-                         length(input$population) > 0                           # same as above "Students".
-                        ){ 
-                          shinyjs::enable(ns("report"))                         # when the conditions above are met, shinyjs::enable is used to enable the report button to be clicked.
-                         }else {                                                # otherwise, when conditions not met,
-                         shinyjs::disable(ns("report"))  
-                         }                                                    # button is disabled.
-                    }                                             
-    )      
-      
       
       output$report <- downloadHandler(                                                                   # This function makes the download     
         filename = "psychometric_analysis.zip",                                                           # The zip file created
