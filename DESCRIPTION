@@ -1,0 +1,52 @@
+Package: autopsychshiny
+Title: Automated Psychometrics Shiny app
+Version: 0.1.0
+Authors@R:
+  c(
+    person("Kevin", "Chang", email = "kevin.ct.chang@gmail.com", role = c("cre", "aut")),
+    person("Matthew", "Courtney", email = "matty_courtney@hotmail.com", role = c("aut"))
+  )
+Description: Toward Valid Assessments and Educational Research
+License: GPL
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Imports:
+    shiny,
+    tuneR,
+    shinycssloaders,
+    shinyjs,
+    shinythemes,
+    shinyFiles,
+    shinyBS,
+    bsplus,
+    tinytex,
+    scales,
+    CTT,
+    TAM,
+    sirt,
+    WrightMap,
+    compare,
+    psych,
+    dplyr,
+    knitr,
+    ggplot2,
+    yaml,
+    plyr,
+    kableExtra,
+    ShinyItemAnalysis,
+    bookdown,
+    compare,
+    xtable,
+    Hmisc,
+    psychometric,
+    plotly,
+    Thermimage,
+    openxlsx,
+    rmarkdown,
+    reshape2,
+    NCmisc
+Suggests:
+    shinytest,
+    testthat
