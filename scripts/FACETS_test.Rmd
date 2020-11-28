@@ -74,7 +74,15 @@ header-includes:
 ```{r CHUNK1 Input parameters, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Initial start time and data ####
 start.time <- Sys.time()
-resp <- read.csv(params$datapath)
+full.resp <- read.csv(params$datapath)
+
+resp <- full.resp[, -1]                           # Remove facet column to run regular 1dim 1plm report (facet model to run in the appendix)
+facet <- as.data.frame(full.resp[, 1])            # Subset facet df to enable facet report in the additional appendix
+colnames(facet) <- colnames(full.resp)[1]         # Rename first column in facet df so as to prepare it for analysis in appendix
+
+facet.df <- as.data.frame(table(facet))           # Generate tabular results to present in appendix
+colnames(facet.df)[1] <- colnames(full.resp)[1]   # Rename the facet df first column the facet of interest
+
 
 #### 2. Report settings ####
 Recommendations <- params$recommendations
