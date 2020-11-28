@@ -29,6 +29,7 @@ options(shiny.maxRequestSize = 3*1024^2)
 
 source("scripts/anova_module.R")
 source("scripts/MML_UI.R")
+source("scripts/DIF_UI.R")
 source("scripts/download_Server.R")
 
 # UI file starts here -------------------------------------------------- 
@@ -37,474 +38,244 @@ ui <- fluidPage(
       tabsetPanel(
 
 # Title -------------------------------------------------------------------
-            tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
-                     tags$style(type = "text/css", 
-                               "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                               "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                               " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                              ),
-                    setBackgroundImage(src = "shiny_background8.png"),
-                    shinyjs::useShinyjs(),
-                    tags$h1("Automated Psychometrics",
-                            tags$img(src = "hex5.png", height = 149, width = 135, 
-                                    style = "float:right;margin-top:-18.5px;"
-                                    ),
-                            tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
+         tags$style(type = "text/css", 
+                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+         ),
+         setBackgroundImage(src = "shiny_background8.png"),
+         shinyjs::useShinyjs(),
+         tags$h1("Automated Psychometrics",
+                 tags$img(src = "hex5.png", height = 149, width = 135, 
+                          style = "float:right;margin-top:-18.5px;"
+                 ),
+                 tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
                                              line-height: 1.1; font-size: 60px; color: #FFFFFF;}"
-                                           )
-                                      )
-                            ),
-                    tags$h2("Toward Valid Assessments and Educational Research",                    # h2 header is the subtitle underneath the h1 header
-                            tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         tags$h2("Toward Valid Assessments and Educational Research",                    # h2 header is the subtitle underneath the h1 header
+                 tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
                                             line-height: 1.1; font-size: 18pt; color: #FFFFFF;}"
-                                           )
-                                      )
-                            ),
-                    hr(),
-                    tags$h3("Chief Architect:",                                                     # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-                                   "Dr Matthew Courtney (PhD)"
-                                   ),
-                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         hr(),
+         tags$h3("Chief Architect:",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                        "Dr Matthew Courtney (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
-                                           )
-                                      )
-                            ),
-                    tags$h3("Chief Programmer:",                                                    # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
-                                   "Dr Kevin Chang (PhD)"
-                                   ),
-                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         tags$h3("Chief Programmer:",                                                    # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
+                        "Dr Kevin Chang (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
-                                            )
-                                       )
-                            ),
-                    tags$h3("Chief Psychometrician:",                                               # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                                   "Dr Zhonghua Zhang (PhD)"),
-                                   tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         tags$h3("Chief Psychometrician:",                                               # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                        "Dr Zhonghua Zhang (PhD)"),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
-                                                   )
-                                              )
-                                   ),
-                    tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                                   "Dr Eric Mei (PhD)"
-                                   ),
-                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
+                        "Dr Eric Mei (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                               line-height: 1.1; font-size: 10pt;
                                                               color: #FFFFFF;}"
-                                            )
-                                      )
-                            ),
-                    tags$h3("Contributing Psychometrician:",                                        # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                                   "Dr Luke Rowe (PhD)"
-                                   ),
-                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         tags$h3("Contributing Psychometrician:",                                        # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
+                        "Dr Luke Rowe (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
-                                            )
-                                      )
-                            ),
-                    fluidRow(
-                        column(11, 
-                          wellPanel(
-                            h4("Introduction"),
-                            p("Welcome to Automated Psychometrics, a novel website that allows test 
+                 )
+                 )
+         ),
+         fluidRow(
+           column(11, 
+                  wellPanel(
+                    h4("Introduction"),
+                    p("Welcome to Automated Psychometrics, a novel website that allows test 
                               developers, educational institutions, and researchers to:"),
-                            p(""),
-                            p("(1) Improve the quality of student assessments and developmental rubrics,"),
-                            p(""),
-                            p("(2) Gain valuable information about student development and learning, and,"),
-                            p(""),
-                            p("(3) Carry out high quality research and analytics.")
-                                   ),
-                          wellPanel(
-                            h4("Design"),
-                            p("The website provides automated Rasch-based analysis of student test data, 
+                    p(""),
+                    p("(1) Improve the quality of student assessments and developmental rubrics,"),
+                    p(""),
+                    p("(2) Gain valuable information about student development and learning, and,"),
+                    p(""),
+                    p("(3) Carry out high quality research and analytics.")
+                  ),
+                  wellPanel(
+                    h4("Design"),
+                    p("The website provides automated Rasch-based analysis of student test data, 
                               inclusive of (1) uni-dimensional Rasch analysis, (2) many facets analysis 
                               (to explore item bias), and (3) Rasch equating for developing common ability 
                               scales across different test forms. The website also provides extended 
                               options such as (1) inter-rater reliability analysis, and (2) automated 
                               ANOVA-based procedures to explore differences in performance outcomes 
                               between groups."),
-                            p("")
-                                    ),
-                          wellPanel(
-                            h4("Team Vision"),
-                            p("Together, the team draws on extensive expertise in educational 
+                    p("")
+                  ),
+                  wellPanel(
+                    h4("Team Vision"),
+                    p("Together, the team draws on extensive expertise in educational 
                               and psychological assessment, statistics, quantitative research methods, 
                               statistical programming, web-design, statistical software development, 
                               teaching pedagogy, and online learning. Drawing up this multi-disciplinary 
                               skillset, the team's visions is to both promote and make high quality 
                               assessment and research  ubiquitously accessible to the developed and 
                               developing world.")
-                                    ),   # WellPanel
-                          wellPanel(
-                            h4("Use"),
-                            p("The website and all functionality was built using the open-source R programming 
+                  ),   # WellPanel
+                  wellPanel(
+                    h4("Use"),
+                    p("The website and all functionality was built using the open-source R programming 
                               language and received no external funding. Use of the website is free and users 
                               may make use of the following citation:"),
-                            p(""),
-                            p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: 
+                    p(""),
+                    p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: 
                               a novel shiny app for the psychometric analysis and scoring of assessment
                               and survey data. The X Journal, X(X), XXX-XXX. doi. XXXXXXXXXXXXX."),
-                            p("")
-                                   ),   # WelPanel
-                               ),        # Column
-                            ),           # fluidRow
-                   ),                    # Home
+                    p("")
+                  ),   # WelPanel
+           ),        # Column
+         ),           # fluidRow
+),                    # Home
 
 # Uni-Dim Rasch (MML) -----------------------------------------------------
-            tabPanel("Uni-Dim Rasch (MML)", 
-                    fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
-                    tags$style(type="text/css",
-                               "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                               "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                               " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                              ),
-                    shinyjs::useShinyjs(),                                                          # activate javascript in the application
-                    tags$h1("Uni-Dimensional Rasch Analysis",
-                            tags$img(src = "hex5.png", height = 149, width = 135, 
-                                     style = "float:right;margin-top:-18.5px;"
-                                     ),
-                            tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+tabPanel("Uni-Dim Rasch (MML)", 
+         fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
+         tags$style(type="text/css",
+                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+         ),
+         shinyjs::useShinyjs(),                                                          # activate javascript in the application
+         tags$h1("Uni-Dimensional Rasch Analysis",
+                 tags$img(src = "hex5.png", height = 149, width = 135, 
+                          style = "float:right;margin-top:-18.5px;"
+                 ),
+                 tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
                                                               line-height: 1.1; font-size: 60px;
                                                               color: #FFFFFF;}"
-                                            )
-                                       )
-                            ),
-                    tags$h2("Toward Valid Assessments and Developmental Rubrics",                   # h2 header is the subtitle underneath the h1 header
-                            tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         tags$h2("Toward Valid Assessments and Developmental Rubrics",                   # h2 header is the subtitle underneath the h1 header
+                 tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 18pt;
                                                              color: #FFFFFF;}"
-                                            )
-                                      )
-                            ),
-                    hr(), 
-                    tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-                                   "Dr Matthew Courtney (PhD)"
-                                  ),
-                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         hr(), 
+         tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                        "Dr Matthew Courtney (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
-                                           )
-                                      )
-                            ),
-                    tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                            tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                                   "Dr Zhonghua Zhang (PhD)"),
-                            tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                 )
+                 )
+         ),
+         tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                        "Dr Zhonghua Zhang (PhD)"),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
-                                           )
-                                      )
-                           ),
-                    fluidRow(
-                        column(11,
-                         wellPanel(
-                           h4("Rasch analysis tool"),
-                           p("This tool is useful for improving the quality of tests and developmental 
-                             rubrics that focus on measuring a single construct or skill, such as student 
-                             reading abilility."),
-                           p(""),
-                           p("The tool takes an item-response matrix (i.e., a spreadsheet of student 
-                             test results) and produces a detailed narrated technical report and organized 
-                             spreadsheets that reflect the function of the test and each question."),
-                           p(""),
-                           p("The report is based on the application of classical test theory (CTT) 
-                             and item-response theory (IRT; here, a unidimensional Rasch, or 1PL, model). 
-                             The analysis uses a specialized scoring algorithm that places estimates 
-                             of student ability and item difficulty on the same scale. This enables 
-                             educators to identify sets of questions and associated skills that students 
-                             might be ready to tackle with additional support. Analysts using this tool 
-                             (as opposed to the JML tool) will be primarily interested in generalizing 
-                             the results of the analysis to the broader population from which the sample 
-                             students were drawn."),
-                           p("")
-                         ),
-                         
-                         MML_UI("MML")
-                         
-                        )
-                    )         # fluidRow
-            ),                # Rasch tabPanel
+                 )
+                 )
+         ),
+         fluidRow(
+           column(11,
+                  MML_UI("MML"),
+                  
+                  download_UI("MML")
+                  
+           )
+         )         # fluidRow
+),                # Rasch tabPanel
 
 
 
 # Many-Facets Rasch (DIF) -------------------------------------------------
-                                                                                                    # Baseline build (MC to expand unidimensional build to account for item classiciation into dimensions.
-            # tabPanel("Many-Facets Rasch (DIF)",
-            #          fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
-            #          tags$style(type="text/css",
-            #                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-            #                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-            #                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-            #                    ),
-            #          shinyjs::useShinyjs(),                                                          # activate javascript in the application
-            #          tags$h1("Many-Facets Rasch Analysis",
-            #                  tags$img(src = "hex5.png", height = 149, width = 135, 
-            #                           style = "float:right;margin-top:-18.5px;"
-            #                           ),
-            #                  tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-            #                                                   line-height: 1.1; font-size: 60px;
-            #                                                   color: #FFFFFF;}"
-            #                                 )
-            #                            )
-            #                  ),
-            #          tags$h2("Toward Unbiased Assessments and Developmental Rubrics",                   # h2 header is the subtitle underneath the h1 header
-            #                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-            #                                                  line-height: 1.1; font-size: 18pt;
-            #                                                  color: #FFFFFF;}"
-            #                                 )
-            #                             )
-            #                 ),
-            #          hr(), 
-            #          tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
-            #                  tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-            #                         "Dr Matthew Courtney (PhD)"
-            #                        ),
-            #                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-            #                                                  line-height: 1.1; font-size: 10pt;
-            #                                                  color: #FFFFFF;}"
-            #                                 )
-            #                            )
-            #                 ),
-            #          tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-            #                  tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-            #                         "Dr Zhonghua Zhang (PhD)"),
-            #                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-            #                                                         line-height: 1.1; font-size: 10pt;
-            #                                                         color: #FFFFFF;}"
-            #                                 )
-            #                            )
-            #                 ),
-            #          fluidRow(
-            #             column(11,
-            #                   wellPanel(
-            #                     h4("Many-facets Rasch analysis tool"),
-            #                     p("This tool extends the functionality of the Uni-Dimensional Rasch 
-            #                        analysis to include an examination of item (question) bias via the 
-            #                        application of many-facets Rasch analysis. This form of analysis 
-            #                        provides insight into how some questions (or developmental criteria) 
-            #                        might function differently across student groups."),
-            #                     p(""),
-            #                     p("The tool also takes an item-response matrix (i.e., a spreadsheet 
-            #                        of student test results). Though, the tool requires that the first 
-            #                        column specifies the binary facet of interest (e.g., column header 
-            #                        'gender'). The variable needs to be numeric with coding 1 (representing 
-            #                        male, for example) and 2 (representing female, for example). The 
-            #                        report includes and produces a detailed narrated technical report 
-            #                        and organized spreadsheets that reflect the function of the test and 
-            #                        each question, as well as a report  on item bias."),
-            #                     p(""),
-            #                     p("The report is based on the application of classical test theory (CTT) 
-            #                        and item-response theory (IRT; here, a unidimensional Rasch, or 1PL, 
-            #                        model, and extended many-facets analysis). The analysis uses a specialized 
-            #                        scoring algorithm that places estimates of student ability and item 
-            #                        difficulty on the same scale. This enables educators to identify sets 
-            #                        of questions and associated skills that students might be ready to 
-            #                        tackle with additional support. Analysts using this tool (as opposed 
-            #                        to the JML tool, in production) will be primarily interested in generalizing 
-            #                        the results of the analysis to the broader population from which 
-            #                        the sample students were drawn. Insights into potential item bias 
-            #                        can be helpful for checking that the scale operates in a reasonably 
-            #                        similar way across groups of interest."),
-            #                     p("")
-            #                            ),
-            #                   wellPanel(
-            #                     h4("1. Prepare data"),
-            #                     p("Before using the tool, ensure that your data meet the following requirements:"),
-            #                     p(""),
-            #                     p("(a) The header of the csv file (top row) includes a brief description of 
-            #                       each question (item) and should start with a letter, not a number (e.g., 
-            #                       Item 1. Matching words and visual stimulus), very short descriptions also 
-            #                       fine; first column needs to be facet with each cell, 1 or 2."),
-            #                     p(""),
-            #                     p("(b) Under the row of 'item descriptors', item-responses may 
-            #                       include dichotomous (0,1) or polytomous (0,1,2... max 9) data;"),
-            #                     p(""),
-            #                     p("(c) A column specifying student (case) identification cannot be included 
-            #                       (simply, outputs specific to student ordering, e.g., ability and 
-            #                       student fit estimates, remain in the original order); and,"),
-            #                     p(""),
-            #                     p("(d) Some missing item-response data (blanks) are handled by the tool, 
-            #                       though users should carefully consider the meaning of such instances 
-            #                       and recode if appropriate.")
-            #                             ),
-            #                   wellPanel(
-            #                     h4("2. Upload your item-response file (csv)"),
-            #                     p(""),
-            #                     fileInput("input_file", "Choose your file (.csv)",                  # The file is observed by the UI when it is uploaded successfully.
-            #                               multiple = FALSE, accept = c("text/csv", "text/comma-separated-values, 
-            #                                                        text/plain", ".csv", ".xlsx", ".xls")
-            #                        ) %>%                                                            # Pipe into new function
-            #                        shinyInput_label_embed(icon("question-circle") %>%               # Pipe into other function; Other icons are also possible, see ?shiny::icon or https://fontawesome.com/icons?d=gallery&q=question 
-            #                                                bs_embed_tooltip(title = "If you would like to cite this tool, feel free: Courtney, M. G. R., & Xxxxx, X. (XXXX). Auto-psych: a novel shiny app for the psychometric analysis and scoring of assessment and survey data. Xxxxxxxxx and Xxxxxxxxx.")
-            #                                               )                                         # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                            ),
-            #                   wellPanel(
-            #                     h4("3. Specify construct and focal group"),
-            #                     p(""),
-            #                     textInput("construct", "Construct:", placeholder = "Test Topic"),
-            #                     bsTooltip("construct", "E.g., Numeracy or Literacy", "right",
-            #                               options = list(container = "body")
-            #                              ),
-            #                     textInput("population", "Focal group:", placeholder = "Students"),  # 2. input: sample of interest (though modelling has population-bsed assumptions)
-            #                     bsTooltip("population", "E.g., Central School Grade 10 Students", "right",
-            #                               options = list(container = "body")
-            #                              )
-            #                            ),
-            #                   wellPanel(
-            #                     h4("4. Specify settings for CTT analysis"),
-            #                     p(""),
-            #                     p(""),
-            #                     sliderInput("disc.threshold", "Flag item-total(rest) correlations lower than:",
-            #                                 min = 0, max = 1, value = 0.1, step = 0.01) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                                 bs_embed_tooltip(title = "Items in the test that correlate negatively with the total score will be flagged automatically in red in the report. However, you can also flag items in blue that only correlated slightly with the total score in the test by selecting a lower limit here."
-            #                                                 )
-            #                                             ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                     sliderInput("ci.level", "Specify confidence interval level for item-total(rest) 
-            #                            correlations:", min = 0.80, max = 0.99, value = 0.95, step = 0.01) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                                 bs_embed_tooltip(title = "Both upper and lower confidence intervals are also reported for item-total(rest) correlations. Lower CIs below zero are flagged red."
-            #                                                 )
-            #                                              ),                                         # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                     selectizeInput("NA.Delete", "If there are missing responses, for CTT statistics...",
-            #                                    choices = c("Delete cases listwise" = TRUE, 
-            #                                                "Change missing values to zero" = FALSE)
-            #                                    ) %>%              
-            #                         shinyInput_label_embed(icon("question-circle") %>%
-            #                                                bs_embed_tooltip(title = "Choose your option for handling missing values."
-            #                                                )
-            #                                    ),                                                   # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                     p(""),
-            #                     p("")
-            #                              ),
-            #                   wellPanel(
-            #                     h4("5. Specify settings for Rasch analysis"),
-            #                     p(""),
-            #                     
-            #                     selectizeInput("constraint", "Constraint:", 
-            #                                    choices = c("Item" = "item", "Cases" = "cases")
-            #                                    ) %>%                           
-            #                         shinyInput_label_embed(icon("question-circle") %>%
-            #                                 bs_embed_tooltip(title = "Analysis for the report includes a specialized item-response theory analysis of the data: A one-parameter logistic (Rasch-based) model is applied to the data. For this to occur, the average item difficulty level (delta) should be constrained (to zero), or the average student ability level (theta) ability should be constrained (to zero)."
-            #                                                )
-            #                                              ),                                         # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                     
-            #                     selectizeInput("node.sequence", "Assumed discretized population profile:",
-            #                                    choices = c("seq(-6,6,len=21)" = "-6,6,21", "seq(-4,4,len=21)" = "-4,4,21",
-            #                                                "seq(-5,5,len=21)" = "-5,5,21", "seq(-7,7,len=21)" = "-7,7,21",
-            #                                                "seq(-8,8,len=21)" = "-8,8,21", "seq(-9,9,len=21)" = "-9,9,21",
-            #                                                "seq(-6,6,len=31)" = "-6,6,31", "seq(-6,6,len=41)" = "-6,6,41",
-            #                                                "seq(-6,6,len=51)" = "-6,6,51", "seq(-6,6,len=61)" = "-6,6,61",
-            #                                                "seq(-6,6,len=71)" = "-6,6,71", "seq(-6,6,len=81)" = "-6,6,81",
-            #                                                "seq(-6,6,len=91)" = "-6,6,91", "seq(-7,7,len=21)" = "-7,7,21",
-            #                                                "seq(-8,8,len=91)" = "-8,8,21", "seq(-9,9,len=91)" = "-9,9,21",
-            #                                                "seq(-10,10,len=91)" = "-10,10,21"
-            #                                                 )
-            #                                   ) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                                         bs_embed_tooltip(title = "The node sequence specifies the lowest and highest student abilities (theta; default -6 to 6) assumed to exist in the broader population of the focal group. 'Len' specifies the number of breaks, or discretized points for that broader population. Note that the default sequence is 'seq(-6, 6, len=21)' with shorter node sequences enabling faster computation."
-            #                                                         )
-            #                                              ),
-            #                     
-            #                     selectizeInput("conv", "Convergence criterion", choices = c("0.0001",
-            #                                                                                 "0.001", "0.01", "0.1")
-            #                                   ) %>%
-            #                           shinyInput_label_embed(icon("question-circle") %>%
-            #                                 bs_embed_tooltip(title = "This value represents the acceptable level of tolerance for which the IRT model represent the data; larger values enable faster computation, though 0.0001 is default."
-            #                                                 )
-            #                                                 ),
-            #                     
-            #                     selectizeInput("maxiter", "Maximum iterations", choices = c(1000, 5000,
-            #                                                                                 20000, 100000)
-            #                     ) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                                 bs_embed_tooltip(title = "This value represents the maximum number of computational steps permitted for the model to represent the data; lower values enable faster computation, though 1000 is default."
-            #                                                 )
-            #                                             ),
-            #                     
-            #                     selectizeInput("p.fit.threshold", "Flag cases (persons) with person-fit statistics 
-            #                               higher than:", choices = c(3.00, seq(2, 2.90, .10), 
-            #                                                          seq(3.10, 5, .10))             # Sequences with 3.00 missing enable default to be set at 3.00.
-            #                                    ) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                                 bs_embed_tooltip(title = "The higher the person-fit (outfit) values the more unusual the scoring pattern for the student. Default lower limit here is 3.0 (common) but this can be adjusted as per user preference. Here we can identify students with the most unexpected response pattern."
-            #                                                 )
-            #                                             ),
-            #                     p(""),
-            #                     p("")
-            #                            ),
-            #                   wellPanel(
-            #                     h4("6. Specify settings for many-facets Rasch analysis"),
-            #                     p(""),
-            #                     p(""),
-            #                     sliderInput("facets.cut.logit", "Flag overall group differences in item difficulty higher than:",
-            #                                 min = 0.1, max = 1.0, value = 0.5, step = 0.01) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                                                bs_embed_tooltip(title = "Items that are bias against one particular student group can be automatically flagged with this tool. A common cut-off value is 0.5 logit, (Wu, Tam, & Jen, 2016, p. 216), though users can specify their own level of practical significance here."
-            #                                                                 )
-            #                                                ),                                       # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                     sliderInput("facets.cut.p", "Flag overall group differences in item difficulty with levels of 
-            #                                  statistical significance lower than:", min = 0.001, max = 0.10, value = 0.05, step = 0.005) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                                                bs_embed_tooltip(title = "Items that are bias against one particular student group can be automatically flagged with this tool. A common cut-off value  is p = .05. Though, users can specify their own level of statistical significance here."
-            #                                                                 )
-            #                                              ),                                           
-            #                     p(""),
-            #                     p("")
-            #                            ),
-            #                   wellPanel(
-            #                     h4("7. Specify graphical settings"),
-            #                     p(""),
-            #                     
-            #                     selectizeInput("color.choice", "Graphical color scheme:",
-            #                                    choices = c("Eurasian Steppe", "Deep Code", "Commercial Overreach",
-            #                                                "Take a Trip", "Pohutukawa Beach", "Southland Coal")
-            #                                   ) %>%            
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                               bs_embed_tooltip(title = "Choose from six color schemes for the graphs in your preport ;-)")
-            #                                             ),
-            #                     
-            #                     selectizeInput("binwidth", "Bin width (width of WrightMap columns)",
-            #                                    choices = c(0.25, seq(.10, .20, .05), seq(.30, 1.0, .05))   
-            #                                   ) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                             bs_embed_tooltip(title = "This specification allows for the width of the columns in the WrightMap to be specified; the WrightMap places students and questions on the same chart enabling an examination of progressive item difficulty and person ability.")
-            #                                             ),
-            #                     p(""),
-            #                     p("")
-            #                            ),
-            #                   wellPanel(
-            #                     h4("8. Include your own recommendations"),
-            #                     p(""),
-            #                     
-            #                     textAreaInput("recommendations", "Notes:", 
-            #                                   placeholder = "There are no notes for this report",
-            #                                   height = '150px'),
-            #                     bsTooltip("recommendations",
-            #                               "These notes will be reported at the start of the PDF technical 
-            #                               report. Make any notes you like about the original data or 
-            #                               report itself.", "right",
-            #                               options = list(container = "body")
-            #                               ),
-            #                     
-            #                     shinyjs::disabled(downloadButton("report", "Generate PDF report and 
-            #                                                 spreadsheet")                           # 'report' is the official name of the download button (used in UI, disabled at the start and activated...             
-            #                                       )                                                 # when conditions met in server logic), renamed as "Generate PDF report and spreadsheet'
-            #                             )   # wellPanel
-            #                    )            # column
-            #                  )              # fluidRow
-            #         ),                                                                              # Baseline DIF build (MC, ZZ).
-                                                                                                    # function also uses TAM::tam.mml.mfr with two formula options: (a) TAM, EXAMPLE 8, formulaA =~ item*facet; where 'facet' is the column name of first column of df. Expand to =~ item+item:step, and others later.
+# Baseline build (MC to expand unidimensional build to account for item classiciation into dimensions.
+tabPanel("Many-Facets Rasch (DIF)",
+         fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
+         tags$style(type="text/css",
+                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+         ),
+         shinyjs::useShinyjs(),                                                          # activate javascript in the application
+         tags$h1("Many-Facets Rasch Analysis",
+                 tags$img(src = "hex5.png", height = 149, width = 135,
+                          style = "float:right;margin-top:-18.5px;"
+                 ),
+                 tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1; font-size: 60px;
+                                                              color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         tags$h2("Toward Unbiased Assessments and Developmental Rubrics",                   # h2 header is the subtitle underneath the h1 header
+                 tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 18pt;
+                                                             color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         hr(),
+         tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                        "Dr Matthew Courtney (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                        "Dr Zhonghua Zhang (PhD)"),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         fluidRow(
+           column(11,
+                  
+                  DIF_UI("DIF"),
+                  
+                  download_UI("DIF")
+                  
+           )
+         )              # fluidRow
+),                                                                              # Baseline DIF build (MC, ZZ).
+# function also uses TAM::tam.mml.mfr with two formula options: (a) TAM, EXAMPLE 8, formulaA =~ item*facet; where 'facet' is the column name of first column of df. Expand to =~ item+item:step, and others later.
 
 # Rasch Equating ----------------------------------------------------------
            
@@ -1410,6 +1181,8 @@ server <- function(input, output, session){
 
   download_Server("MML") # download module
     
+  
+  download_Server("DIF", type = "DIF") # download module
 
 }  # server function wrapper
 

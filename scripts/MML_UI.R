@@ -7,6 +7,27 @@ MML_UI <- function(id) {
   ns <- NS(id)
 
   tagList(
+     wellPanel(
+       h4("Rasch analysis tool"),
+       p("This tool is useful for improving the quality of tests and developmental 
+       rubrics that focus on measuring a single construct or skill, such as student 
+         reading abilility."),
+       p(""),
+       p("The tool takes an item-response matrix (i.e., a spreadsheet of student 
+                             test results) and produces a detailed narrated technical report and organized 
+                             spreadsheets that reflect the function of the test and each question."),
+       p(""),
+       p("The report is based on the application of classical test theory (CTT) 
+       and item-response theory (IRT; here, a unidimensional Rasch, or 1PL, model). 
+       The analysis uses a specialized scoring algorithm that places estimates 
+       of student ability and item difficulty on the same scale. This enables 
+       educators to identify sets of questions and associated skills that students 
+       might be ready to tackle with additional support. Analysts using this tool 
+       (as opposed to the JML tool) will be primarily interested in generalizing 
+       the results of the analysis to the broader population from which the sample 
+         students were drawn."),
+       p("")
+     ),
     wellPanel(
        h4("1. Prepare data"),
        p("Before using the tool, ensure that your data meet the following requirements:"),
@@ -210,10 +231,7 @@ MML_UI <- function(id) {
                  options = list(container = "body")
                 ),
     
-       shinyjs::disabled(downloadButton(ns("report"), "Generate PDF report and 
-                                        spreadsheet")                           # 'report' is the official name of the download button (used in UI, disabled at the start and activated...             
-                        )                                                       # when conditions met in server logic), renamed as "Generate PDF report and spreadsheet'
-              )   # wellPanel
-          )       # column
+     )   # wellPanel
+  )       # column
 
 }
