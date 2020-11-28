@@ -30,7 +30,7 @@ options(shiny.maxRequestSize = 3*1024^2)
 source("scripts/anova_module.R")
 source("scripts/MML_UI.R")
 source("scripts/DIF_UI.R")
-source("scripts/download_Server.R")
+source("scripts/download_module.R")
 
 # UI file starts here -------------------------------------------------- 
 
@@ -575,7 +575,8 @@ tabPanel("Many-Facets Rasch (DIF)",
 
 
 # Version number
-            tabPanel(paste0("autopsych Version", version_number), fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
+            tabPanel(paste0("autopsych Version ", version_number), 
+                     fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
                      tags$style(type="text/css",
                                 "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
                                 "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
@@ -1179,10 +1180,10 @@ server <- function(input, output, session){
 
 # Download server -------------------------------------------------------------------            
 
-  download_Server("MML") # download module
+  download_Server("MML", type = "MML") # MML
     
   
-  download_Server("DIF", type = "DIF") # download module
+  download_Server("DIF", type = "DIF") # DIF
 
 }  # server function wrapper
 

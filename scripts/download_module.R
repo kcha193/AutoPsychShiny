@@ -7,16 +7,11 @@
 download_UI <- function(id){
   ns <- NS(id)
   
-  
   wellPanel(
-  # shinyjs::disabled(
-  downloadButton(ns("report"), "Generate PDF report and spreadsheet") 
-    # 'report' is the official name of the download button (used in UI, disabled at the start and activated...             
-    #)                                                       # when conditions met in server logic), renamed as "Generate PDF report and spreadsheet'
+    downloadButton(ns("report"), "Generate PDF report and spreadsheet") 
+    # when conditions met in server logic), renamed as "Generate PDF report and spreadsheet'
   )
 }
-
-
 
 
 download_Server <- function(id, type = c("MML", "DIF")) {
@@ -30,32 +25,14 @@ download_Server <- function(id, type = c("MML", "DIF")) {
       
       ns <- NS(id)
       
-      # the main  input, input$input_file (csv), is recognised when the following conditions are met.
-      # observeEvent(input$input_file,{
-      #   if (length(input$input_file) > 0 &&                        # The length of the input file is above zero.
-      #       length(input$recommendations) > 0 &&                   # The recommendations are always entered (this is always true due to placeholder).
-      #       length(input$construct) > 0 &&                         # same as above "Test Topic".
-      #       length(input$population) > 0                           # same as above "Students".
-      #   ){ 
-      #     browser()
-      #     shinyjs::enable(ns("report"))                         # when the conditions above are met, shinyjs::enable is used to enable the report button to be clicked.
-      #   }else {                                                # otherwise, when conditions not met,
-      #     shinyjs::disable(ns("report"))  
-      #   }                                                    # button is disabled.
-      # }                                             
-      # )  
-      
-      
-      # output$
-      
-      
-      output$report <- downloadHandler(                                                                   # This function makes the download     
-        filename = "psychometric_analysis.zip",                                                           # The zip file created
-        content = function(file){                                                                         # download handler is the main part of the application to make the RmD file. 
-          withProgress(message = 'R Shiny Boosted Rendering',{                                           # Set a progress bar because it can take some time
+ 
+      output$report <- downloadHandler(                                         # This function makes the download     
+        filename = "psychometric_analysis.zip",                                 # The zip file created
+        content = function(file){                                               # download handler is the main part of the application to make the RmD file. 
+          withProgress(message = 'R Shiny Boosted Rendering',{                  # Set a progress bar because it can take some time
                      
                          
-            tempdir <- tempdir()                                                          # Copy the report file to a temporary directory before processing it, in case we don't have write permissions to the current working dir (which can happen when deployed).
+            tempdir <- tempdir()                                                # Copy the report file to a temporary directory before processing it, in case we don't have write permissions to the current working dir (which can happen when deployed).
             
             
             if(type == "MML"){
@@ -73,7 +50,7 @@ download_Server <- function(id, type = c("MML", "DIF")) {
             node.sequence <- as.numeric(strsplit(input$node.sequence,",")[[1]])           # The tempdir constantly changes at shinyapps.io, that is why we have to repeat this process every time.
             
             # Now we can get our inputs and use them in the .Rmd
-            params <- list(datapath = input$input_file$datapath,                          # Set up parameters to pass to Rmd document
+            params <- list(datapath = input$input_file$datapath,              # Set up parameters to pass to Rmd document
                            recommendations = input$recommendations,
                            construct = input$construct,
                            population = input$population,
@@ -123,3 +100,23 @@ download_Server <- function(id, type = c("MML", "DIF")) {
     }
   )
 }
+
+
+
+     # the main  input, input$input_file (csv), is recognised when the following conditions are met.
+      # observeEvent(input$input_file,{
+      #   if (length(input$input_file) > 0 &&                        # The length of the input file is above zero.
+      #       length(input$recommendations) > 0 &&                   # The recommendations are always entered (this is always true due to placeholder).
+      #       length(input$construct) > 0 &&                         # same as above "Test Topic".
+      #       length(input$population) > 0                           # same as above "Students".
+      #   ){ 
+      #     browser()
+      #     shinyjs::enable(ns("report"))                         # when the conditions above are met, shinyjs::enable is used to enable the report button to be clicked.
+      #   }else {                                                # otherwise, when conditions not met,
+      #     shinyjs::disable(ns("report"))  
+      #   }                                                    # button is disabled.
+      # }                                             
+      # )  
+      
+      
+      # output$
