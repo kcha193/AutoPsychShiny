@@ -1,6 +1,6 @@
 # Kevin to give review of version number below:
 # it's like a global variable that makes changes throughout trail tabs
-# We can focus on this later!
+# We can focus on this later! more details to come!
 
 version_number <- "0.1.0"
 
