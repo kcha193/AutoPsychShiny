@@ -217,8 +217,11 @@ anova_2way_UI <- function(id) {
                                   ),  # fluidRow                                                               
                                   
                                   h4("Select two group variables to perform ANOVA test"),
-                                  fluidRow(column(6, uiOutput(ns("select_group_A"))),
-                                           column(6, uiOutput(ns("select_group_B")))),
+                                  fluidRow(column(4, uiOutput(ns("select_group_A"))),
+                                           column(4, uiOutput(ns("select_group_B"))),
+                                           column(4,
+                                                  checkboxInput(ns("inter"), 
+                                                                "Interaction effects", TRUE))),
                                   h4("Diagnostic plots"),
                                   tabsetPanel(tabPanel("Box plot",
                                                        plotOutput(ns("bar_plot"))
@@ -351,13 +354,25 @@ anova_2way_Server <- function(id) {
           labs(y = "Ability measure", x = req(input$category_A),
                fill = req(input$category_B)) +
           theme_classic()
+        
       })
       
       # Fitting the ANOVA model ------------------------------------------------
-      fit_anova <- 
+      fit_anova <-
         reactive({
-          lm(ability_theta ~ Group_A*Group_B, 
-               data =  final_dat())
+          input$inter
+          
+          if (input$inter) {
+            fit_anova <-
+              lm(ability_theta ~ Group_A * Group_B, data =  final_dat())
+            
+          } else {
+            fit_anova <-
+              lm(ability_theta ~ Group_A + Group_B, data =  final_dat())
+            
+          }
+          
+          return(fit_anova)
         })
       
       # Testing for normality plot ---------------------------------------------
@@ -380,10 +395,26 @@ anova_2way_Server <- function(id) {
       
       # Estimated marginal means -----------------------------------------------
       output$group_means <- renderTable({
-        
-        tab <-
-          emmeans(fit_anova(), ~ Group_A:Group_B) %>%
-          as.data.frame()
+
+        if(input$inter){
+          tab <-
+            emmeans(fit_anova(), ~ Group_A:Group_B) %>%
+            as.data.frame()
+            
+        } else {
+          tab1 <-
+            emmeans(fit_anova(), ~ Group_A) %>%
+            as.data.frame()
+          
+          tab2 <-
+            emmeans(fit_anova(), ~ Group_B) %>%
+            as.data.frame()
+          
+          names(tab1)[1] <- names(tab2)[1] <- "Group"
+          
+            
+          tab <- rbind(tab1, tab2)
+        }
         
         tab
       }, digits = 4, hover = TRUE, striped = TRUE, bordered = TRUE)
@@ -391,12 +422,22 @@ anova_2way_Server <- function(id) {
       
       ## Tukey Honest Significant Differences ----------------------------------
       output$pairwise_compareA <- renderTable({
-   
-        tab_A <- 
-          pairs(emmeans(fit_anova(), ~ Group_A|Group_B), 
-                adjust = "none") %>% 
-          rbind(adjust = "tukey") %>%
-          as.data.frame() 
+    
+        
+        if(input$inter){
+          tab_A <- 
+            pairs(emmeans(fit_anova(), ~ Group_A|Group_B), 
+                  adjust = "none") %>% 
+            rbind(adjust = "tukey") %>%
+            as.data.frame() 
+          
+        }  else {
+          tab_A <- 
+            pairs(emmeans(fit_anova(), ~ Group_A), 
+                  adjust = "none") %>% 
+            rbind(adjust = "tukey") %>%
+            as.data.frame() 
+        }
         
 
         tab_A
@@ -404,12 +445,21 @@ anova_2way_Server <- function(id) {
    
     
       output$pairwise_compareB <- renderTable({
-   
-        tab_B <- 
-          pairs(emmeans(fit_anova(), ~ Group_B|Group_A), 
-                adjust = "none") %>% 
-          rbind(adjust = "tukey") %>%
-          as.data.frame() 
+ 
+        if(input$inter){
+          tab_B <- 
+            pairs(emmeans(fit_anova(), ~ Group_B|Group_A), 
+                  adjust = "none") %>% 
+            rbind(adjust = "tukey") %>%
+            as.data.frame() 
+          
+        }  else {
+          tab_B <- 
+            pairs(emmeans(fit_anova(), ~ Group_B), 
+                  adjust = "none") %>% 
+            rbind(adjust = "tukey") %>%
+            as.data.frame() 
+        }
 
         tab_B
       }, digits = 4, hover = TRUE, striped = TRUE,bordered = TRUE)
@@ -418,10 +468,10 @@ anova_2way_Server <- function(id) {
 }
 
 
-# ui <- fluidPage(
-#   anova_2way_UI("anova")
-# )
-# server <- function(input, output, session) {
-#   anova_2way_Server("anova")
-# }
-# shinyApp(ui, server)
+ui <- fluidPage(
+  anova_2way_UI("anova")
+)
+server <- function(input, output, session) {
+  anova_2way_Server("anova")
+}
+shinyApp(ui, server)

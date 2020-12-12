@@ -473,8 +473,6 @@ navbarMenu("ANOVA",
          ),
          anova_2way_UI("anova1")
   )       # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
-
-
 ), 
 
 # Inter-Rater Reliability ------------------------------------------------------
