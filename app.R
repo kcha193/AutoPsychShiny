@@ -337,79 +337,150 @@ tabPanel("Many-Facets Rasch (DIF)",
                                             )
                                         )
                              ),
-                     ),                                                                             # Baseline build for (a) concurrent calibration and (b) fixed anchor collibration proposed (MC and ZZ)
+            ),                                                                             # Baseline build for (a) concurrent calibration and (b) fixed anchor collibration proposed (MC and ZZ)
 
 
 # ANOVA ----------------------------------------------------------
-
-            tabPanel("ANOVA",
-                     fluid = TRUE, theme = shinytheme("cosmo"),
-                     tags$style(type = "text/css", 
-                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                                ),
-                     setBackgroundImage(src = "shiny_background8.png"),
-                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                     tags$h1("One-Way ANOVA Analysis",
-                             tags$img(src = "hex5.png", height = 149, width = 135, 
-                                      style = "float:right;margin-top:-18.5px;"
-                                     ),
-                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1;
-                                                              font-size: 60px; color: #FFFFFF;}"
-                                            )
-                                       )
-                            ),
-                     tags$h2("Toward Valid Examinations of Group Differences",                      # h2 header is the subtitle underneath the h1 header
-                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                                 line-height: 1.1; font-size: 18pt;
-                                                                 color: #FFFFFF;}"
-                                            )
-                                       )
-                            ),
-                     hr(),  
-                     tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
-                                    "Dr Kevin Chang (PhD)"
-                                   ),
-                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 10pt;
+navbarMenu("ANOVA", 
+            
+  tabPanel("One-way ANOVA",
+         fluid = TRUE, theme = shinytheme("cosmo"),
+         tags$style(type = "text/css", 
+                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+         ),
+         setBackgroundImage(src = "shiny_background8.png"),
+         shinyjs::useShinyjs(),                                                         # activate javascript in the application
+         tags$h1("One-Way ANOVA Analysis",
+                 tags$img(src = "hex5.png", height = 149, width = 135, 
+                          style = "float:right;margin-top:-18.5px;"
+                 ),
+                 tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                          line-height: 1.1;
+                                                          font-size: 60px; color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         tags$h2("Toward Valid Examinations of Group Differences",                      # h2 header is the subtitle underneath the h1 header
+                 tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 18pt;
                                                              color: #FFFFFF;}"
-                                            )
-                                        )
-                            ),
-                     tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-                                    "Dr Matthew Courtney (PhD)"
-                             ),
-                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 10pt;
+                 )
+                 )
+         ),
+         hr(),  
+         tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
+                        "Dr Kevin Chang (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                         line-height: 1.1; font-size: 10pt;
+                                                         color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                        "Dr Matthew Courtney (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                         line-height: 1.1; font-size: 10pt;
+                                                         color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         fluidRow(
+           column(11,
+                  wellPanel(
+                    h4("One-Way ANOVA Tool"),
+                    p("This tool provides a convenient way to examine the effect of groups,
+                            such as class or school classification, on educational or personal attributes."
+                    ),
+                    p(""),
+                    p("On this tab, users upload their outputted spreadsheet from their 
+                            Rasch analysis. In addition, users also upload another dataset that 
+                            includes as many grouping variables (columns) as they like. Note that 
+                            the dataset needs to include an identical number of rows as the Rasch 
+                            spreadsheet as each grouping variable, e.g., gender, class, needs to 
+                            correspond to the same ability estimate"
+                    )
+                  )
+           )
+         ),
+         anova_1way_UI("anova")
+  ),       # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
+  
+  tabPanel("Two-way ANOVA",
+         fluid = TRUE, theme = shinytheme("cosmo"),
+         tags$style(type = "text/css", 
+                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+         ),
+         setBackgroundImage(src = "shiny_background8.png"),
+         shinyjs::useShinyjs(),                                                         # activate javascript in the application
+         tags$h1("Two-Way ANOVA Analysis",
+                 tags$img(src = "hex5.png", height = 149, width = 135, 
+                          style = "float:right;margin-top:-18.5px;"
+                 ),
+                 tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                          line-height: 1.1;
+                                                          font-size: 60px; color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         tags$h2("Toward Valid Examinations of Group Differences",                      # h2 header is the subtitle underneath the h1 header
+                 tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 18pt;
                                                              color: #FFFFFF;}"
-                                            )
-                                        )
-                            ),
-                     fluidRow(
-                        column(11,
-                              wellPanel(
-                                h4("One-Way ANOVA Tool"),
-                                p("This tool provides a convenient way to examine the effect of groups,
-                                such as class or school classification, on educational or personal attributes."
-                                  ),
-                                p(""),
-                                p("On this tab, users upload their outputted spreadsheet from their 
-                                Rasch analysis. In addition, users also upload another dataset that 
-                                includes as many grouping variables (columns) as they like. Note that 
-                                the dataset needs to include an identical number of rows as the Rasch 
-                                spreadsheet as each grouping variable, e.g., gender, class, needs to 
-                                correspond to the same ability estimate"
-                                  )
-                                       )
-                               )
-                              ),
-                     anova_UI("anova")
-                    ),                                                                              # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
+                 )
+                 )
+         ),
+         hr(),  
+         tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
+                        "Dr Kevin Chang (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                         line-height: 1.1; font-size: 10pt;
+                                                         color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                        "Dr Matthew Courtney (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                         line-height: 1.1; font-size: 10pt;
+                                                         color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         fluidRow(
+           column(11,
+                  wellPanel(
+                    h4("Two-Way ANOVA Tool"),
+                    p("This tool provides a convenient way to examine the effect of groups,
+                            such as class or school classification, on educational or personal attributes."
+                    ),
+                    p(""),
+                    p("On this tab, users upload their outputted spreadsheet from their 
+                            Rasch analysis. In addition, users also upload another dataset that 
+                            includes as many grouping variables (columns) as they like. Note that 
+                            the dataset needs to include an identical number of rows as the Rasch 
+                            spreadsheet as each grouping variable, e.g., gender, class, needs to 
+                            correspond to the same ability estimate"
+                    )
+                  )
+           )
+         ),
+         anova_2way_UI("anova1")
+  )       # Baseline build of one-way ANOVA proposed as a means of examining within- and between-group effects (KC)
 
+
+), 
 
 # Inter-Rater Reliability ------------------------------------------------------
             # tabPanel("Inter-Rater Reliability",
@@ -1267,8 +1338,9 @@ server <- function(input, output, session){
   
 # ANOVA server -------------------------------------------------------------------            
   
-  anova_Server("anova") # ANOVA module
+  anova_1way_Server("anova") # ANOVA module
 
+  anova_2way_Server("anova1") # ANOVA module
 # Download server -------------------------------------------------------------------            
 
   download_Server("MML", zip_name = "pyschometric_analysis_MML.zip", type = "MML") # MML
