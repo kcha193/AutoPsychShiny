@@ -133,7 +133,7 @@ library("openxlsx")
 library("reshape2")
 library("knitr")
 library("kableExtra")
-library("english")
+library("english") #* somewhat redundant because :: used throughout 
 library("xtable")
 library("rmarkdown")
 
