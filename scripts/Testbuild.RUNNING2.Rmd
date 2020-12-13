@@ -120,33 +120,22 @@ if (params$rendered_by_shiny){
   
 ```{r CHUNK2 Load packages, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Load packages ####
-library("tinytex")
 library("scales")
-library("CTT")
-library("TAM")
-library("sirt")
-library("WrightMap")
-library("compare")
-library("psych")
-library("dplyr")
-library("knitr")
-library("ggplot2")
-library("yaml")
-library("plyr")
-library("kableExtra")
+library("ggplot2") #* tidyverse
 library("ShinyItemAnalysis")
 library("cowplot")
-library("bookdown")
-library("english")
-library("xtable")
+library("CTT")
 library("Hmisc")
 library("psychometric")
-library("plotly")
-library("Thermimage")
+library("TAM")
+library("dplyr") #* tidyverse
 library("openxlsx")
-library("rmarkdown")
 library("reshape2")
-
+library("knitr")
+library("kableExtra")
+library("english")
+library("xtable")
+library("rmarkdown")
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.04)
@@ -288,6 +277,7 @@ if (poor.disc.n.Eng == "zero"){
 if (params$rendered_by_shiny){
   shiny::setProgress(0.16)
 }
+
 ```
   
 ```{r CHUNK9 Correlation matrix, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
@@ -300,7 +290,7 @@ corstars <<-function(x, method=c("pearson", "spearman"), removeTriangle=c("upper
                      result=c("none", "html", "latex")){
     # Compute correlation matrix
     x <- as.matrix(x)
-    correlation_matrix<-rcorr(x, type=method[1])
+    correlation_matrix<-Hmisc::rcorr(x, type=method[1])
     R <- correlation_matrix$r # Matrix of correlation coeficients
     p <- correlation_matrix$P # Matrix of p-value 
     
@@ -334,8 +324,8 @@ corstars <<-function(x, method=c("pearson", "spearman"), removeTriangle=c("upper
     Rnew <- cbind(Rnew[1:length(Rnew)-1])
     if (result[1]=="none") return(Rnew)
     else{
-      if(result[1]=="html") print(xtable(Rnew), type="html")
-      else print(xtable(Rnew), type="latex") 
+      if(result[1]=="html") print(xtable::xtable(Rnew), type="html")
+      else print(xtable::xtable(Rnew), type="latex") 
     }
 } 
 
@@ -471,7 +461,7 @@ ggWrightMapnew <<- function(theta, b, binwidth = 0.3, color = "blue", size = 2, 
           axis.text.x = element_blank(),
           axis.ticks.x = element_blank())
 
-  plot_grid(g1, g2)
+  cowplot::plot_grid(g1, g2)
 }
    
 if (params$rendered_by_shiny){

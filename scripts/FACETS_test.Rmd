@@ -133,33 +133,22 @@ if (params$rendered_by_shiny){
   
 ```{r CHUNK2 Load packages, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Load packages ####
-library("tinytex")
 library("scales")
-library("CTT")
-library("TAM")
-library("sirt")
-library("WrightMap")
-library("compare")
-library("psych")
-library("dplyr")
-library("knitr")
-library("ggplot2")
-library("yaml")
-library("plyr")
-library("kableExtra")
+library("ggplot2") #* tidyverse
 library("ShinyItemAnalysis")
 library("cowplot")
-library("bookdown")
-library("english")
-library("xtable")
+library("CTT")
 library("Hmisc")
 library("psychometric")
-library("plotly")
-library("Thermimage")
+library("TAM")
+library("dplyr") #* tidyverse
 library("openxlsx")
-library("rmarkdown")
 library("reshape2")
-library("NCmisc")
+library("knitr")
+library("kableExtra")
+library("english")
+library("xtable")
+library("rmarkdown")
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.04)

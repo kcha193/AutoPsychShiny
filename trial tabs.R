@@ -10,15 +10,12 @@ version_number <- "0.1.0"
 # Other options: bootstrap, 
 # UI (front end) and server side (server side logic) shiny::fluidPage is main function
 
-library(shiny)  
-library(tuneR)
-library(shinycssloaders)
+library(shiny)
 library(shinyjs)
 library(shinythemes)
-library(shinyFiles)
 library(shinyBS)
 library(bsplus)
-library(shinyWidgets)
+library(shinyWidgets) 
 
 # This line of code will set the maximum allowed file size of uploads (3MB), adjustable to computational power.
 options(shiny.maxRequestSize = 3*1024^2)
@@ -230,56 +227,56 @@ tabPanel("Many-Facets Rasch (DIF)",
                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-         ),
+                    ),
          shinyjs::useShinyjs(),                                                          # activate javascript in the application
          tags$h1("Many-Facets Rasch Analysis",
                  tags$img(src = "hex5.png", height = 149, width = 135,
                           style = "float:right;margin-top:-18.5px;"
-                 ),
+                         ),
                  tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
                                                               line-height: 1.1; font-size: 60px;
                                                               color: #FFFFFF;}"
-                 )
-                 )
-         ),
-         tags$h2("Toward Unbiased Assessments and Developmental Rubrics",                   # h2 header is the subtitle underneath the h1 header
+                                 )
+                           )
+                ),
+         tags$h2("Toward Unbiased Test Questions and Developmental Criterion",                   # h2 header is the subtitle underneath the h1 header
                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 18pt;
                                                              color: #FFFFFF;}"
-                 )
-                 )
-         ),
+                                )
+                           )
+                ),
          hr(),
          tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
                         "Dr Matthew Courtney (PhD)"
-                 ),
+                        ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
-                 )
-                 )
-         ),
+                                 )
+                            )
+                ),
          tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
                         "Dr Zhonghua Zhang (PhD)"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
-                 )
-                 )
-         ),
+                                )
+                            )
+                ),
          fluidRow(
-           column(11,
+             column(11,
                   
-                  DIF_UI("DIF"),
+                    DIF_UI("DIF"),
                   
-                  download_UI("DIF")
+                    download_UI("DIF")
                   
-           )
-         )              # fluidRow
-),                                                                              # Baseline DIF build (MC, ZZ).
-# function also uses TAM::tam.mml.mfr with two formula options: (a) TAM, EXAMPLE 8, formulaA =~ item*facet; where 'facet' is the column name of first column of df. Expand to =~ item+item:step, and others later.
+                   )
+                 )              # fluidRow
+         ),                     # Baseline DIF build (MC, ZZ).
+
 
 # Rasch Equating ----------------------------------------------------------
            
@@ -685,8 +682,8 @@ tabPanel("Many-Facets Rasch (DIF)",
                                    p(""),
                                    p("Dr Matthew Gordon Ray Courtney (PhD)"),
                                    p(""),
-                                   p("As Chief Architect, Dr Courtney is the founder of the website and provides expertise in UI design, 
-                                   overall website functionality, R scripts automating technical reports, and website related research and communication.")
+                                   p("As Chief Architect, Dr Courtney is the founder of the website and provides expertise psychometrics, quantitative research methods,
+                                     R scripts automating technical reports, and website related UI, research, and communication.")
                                           ),
                                  wellPanel(
                                    h4("Qualifications:"),
@@ -1165,13 +1162,99 @@ tabPanel("Many-Facets Rasch (DIF)",
 
 # Highlights -------------------------------------------------------------------            
             tabPanel("Highlights",
-                     fluid = TRUE),
+                     fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
+                     tags$style(type="text/css",
+                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                     ),
+                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                     tags$h1(paste0("Highlights"),
+                             tags$img(src = "hex5.png", height = 149, width = 135, 
+                                      style = "float:right;margin-top:-18.5px;"
+                             ),
+                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1; font-size: 60px;
+                                                              color: #FFFFFF;}"
+                             )
+                             )
+                     ),
+                     tags$h2("Squad Achievements",                   # h2 header is the subtitle underneath the h1 header
+                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 18pt;
+                                                             color: #FFFFFF;}"
+                             )
+                             )
+                     ),
+                     hr(), 
+                     fluidRow(
+                       column(11,
+                              wellPanel(
+                                h4("Achievements so Far..."),
+                                p("This page is dedicated to providing information about the achievements of 
+                                   the autopsych team, research, and related activities, hitherto."),
+                                p("")
+                                       ),
+                              wellPanel(
+                                h4("Endorsement of autopsych Shiny app by XXXXXXX"),
+                                p("The onliine Shiny app was used and endorsed by XXXXX, with the following endorsement made by XXXX XXXXX"),
+                                p(""),
+                                p("Previously, .......")
+                                       ),
+                              wellPanel(h4("Launch of autopsych_0.1.0 on CRAN"),
+                                p("The autopsych_0.1.0 build version was launched on CRAN, the Comprehensive R Archive Network on XX January,
+                                  202X, making the latest build of the app available to users on their local machines."),
+                                p(""),
+                                p("[Release Date: 21 November, 2020]"),
+                                p(""),
+                                p("Contributors: Drs Matthew Courtney, Kevin Chang, Zhonghua Zhang, Eric 
+                                  'Bing' Mei, & Luke Rowe")
+                                       )
+                             )       # column
+                            )        # fluidRow
+               ),                    # end of tabPanel
 
 # Contact -------------------------------------------------------------------                
-            tabPanel("Contact",
-                     fluid = TRUE)
-                  )      # tabsetPanel
-               )         # fluidPage
+            tabPanel("Contact", 
+                     fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
+                     tags$style(type="text/css",
+                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                     ),
+                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                     tags$h1(paste0("Contact"),
+                             tags$img(src = "hex5.png", height = 149, width = 135, 
+                                      style = "float:right;margin-top:-18.5px;"
+                             ),
+                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1; font-size: 60px;
+                                                              color: #FFFFFF;}"
+                             )
+                             )
+                     ),
+                     tags$h2("To Contact autopsych...",                   # h2 header is the subtitle underneath the h1 header
+                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 18pt;
+                                                             color: #FFFFFF;}"
+                             )
+                             )
+                     ),
+                     hr(), 
+                     fluidRow(
+                       column(11,
+                              wellPanel(
+                                h4("Enquiries:"),
+                                p("For enquiries, contact:"),
+                                p(""),
+                                p("info@autopsych.com"),
+                                p("")
+                                       )
+                              )       # column
+                             )        # fluidRow
+                     )                # Contact tabPanel end
+                  )                   # tabsetPanel
+               )                      # fluidPage
 
 # Server file starts here -------------------------------------------------- 
 server <- function(input, output, session){
