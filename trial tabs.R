@@ -3,16 +3,21 @@
 
 version_number <- "0.1.0"
 
-# Ensure necessary packages installed
-autopsych.pack <- c("scales", "tidyverse", "ShinyItemAnalysis", "CTT", "TAM", "openxlsx", 
-                    "reshape2", "kableExtra", "english", "shinythemes", "shinyBS",
-                    "bsplus", "shinyWidgets")
+# Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
+autopsych.pack <- c("scales", "tidyverse", "ShinyItemAnalysis", "CTT", "psychometric", 
+                    "TAM", "cowplot", "openxlsx", "reshape2", "Hmisc", "xtable", 
+                    "knitr", "rmarkdown", "kableExtra", "english", "shiny", "shinyjs",
+                    "shinythemes", "shinyBS", "bsplus", "shinyWidgets")
 pack.needed <- autopsych.pack[!autopsych.pack %in% installed.packages()] 
 install.packages(pack.needed)
 
+# Ensure all necessary packages loaded loaded to library (some use package::function throughout script so do not need to be loaded)
+packages.to.load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets")
+
 # Ensure all necessary packages loaded to library
-lapply(autopsych.pack, library, character.only = TRUE)
+lapply(packages.to.load, library, character.only = TRUE)
 # For list of packages, see associated publication.
+
 
 # This line of code will set the maximum allowed file size of uploads (3MB), adjustable to computational power.
 options(shiny.maxRequestSize = 3*1024^2)
