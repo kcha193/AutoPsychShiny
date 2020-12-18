@@ -10,6 +10,27 @@ version_number <- "0.1.0"
 # Other options: bootstrap, 
 # UI (front end) and server side (server side logic) shiny::fluidPage is main function
 
+# Rmd packages
+library(scales)
+
+library(tidyverse) # ggplot2 and dplyr used
+#library(ggplot2) #* tidyverse
+library(ShinyItemAnalysis)
+library(cowplot)
+library(CTT)
+library(Hmisc)
+library(psychometric)
+library(TAM)
+#library(dplyr) #* tidyverse
+library(openxlsx)
+library(reshape2)
+library(knitr)
+library(kableExtra)
+library(english) #* somewhat redundant because :: used throughout 
+library(xtable)
+library(rmarkdown)
+
+# Shiny build packages
 library(shiny)
 library(shinyjs)
 library(shinythemes)
@@ -116,7 +137,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
            column(11, 
                   wellPanel(
                     h4("Introduction"),
-                    p("Welcome to Automated Psychometrics, a novel website that allows test 
+                    p("Welcome to autopsych, a novel website that allows test 
                               developers, educational institutions, and researchers to:"),
                     p(""),
                     p("(1) Improve the quality of student assessments and developmental rubrics,"),
@@ -152,7 +173,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                               language and received no external funding. Use of the website is free and users 
                               may make use of the following citation:"),
                     p(""),
-                    p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: 
+                    p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). autopsych: 
                               a novel shiny app for the psychometric analysis and scoring of assessment
                               and survey data. The X Journal, X(X), XXX-XXX. doi. XXXXXXXXXXXXX."),
                     p("")

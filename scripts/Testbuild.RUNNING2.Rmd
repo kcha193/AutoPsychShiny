@@ -119,24 +119,7 @@ if (params$rendered_by_shiny){
 ```
   
 ```{r CHUNK2 Load packages, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
-#### 1. Load packages ####
-library("scales")
-library("ggplot2") #* tidyverse
-library("ShinyItemAnalysis")
-library("cowplot")
-library("CTT")
-library("Hmisc")
-library("psychometric")
-library("TAM")
-library("dplyr") #* tidyverse
-library("openxlsx")
-library("reshape2")
-library("knitr")
-library("kableExtra")
-library("english") #* somewhat redundant because :: used throughout 
-library("xtable")
-library("rmarkdown")
-
+#### 1. Load packages #### (done via trial tabs.R for this app)
 if (params$rendered_by_shiny){
     shiny::setProgress(0.04)
 }
@@ -636,7 +619,8 @@ cum.sum.categories <- cumsum(max.score.items)
 
 #### 8. Create starting values for rows ####
 start.rows <- cum.sum.categories + 1
-start.rows <- unname(c(1, start.rows[ - length(start.rows)]))
+start.rows <- c(1, start.rows[-length(start.rows)])
+start.rows <- unname(start.rows)                    # first row for each  
 cum.sum.categories <- unname(cum.sum.categories)    # last row of vector 
 
 #### 9. Split the ctt_raw dataframe by item (split needs to happen to get logical vector to apply to df later) ####
@@ -664,7 +648,7 @@ ctt_raw.df <- cbind(ctt_raw[, 4:7], round(ctt_raw[, 8:9], 3), result.logical.v, 
 colnames(ctt_raw.df) <- c("Item", "Total", "Category", "Count", "Percent", "Pbs", "Disorderedness T/F", "Lower 95 CI","Upper 95 CI", "MeanAbility")
 
 #### 15. Remove col 8 and 9 as CIs too busy (consider for later) ####
-ctt_raw.df <- ctt_raw.df[, -c(8, 9)]
+#ctt_raw.df <- ctt_raw.df[, -c(8, 9)]
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.38)
