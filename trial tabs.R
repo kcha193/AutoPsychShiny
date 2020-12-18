@@ -1,42 +1,18 @@
 # Kevin to give review of version number below:
-# it's like a global variable that makes changes throughout trail tabs
-# We can focus on this later! more details to come!
-# Here is my last change!!
+# It's like a global variable that makes changes throughout trail tabs
 
 version_number <- "0.1.0"
 
-# Loading the libraries that are related to the Shiny interface
+# Ensure necessary packages installed
+autopsych.pack <- c("scales", "tidyverse", "ShinyItemAnalysis", "CTT", "TAM", "openxlsx", 
+                    "reshape2", "kableExtra", "english", "shinythemes", "shinyBS",
+                    "bsplus", "shinyWidgets")
+pack.needed <- autopsych.pack[!autopsych.pack %in% installed.packages()] 
+install.packages(pack.needed)
 
-# Other options: bootstrap, 
-# UI (front end) and server side (server side logic) shiny::fluidPage is main function
-
-# Rmd packages
-library(scales)
-
-library(tidyverse) # ggplot2 and dplyr used
-#library(ggplot2) #* tidyverse
-library(ShinyItemAnalysis)
-library(cowplot)
-library(CTT)
-library(Hmisc)
-library(psychometric)
-library(TAM)
-#library(dplyr) #* tidyverse
-library(openxlsx)
-library(reshape2)
-library(knitr)
-library(kableExtra)
-library(english) #* somewhat redundant because :: used throughout 
-library(xtable)
-library(rmarkdown)
-
-# Shiny build packages
-library(shiny)
-library(shinyjs)
-library(shinythemes)
-library(shinyBS)
-library(bsplus)
-library(shinyWidgets) 
+# Ensure all necessary packages loaded to library
+lapply(autopsych.pack, library, character.only = TRUE)
+# For list of packages, see associated publication.
 
 # This line of code will set the maximum allowed file size of uploads (3MB), adjustable to computational power.
 options(shiny.maxRequestSize = 3*1024^2)

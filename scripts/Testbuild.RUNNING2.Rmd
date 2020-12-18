@@ -150,7 +150,7 @@ if (params$rendered_by_shiny){
   
 ```{r CHUNK4 Internal consistency freq table and max for item, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Do CTT reliability with NAs replaced with zeros ####
-r <- reliability(resp, NA.Delete = NA.Delete)  # User chooses option
+r <- CTT::reliability(resp, NA.Delete = NA.Delete)  # User chooses option
 Cronbachs <- round(r$alpha, 2)
 
 #### 2. Generate data for frequency table ####
@@ -250,7 +250,7 @@ if (params$rendered_by_shiny){
 poor.disc.n <- sum(disc < disc.threshold, na.rm = TRUE)
 
 #### 2. Change to English ####
-poor.disc.n.Eng <-  as.character(as.english(poor.disc.n))
+poor.disc.n.Eng <-  as.character(english::as.english(poor.disc.n))
 
 #### 3. Create additional rule for instance when = zero ####
 if (poor.disc.n.Eng == "zero"){
@@ -323,11 +323,11 @@ if (params$rendered_by_shiny){
 ```{r CHUNK10 Run 1plm mml model, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Run model with Sys.time function to record duration and include conv, maxiter and constraint inputs ####
 start.mod.t <- Sys.time()
-mod1 <- tam.mml(resp, control=list(nodes=node.sequence, conv = conv, maxiter = maxiter), constraint = constraint)
+mod1 <- TAM::tam.mml(resp, control=list(nodes=node.sequence, conv = conv, maxiter = maxiter), constraint = constraint)
 end.mod.t <- Sys.time()
 
 #### 2. Extract b thresholds ####
-thr <- tam.threshold(mod1)
+thr <- TAM::tam.threshold(mod1)
 rownames(thr) <- Item.Names
 thr<-round(thr, 2)
 
@@ -428,7 +428,7 @@ ggWrightMapnew <<- function(theta, b, binwidth = 0.3, color = "blue", size = 2, 
     coord_flip() +
     scale_y_reverse() +
     xlab("Student ability (theta)") +
-    theme_app(base_size = size) +
+    ShinyItemAnalysis::theme_app(base_size = size) +
     theme(axis.title.x = element_blank(),
           axis.text.x = element_blank(),
           axis.ticks.x = element_blank())
@@ -439,7 +439,7 @@ ggWrightMapnew <<- function(theta, b, binwidth = 0.3, color = "blue", size = 2, 
     scale_y_continuous(position = "right", limits = c(lim.x.min, lim.x.max)) +
     scale_x_continuous(limits = c(min(df.b$x) - 0.5, max(df.b$x) + 0.5)) +
     ylab("Item threshold (delta)") +
-    theme_app(base_size = size) +
+    ShinyItemAnalysis::theme_app(base_size = size) +
     theme(axis.title.x = element_blank(),
           axis.text.x = element_blank(),
           axis.ticks.x = element_blank())
@@ -505,7 +505,7 @@ if (params$rendered_by_shiny){
   
 ```{r CHUNK14 Item fit stats, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Extract outfit stats ####
-item.fit.mod1 <- msq.itemfit(mod1) 
+item.fit.mod1 <- TAM::msq.itemfit(mod1) 
 item.fit.mod2 <- item.fit.mod1$itemfit
 
 outfit <- round(item.fit.mod2$Outfit,2)
@@ -551,7 +551,7 @@ if (params$rendered_by_shiny){
   
 ```{r CHUNK16 WLE Estimates, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Extract WLE estimates to include in the Excel outputs (developer may choose to include, currently excluded from output) ####
-Ability.theta <- tam.wle(mod1)$theta
+Ability.theta <- TAM::tam.wle(mod1)$theta
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.32)
@@ -593,7 +593,7 @@ if (params$rendered_by_shiny){
   
 ```{r CHUNK19_Extract_details_for_polytomous_analysis, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Use TAM ctt function with EAP vector ####
-ctt_raw <- tam.ctt(resp, EAP.person)
+ctt_raw <- TAM::tam.ctt(resp, EAP.person)
 
 #### 2. Identify confidence intervals for Pbs values ####
 Cor.CIs <- lapply(ctt_raw$rpb.WLE, FUN = function(x)psychometric::CIr(x, nrow(resp), level = .95))
@@ -716,8 +716,8 @@ The purpose of this document is to present the methodology and results of the an
 Table 1 presents the `r ncol(resp)` items included in the `r Construct` instrument:  
   
 ```{r CHUNK21_Item_table, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
-kable(Item.table, format = "latex", booktabs = T, align = 'l', caption = "List of Items", longtable = T) %>%
-  kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
+knitr::kable(Item.table, format = "latex", booktabs = T, align = 'l', caption = "List of Items", longtable = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
 
 if (params$rendered_by_shiny){
   shiny::setProgress(0.42)
@@ -753,8 +753,8 @@ where $K$ is the number of items, and $\bar{c}$ is the average of all the covari
 In accordance with DeVellis (2012, pp. 109-110), Table 2 presents some general rules-of-thumb for interpreting the meaning of the alpha $\alpha$ coefficient for a test instrument.  
   
 ```{r CHUNK22_Internal_consistency_table, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
-kable(Crony, "latex", booktabs = T, align = 'l', caption = "Interpreting the Cronbach's Alpha") %>% 
-  kable_styling(latex_options = c("striped"), font_size = 11)
+knitr::kable(Crony, "latex", booktabs = T, align = 'l', caption = "Interpreting the Cronbach's Alpha") %>% 
+  kableExtra::kable_styling(latex_options = c("striped"), font_size = 11)
 
 if (params$rendered_by_shiny){
   shiny::setProgress(0.44)
@@ -877,8 +877,8 @@ A total `r nrow(resp)` students participated in the `r Construct` assessment. Th
 \vspace{2mm}  
   
 ```{r CHUNK23_Frequency_of_Cat, echo=FALSE, message=TRUE, warning=FALSE}
-kable(freq.uneven, format = "latex", booktabs = T, align = 'cc', caption = "Frequency of Categories for Each Item", longtable = T) %>%
-  kable_styling(latex_options = c("striped","repeat_header"), font_size = 11)
+knitr::kable(freq.uneven, format = "latex", booktabs = T, align = 'cc', caption = "Frequency of Categories for Each Item", longtable = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped","repeat_header"), font_size = 11)
 
 if (params$rendered_by_shiny){
   shiny::setProgress(0.46)
@@ -896,19 +896,19 @@ The `r ncol(resp) ` point bi-serial and poly-serial discrimination indices are i
 disc.disc1 %>%                                                           
   dplyr::mutate(                                                      # mutate function enables the piping of extra coloring info into the table
     `Item Abbreviation` = disc.disc1$`Item Abbreviation`,             # simply defines the first column of the variable to be selected in the table (2nd and 3rd thereafter)
-    `Point Biserial or Pearson` = cell_spec(`Point Biserial or Pearson`, "latex", color = ifelse(`Point Biserial or Pearson` < 0.000, "red", 
+    `Point Biserial or Pearson` = kableExtra::cell_spec(`Point Biserial or Pearson`, "latex", color = ifelse(`Point Biserial or Pearson` < 0.000, "red", 
                                                                                                  ifelse(`Point Biserial or Pearson` < disc.threshold, "blue", "black"))),
-    `Lower CI` = cell_spec(`Lower CI`, "latex", color = ifelse(`Lower CI` < 0.000, "red",
+    `Lower CI` = kableExtra::cell_spec(`Lower CI`, "latex", color = ifelse(`Lower CI` < 0.000, "red",
                                                                                  ifelse(`Lower CI` < disc.threshold, "blue", "black"))),
-    `Upper CI` = cell_spec(`Upper CI`, "latex", color = ifelse(`Upper CI` < 0.000, "red",
+    `Upper CI` = kableExtra::cell_spec(`Upper CI`, "latex", color = ifelse(`Upper CI` < 0.000, "red",
                                                                                  ifelse(`Upper CI` < disc.threshold, "blue", "black"))),
-    `Bi- or Poly-serial` = cell_spec(`Bi- or Poly-serial`, "latex", color = ifelse(`Bi- or Poly-serial` < 0.000, "red",
+    `Bi- or Poly-serial` = kableExtra::cell_spec(`Bi- or Poly-serial`, "latex", color = ifelse(`Bi- or Poly-serial` < 0.000, "red",
                                                                                    ifelse(`Bi- or Poly-serial` < disc.threshold, "blue", "black")))
     ) %>%
   dplyr::select(`Item Abbreviation`, `Point Biserial or Pearson`, `Lower CI`, `Upper CI`, `Bi- or Poly-serial`) %>%
-  kable(format="latex", escape = F, booktabs = T, linesep = "", align='cc', caption= "Point-Biserial/Pearson, and Bi-/Poly-Serial Discrimination Indices", longtable=T) %>%
-  kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
-  footnote(general = "Correlations under predefined limit (if any) in blue while negative values (if any) in red.")
+  knitr::kable(format="latex", escape = F, booktabs = T, linesep = "", align='cc', caption= "Point-Biserial/Pearson, and Bi-/Poly-Serial Discrimination Indices", longtable=T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
+  kableExtra::footnote(general = "Correlations under predefined limit (if any) in blue while negative values (if any) in red.")
 
 if (params$rendered_by_shiny){
   shiny::setProgress(0.48)
@@ -926,16 +926,16 @@ round.item.fit.stats  %>%
   dplyr::mutate(
     `Item Abbreviation` = round.item.fit.stats$`Item Abbreviation`,
     `Outfit` = round.item.fit.stats$Outfit,
-    `Outfit t` = cell_spec(`Outfit t`, "latex", color = ifelse(`Outfit t` >= 1.96 | `Outfit t` < -1.96, "red", "black")),
+    `Outfit t` = kableExtra::cell_spec(`Outfit t`, "latex", color = ifelse(`Outfit t` >= 1.96 | `Outfit t` < -1.96, "red", "black")),
     `Outfit p` = round.item.fit.stats$`Outfit p`,
     `Infit` = round.item.fit.stats$Infit,
-    `Infit t` = cell_spec(`Infit t`, "latex", color = ifelse(`Infit t` >= 1.96 | `Infit t` < -1.96, "red", "black")),
+    `Infit t` = kableExtra::cell_spec(`Infit t`, "latex", color = ifelse(`Infit t` >= 1.96 | `Infit t` < -1.96, "red", "black")),
     `Infit p` = round.item.fit.stats$`Infit p`
   ) %>%
   dplyr::select(`Item Abbreviation`, Outfit, `Outfit t`, `Outfit p`, Infit, `Infit t`, `Infit p`) %>%
-  kable(format="latex", escape = F, booktabs = T, linesep = "", align='cc', caption= "Item-fit Statistics", longtable=T) %>%
-  kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
-  footnote(general = "Statistically significant results (equal to or above t = |1.96|) are highlighted in red.") 
+  knitr::kable(format="latex", escape = F, booktabs = T, linesep = "", align='cc', caption= "Item-fit Statistics", longtable=T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
+  kableExtra::footnote(general = "Statistically significant results (equal to or above t = |1.96|) are highlighted in red.") 
 
 if (params$rendered_by_shiny){
   shiny::setProgress(0.50)
@@ -1119,8 +1119,8 @@ Based on the MML analysis, the mean ability (logit) of the sample of interest wa
 The item difficulties (deltas) had a mean of `r mean.item.diff` and a standard deviation of `r sd.item.diff`. The difficulty logits for each respective item are provided in Table 6 (the full set of item difficulties for each item's di- or poly-chotomous category is provided in Appendix A2).  
   
 ```{r CHUNK32_Item_difficulty, echo=FALSE, fig.height=12, fig.width=16, message=TRUE, warning=FALSE}
-kable(item.diff.df, format = "latex", booktabs = T, align = 'cc', caption = "Item Difficulties", longtable = T) %>% 
-  kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
+knitr::kable(item.diff.df, format = "latex", booktabs = T, align = 'cc', caption = "Item Difficulties", longtable = T) %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.64)
@@ -1189,8 +1189,8 @@ thr <- as.data.frame(thr)
 thr <- sapply(thr, as.character)
 thr[is.na(thr)] <- ""
 rownames(thr) <- colnames(resp)
-kable(thr, format = "latex", booktabs = T, align = 'cc', caption = "Thurstonian Thresholds", longtable = T) %>%
-  kable_styling(latex_options = c("striped", "repeat_header", font_size = 11)) 
+knitr::kable(thr, format = "latex", booktabs = T, align = 'cc', caption = "Thurstonian Thresholds", longtable = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "repeat_header", font_size = 11)) 
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.72)
@@ -1355,8 +1355,8 @@ Item.cat.param <- sapply(Item.cat.param, as.character)
 Item.cat.param[is.na(Item.cat.param)] <- ""
 rownames(Item.cat.param) <- colnames(resp)
 
-kable(Item.cat.param, format = "latex", booktabs = T, align = 'cc', caption = "Item Delta Parameters", longtable = T) %>%
-  kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
+knitr::kable(Item.cat.param, format = "latex", booktabs = T, align = 'cc', caption = "Item Delta Parameters", longtable = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down", "repeat_header"), font_size = 11)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.80)
@@ -1377,14 +1377,14 @@ ctt_raw.df %>%
     Category = ctt_raw.df$Category,    
     Count = ctt_raw.df$Count,
     Percent = ctt_raw.df$Percent,
-    Pbs = cell_spec(Pbs, "latex", color = ifelse(`Disorderedness T/F` == TRUE, "red", "black")),
+    Pbs = kableExtra::cell_spec(Pbs, "latex", color = ifelse(`Disorderedness T/F` == TRUE, "red", "black")),
     `Disorderedness T/F` = ctt_raw.df$`Disorderedness T/F`,
     MeanAbility = ctt_raw.df$MeanAbility
     ) %>%
     dplyr::select(Item, Total, Category, Count, Percent, Pbs, MeanAbility) %>%
-    kable(format = "latex", escape = F, booktabs = T, linesep = "", align = 'cc', caption = "CTT Item Analysis", longtable = T) %>%
-    kable_styling(latex_options = c("striped", "repeat_header"), font_size = 9) %>%
-    footnote(general = "Disorderedness point bi-serials, where lower category correlation is larger (toward 1.00), in red.")
+    knitr::kable(format = "latex", escape = F, booktabs = T, linesep = "", align = 'cc', caption = "CTT Item Analysis", longtable = T) %>%
+    kableExtra::kable_styling(latex_options = c("striped", "repeat_header"), font_size = 9) %>%
+    kableExtra::footnote(general = "Disorderedness point bi-serials, where lower category correlation is larger (toward 1.00), in red.")
 
 #* Note: Alternate table with CIs
 
@@ -1548,8 +1548,8 @@ missingness.df <- cbind.data.frame(column.names, missing.counts, perc.missing)
 row.names(missingness.df) <- NULL
 colnames(missingness.df) <- c("Item Name", "Count of Missing Values", "Percent Missing")
 
-kable(missingness.df, format = "latex", booktabs = T, align = 'cc', caption = "Missingness for Each Item", longtable = T) %>%
-  kable_styling(latex_options = c("striped","repeat_header"), font_size = 11) #%>%
+knitr::kable(missingness.df, format = "latex", booktabs = T, align = 'cc', caption = "Missingness for Each Item", longtable = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped","repeat_header"), font_size = 11) #%>%
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.94)
@@ -1635,8 +1635,8 @@ Input.measure <- c(Construct, Population, nrow(resp), ncol(resp), NA.Delete, Cro
 summary.df <- cbind.data.frame(Input.setting, Input.measure)
 colnames(summary.df) <- c("Report Criteria", "Setting/Ouput")
 
-kable(summary.df, format="latex", booktabs=T, align = 'l', caption = "Technical Settings for Report", longtable=T) %>%
-  kable_styling(latex_options = c("striped","repeat_header"), font_size = 11)
+knitr::kable(summary.df, format="latex", booktabs=T, align = 'l', caption = "Technical Settings for Report", longtable=T) %>%
+  kableExtra::kable_styling(latex_options = c("striped","repeat_header"), font_size = 11)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(1)
