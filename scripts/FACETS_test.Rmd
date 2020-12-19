@@ -285,7 +285,7 @@ corstars <<-function(x, method=c("pearson", "spearman"), removeTriangle=c("upper
                      result=c("none", "html", "latex")){
     # Compute correlation matrix
     x <- as.matrix(x)
-    correlation_matrix<-rcorr(x, type=method[1])
+    correlation_matrix<-Hmisc::rcorr(x, type=method[1])
     R <- correlation_matrix$r # Matrix of correlation coeficients
     p <- correlation_matrix$P # Matrix of p-value 
     
@@ -456,7 +456,7 @@ ggWrightMapnew <<- function(theta, b, binwidth = 0.3, color = "blue", size = 2, 
           axis.text.x = element_blank(),
           axis.ticks.x = element_blank())
 
-  plot_grid(g1, g2)
+  cowplot::plot_grid(g1, g2)
 }
    
 if (params$rendered_by_shiny){
@@ -718,7 +718,7 @@ facet.df.results <- cbind.data.frame(facet.df.results, facet.df.results$xsi*2)
 colnames(facet.df.results)[7] <- "Overall Group Effect"
 facet.df.results[,3:7] <- apply(facet.df.results[,3:7], 2, FUN=function(x)round(x, 3))
 
-facet.number <- as.character(english(length(table(facet))))
+facet.number <- as.character(english::as.english(length(table(facet))))
 Facet.caption.name <- paste("Effect of the ", facet.name, " Facet on Item Difficulty", sep = "")
 
 # Establish flag cut points
