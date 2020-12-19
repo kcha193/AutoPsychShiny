@@ -4,18 +4,18 @@
 version_number <- "0.1.0"
 
 # Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
-autopsych.pack <- c("scales", "tidyverse", "ShinyItemAnalysis", "CTT", "psychometric", 
+autopsych_pack <- c("scales", "tidyverse", "ShinyItemAnalysis", "CTT", "psychometric", 
                     "TAM", "cowplot", "openxlsx", "reshape2", "Hmisc", "xtable", 
                     "knitr", "rmarkdown", "kableExtra", "english", "shiny", "shinyjs",
                     "shinythemes", "shinyBS", "bsplus", "shinyWidgets")
-pack.needed <- autopsych.pack[!autopsych.pack %in% installed.packages()] 
-install.packages(pack.needed)
+packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()] 
+install.packages(packages_required)
 
 # Ensure all necessary packages loaded loaded to library (some use package::function throughout script so do not need to be loaded)
-packages.to.load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets")
+packages_to_load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets")
 
 # Ensure all necessary packages loaded to library
-lapply(packages.to.load, library, character.only = TRUE)
+lapply(packages_to_load, library, character.only = TRUE)
 # For list of packages, see associated publication.
 
 
@@ -118,7 +118,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
            column(11, 
                   wellPanel(
                     h4("Introduction"),
-                    p("Welcome to autopsych, a novel website that allows test 
+                    p("Welcome to Automated Psychometrics, a novel website that allows test 
                               developers, educational institutions, and researchers to:"),
                     p(""),
                     p("(1) Improve the quality of student assessments and developmental rubrics,"),
