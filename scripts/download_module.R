@@ -37,13 +37,13 @@ download_Server <- function(id, type = c("MML", "DIF")) {
             
             if(type == "MML"){
               
-              tempReport <- file.path(tempdir, "Testbuild.RUNNING2.Rmd")                    # Create the filepath where the tempory rmd file resides
-              file.copy("scripts/Testbuild.RUNNING2.Rmd", tempReport, overwrite = TRUE)     # Copy the rmd file from the scripts folder to the path above
+              tempReport <- file.path(tempdir, "MML.Rmd")                    # Create the filepath where the tempory rmd file resides
+              file.copy("scripts/MML.Rmd", tempReport, overwrite = TRUE)     # Copy the rmd file from the scripts folder to the path above
               
             } else if(type == "DIF"){
               
-              tempReport <- file.path(tempdir, "FACETS_test.Rmd")                    # Create the filepath where the tempory rmd file resides
-              file.copy("scripts/FACETS_test.Rmd", tempReport, overwrite = TRUE)     # Copy the rmd file from the scripts folder to the path above
+              tempReport <- file.path(tempdir, "FACETS.Rmd")                    # Create the filepath where the tempory rmd file resides
+              file.copy("scripts/FACETS.Rmd", tempReport, overwrite = TRUE)     # Copy the rmd file from the scripts folder to the path above
 
             }
             
