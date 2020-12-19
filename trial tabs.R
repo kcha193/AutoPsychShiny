@@ -9,7 +9,10 @@ autopsych_pack <- c("scales", "tidyverse", "ShinyItemAnalysis", "CTT", "psychome
                     "knitr", "rmarkdown", "kableExtra", "english", "shiny", "shinyjs",
                     "shinythemes", "shinyBS", "bsplus", "shinyWidgets")
 packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()] 
-install.packages(packages_required)
+
+if(length(packages_required) > 0) {
+  install.packages(packages_required)
+}
 
 # Ensure all necessary packages loaded loaded to library (some use package::function throughout script so do not need to be loaded)
 packages_to_load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets")
