@@ -132,24 +132,7 @@ if (params$rendered_by_shiny){
 ```
   
 ```{r CHUNK2 Load packages, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
-#### 1. Load packages ####
-library("scales")
-library("ggplot2") #* tidyverse
-library("ShinyItemAnalysis")
-library("cowplot")
-library("CTT")
-library("Hmisc")
-library("psychometric")
-library("TAM")
-library("dplyr") #* tidyverse
-library("openxlsx")
-library("reshape2")
-library("knitr")
-library("kableExtra")
-library("english")
-library("xtable")
-library("rmarkdown")
-
+#### 1. Load packages #### (done via trial tabs.R for this app)
 if (params$rendered_by_shiny){
     shiny::setProgress(0.04)
 }
