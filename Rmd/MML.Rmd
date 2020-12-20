@@ -49,6 +49,7 @@ params:
   color.choice: NA
   binwidth: NA 
   rendered_by_shiny: FALSE
+  excel_name: NA
   
 header-includes:
 - \usepackage{longtable}
@@ -1598,7 +1599,7 @@ list.of.data <- list("Ordered Person Results" = Person.stats.o, "Ordered Item Di
                      "Item Fit Stats" = round.item.fit.stats, "Item Correlation Matrix" = matrix.r.p,
                      "CTT Item Analysis" = ctt_raw.df, "Plausible Values" = Plausible.values)
 
-openxlsx::write.xlsx(list.of.data, file = "report.xlsx")
+openxlsx::write.xlsx(list.of.data, file = params$excel_name)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.96)

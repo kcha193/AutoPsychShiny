@@ -40,11 +40,16 @@ download_Server <- function(id, type = c("MML", "FACETS")) {
               tempReport <- file.path(tempdir, "MML.Rmd")                       # Create the filepath where the tempory rmd file resides
               file.copy("Rmd/MML.Rmd", tempReport, overwrite = TRUE)        # Copy the rmd file from the scripts folder to the path above
               
+              excel_name <- "MML_tables.xlsx"
+              pdf_name <- "MML_report.pdf"
+              
             } else if(type == "FACETS"){
               
               tempReport <- file.path(tempdir, "FACETS.Rmd")                    # Create the filepath where the tempory rmd file resides
               file.copy("Rmd/FACETS.Rmd", tempReport, overwrite = TRUE)     # Copy the rmd file from the scripts folder to the path above
-
+              
+              excel_name <- "FACETS_tables.xlsx"
+              pdf_name <- "FACETS_report.pdf"
             }
             
             node.sequence <- as.numeric(strsplit(input$node.sequence,",")[[1]])           # The tempdir constantly changes at shinyapps.io, that is why we have to repeat this process every time.
@@ -66,7 +71,8 @@ download_Server <- function(id, type = c("MML", "FACETS")) {
                            maxiter = as.numeric(input$maxiter),
                            color.choice = input$color.choice,
                            binwidth = as.numeric(input$binwidth),
-                           rendered_by_shiny = TRUE                            # we need rendered_by_shiny to update the progress bar
+                           rendered_by_shiny = TRUE,                            # we need rendered_by_shiny to update the progress bar
+                           excel_name = excel_name
             )
             
             if(type == "FACETS"){
@@ -74,13 +80,14 @@ download_Server <- function(id, type = c("MML", "FACETS")) {
               additional_params <- 
                 list(
                   facets.cut.p = input$facets.cut.p, 
-                  facets.cut.logit = input$facets.cut.logit
+                  facets.cut.logit = input$facets.cut.logit,
+                  excel_name = excel_name
                 )
               
               params <- c(params, additional_params)
             }            
             
-            file1 <- file.path(tempdir, "report.pdf")   
+            file1 <- file.path(tempdir, pdf_name)   
             # Knit the document, passing in the `params` list, and eval it in a child of the global environment (this isolates the code in the document from the code in this app).
             rmarkdown::render(tempReport,
                               output_file = file1,
@@ -88,7 +95,7 @@ download_Server <- function(id, type = c("MML", "FACETS")) {
                               envir = new.env(parent = globalenv())
             )                                                            # file1 is the path of the PDF output
             
-            file2 <- file.path(tempdir, "report.xlsx")                   # file2 is the path of the xlsx output coming from the markdown
+            file2 <- file.path(tempdir, excel_name)                   # file2 is the path of the xlsx output coming from the markdown
             
             file_1_and_2 <- c(file1, file2)                              # combine all the files to zip them
             

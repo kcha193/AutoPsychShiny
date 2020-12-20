@@ -51,7 +51,8 @@ params:
   color.choice: NA
   binwidth: NA 
   rendered_by_shiny: FALSE
-  
+  excel_name: NA
+    
 header-includes:
 - \usepackage{longtable}
 - \usepackage{booktabs}
@@ -1688,7 +1689,7 @@ list.of.data <- list("Ordered Person Results" = Person.stats.o, "Ordered Item Di
                      "CTT Item Analysis" = ctt_raw.df, "Plausible Values" = Plausible.values, 
                      "Many Facets Analysis" = facet.df.results)
 
-openxlsx::write.xlsx(list.of.data, file = "report.xlsx")
+openxlsx::write.xlsx(list.of.data, file = params$excel_name)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.96)
