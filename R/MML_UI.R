@@ -14,8 +14,8 @@ MML_UI <- function(id) {
          reading abilility."),
        p(""),
        p("The tool takes an item-response matrix (i.e., a spreadsheet of student 
-                             test results) and produces a detailed narrated technical report and organized 
-                             spreadsheets that reflect the function of the test and each question."),
+          test results) and produces a detailed narrated technical report and organized 
+          spreadsheets that reflect the function of the test and each question."),
        p(""),
        p("The report is based on the application of classical test theory (CTT) 
        and item-response theory (IRT; here, a unidimensional Rasch, or 1PL, model). 
@@ -32,13 +32,12 @@ MML_UI <- function(id) {
        h4("1. Prepare data"),
        p("Before using the tool, ensure that your data meet the following requirements:"),
        p(""),
-       p("(a) The header of the csv file (top row) includes a brief description of 
-         each question (item) and should start with a letter, not a number (e.g., 
-         Item 1. Matching words and visual stimulus), very short descriptions also 
-         fine;"),
+       p("(a) The header of the csv file (top row) includes consistent numbering 
+         that includes ones and 10s columns. E.g., Item.01, Item.02,... Item.20 
+         (not Item.1, Item.2,... Item.20)"),
        p(""),
        p("(b) Under the row of item descriptors (the header), item-responses may 
-         include dichotomous (0,1) or polytomous (0,1,2... max 9) data;"),
+         include dichotomous (0, 1) or polytomous (0, 1, 2... max 9) data;"),
        p(""),
        p("(c) A column specifying student (case) identification cannot be included 
          (simply, outputs specific to students, e.g., ability and student fit estimates, 

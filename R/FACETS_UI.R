@@ -2,7 +2,7 @@
 
 
 # Module definition, new method
-DIF_UI <- function(id) {
+FACETS_UI <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -39,26 +39,26 @@ DIF_UI <- function(id) {
     ),
     
     
-    wellPanel(
-      h4("1. Prepare data"),
-      p("Before using the tool, ensure that your data meet the following requirements:"),
-      p(""),
-      p("(a) The header of the csv file (top row) includes a brief description of
-        each question (item) and should start with a letter, not a number (e.g.,
-        Item 1. Matching words and visual stimulus), very short descriptions also
-        fine; first column needs to be facet with each cell, 1 or 2."),
-      p(""),
-      p("(b) Under the row of 'item descriptors', item-responses may
-        include dichotomous (0,1) or polytomous (0,1,2... max 9) data;"),
-      p(""),
-      p("(c) A column specifying student (case) identification cannot be included
-        (simply, outputs specific to student ordering, e.g., ability and
-        student fit estimates, remain in the original order); and,"),
-      p(""),
-      p("(d) Some missing item-response data (blanks) are handled by the tool,
-        though users should carefully consider the meaning of such instances
-        and recode if appropriate.")
-              ),
+    wellPanel(h4("1. Prepare data"),
+              p("Before using the tool, ensure that your data meet the following requirements:"),
+              p(""),
+              p("(a) The first column of the csv file is the binaey facet of interest, e.g., 
+                gender. The coding is decided by the user such as 1 for male and 2 for female."),
+              p(""),
+              p("(b) The header of the csv file (top row) includes consistent numbering 
+              that includes ones and 10s columns. E.g., Item.01, Item.02,... Item.20 
+              (not Item.1, Item.2,... Item.20)"),
+              p(""),
+              p("(c) Under the row of item descriptors (the header), item-responses may 
+              include dichotomous (0, 1) or polytomous (0, 1, 2... max 9) data;"),
+              p(""),
+              p("(d) A column specifying student (case) identification cannot be included 
+              (simply, outputs specific to students, e.g., ability and student fit estimates, 
+              remain in the original order); and,"),
+              p(""),
+              p("(e) Some missing data (blanks) are handled by the tool, though users should 
+              consider the meaning of such instances and recode if appropriate.")
+             ),
     wellPanel(
       h4("2. Upload your item-response file (csv)"),
       p(""),
