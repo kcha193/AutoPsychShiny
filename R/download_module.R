@@ -1,9 +1,5 @@
 
 
-
-
-
-
 download_UI <- function(id){
   ns <- NS(id)
   
@@ -14,7 +10,9 @@ download_UI <- function(id){
 }
 
 
-download_Server <- function(id, type = c("MML", "FACETS")) {
+download_Server <- function(id, 
+                            zip_name,
+                            type = c("MML", "FACETS")) {
   
   type <- match.arg(type)
   
@@ -27,7 +25,7 @@ download_Server <- function(id, type = c("MML", "FACETS")) {
       
  
       output$report <- downloadHandler(                                         # This function makes the download     
-        filename = "psychometric_analysis.zip",                                 # The zip file created
+        filename = zip_name,                                 # The zip file created
         content = function(file){                                               # download handler is the main part of the application to make the RmD file. 
           withProgress(message = 'R Shiny Boosted Rendering',{                  # Set a progress bar because it can take some time
                      

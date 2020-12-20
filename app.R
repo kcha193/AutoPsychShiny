@@ -1271,10 +1271,10 @@ server <- function(input, output, session){
 
 # Download server -------------------------------------------------------------------            
 
-  download_Server("MML", type = "MML") # MML
+  download_Server("MML", zip_name = "pyschometric_analysis_MML.zip", type = "MML") # MML
     
   
-  download_Server("FACETS", type = "FACETS") # DIF
+  download_Server("FACETS", zip_name = "pyschometric_analysis_FACETS.zip", type = "FACETS") # DIF
 
 }  # server function wrapper
 
