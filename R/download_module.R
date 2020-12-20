@@ -14,7 +14,7 @@ download_UI <- function(id){
 }
 
 
-download_Server <- function(id, type = c("MML", "DIF")) {
+download_Server <- function(id, type = c("MML", "FACETS")) {
   
   type <- match.arg(type)
   
@@ -40,7 +40,7 @@ download_Server <- function(id, type = c("MML", "DIF")) {
               tempReport <- file.path(tempdir, "MML.Rmd")                       # Create the filepath where the tempory rmd file resides
               file.copy("Rmd/MML.Rmd", tempReport, overwrite = TRUE)        # Copy the rmd file from the scripts folder to the path above
               
-            } else if(type == "DIF"){
+            } else if(type == "FACETS"){
               
               tempReport <- file.path(tempdir, "FACETS.Rmd")                    # Create the filepath where the tempory rmd file resides
               file.copy("Rmd/FACETS.Rmd", tempReport, overwrite = TRUE)     # Copy the rmd file from the scripts folder to the path above
@@ -69,7 +69,7 @@ download_Server <- function(id, type = c("MML", "DIF")) {
                            rendered_by_shiny = TRUE                            # we need rendered_by_shiny to update the progress bar
             )
             
-            if(type == "DIF"){
+            if(type == "FACETS"){
 
               additional_params <- 
                 list(

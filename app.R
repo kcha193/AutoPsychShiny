@@ -273,9 +273,9 @@ tabPanel("Many-Facets Rasch (DIF)",
          fluidRow(
              column(11,
                   
-                    DIF_UI("DIF"),
+                    FACETS_UI("FACETS"),
                   
-                    download_UI("DIF")
+                    download_UI("FACETS")
                   
                    )
                  )              # fluidRow
@@ -1274,7 +1274,7 @@ server <- function(input, output, session){
   download_Server("MML", type = "MML") # MML
     
   
-  download_Server("DIF", type = "DIF") # DIF
+  download_Server("FACETS", type = "FACETS") # DIF
 
 }  # server function wrapper
 

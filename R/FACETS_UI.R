@@ -2,7 +2,7 @@
 
 
 # Module definition, new method
-DIF_UI <- function(id) {
+FACETS_UI <- function(id) {
   ns <- NS(id)
 
   tagList(
