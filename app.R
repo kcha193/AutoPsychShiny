@@ -14,6 +14,10 @@ if(length(packages_required) > 0) {
   install.packages(packages_required)
 }
 
+if(packageVersion("shiny") < "1.5.0") {
+  install.packages("shiny")
+}
+
 # Ensure all necessary packages loaded loaded to library (some use package::function throughout script so do not need to be loaded)
 packages_to_load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets")
 
@@ -32,11 +36,6 @@ options(shiny.maxRequestSize = 3*1024^2)
 # "Open Sans" is a nice option
 # "simplex" is a nice theme, though "cosmo" chosen here.
 # Themes at: https://rstudio.github.io/shinythemes/ 
-
-source("scripts/anova_module.R")
-source("scripts/MML_UI.R")
-source("scripts/DIF_UI.R")
-source("scripts/download_module.R")
 
 # UI file starts here -------------------------------------------------- 
 
