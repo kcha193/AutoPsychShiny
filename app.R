@@ -285,60 +285,138 @@ tabPanel("Many-Facets Rasch (DIF)",
 # Rasch Equating ----------------------------------------------------------
            
             tabPanel("Rasch Equating",
-                     fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
-                     tags$style(type="text/css",
-                                "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                " * {font-family: Open Sans; font-weight: 500;  line-height: 1.1}"),
-                     shinyjs::useShinyjs(),                                                         # activate javascript in the application
-                     tags$h1("Rasch Equating",
-                             tags$img(src = "hex5.png", height = 149, width = 135, 
-                                      style = "float:right;margin-top:-18.5px;"
-                             ),
-                             tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1;
-                                                              font-size: 60px; color: #FFFFFF;}"
-                             )
-                             )
-                     ),
-                     tags$h2("Toward Valid Unified Test Forms",                                     # h2 header is the subtitle underneath the h1 header
-                             tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-                                                                 line-height: 1.1; font-size: 18pt;
-                                                                 color: #FFFFFF;}"
-                                             )
-                                       )
-                            ),          
-                     hr(), 
-                     tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                                    "Dr Zhonghua Zhang (PhD)"
-                                   ),
-                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                             line-height: 1.1; font-size: 10pt;
-                                                             color: #FFFFFF;}"
-                                             )
-                                        )
-                            ),
-                     tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-                                    "Dr Matthew Courtney (PhD)"),
-                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                                    line-height: 1.1; font-size: 10pt;
-                                                                    color: #FFFFFF;}"
-                                             )
-                                       )
-                            ),
-                     tags$h3("Contributing Psychometrician:",                                       # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                                    "Dr Lan Ahn Nguyen Khoa (PhD)"),
-                             tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                                    line-height: 1.1; font-size: 10pt;
-                                                                    color: #FFFFFF;}"
-                                            )
-                                        )
-                             ),
-                     ),                                                                             # Baseline build for (a) concurrent calibration and (b) fixed anchor collibration proposed (MC and ZZ)
-
+                     tabsetPanel(tabPanel("Fixed Anchor", 
+                                          fluidRow(column(width = 6)),
+                                          theme = shinytheme("cosmo"),
+                                          tags$style(type="text/css",
+                                                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                                      "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                                      " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                                                     ),
+                                          shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                                          tags$h1("Fixed Anchor Test Equating",
+                                          tags$img(src = "hex5.png", 
+                                                  height = 149, 
+                                                  width = 135, 
+                                                  style = "float:right;margin-top:-18.5px;"
+                                                  ),
+                                          tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                          line-height: 1.1; font-size: 60px;
+                                                          color: #FFFFFF;}"
+                                                          )
+                                                     )
+                                          ),
+                                          tags$h2("Toward Valid and Comparable Test Forms",                             # h2 header is the subtitle underneath the h1 header
+                                                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                  line-height: 1.1; font-size: 18pt; color: #FFFFFF;}"
+                                                                 )
+                                                            )
+                                                  ),
+                                          hr(), 
+                                          fluidRow(
+                                          column(11,
+                                                wellPanel(
+                                                h4("Test equating"),
+                                                p(""),
+                                                p("Test equating is commonly carried out when two (or more) test forms are administered 
+                                                  to different groups of students. For example, imagine if a Numeracy test is administered 
+                                                  to a group of Grade 3 students and the test, Form A, includes 40 items. At the same time, 
+                                                  another Numeracy test is administered to a group of Grade 4 students and that test, Form B, 
+                                                  also includes 40 items. In order for the students to receive a fair score on a single scale, 
+                                                  the test designers built in some overlap whereby 10 link items (questions) are delivered 
+                                                  in both Form A and B test forms. However, in order to provide all of the students with a 
+                                                  fair score on a single unified scale, one needs to carry out test equating. Here, we make 
+                                                  one form of test equating, fixed-anchor equating, automatically accessible.")
+                                                          ),
+                                                
+                                                wellPanel(
+                                                  h4("Fixed anchor equating tool"),
+                                                  p(""),
+                                                  p("Fixed anchor equating is useful as it enables test administrators to report scores to 
+                                                    students that reflect their respective original scales. In this instance, the ability 
+                                                    scores from Form A (student theta estimates) remain unchanged. However, with fixed anchor 
+                                                    equating, the other students' ability scores from Form B are mapped onto the Form A test 
+                                                    so that all students' scores can be compared on a single unified scale."),
+                                                  p(""),
+                                                  p("The fixed-anchor equating tool provided here makes use of separately calibrated data 
+                                                    from Forms A and B. The tool takes (a) the outputted spreadsheet from the Rasch analysis 
+                                                    from test Form A, and (b) the outputted spreadsheet from test Form B to automatically 
+                                                    produce all student scores on a single scale.")
+                                                         ),
+                                                
+                                                wellPanel(
+                                                  h4("1. Prepare your data:"),
+                                                  p(""),
+                                                  p("(a) Carefully prepare item-response matrices (.csv files) for test Forms A and B ensuring that the link 
+                                                  items are labelled exactly the same."),
+                                                  p(""),
+                                                  p("(b) Carry out a uni-dimensional Rasch analysis on data from the Test Form A and save the outputted 
+                                                  spreadsheet. Re-label the xlsx file as Form A."),
+                                                  p(""),
+                                                  p("(c) Carry out a uni-dimensional Rasch analysis on data from the Test Form B and save the outputted 
+                                                  spreadsheet. Re-label the xlsx file as Form B."),
+                                                  p(""),
+                                                  p("(d) Generally, the more difficult test (test Form B) is mapped onto the less difficult test (test 
+                                                  Form A). Input the files as necessary:")
+                                                          ) # End 2nd wellPanel
+                                                )           # End column that is 11 units wide
+                                                 )          # End fluidRow
+                                         ),                 # End Fixed Anchor Calibration tab
+            
+                                 tabPanel("Concurrent", 
+                                          fluidRow(column(width = 6)),
+                                          theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
+                                          tags$style(type="text/css",
+                                                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                                                    ),
+                                         shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                                         tags$h1("Concurrent Test Equating",
+                                                 tags$img(src = "hex5.png", 
+                                                          height = 149, 
+                                                          width = 135, 
+                                                          style = "float:right;margin-top:-18.5px;"
+                                                         ),
+                                                 tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                                  line-height: 1.1; font-size: 60px;
+                                                                  color: #FFFFFF;}"
+                                                                )
+                                                           )
+                                                ),
+                                          tags$h2("Toward Valid and Comparable Test Forms",                   # h2 header is the subtitle underneath the h1 header
+                                                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                                   line-height: 1.1; font-size: 18pt;
+                                                                   color: #FFFFFF;}"
+                                                                 )
+                                                             )
+                                                 ),
+                                          hr(), 
+                                          fluidRow(
+                                              column(11,
+                                                   wellPanel(
+                                                     h4("Concurrent Calibration Tool"),
+                                                     p(""),
+                                                     p("The concurrent calibration method...")
+                                                            ),
+                                                   wellPanel(
+                                                     h4("1. Prepare your data:"),
+                                                     p(""),
+                                                     p("(a) Do a"),
+                                                     p(""),
+                                                     p("(b) Do b"),
+                                                     p(""),
+                                                     p("(c) Do c"),
+                                                     p(""),
+                                                     p("(d) Do d"),
+                                                     p(""),
+                                                     p("(e) Do e")
+                                                            )    # End wellPanel
+                                                     )           # End column 11 units wide
+                                                  )              # End fluid row
+                                         )                       # End Concurrent Calibration tab panel
+                                )                                # End embedded tabset panels
+                      ),                                         # End main Equating tabpanel
 
 # ANOVA ----------------------------------------------------------
 
@@ -630,7 +708,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                                   of item-difficulty bias against student groups."),
                                 p(""),
                                 p("(3) Rasch Equating analysis which enables (a) concurrent and (b) 
-                                  fixed anchor callibration of test forms."),
+                                  fixed anchor calibration of test forms."),
                                 p(""),
                                 p("(4) ANOVA (ANalysis Of VAriance) which enables one-way ANOVA analysis 
                                   of student ability estimates by groups of interest."),
@@ -704,7 +782,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                                  ),
                                  wellPanel(
                                    h4("Bio:"),
-                                   p("Dr Courtney is an applied psychometrician and R Shiny software developer 
+                                   p("Dr Courtney is a psychometrician and R Shiny statistical software developer 
                                    from New Zealand. He has expertise in both classical and item-response theories, automated statistical 
                                    analysis and reporting, web UI development, and online learning. Dr completed his PhD in Education from The 
                                    University of Auckland in 2015. For his doctorate he made use of advanced quantitative methods to 
@@ -717,70 +795,71 @@ tabPanel("Many-Facets Rasch (DIF)",
                                     to multiple research projects and academic journal publications and provided consultation to staff 
                                     and post-graduate students. Thereafter, Dr Courtney worked for over three years as a Research Fellow 
                                     at the Assessment Research Centre, Graduate School of Education, The University of Melbourne. There 
-                                    Dr Courtney contributed to multiple state, federal, and international research projects 
-                                    which focussed on educational assessment. In addition, Dr Courtney undertook extensive training in the 
-                                    fields of classical test theory, item-response theory, and R programming under the guidance of world-renowned 
-                                    psychometrician, Professor Margaret Wu. Currently, Dr Courtney works as an Assistant Professor at the 
-                                    Nazarbayev University Graduate School of Education, a research intensive university in Kazakhstan, Central 
-                                    Asia. Dr Courtney enjoys learning new languages, introduciung post-graduate students fun topics including 
-                                    educational assessment, educational statistics, classical and modern test theories, growth modelling, 
-                                    and R programming. A list of Dr Courtney's published journal articles and statistical packages are 
-                                    provided below:"),
+                                    Dr Courtney contributed to multiple state, federal, and international projects which focussed on educational 
+                                    measurement and assessment. At the Graduate School of Education, Dr Courtney completed extensive training in the 
+                                    fields of classical test theory, item-response theory, and R statistical programming under the guidance of 
+                                    world-renowned psychometrician and statistician, Professor Margaret Wu. Currently, Dr Courtney works as 
+                                    an Assistant Professor at the Nazarbayev University Graduate School of Education, a research intensive 
+                                    university in Kazakhstan, Central Asia. Dr Courtney enjoys  introduciung post-graduate students fun topics 
+                                    including educational assessment, educational statistics, classical test theory and item response theory, 
+                                    growth modelling, and R programming. A list of Dr Courtney's published journal articles and statistical 
+                                    packages are provided below:"),
                                           ),
                                  wellPanel(
-                                   h4("ACADEMIC JOURNAL ARTICLES AND STATISTICAL PACKAGES:"),
+                                   h4("ACADEMIC JOURNAL ARTICLES:"),
+                                   h4("R Statistical Packages and R Shiny Applications"),
+                                   p("1.	Courtney, M. G. R., & Chang, K. (2018). Dealing with non-normality: An introduction and step-by-step 
+                                   guide using R. Teaching Statistics, 40(2), 51-59. doi: https://doi.org/10.1111/test.12154 (IF: 12; Q4)"),
                                    p(""),
-                                   h4("Assessment Focus"),
+                                   p("R package details: https://cran.r-project.org/web/packages/normalr/normalr.pdf"),
                                    p(""),
-                                   p("1. Courtney, M. G. R. (2013). Determining the number of factors to retain in EFA: Using the SPSS R-Menu 
+                                   p("Online app: https://kcha193.shinyapps.io/normalr/"),
+                                   p(""),
+                                   h4("Measurement and Assessment"),
+                                   p(""),
+                                   p("2. Courtney, M. G. R. (2013). Determining the number of factors to retain in EFA: Using the SPSS R-Menu 
                                    v-2.0 to make more judicious estimations. Practical Assessment, Research & Evaluation, 18(8). 
                                    Retrieved from http://pareonline.net/pdf/v18n8.pdf (H = 48; Q2)"),
-                                   p("2. Panadero, E., Brown, G. T., & Courtney, M. 
+                                   p("3. Panadero, E., Brown, G. T., & Courtney, M. 
                                     G. R. (2014). Teachers’ reasons for using self-assessment: A survey self-report of Spanish teachers. Assessment 
                                     in Education: Principles, Policy & Practice, 21(4), 365-383. doi: 10.1080/0969594X.2014.919247 (H = 39; 
                                     Q1)"),
                                    p(""),
-                                   p("3. Langdon, F., Alexander, P. A., Tesar, M., 
+                                   p("4. Langdon, F., Alexander, P. A., Tesar, M., 
                                     Courtney, M. G. R., & Palmer, M. (2016). Induction and mentoring in early childhood educational organizations: 
                                     embracing the complexity of teacher learning in contexts. Teaching and Teacher Education, 57, 150-160. doi: 
                                     10.1016/j.tate.2016.03.016 (H = 114; Q1)"),
                                    p(""),
                                    h4("Higher Education"),
                                    p(""),
-                                   p("4. Qanay, G., Courtney, M. G. R., & Nam, A. (in press). Supporting teacher leadership development in schools 
-                                   in Kazakhstan: a mixed-methods study. International Journal of Leadership Education (IF: 34; Q1)"),
+                                   p("5. Qanay, G., Courtney, M. G. R., & Nam, A. (in press). Supporting teacher leadership development in schools 
+                                     in Kazakhstan: a mixed-methods study. International Journal of Leadership Education. doi: 
+                                     10.1080/13603124.2020.1869314 (IF: 34; Q1)"),
                                    p(""),
-                                   p("5.	Kitchen, M., Jeurissen, M., Gray, S., & Courtney, M. G. R. (2017). Teacher engagement with academic 
-                                   reading in a post-service TESOL course. Indonesian Journal of Applied Linguistics, 6(2), 260-270. doi: 
-                                   http://dx.doi.org/10.17509/ijal.v6i2 (H = 7, Q2)"),
+                                   p("6.	Kitchen, M., Jeurissen, M., Gray, S., & Courtney, M. G. R. (2017). Teacher engagement with academic 
+                                     reading in a post-service TESOL course. Indonesian Journal of Applied Linguistics, 6(2), 260-270. doi: 
+                                     10.17509/ijal.v6i2 (H = 7, Q2)"),
                                    p(""),
-                                   p("6. Courtney, M. G. R. (2018). Emerging Academic and Social Spaces: Toward a Modern Understanding of 
+                                   p("7. Courtney, M. G. R. (2018). Emerging Academic and Social Spaces: Toward a Modern Understanding of 
                                    International Student Integration in Australasia. International Journal of Cyber Behavior, Psychology, 
                                    and Learning, 8(3), 36-47. doi: 10.4018/IJCBPL.2018070104 (H = 14; Q4)"),
                                    p(""),
-                                   p("7. Lee-Morgan, J., Courtney, M. G. R., & Muller, M. (2019). New Zealand Māori-Medium Teacher Education: 
+                                   p("8. Lee-Morgan, J., Courtney, M. G. R., & Muller, M. (2019). New Zealand Māori-Medium Teacher Education: 
                                    An Examination of Students' Academic Confidence and Preparedness. Asia-Pacific Journal of Teacher Education. 
                                    doi: 10.1080/1359866X.2018.1539214 (IF: 32; Q1)"),
                                    p(""),
-                                   p("8. Lee, K., Courtney, M. G. R., McGlashan, A., Neveldsen, P., Toso, M. (2019). Initial teacher education 
+                                   p("9. Lee, K., Courtney, M. G. R., McGlashan, A., Neveldsen, P., Toso, M. (2019). Initial teacher education 
                                    students’ perceptions of technology and technology education in New Zealand. International Journal of 
                                    Technology and Design Education. doi: 10.1007/s10798-019-09516-6 (IF: 37; Q1)"),
                                    p(""),
                                    h4("Youth Program Evaluation"),
-                                   p("9.	Chapman, C. M., Deane, K. L., Harré, N., Courtney, M. G. R., & Moore, J. (2017). Engagement and mentor 
+                                   p("10.	Chapman, C. M., Deane, K. L., Harré, N., Courtney, M. G. R., & Moore, J. (2017). Engagement and mentor 
                                    support as drivers of social development in the Project K youth development program. Journal of Youth and 
                                    Adolescence, 1-12. doi: 10.1007/s10964-017-0640-5 (H = 110; Q1)"                                        ),
                                    p(""),
-                                   p("10.	Deane, K., Harré, N., Moore, J., & Courtney, M. G. R. (2016). The impact of the Project K Youth Development 
+                                   p("11.	Deane, K., Harré, N., Moore, J., & Courtney, M. G. R. (2016). The impact of the Project K Youth Development 
                                    Program on self-efficacy: a randomized control trial. Journal of Youth and Adolescence, March 6, 1-22. doi: 
-                                   10.1007/s10964-016-0463-9 (H = 110; Q1)"),
-                                   h4("R Packages and Shiny Applications"),
-                                   p("11.	Courtney, M. G. R., & Chang, K. (2018). Dealing with non-normality: An introduction and step-by-step 
-                                   guide using R. Teaching Statistics, 40(2), 51-59. doi: https://doi.org/10.1111/test.12154 (IF: 12; Q4)"),
-                                   p(""),
-                                   p("R package details: https://cran.r-project.org/web/packages/normalr/normalr.pdf"),
-                                   p(""),
-                                   p("Online app: https://kcha193.shinyapps.io/normalr/")
+                                   10.1007/s10964-016-0463-9 (H = 110; Q1)")
                                           ) # End wellPanel
                                 )           # End column 11 units wide
                               )             # End Chief Architect fluid row
@@ -823,7 +902,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                                    p("Dr Kevin Chih-Tao Chang (PhD)"),
                                    p(""),
                                    p("As Chief Programmer, Dr Chang provides expertise in experimental methods, reactive programming, 
-                                   R Shiny software development, IT operations, and software testing; AKA R Shiny DevOps ;-)")
+                                   R Shiny software development, IT operations, and software testing; R DevOps.")
                                           ),
                                  wellPanel(
                                    h4("Qualifications:"),

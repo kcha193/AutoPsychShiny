@@ -856,7 +856,7 @@ P(x_{ni}=1|\theta_n,\delta_i)=\frac{e^{a(\theta_n-\delta_i)}}{1+e^{a(\theta_n-\d
   
 \vspace{4mm}
 
-where $\theta_n$ the person ability, $\delta_i$ is the item difficulty, and $a$ is the discrimination factor for approximating the Rasch ogive.  
+where $\theta_n$ the person ability, $\delta_i$ is the item difficulty, and $a$ is the scaling factor of 1.702 in order to match the logistic and probit metrics very closely (Lord & Novick, 1968) .  
   
 However, in the case of polytomous item response data, a partial credit model is applied (see Masters, 1982). The Partial Credit Model (PCM; Masters, 1982) can be denoted as,  
   
@@ -890,7 +890,7 @@ whereas the weighted (infit) item statistics are provided as follows,
 fit_{wt} = \frac{\sum_n (x_{ni}-E(X_{ni}))^2}{\sum_n Var(X_{ni})}
 \end{equation}  
   
-where, $x_{ni}$ is the observed score for each $n$ person for each item $i$, $E(X_{ni})$ represents the expected or theoretical expectation for the respective observed score, and the $Var(X_{ni})$ is given by $P_{ni}(1-P_{ni})$ which represents the variance asscoated with each item ($i$) person ($n$) response. Unlike the item outfit statistic ($fit_{unwt}$), the item infit statistic $fit_{wt}$ identifies an average degree of variance for each item (see denominator, $\sum_n Var(X_{ni})$).  
+where, $x_{ni}$ is the observed score for each $n$ person for each item $i$, $E(X_{ni})$ represents the expected or theoretical expectation for the respective observed score, and the $Var(X_{ni})$ is given by $P_{ni}(1-P_{ni})$ which represents the variance asscoiated with each item ($i$) person ($n$) response. Unlike the item outfit statistic ($fit_{unwt}$), the item infit statistic $fit_{wt}$ identifies an average degree of variance for each item (see denominator, $\sum_n Var(X_{ni})$).  
   
 To interpret itemfit statistics, the confidence interval for the item outfit distribution is also included in the associated results section. The 95% confidence intervals for the fit statistics were estimated in accordance with Wu, Tam, and Jen (2016, p. 148),  
   
@@ -1311,6 +1311,8 @@ DeVellis, R. F. (2012). Scale Development: Theory and Applications. Thousand Oak
 Harrell, F. & Dupont, C. (2018). Hmisc: Harrell Miscellaneous. R package version 4.1-1. Downloaded from https://CRAN.R-project.org/package=Hmisc  
   
 Laukaityte, I. & Marie Wiberg, M. (2017) Using plausible values in secondary analysis in large-scale assessments. *Communications in Statistics - Theory and Methods, 46*(22), 11341-11357. doi.10.1080/03610926.2016.1267764  
+  
+Lord, F. M., & Novick, M. R. (1968). Statistical theories of mental test scores. Reading, MA: Addison-Wesley.  
   
 Masters, G. N. (1982). A Rasch model for partial credit scoring. *Psychometrika, 47(2), 149-174.  
   
