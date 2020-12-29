@@ -316,17 +316,24 @@ tabPanel("Many-Facets Rasch (DIF)",
                                           fluidRow(
                                           column(11,
                                                 wellPanel(
-                                                h4("Test equating"),
-                                                p(""),
-                                                p("Test equating is commonly carried out when two (or more) test forms are administered 
+                                                  h4("Test equating"),
+                                                  p(""),
+                                                  p("Test equating is commonly carried out when two (or more) test forms are administered 
                                                   to different groups of students. For example, imagine if a Numeracy test is administered 
-                                                  to a group of Grade 3 students and the test, Form A, includes 40 items. At the same time, 
-                                                  another Numeracy test is administered to a group of Grade 4 students and that test, Form B, 
-                                                  also includes 40 items. In order for the students to receive a fair score on a single scale, 
-                                                  the test designers built in some overlap whereby 10 link items (questions) are delivered 
-                                                  in both Form A and B test forms. However, in order to provide all of the students with a 
-                                                  fair score on a single unified scale, one needs to carry out test equating. Here, we make 
-                                                  one form of test equating, fixed-anchor equating, automatically accessible.")
+                                                  to a group of Grade 3 students and the test, Test Form A, includes 40 items. At the same time, 
+                                                  another Numeracy test is administered to a group of Grade 4 students and that test, Test Form B, 
+                                                  also includes 40 items. In order for both groups of students to receive a fair score on a 
+                                                  single scale, the test designers built in some overlap whereby 10 link items (questions) 
+                                                  are delivered in both Test Form A and B assessments. However, in order to provide all of 
+                                                  the students with a fair score on a single unified scale, one needs to carry out test equating."),
+                                                  p(""),
+                                                  p("Test equating is also carried out when you are tracking student progress across two time periods. 
+                                                    Imagine delivering Test Form A at the start of a school year and  Test Form B at the conclusion 
+                                                    of a school year. Your aim is to provide stakeholders with an estimate of the extent to which 
+                                                    each tudent improved across the time period. In this instance, in order to provide students with 
+                                                    a fair score for each time period on a unified scale, one needs to carry out test equating."),
+                                                  p(""),
+                                                  p("Here, we make one form of test equating, fixed-anchor equating, automatically accessible.")
                                                           ),
                                                 
                                                 wellPanel(
@@ -340,25 +347,28 @@ tabPanel("Many-Facets Rasch (DIF)",
                                                   p(""),
                                                   p("The fixed-anchor equating tool provided here makes use of separately calibrated data 
                                                     from Forms A and B. The tool takes (a) the outputted spreadsheet from the Rasch analysis 
-                                                    from test Form A, and (b) the outputted spreadsheet from test Form B to automatically 
-                                                    produce all student scores on a single scale.")
+                                                    from test Form A (specifically, the item difficulty paramters), and (b) the outputted 
+                                                    spreadsheet from test Form B to automatically produce all student scores on a single scale.")
                                                          ),
                                                 
                                                 wellPanel(
                                                   h4("1. Prepare your data:"),
                                                   p(""),
-                                                  p("(a) Carefully prepare item-response matrices (.csv files) for test Forms A and B ensuring that the link 
-                                                  items are labelled exactly the same."),
+                                                  p("(a) Carefully prepare item-response matrices (.csv files) for test Forms A and B ensuring 
+                                                    that the link (common) items are labelled exactly the same."),
                                                   p(""),
-                                                  p("(b) Carry out a uni-dimensional Rasch analysis on data from the Test Form A and save the outputted 
-                                                  spreadsheet. Re-label the xlsx file as Form A."),
+                                                  p("(b) Carry out a uni-dimensional Rasch analysis on the item-response data from the Test 
+                                                    Form A and save the outputted spreadsheet (FACETS_tables.xlsx). Re-label the xlsx file as 
+                                                    Form_A.xlsx and have that file ready to upload here. The analysis carried out here will 
+                                                    fix the item difficulties in Test Form B based on the item difficulties provided in 
+                                                    Form_A.xlsx."),
                                                   p(""),
-                                                  p("(c) Carry out a uni-dimensional Rasch analysis on data from the Test Form B and save the outputted 
-                                                  spreadsheet. Re-label the xlsx file as Form B."),
+                                                  p("(c) Prepare the item-response data from the Test Form B."),
                                                   p(""),
                                                   p("(d) Generally, the more difficult test (test Form B) is mapped onto the less difficult test (test 
-                                                  Form A). Input the files as necessary:")
+                                                  Form A), therefore load FACETS_tables.xlsx from Test Form A first.")
                                                           ) # End 2nd wellPanel
+                                                
                                                 )           # End column that is 11 units wide
                                                  )          # End fluidRow
                                          ),                 # End Fixed Anchor Calibration tab

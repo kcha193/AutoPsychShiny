@@ -1601,7 +1601,7 @@ list.of.data <- list("Ordered Person Results" = Person.stats.o, "Ordered Item Di
                      "Item Fit Stats" = round.item.fit.stats, "Item Correlation Matrix" = matrix.r.p,
                      "CTT Item Analysis" = ctt_raw.df, "Plausible Values" = Plausible.values)
 
-openxlsx::write.xlsx(list.of.data, file = params$excel_name)
+openxlsx::write.xlsx(list.of.data, file = params$excel_name, append = TRUE)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.96)

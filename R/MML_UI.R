@@ -117,7 +117,7 @@ MML_UI <- function(id) {
        p(""),
     
        selectizeInput(ns("constraint"), "Constraint:", 
-                      choices = c("Item" = "item", "Cases" = "cases")
+                      choices = c("Cases" = "cases", "Item" = "item")
                      ) %>%                           
        shinyInput_label_embed(icon("question-circle") %>%
        bs_embed_tooltip(title = "Analysis for the report includes a specialized 
