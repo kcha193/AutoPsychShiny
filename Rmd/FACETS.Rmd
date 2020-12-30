@@ -23,7 +23,11 @@ title:  |
   |
   | 
   | 
-author: Created by Drs Matthew Courtney (PhD, Ed), Xxxxx Xxxxx (PhD, Xx), Xxxxx Xxxxx (PhD, Xx), & Xxxxxx Xxxxx (PhD, Xx)
+author:  | 
+  | Courtney, M. G. R., Chang, K. C-T., Mei, E., & Rowe, L. (20XX).
+  | autopsych: A Novel Shiny Tool for the Validation and Psychometric 
+  | Analysis of Assessment Data. Journal of Xxxxxxxx Xxxxxxxxx, X(X). doi. 
+  | XXXXXXXXXX/XXXXXXX
 
 output: pdf_document
 includes:
