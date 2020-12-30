@@ -359,9 +359,9 @@ tabPanel("Many-Facets Rasch (DIF)",
                                                   p(""),
                                                   p("(b) Carry out a uni-dimensional Rasch analysis on the item-response data from the Test 
                                                     Form A and save the outputted spreadsheet (FACETS_tables.xlsx). Re-label the xlsx file as 
-                                                    Form_A.xlsx and have that file ready to upload here. The analysis carried out here will 
+                                                    Form_A_tables.xlsx and have that file ready to upload here. The analysis carried out here will 
                                                     fix the item difficulties in Test Form B based on the item difficulties provided in 
-                                                    Form_A.xlsx."),
+                                                    Form_A_tables.xlsx."),
                                                   p(""),
                                                   p("(c) Prepare the item-response data from the Test Form B."),
                                                   p(""),
