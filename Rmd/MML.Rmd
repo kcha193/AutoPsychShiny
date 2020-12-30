@@ -1121,7 +1121,9 @@ Note. The red line is the $\alpha$ estimate for all items, i.e., `r alpha1`; ill
 ### 4.5 Results for IRT Student Ability and Item Difficulty Estimates  
 Based on the MML analysis, the mean ability (logit) of the sample of interest was `r mean.EAP.person` (analysis was centred on items). The `r Construct` logits ranged from `r EAP.min` to `r EAP.max` and the standard deviation was `r EAP.SD`.  
   
-The item difficulties (deltas) had a mean of `r mean.item.diff` and a standard deviation of `r sd.item.diff`. The difficulty logits for each respective item are provided in Table 6 (the full set of item difficulties for each item's di- or poly-chotomous category is provided in Appendix A2).  
+The item difficulties (deltas) had a mean of `r mean.item.diff` and a standard deviation of `r sd.item.diff`. The difficulty logits for each respective item are provided in Table 6. If the item is dichotomous, the item's respective difficulty estimate is the level of ability at which there is an equal probability of the student to obtain a score of 1. If the item is polytomous, e.g., scored 0, 1, 2, then the item's respective difficulty estimate is the level of ability at which the probability to obtain half the maximum score for that item (i.e., 1, in this instance). These respective item difficulty estimates can be used when undertaking fixed anchor equating.  
+
+The full set of item difficulties, that is, the level of student ability where adjacent score categories (e.g., 0-1, 1-2, 2-3) have an equal probability, are provided in the "Item Results" tab of the associated outputted xlsx file. 
   
 ```{r CHUNK32_Item_difficulty, echo=FALSE, fig.height=12, fig.width=16, message=TRUE, warning=FALSE}
 knitr::kable(item.diff.df, format = "latex", booktabs = T, align = 'cc', caption = "Item Difficulties", longtable = T) %>% 
@@ -1132,7 +1134,7 @@ if (params$rendered_by_shiny){
 }
 ```
   
-The Cronbach's alpha was `r round(Cronbachs,2)` and the population-related MML reliability estimate was `r round(mod1$EAP.rel,2)` (Wu, Tam, and Jen, 2016).
+The Cronbach's alpha was `r round(Cronbachs, 2)` and the population-related MML reliability estimate was `r round(mod1$EAP.rel,2)` (Wu, Tam, and Jen, 2016).
 
 \newpage 
 ### 4.6 Wright Map  
@@ -1184,7 +1186,7 @@ if (params$rendered_by_shiny){
 \newpage
 
 ### 4.9 Thurstonian Thresholds  
-The Thurstonian Thresholds are presented in Table 7.  
+The Thurstonian Thresholds are presented in Table 7.
   
 ```{r CHUNK36_Thresholds, echo=FALSE, fig.height=12, fig.width=16, message=TRUE, warning=FALSE}
 #### Necessarily change to dataframe before using sapply function ####
@@ -1338,7 +1340,7 @@ if (params$rendered_by_shiny){
 \fontsize{14}{12}  
   
 ## A3. The Item Delta Estimates  
-Note that in the Table 8, N represents the number of person responses for that item, M represents the mean raw score across all persons for that item, xsi represent the item deltas for that item, AXsi values represent the point at which adjacent score categories have equal probability; and s.e. represents the estimated standard error of associated with the item of interest. Note that it is normal for some disorderedness when the probability of reaching a middle category is small (where few persons reached that category). As Wu, Tam, and Jen explain, "this phenomenon of dis-ordering of the [delta] parameters is one disadvantage of using the delta (d) parameters to interpret item responses in relation to ability" (p. 165). For a full explanation of this phenomenon, see Wu, Tam, and Jen (2016, pp. 162 to 165, and Adams, Wu, & Wilson, 2012).  
+Note that in the Table 8, N represents the number of person responses for that item, M represents the mean raw score across all persons for that item, xsi represent the item deltas for that item, AXsi values represent the point at which adjacent score categories have equal probability. Note that it is normal for some disorderedness when the probability of reaching a middle category is small (where few persons reached that category). As Wu, Tam, and Jen explain, "this phenomenon of dis-ordering of the [delta] parameters is one disadvantage of using the delta (d) parameters to interpret item responses in relation to ability" (p. 165). For a full explanation of this phenomenon, see Wu, Tam, and Jen (2016, pp. 162 to 165, and Adams, Wu, & Wilson, 2012). Wu, Tam, and Jen (2016, p. 170) summarise that, for partial credit items, Thurstonian thresholds can be more useful indicators of score difficulties (see subsections 3.4.6 and 4.9 for details on Thurstonian thresholds).  
   
 \vspace{5mm}  
    
@@ -1349,13 +1351,9 @@ Item.cat.param <- round(mod1$item[, -1], 2)    # removes first column (but not r
 
 #### Take out final four columns as redundant ####
 cols.to.delete <- max(resp, na.rm=TRUE)                          # identify number of final columns to delete 
-cols.item.param <- ncol(Item.cat.param)              # identify number of total columns
-cols.necessary <- cols.item.param - cols.to.delete   # identify number of remaining columns
-Item.cat.param <- Item.cat.param[, 1:cols.necessary]  # subset only those necessary
-
-#### Include standard errors ####
-s.e. <- round(mod1$xsi[1:ncol(resp), 2], 2) 
-Item.cat.param <- cbind.data.frame(Item.cat.param, s.e.)
+cols.item.param <- ncol(Item.cat.param)                          # identify number of total columns
+cols.necessary <- cols.item.param - cols.to.delete               # identify number of remaining columns
+Item.cat.param <- Item.cat.param[, 1:cols.necessary]             # subset only those necessary
 
 #### replace NAs with blanks for visual for table ####
 Item.cat.param <- sapply(Item.cat.param, as.character)
@@ -1599,8 +1597,9 @@ colnames(matrix.r.p)[1] <- "Item Names"
 rownames(matrix.r.p) <- NULL
 
 ##### COMPILE #####
-list.of.data <- list("Ordered Person Results" = Person.stats.o, "Ordered Item Difficulties(thresholds)" = Thresh.vec, 
-                     "Person Results" = Person.stats, "Item Results" = Item.details, "Item Thresholds" = thr.df, 
+list.of.data <- list("Ordered Person Results" = Person.stats.o, "Ordered Thurstonian thresholds" = Thresh.vec, 
+                     "Person Results" = Person.stats, "Item Results" = Item.details, 
+                     "Individual Item Results" = item.diff.df, "Item Thresholds" = thr.df, 
                      "Item Frequency Categories" = freq.df, "Item Discrimination" = disc.disc1,
                      "Item Fit Stats" = round.item.fit.stats, "Item Correlation Matrix" = matrix.r.p,
                      "CTT Item Analysis" = ctt_raw.df, "Plausible Values" = Plausible.values)
