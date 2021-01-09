@@ -48,10 +48,10 @@ anova_UI <- function(id) {
                                               tabPanel("Tukey Pairwise comparison",
                                                        tableOutput(ns("pairwise_compare"))
                                                        )
-                                              )
-                                 ) # wellPanel wrapper
-                       ) # column wrapper
-             ) # fluidRow wrapper
+                                              ) # tabsetPanel wrapper
+                                 ) # fluidRow wrapper
+                       ) # wellPanel wrapper
+             ) # Column wrapper
   ) 
   }
 

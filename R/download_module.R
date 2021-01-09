@@ -25,7 +25,7 @@ download_Server <- function(id,
       
  
       output$report <- downloadHandler(                                         # This function makes the download     
-        filename = zip_name,                                 # The zip file created
+        filename = zip_name,                                                    # The zip file created
         content = function(file){                                               # download handler is the main part of the application to make the RmD file. 
           withProgress(message = 'R Shiny Boosted Rendering',{                  # Set a progress bar because it can take some time
                      
@@ -36,7 +36,7 @@ download_Server <- function(id,
             if(type == "MML"){
               
               tempReport <- file.path(tempdir, "MML.Rmd")                       # Create the filepath where the tempory rmd file resides
-              file.copy("Rmd/MML.Rmd", tempReport, overwrite = TRUE)        # Copy the rmd file from the scripts folder to the path above
+              file.copy("Rmd/MML.Rmd", tempReport, overwrite = TRUE)            # Copy the rmd file from the scripts folder to the path above
               
               excel_name <- "MML_tables.xlsx"
               pdf_name <- "MML_report.pdf"
@@ -44,16 +44,16 @@ download_Server <- function(id,
             } else if(type == "FACETS"){
               
               tempReport <- file.path(tempdir, "FACETS.Rmd")                    # Create the filepath where the tempory rmd file resides
-              file.copy("Rmd/FACETS.Rmd", tempReport, overwrite = TRUE)     # Copy the rmd file from the scripts folder to the path above
+              file.copy("Rmd/FACETS.Rmd", tempReport, overwrite = TRUE)         # Copy the rmd file from the scripts folder to the path above
               
               excel_name <- "FACETS_tables.xlsx"
               pdf_name <- "FACETS_report.pdf"
             }
             
-            node.sequence <- as.numeric(strsplit(input$node.sequence,",")[[1]])           # The tempdir constantly changes at shinyapps.io, that is why we have to repeat this process every time.
+            node.sequence <- as.numeric(strsplit(input$node.sequence,",")[[1]]) # The tempdir constantly changes at shinyapps.io, that is why we have to repeat this process every time.
             
             # Now we can get our inputs and use them in the .Rmd
-            params <- list(datapath = input$input_file$datapath,              # Set up parameters to pass to Rmd document
+            params <- list(datapath = input$input_file$datapath,                # Set up parameters to pass to Rmd document
                            recommendations = input$recommendations,
                            construct = input$construct,
                            population = input$population,
@@ -62,8 +62,8 @@ download_Server <- function(id,
                            disc.threshold = as.numeric(input$disc.threshold),
                            ci.level = as.numeric(input$ci.level),                       
                            p.fit.threshold = as.numeric(input$p.fit.threshold),
-                           node.sequence.1 = node.sequence[1],                 # For node.sequence we have to do some cleaning on the input first:
-                           node.sequence.2 = node.sequence[2],                 # This is the part where we use the strsplit. We seperate the character on ',' and make it numeric
+                           node.sequence.1 = node.sequence[1],                  # For node.sequence we have to do some cleaning on the input first:
+                           node.sequence.2 = node.sequence[2],                  # This is the part where we use the strsplit. We seperate the character on ',' and make it numeric
                            node.sequence.3 = node.sequence[3],
                            conv = as.numeric(input$conv),
                            maxiter = as.numeric(input$maxiter),

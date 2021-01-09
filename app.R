@@ -4,11 +4,12 @@
 version_number <- "0.1.0"
 
 # Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
-autopsych_pack <- c("scales", "tidyverse", "ShinyItemAnalysis", "CTT", "psychometric", 
+autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis", "CTT", "psychometric", 
                     "TAM", "cowplot", "openxlsx", "reshape2", "Hmisc", "xtable", 
                     "knitr", "rmarkdown", "kableExtra", "english", "shiny", "shinyjs",
                     "shinythemes", "shinyBS", "bsplus", "shinyWidgets")
 packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()] 
+
 
 if(length(packages_required) > 0) {
   install.packages(packages_required)
@@ -60,7 +61,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h2("Toward Valid Assessments and Educational Research",                    # h2 header is the subtitle underneath the h1 header
+         tags$h2("Toward Valid Assessment and Educational Research",                    # h2 header is the subtitle underneath the h1 header
                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
                                             line-height: 1.1; font-size: 18pt; color: #FFFFFF;}"
                  )
@@ -123,22 +124,19 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                     p("Welcome to Automated Psychometrics, a novel website that allows test 
                               developers, educational institutions, and researchers to:"),
                     p(""),
-                    p("(1) Improve the quality of student assessments and developmental rubrics,"),
+                    p("(1) Check the general quality and targeting of student assessments and 
+                      developmental rubrics,"),
                     p(""),
-                    p("(2) Gain valuable information about student development and learning, and,"),
+                    p("(2) Ensure test questions and developmental criterion are not bias toward 
+                      any demographic group,"),
                     p(""),
-                    p("(3) Carry out high quality research and analytics.")
-                  ),
-                  wellPanel(
-                    h4("Design"),
-                    p("The website provides automated Rasch-based analysis of student test data, 
-                              inclusive of (1) uni-dimensional Rasch analysis, (2) many facets analysis 
-                              (to explore item bias), and (3) Rasch equating for developing common ability 
-                              scales across different test forms. The website also provides extended 
-                              options such as (1) inter-rater reliability analysis, and (2) automated 
-                              ANOVA-based procedures to explore differences in performance outcomes 
-                              between groups."),
-                    p("")
+                    p("(3) Place students from different year groups on a single developmental scale via test equating,"),
+                    p(""),
+                    p("(4) Track student progress over a period of time via test equating,"),
+                    p(""),
+                    p("(5) Analyse the effect of student grouping (gender, class, school) on student ability,"),
+                    p(""),
+                    p("(6) Check the reliability of developmental rubrics via inter-rater reliability analysis."),
                   ),
                   wellPanel(
                     h4("Team Vision"),
@@ -314,26 +312,27 @@ tabPanel("Many-Facets Rasch (DIF)",
                                                   ),
                                           hr(), 
                                           fluidRow(
-                                          column(11,
-                                                wellPanel(
-                                                  h4("Test equating"),
+                                               column(11,
+                                                wellPanel(                                                                             # Kevin, could you kindly assist to transform these wellPanel and Inputs to EQUATE_UI.R module file? 
+                                                  h4("Test equating"),                                                                 # I have written notes for ns() with #* below to change.
                                                   p(""),
                                                   p("Test equating is commonly carried out when two (or more) test forms are administered 
-                                                  to different groups of students. For example, imagine if a Numeracy test is administered 
-                                                  to a group of Grade 3 students and the test, Test Form A, includes 40 items. At the same time, 
-                                                  another Numeracy test is administered to a group of Grade 4 students and that test, Test Form B, 
-                                                  also includes 40 items. In order for both groups of students to receive a fair score on a 
-                                                  single scale, the test designers built in some overlap whereby 10 link items (questions) 
-                                                  are delivered in both Test Form A and B assessments. However, in order to provide all of 
-                                                  the students with a fair score on a single unified scale, one needs to carry out test equating."),
+                                                    to different groups of students. For example, imagine a 40 item Numeracy test (Form A) 
+                                                    is administered to a group of Grade 3 students. At the same time, another 40 item Numeracy 
+                                                    test (Form B) is administered to a group of Grade 4 students. In order for both groups of students 
+                                                    to receive a fair score on a single scale, the test designers built in some overlap where 10 
+                                                    link items (questions) are delivered in both Test Form A and B assessments (with link items 
+                                                    generally a little difficult for Form A students, and easy for Form B students). In order to 
+                                                    provide all of the students with a fair score on a single unified scale, one needs to carry 
+                                                    out test equating."),
                                                   p(""),
                                                   p("Test equating is also carried out when you are tracking student progress across two time periods. 
-                                                    Imagine delivering Test Form A at the start of a school year and  Test Form B at the conclusion 
-                                                    of a school year. Your aim is to provide stakeholders with an estimate of the extent to which 
-                                                    each tudent improved across the time period. In this instance, in order to provide students with 
+                                                    Imagine delivering Test Form A at the start of a school year andTest Form B at the conclusion 
+                                                    of a school year. Your aim is to provide stakeholders with an understanding of the extent to which 
+                                                    each tudent improved for the given period. In this instance, in order to provide students with 
                                                     a fair score for each time period on a unified scale, one needs to carry out test equating."),
                                                   p(""),
-                                                  p("Here, we make one form of test equating, fixed-anchor equating, automatically accessible.")
+                                                  p("Here, we make one common and flexible form of equating, fixed-anchor equating, automatically accessible.")
                                                           ),
                                                 
                                                 wellPanel(
@@ -342,13 +341,14 @@ tabPanel("Many-Facets Rasch (DIF)",
                                                   p("Fixed anchor equating is useful as it enables test administrators to report scores to 
                                                     students that reflect their respective original scales. In this instance, the ability 
                                                     scores from Form A (student theta estimates) remain unchanged. However, with fixed anchor 
-                                                    equating, the other students' ability scores from Form B are mapped onto the Form A test 
+                                                    equating, student ability estimates from Form B are mapped onto the Form A test 
                                                     so that all students' scores can be compared on a single unified scale."),
                                                   p(""),
                                                   p("The fixed-anchor equating tool provided here makes use of separately calibrated data 
-                                                    from Forms A and B. The tool takes (a) the outputted spreadsheet from the Rasch analysis 
-                                                    from test Form A (specifically, the item difficulty paramters), and (b) the outputted 
-                                                    spreadsheet from test Form B to automatically produce all student scores on a single scale.")
+                                                    from Forms A and B. The tool simply takes the outputted spreadsheets from each of the 
+                                                    respective uni-dimensional Rasch analyses to (a) compare item difficulty estimates across 
+                                                    test forms, and (b) undertake the fixed equating procedure placing Form B test takers on 
+                                                    the Form A scale.")
                                                          ),
                                                 
                                                 wellPanel(
@@ -357,21 +357,104 @@ tabPanel("Many-Facets Rasch (DIF)",
                                                   p("(a) Carefully prepare item-response matrices (.csv files) for test Forms A and B ensuring 
                                                     that the link (common) items are labelled exactly the same."),
                                                   p(""),
-                                                  p("(b) Carry out a uni-dimensional Rasch analysis on the item-response data from the Test 
-                                                    Form A and save the outputted spreadsheet (FACETS_tables.xlsx). Re-label the xlsx file as 
-                                                    Form_A_tables.xlsx and have that file ready to upload here. The analysis carried out here will 
-                                                    fix the item difficulties in Test Form B based on the item difficulties provided in 
-                                                    Form_A_tables.xlsx."),
+                                                  p("(b) Carry out a uni-dimensional Rasch analysis on the item-response data from Test 
+                                                    Form A and save the outputted spreadsheet as 'Form_A_MML_tables.xlsx'. Carry out the same analysis 
+                                                    on the item-response data from Test Form B.")
+                                                          ),                    # End 2nd wellPanel
+                                                wellPanel(
+                                                  
+                                                  h4("2. Upload test Form A and B table files:"),
+                                                  fluidRow(column(6,
+                                                                  fileInput("datapath_A",                                           #* change "input_file to" to ns("input_file") in EQUATE_UI.R file                                        
+                                                                            "Upload 'Form_A_MML_tables.xlsx':",
+                                                                             accept = c(".xlsx",".xls")
+                                                                            )
+                                                                 ),             # end 1st column input
+                                                           column(6,
+                                                                  fileInput("datapath_B",                                           #* change "input_file to" to ns("input_file") in EQUATE_UI.R file       
+                                                                            "Upload 'Form_B_MML_tables.xlsx':", 
+                                                                            accept = c(".xlsx",".xls")
+                                                                            )
+                                                                  )             # end 2nd column input
+                                                            )                   # End internal fluidRow
+                                                          
+                                                         ),                     # End WellPanel that includes dual inputs      End wellpanel for EQUATE_UI.R  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                     
+                                                wellPanel(
+                                                  h4("3. Specify construct and focal group"), 
                                                   p(""),
-                                                  p("(c) Prepare the item-response data from the Test Form B."),
+                                                  textInput("construct", "Construct:", placeholder = "Test Topic"),                 #* change "construct" to" to ns("construct") in EQUATE_UI.R file   
+                                                  bsTooltip("construct", "E.g., Numeracy or Literacy", "right",                     #* change "construct" to ns("construct) in EQUATE_UI.R file  
+                                                            options = list(container = "body")
+                                                           ),
+                                                  textInput("population", "Focal group:", placeholder = "Students"),                #* change "population" to" to ns("population") in EQUATE_UI.R file 
+                                                  bsTooltip("population", "E.g., Central School Grade 10 Students", "right",        #* change "population" to" to ns("population") in EQUATE_UI.R file 
+                                                            options = list(container = "body")
+                                                  )
+                                                  
+                                                        ),                      # wellPanel 3 end
+
+                                                wellPanel(
+                                                  h4("4. Specify settings for Rasch fixed equating procedure"),                                     
+                                                  selectizeInput("node.sequence", "Assumed discretized population profile (for Form B test-takers):",
+                                                                 choices = c("seq(-6,6,len=21)" = "-6,6,21", "seq(-4,4,len=21)" = "-4,4,21",
+                                                                             "seq(-5,5,len=21)" = "-5,5,21", "seq(-7,7,len=21)" = "-7,7,21",
+                                                                             "seq(-8,8,len=21)" = "-8,8,21", "seq(-9,9,len=21)" = "-9,9,21",
+                                                                             "seq(-6,6,len=31)" = "-6,6,31", "seq(-6,6,len=41)" = "-6,6,41",
+                                                                             "seq(-6,6,len=51)" = "-6,6,51", "seq(-6,6,len=61)" = "-6,6,61",
+                                                                             "seq(-6,6,len=71)" = "-6,6,71", "seq(-6,6,len=81)" = "-6,6,81",
+                                                                             "seq(-6,6,len=91)" = "-6,6,91", "seq(-7,7,len=21)" = "-7,7,21",
+                                                                             "seq(-8,8,len=91)" = "-8,8,21", "seq(-9,9,len=91)" = "-9,9,21",
+                                                                             "seq(-10,10,len=91)" = "-10,10,21"
+                                                                 )
+                                                  ) %>%
+                                                    shinyInput_label_embed(icon("question-circle") %>%
+                                                      bs_embed_tooltip(title = "The node sequence specifies the lowest and highest 
+                                                      student abilities (theta; default -6 to 6) assumed to exist 
+                                                      in the broader population of the focal group. 'Len' specifies 
+                                                      the number of breaks, or discretized points for that broader 
+                                                      population. Note that the default sequence is 'seq(-6, 6, 
+                                                      len=21)' with shorter node sequences enabling faster computation."
+                                                                             )
+                                                    ),
+                                                  
+                                                  selectizeInput("conv", "Convergence criterion", choices = c("0.0001",                       #* change "conv" to ns("conv") in EQUATE_UI.R file 
+                                                                                                                  "0.001", "0.01", "0.1")
+                                                  ) %>%
+                                                    shinyInput_label_embed(icon("question-circle") %>%
+                                                      bs_embed_tooltip(title = "This value represents the acceptable level of tolerance 
+                                                      for which the IRT model represent the data; larger values 
+                                                      enable faster computation, though 0.0001 is default."
+                                                                             )
+                                                    ),
+                                                  
+                                                  selectizeInput("maxiter", "Maximum iterations", choices = c(1000, 5000, 20000, 100000)      #* change "maxiter" to ns("maxiter") 
+                                                  ) %>%
+                                                    shinyInput_label_embed(icon("question-circle") %>%
+                                                      bs_embed_tooltip(title = "This value represents the maximum number of computational 
+                                                      steps permitted for the model to represent the data; lower 
+                                                      values enable faster computation, though 1000 is default."
+                                                                             )
+                                                    )
+                                                ),
+                                                wellPanel(
+                                                  h4("5. Include your own recommendations"),
                                                   p(""),
-                                                  p("(d) Generally, the more difficult test (test Form B) is mapped onto the less difficult test (test 
-                                                  Form A), therefore load FACETS_tables.xlsx from Test Form A first.")
-                                                          ) # End 2nd wellPanel
-                                                
-                                                )           # End column that is 11 units wide
-                                                 )          # End fluidRow
-                                         ),                 # End Fixed Anchor Calibration tab
+                                                  
+                                                  textAreaInput("recommendations", "Notes:",                                              #* change "recommendations" to ns("recommendations")
+                                                                placeholder = "There are no notes for this report",
+                                                                height = '150px'),
+                                                  bsTooltip("recommendations",                                                            #* change "recommendations" to ns("recommendations")
+                                                            "These notes will be reported at the start of the PDF technical 
+                                                            report. Make any notes you like about the original data or report 
+                                                            itself.",
+                                                            "right",
+                                                            options = list(container = "body")
+                                                            ),
+                                                         )                      # End 7. wellPanel
+                                                )                               # End column that uses 11 width
+                                                 )                              # End fluidRow that takes multiple panels
+                                         ),                                     # End Fixed Anchor tab panel that takes multiple fliudrows
             
                                  tabPanel("Concurrent", 
                                           fluidRow(column(width = 6)),
@@ -481,16 +564,17 @@ tabPanel("Many-Facets Rasch (DIF)",
                         column(11,
                               wellPanel(
                                 h4("One-Way ANOVA Tool"),
-                                p("This tool provides a convenient way to examine the effect of groups,
-                                such as class or school classification, on educational or personal attributes."
+                                p("This tool provides a convenient way to examine the effect of student 
+                                  grouping (such as student gender, class, or school classification) on 
+                                  student ability or some measured personal attribute."
                                   ),
                                 p(""),
                                 p("On this tab, users upload their outputted spreadsheet from their 
-                                Rasch analysis. In addition, users also upload another dataset that 
-                                includes as many grouping variables (columns) as they like. Note that 
-                                the dataset needs to include an identical number of rows as the Rasch 
-                                spreadsheet as each grouping variable, e.g., gender, class, needs to 
-                                correspond to the same ability estimate"
+                                  Rasch analysis. In addition, users also upload another dataset that 
+                                  includes as many grouping variables (columns) as they like. Note that 
+                                  the dataset needs to include an identical number of rows as the Rasch 
+                                  spreadsheet as each grouping variable, e.g., gender, class, needs to 
+                                  correspond to the same ability estimate"
                                   )
                                        )
                                )
@@ -774,30 +858,31 @@ tabPanel("Many-Facets Rasch (DIF)",
                                    p(""),
                                    p("Dr Matthew Gordon Ray Courtney (PhD)"),
                                    p(""),
-                                   p("As Chief Architect, Dr Courtney is the founder of the website and provides expertise psychometrics, quantitative research methods,
-                                     R scripts automating technical reports, and website related UI, research, and communication.")
+                                   p("The Chief Architect, Dr Courtney, is the founder of the website and provides expertise in psychometrics, 
+                                     quantitative research methods, automation of technical reports and outputs, web UI development, and related 
+                                     research and communication.")
                                           ),
                                  wellPanel(
                                    h4("Qualifications:"),
                                    p(""),
-                                   p("Doctor of Education (specialization: Higher Education) [2015], The University of 
+                                   p("Doctor of Education (focus: higher education, quantitative methods) [2015], The University of 
                                      Auckland, New Zealand"),
                                    p(""),                                                     
-                                   p("Master of Education (specialization: Socio-linguistics), 1st class honours [2008], 
+                                   p("Master of Education (focus: socio-linguistics, quantitative methods), 1st class honours [2008], 
                                      The University of Waikato, New Zealand"),
                                    p(""),                                                      
-                                   p("Bachelor of Teaching/Bachelor of Sports & Leisure Studies (conjoint, secondary) [2003], The University of 
-                                     Waikato, New Zealand"),
+                                   p("Bachelor of Teaching/Bachelor of Sports & Leisure Studies (conjoint, secondary teaching) 
+                                   [2003], The University of Waikato, New Zealand"),
                                    p("")
                                  ),
                                  wellPanel(
                                    h4("Bio:"),
-                                   p("Dr Courtney is a psychometrician and R Shiny statistical software developer 
+                                   p("Dr Courtney is an education expert, psychometrician, and R Shiny statistical software developer 
                                    from New Zealand. He has expertise in both classical and item-response theories, automated statistical 
-                                   analysis and reporting, web UI development, and online learning. Dr completed his PhD in Education from The 
-                                   University of Auckland in 2015. For his doctorate he made use of advanced quantitative methods to 
-                                   identify the drivers of educational commitment and learning of international university students 
-                                   across Australasia."),
+                                   analysis and reporting, web UI development, and online learning. Dr Courtney completed his PhD in 
+                                   Education from The University of Auckland in 2015. For his doctorate he made use of advanced 
+                                   quantitative methods to identify the drivers of educational commitment and learning of international 
+                                   university students across Australasia."),
                                    p(""),
                                    p("After completing his PhD, he spent two years 
                                     as a Post-Doctoral Research Fellow in the Quantitative Data Analysis and Research Unit at The Faculty of 
@@ -807,13 +892,13 @@ tabPanel("Many-Facets Rasch (DIF)",
                                     at the Assessment Research Centre, Graduate School of Education, The University of Melbourne. There 
                                     Dr Courtney contributed to multiple state, federal, and international projects which focussed on educational 
                                     measurement and assessment. At the Graduate School of Education, Dr Courtney completed extensive training in the 
-                                    fields of classical test theory, item-response theory, and R statistical programming under the guidance of 
-                                    world-renowned psychometrician and statistician, Professor Margaret Wu. Currently, Dr Courtney works as 
+                                    fields of classical test theory, item-response theory, and R statistical programming under the tutelage of 
+                                    world-renowned statistician, Professor Margaret Wu. Currently, Dr Courtney works as 
                                     an Assistant Professor at the Nazarbayev University Graduate School of Education, a research intensive 
-                                    university in Kazakhstan, Central Asia. Dr Courtney enjoys  introduciung post-graduate students fun topics 
-                                    including educational assessment, educational statistics, classical test theory and item response theory, 
-                                    growth modelling, and R programming. A list of Dr Courtney's published journal articles and statistical 
-                                    packages are provided below:"),
+                                    university in Kazakhstan, Central Asia. Dr Courtney enjoys introduciung post-graduate students fun topics 
+                                    including educational assessment, educational statistics, classical test theory, item response theory, 
+                                    growth modelling, and R programming. A list of Dr Courtney's published journal articles, R statistical 
+                                    packages, and encyclopedia chapters are provided below:"),
                                           ),
                                  wellPanel(
                                    h4("ACADEMIC JOURNAL ARTICLES:"),
@@ -825,7 +910,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                                    p(""),
                                    p("Online app: https://kcha193.shinyapps.io/normalr/"),
                                    p(""),
-                                   h4("Measurement and Assessment"),
+                                   h4("Educational Measurement and Assessment"),
                                    p(""),
                                    p("2. Courtney, M. G. R. (2013). Determining the number of factors to retain in EFA: Using the SPSS R-Menu 
                                    v-2.0 to make more judicious estimations. Practical Assessment, Research & Evaluation, 18(8). 
@@ -842,7 +927,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                                    p(""),
                                    h4("Higher Education"),
                                    p(""),
-                                   p("5. Qanay, G., Courtney, M. G. R., & Nam, A. (in press). Supporting teacher leadership development in schools 
+                                   p("5. Qanay, G., Courtney, M. G. R., & Nam, A. (20). Supporting teacher leadership development in schools 
                                      in Kazakhstan: a mixed-methods study. International Journal of Leadership Education. doi: 
                                      10.1080/13603124.2020.1869314 (IF: 34; Q1)"),
                                    p(""),
@@ -870,6 +955,18 @@ tabPanel("Many-Facets Rasch (DIF)",
                                    p("11.	Deane, K., Harré, N., Moore, J., & Courtney, M. G. R. (2016). The impact of the Project K Youth Development 
                                    Program on self-efficacy: a randomized control trial. Journal of Youth and Adolescence, March 6, 1-22. doi: 
                                    10.1007/s10964-016-0463-9 (H = 110; Q1)")
+                                           ),
+                                 wellPanel(
+                                   h4("ENCYCLOPEDIA CHAPTERS:"),
+                                   h4("The SAGE Encyclopedia of Education Research, Measurement and Evaluation"),
+                                   p("1. Courtney, M. G. R. (2018). The Repeated Measures ANOVA. In B. Frey (Ed.), The SAGE encyclopedia of education 
+                                     research, measurement and evaluation (pp. 1403-1407). Thousand Oaks, CA: Sage. doi: 10.4135/9781506326139.n585"),
+                                   p(""),
+                                   p("2. Courtney, M. G. R. (2018). The Pearson Correlation Coefficient. In B. Frey (Ed.), The SAGE encyclopedia of 
+                                     education research, measurement and evaluation (pp. 1229-1233). Thousand Oaks, CA: Sage. doi: 10.4135/9781506326139.n510"),
+                                   p(""),
+                                   p("3. Courtney, M. G. R. (2018). IBM SPSS Statistics. In B. Frey (Ed.), The SAGE encyclopedia of education 
+                                     research, measurement and evaluation (pp. 1577-1583). Thousand Oaks, CA: Sage. doi: 10.4135/9781506326139.n655")
                                           ) # End wellPanel
                                 )           # End column 11 units wide
                               )             # End Chief Architect fluid row
@@ -912,7 +1009,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                                    p("Dr Kevin Chih-Tao Chang (PhD)"),
                                    p(""),
                                    p("As Chief Programmer, Dr Chang provides expertise in experimental methods, reactive programming, 
-                                   R Shiny software development, IT operations, and software testing; R DevOps.")
+                                   R Shiny software development, IT operations, and software testing.")
                                           ),
                                  wellPanel(
                                    h4("Qualifications:"),
