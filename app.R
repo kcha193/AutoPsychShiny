@@ -68,7 +68,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
          ),
          hr(),
-         tags$h3("Chief Architect:",                                                     # h2 header is the subtitle underneath the h1 header
+         tags$h3("Architect:",                                                     # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
                         "Dr Matthew Courtney (PhD)"
                  ),
@@ -78,7 +78,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Chief Programmer:",                                                    # h2 header is the subtitle underneath the h1 header
+         tags$h3("Chief Developer:",                                                    # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
                         "Dr Kevin Chang (PhD)"
                  ),
@@ -124,7 +124,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                     p("Welcome to Automated Psychometrics, a novel website that allows test 
                               developers, educational institutions, and researchers to:"),
                     p(""),
-                    p("(1) Check the general quality and targeting of student assessments and 
+                    p("(1) Check the general quality of student assessments and 
                       developmental rubrics,"),
                     p(""),
                     p("(2) Ensure test questions and developmental criterion are not bias toward 
@@ -134,31 +134,42 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                     p(""),
                     p("(4) Track student progress over a period of time via test equating,"),
                     p(""),
-                    p("(5) Analyse the effect of student grouping (gender, class, school) on student ability,"),
+                    p("(5) Analyze the effect of student grouping (gender, class, school) on student ability,"),
                     p(""),
                     p("(6) Check the reliability of developmental rubrics via inter-rater reliability analysis."),
-                  ),
+                          ),
                   wellPanel(
                     h4("Team Vision"),
-                    p("Together, the team draws on extensive expertise in educational 
-                              and psychological assessment, statistics, quantitative research methods, 
-                              statistical programming, web-design, statistical software development, 
-                              teaching pedagogy, and online learning. Drawing up this multi-disciplinary 
-                              skillset, the team's visions is to both promote and make high quality 
-                              assessment and research  ubiquitously accessible to the developed and 
-                              developing world.")
+                    p("The autopsych team draws on extensive expertise in educational and 
+                    psychological assessment, quantitative research methods, statistical programming, 
+                    web-design, pedagogy, and online learning. Drawing on this multi-disciplinary 
+                    skillset, the team's visions is to promote and make high quality assessment 
+                    and research ubiquitously accessible to the developed and developing world.")
                   ),   # WellPanel
                   wellPanel(
                     h4("Use"),
                     p("The website and all functionality was built using the open-source R programming 
-                              language and received no external funding. Use of the website is free and users 
-                              may make use of the following citation:"),
+                    language and received no external funding. The autopsych appis a free software 
+                    and you can redistribute it and or modify it under the terms of the GNU GPL 3. 
+                    In your work, cite as:"),
                     p(""),
-                    p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). autopsych: 
-                              a novel shiny app for the psychometric analysis and scoring of assessment
-                              and survey data. The X Journal, X(X), XXX-XXX. doi. XXXXXXXXXXXXX."),
+                    p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). autopsych: a 
+                    novel shiny app for the psychometric analysis and scoring of assessment and 
+                    survey data. The X Journal, X(X), XXX-XXX. doi. XXXXXXXXXXXXX."),
                     p("")
                   ),   # WelPanel
+                  wellPanel(
+                    h4("Distribution"),
+                    p("In accordance with the GNU General Public License (GPL) 3:"),
+                    p(""),
+                    p("'If you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the 
+                    same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you 
+                    must show them these terms so they know their rights' (https://www.gnu.org/licenses/gpl-3.0.en.html)"),
+                    p(""),
+                    p("'The intentionis to enshrine the rights of users to share and build on ideas falls into the philospohical 
+                      concept of common heritage (i.e., standing on the shoulder of giants). It is a bridging mechanism that 
+                      encourages growth from social knowledge' https://snyk.io")
+                  )
            ),        # Column
          ),           # fluidRow
 ),                    # Home
@@ -822,7 +833,7 @@ tabPanel("Many-Facets Rasch (DIF)",
 
 # Team -------------------------------------------------------------------------            
             tabPanel("Team",
-                     tabsetPanel(tabPanel("Chief Architect", 
+                     tabsetPanel(tabPanel("Architect", 
                         fluidRow(column(width = 6)),
                         theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
                         tags$style(type="text/css",
@@ -854,11 +865,11 @@ tabPanel("Many-Facets Rasch (DIF)",
                         fluidRow(
                           column(11,
                                  wellPanel(
-                                   h4("Chief Architect:"),
+                                   h4("Architect:"),
                                    p(""),
                                    p("Dr Matthew Gordon Ray Courtney (PhD)"),
                                    p(""),
-                                   p("The Chief Architect, Dr Courtney, is the founder of the website and provides expertise in psychometrics, 
+                                   p("The Architect, Dr Courtney, is the founder of the website and provides expertise in psychometrics, 
                                      quantitative research methods, automation of technical reports and outputs, web UI development, and related 
                                      research and communication.")
                                           ),
@@ -895,7 +906,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                                     fields of classical test theory, item-response theory, and R statistical programming under the tutelage of 
                                     world-renowned statistician, Professor Margaret Wu. Currently, Dr Courtney works as 
                                     an Assistant Professor at the Nazarbayev University Graduate School of Education, a research intensive 
-                                    university in Kazakhstan, Central Asia. Dr Courtney enjoys introduciung post-graduate students fun topics 
+                                    university in Kazakhstan, Central Asia. Dr Courtney enjoys introduciung post-graduate students to fun topics 
                                     including educational assessment, educational statistics, classical test theory, item response theory, 
                                     growth modelling, and R programming. A list of Dr Courtney's published journal articles, R statistical 
                                     packages, and encyclopedia chapters are provided below:"),
@@ -927,7 +938,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                                    p(""),
                                    h4("Higher Education"),
                                    p(""),
-                                   p("5. Qanay, G., Courtney, M. G. R., & Nam, A. (20). Supporting teacher leadership development in schools 
+                                   p("5. Qanay, G., Courtney, M. G. R., & Nam, A. (2021). Supporting teacher leadership development in schools 
                                      in Kazakhstan: a mixed-methods study. International Journal of Leadership Education. doi: 
                                      10.1080/13603124.2020.1869314 (IF: 34; Q1)"),
                                    p(""),
@@ -972,7 +983,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                               )             # End Chief Architect fluid row
                        ),                   # End Chief Architect inner tab panel
                
-               tabPanel("Chief Programmer", 
+               tabPanel("Chief Developer", 
                         fluidRow(column(width = 6)),
                         theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
                         tags$style(type="text/css",
