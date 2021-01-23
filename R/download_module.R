@@ -95,12 +95,12 @@ download_Server <- function(id,
               
               params <- c(params, additional_params)
             }
-            
+
             # Different set of parameters for EQUATE tab
             if(type == "EQUATE"){
 
-               params <- list(datapath_A = input$input_file$datapath_A,                # Set up parameters to pass to Rmd document
-                              datapath_B = input$input_file$datapath_B,
+               params <- list(datapath_A = input$datapath_A$datapath,                # Set up parameters to pass to Rmd document
+                              datapath_B = input$datapath_B$datapath,
                               recommendations = input$recommendations,
                               construct = input$construct,
                               population = input$population,

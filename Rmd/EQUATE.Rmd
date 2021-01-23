@@ -70,10 +70,10 @@ header-includes:
 ```{r CHUNK1 Input parameters, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 #### 1. Initial start time and data ####
 start.time <- Sys.time()
-mod1 <- readxl::read.xlsx(params$datapath_A, sheet = "Item Results")
-mod2 <- readxl::read.xlsx(params$datapath_B, sheet = "Item Results")
-resp2 <- readxl::read.xlsx(params$datapath_B, sheet = "Item Response Data")
-Person1 <- readxl::read.xlsx(params$datapath_A, sheet = "Ordered Person Results")
+mod1 <- readxl::read_xlsx(params$datapath_A, sheet = "Item Results")
+mod2 <- readxl::read_xlsx(params$datapath_B, sheet = "Item Results")
+resp2 <- readxl::read_xlsx(params$datapath_B, sheet = "Item Response Data")
+Person1 <- readxl::read_xlsx(params$datapath_A, sheet = "Ordered Person Results")
 theta1 <- Person1$`Ability (theta)`
 
 #### 2. Report settings ####
@@ -237,7 +237,7 @@ ggplot2::ggplot(EQ_df, aes(x = `Form A Deltas`, y = `Form B Deltas`)) +
                         color = "red", 
                         fill = "#69b3a2", 
                         se = TRUE) +
-            geom_label_repel(aes(label = `Common Link Items`),
+            ggrepel::geom_label_repel(aes(label = `Common Link Items`),
                              box.padding   = 0.35, 
                              point.padding = 0.5,
                              segment.color = 'grey50'
@@ -265,14 +265,14 @@ EQ_df  %>%
     `Form A SEs` = EQ_df$`Form A SEs`,
     `Form B Deltas` = EQ_df$`Form B Deltas`,
     `Form B SEs` = EQ_df$`Form B SEs`,
-    `Standardized Diff. (z)` = cell_spec(`Standardized Diff. (z)`, 
+    `Standardized Diff. (z)` = kableExtra::cell_spec(`Standardized Diff. (z)`, 
                                      "latex", 
                                      color = ifelse(`Standardized Diff. (z)` >= 1.96 | `Standardized Diff. (z)` < -1.96, "red", "black"))
   ) %>%
   dplyr::select(`Common Link Items`, `Form A Deltas`, `Form B Deltas`, `Form A SEs`, `Form B SEs`, `Standardized Diff. (z)`) %>%
-  kable(format="latex", escape = F, booktabs = T, linesep = "", align='cc', caption= "Formal Check for Item Difficulty Invariance", longtable=T) %>%
-  kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
-  footnote(general = "Statistically significant results (with z-scores equal to or above |1.96|) are highlighted in red.") 
+  knitr::kable(format="latex", escape = F, booktabs = T, linesep = "", align='cc', caption= "Formal Check for Item Difficulty Invariance", longtable=T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
+  kableExtra::footnote(general = "Statistically significant results (with z-scores equal to or above |1.96|) are highlighted in red.") 
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.60)
@@ -343,9 +343,9 @@ colnames(Person.stats)[8:9] <- c("se", "2se")
 
 Item.details <- mod2.mod1.equated$xsi
 
-thr.df <- tam.threshold(mod2.mod1.equated)
+thr.df <-  TAM::tam.threshold(mod2.mod1.equated)
 
-Plausible.values <- tam.pv(mod2.mod1.equated)
+Plausible.values <-  TAM::tam.pv(mod2.mod1.equated)
 Plausible.values <- Plausible.values$pv
 
 resp <- resp2
