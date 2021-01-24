@@ -1,0 +1,371 @@
+---
+title:  | 
+  |
+  | Auto-Psych R Shiny Tool Output
+  |
+  |
+  |
+  |
+  |
+  |
+  | 
+  | Automated Psychometric Analysis
+  | One Parameter Logistic Model [1PLM] Report
+  | 
+  |
+  |
+  | 
+  | Technical Report, version 1PLM_1DIM_EQUATE_FIX 0.1.0
+  |
+  |
+  | 
+  |
+  |
+  | 
+  | 
+author:  | 
+  | Courtney, M. G. R., Chang, K. C-T., Mei, E., & Rowe, L. (20XX).
+  | autopsych: A Novel Shiny Tool for the Validation and Psychometric 
+  | Analysis of Assessment Data. Journal of Xxxxxxxx Xxxxxxxxx, X(X). doi. 
+  | XXXXXXXXXX/XXXXXXX
+
+output: pdf_document
+includes:
+      in_header: \usepackage{longtable}
+
+date: "`r format(Sys.time(), 'Report produced: %B %d, %Y, %H:%M:%OS')`" 
+ 
+params:
+  datapath_A: NA
+  datapath_B: NA
+  recommendations: NA
+  construct: NA
+  population: NA
+  node.sequence.1: NA
+  node.sequence.2: NA
+  node.sequence.3: NA
+  conv: NA
+  maxiter: NA
+  rendered_by_shiny: FALSE
+  excel_name: NA
+  
+header-includes:
+- \usepackage{longtable}
+- \usepackage{booktabs}
+- \usepackage{colortbl}
+  
+---
+  
+\fontfamily{cmss}
+\fontsize{14}{12}
+\fontseries{b}
+\selectfont
+
+\newpage
+
+\setcounter{tocdepth}{4}
+\tableofcontents  
+ 
+ 
+```{r CHUNK1 Input parameters, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+#### 1. Initial start time and data ####
+start.time <- Sys.time()
+mod1 <- readxl::read_xlsx(params$datapath_A, sheet = "Item Results")
+mod2 <- readxl::read_xlsx(params$datapath_B, sheet = "Item Results")
+resp2 <- readxl::read_xlsx(params$datapath_B, sheet = "Item Response Data")
+Person1 <- readxl::read_xlsx(params$datapath_A, sheet = "Ordered Person Results")
+theta1 <- Person1$`Ability (theta)`
+
+#### 2. Report settings ####
+Construct <- params$construct
+Population <- params$population
+node.sequence <- seq(params$node.sequence.1, params$node.sequence.2, len= params$node.sequence.3)
+conv <- params$conv
+maxiter <- params$maxiter
+Recommendations <- params$recommendations
+
+#### 3. Adjust placeholders (blank strings) for actual relevant string objects
+if(Construct == ""){
+  Construct <- "Test Topic"
+}
+
+if(Population == ""){
+  Population <- "Students"
+}
+
+#### 4. Give rendering progress in UI to communicate with user throughout report ####
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.01)
+}
+```
+
+```{r CHUNK2_Data_management_and_graphics, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+#### Extract relevant item difficulties from respective forms
+Form.A.item.n <- nrow(mod1)
+Form.B.item.n <- nrow(mod2)
+
+xsi.mod1 <- xsi.mod1.fixed <- mod1[mod1$`Item/Item Step` %in% mod2$`Item/Item Step`, 2]                                 # un-centered also saved here to create xsi.fixed matrix
+xsi.fixed <- as.matrix(cbind.data.frame(which(mod2$`Item/Item Step` %in% mod1$`Item/Item Step` == T), xsi.mod1.fixed))  # create xsi.fixed matrix
+colnames(xsi.fixed) <- c("1", "2")                          
+
+# create df for analysis
+EQ_df <- merge(mod1, mod2, by = "Item/Item Step")
+colnames(EQ_df) <- c("common.items", "xsi.mod1.fixed", "xsi.mod1.fixed.e", "xsi.mod2.fixed", "xsi.mod2.fixed.e")
+link.item.n <- nrow(EQ_df)
+
+# center deltas to examine invariance and estimate se
+EQ_df[, c(2,4)] <- apply(EQ_df[, c(2,4)], 2, function(x)x-mean(x))
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.10)
+}
+```
+
+```{r CHUNK3_Formal_Check_Invariance, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+FormA_minus_FormB_d <- EQ_df$xsi.mod1.fixed - EQ_df$xsi.mod2.fixed                                    # difference
+std_diff <- FormA_minus_FormB_d/(sqrt(((EQ_df$xsi.mod1.fixed.e)^2) + ((EQ_df$xsi.mod2.fixed.e)^2)))   # se average
+
+sum.invariance.items <- sum(abs(std_diff) >= 1.96)
+if(sum.invariance.items == 0){
+  sum.invariance.items <- "none"
+}
+
+EQ_df <- cbind.data.frame(EQ_df, std_diff)
+
+EQ_df[,2:6] <- apply(EQ_df[,2:6], 2, function(x)round(x, 3))
+colnames(EQ_df) <- c("Common Link Items", "Form A Deltas", "Form A SEs", "Form B Deltas", "Form B SEs", "Standardized Diff. (z)")
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.20)
+}
+```
+
+```{r CHUNK4_Calculate_standard_error, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+se.equate <- round((sqrt(  (sum((EQ_df$`Form A Deltas`-EQ_df$`Form B Deltas`)^2)) / ( nrow(EQ_df)-1) ) ) / (sqrt(nrow(EQ_df)) ), 3)
+two.se.equate <- se.equate*2
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.30)
+}
+```
+  
+```{r CHUNK5_Fixed_equating, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+mod2.mod1.equated <- TAM::tam.mml(resp = resp2, control=list(nodes = node.sequence, conv = conv, maxiter = maxiter), xsi.fixed = xsi.fixed)  
+
+avg.item.diff <- round(mean(mod2.mod1.equated$xsi$xsi), 3)
+sd.item.diff <- round(sd(mod2.mod1.equated$xsi$xsi), 3)
+
+avg.person.diff <- round(mean(mod2.mod1.equated$person$EAP), 3)
+sd.person.diff <- round(sd(mod2.mod1.equated$person$EAP), 3)
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.40)
+}
+``` 
+  
+
+# INFORMATION PAGE
+This is an automatically-generated psychometric technical report based on the item-response data provided (the outputted xlsx file for Form A, and the item-response data from Form B). The report includes a description of the general equating procedure used, visual and formal examinations of link item invariance, estimation of the standard error of equating, and a summary of key results. The tool can be cited as follows:  
+   
+   Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: a novel shiny app for the psychometric analysis and scoring of assessment and survey data. The X Journal.
+ 
+Dedication: The main author would like to thank Drs Zhang, Wu, Wilson, McGaw, and Nguyen for their support. This utility should be considered a public good. 
+  
+  Github repository: XXXXXXXXXXX
+  
+\newpage  
+  
+# TECHNICAL SUMMARY  
+This report provides details as to the results of the fixed equaitng procedure carried out on the Form A and Form B test forms for the . The Form A test consisted of `r Form.A.item.n` items while the Form B test consisted of `r Form.B.item.n` items. There were `r link.item.n` common link (equating) items common to both test forms. After visual inspection of item difficulties was carried out, the formal test of item invariance for the `r link.item.n` link items of interest suggested that `r sum.invariance.items` exhibited substantive item difficulty invariance (i.e., with absolute z-scores greater than 1.96). The standard error of equating for the test was estimate to be `r se.equate` logits. 
+  
+# RECOMMENDATIONS  
+`r Recommendations`.  
+  
+\newpage  
+  
+# FULL TECHNICAL REPORT   
+  
+## 1. Introduction  
+The purpose of this document is to present the methodology and results of the fixed equating procedure carried out on the Form A and Form B test forms. The common test topic was `r Construct` and the test was administered to the `r Population` student population. Item difficulty estimates (deltas) for the Forms A and B were taken directly from the results from the free calibration of both tests (the outputted xlsx files).
+  
+## 2. Methodology  
+The methodology employed herein makes use of (1) a visual comparison of item difficulty, (2) a formal check for item invariance, (3) estimation of the standard error of equating, and (4) the application of a fixed equating procedure carried out on item-response data from Test Form B.   
+  
+A visual comparison of item difficulty estimates is undertaken with the assistance of the the $ggplot2$ package (Wickham, 2016). This visualization will be enhanced with the application of a linear model ($model=lm$) and geometric smoothing (Wickham, 2016) of standard errors for the linear model to identify possible outliers.  
+
+A formal check for item invariance (Wu, Tam, & Jen, 2016, p. 232) by employing the following formula,  
+  
+\begin{equation}
+z_{i}=\frac{\delta_{i}-\acute{\delta_{i}}}{\sqrt{se[\delta_{i}]^2+se[\acute{\delta_{i}}]^2}}
+\end{equation}  
+  
+where, $z_{i}$ is the standardized delta difference for each corresponding item, $\delta_i$ is the item parameter for item $i$ in Test Form A, and $\acute{\delta_{i}}$ is the corresponding item parameter for item $i$ in Test Form B. Note that, $\Sigma_{i=1}^L(\delta_{i}-\acute{\delta_{i}})=0$. 
+  
+while an estimation of the standard error of equating ($\varepsilon$) in accordance with the following, 
+ 
+\begin{equation}
+\varepsilon=\frac{\sqrt{\frac{\Sigma_{i=1}^L(\delta_{i}-\acute{\delta_{i}})^2}{L-1}}}{\sqrt{L}}
+\end{equation}  
+  
+\vspace{4mm}
+where $\varepsilon$ is the equating error, $L$ is the number of link items, $\delta_i$ is the item parameter for item $i$ in Test Form A, and $\acute{\delta_{i}}$ is the corresponding item parameter for item $i$ in Test Form B such that $\Sigma_{i=1}^L(\delta_{i}-\acute{\delta_{i}})=0$. 
+  
+This becomes important when comparisons are made between Test Form A and B. For such comparisons, both individual and average group-level ability estimates are effected by the same equating error. For example, if Form A and Form B tests are administered to the same students across two time points, individual and average student estimates of growth will also need to account for the standard error of equating. Similarly, if a comparison between the performance of Grade 3 and Grade 5 is made as a result of applying the same fixed equating method, the associated standard error of equating will also need to be taken into account. 
+  
+Finally, this report also involves the generation of an xlsx outputted file that presents both sets of students (those sitting both test forms) on the same ability scale.
+  
+The results of this series of analyses is now presented.  
+ 
+\newpage  
+  
+## 3. Results  
+### 3.1 Visual Comparison of Item Difficulty across Test Forms
+Figure 1 provides a graphical illustration of item difficulty invariance across Test A and B forms. The green error bands represent the standard errors of the linear model of the Form B item deltas on the Form A item deltas.  
+  
+\vspace{5mm} 
+  
+
+```{r CHUNK6_graphical_invariance, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
+#### Plot 
+suppressMessages(print(
+ggplot2::ggplot(EQ_df, aes(x = `Form A Deltas`, y = `Form B Deltas`)) + 
+            ggtitle("Figure 1. Form A versus Form B Item Deltas Visualization") +
+            geom_point(color = "blue", size = 3) + 
+            xlab("Form A Item Deltas (centered)") + 
+            ylab("Form B Item Deltas (centered)") + 
+            geom_smooth(method = lm, 
+                        color = "red", 
+                        fill = "#69b3a2", 
+                        se = TRUE) +
+            ggrepel::geom_label_repel(aes(label = `Common Link Items`),
+                             box.padding   = 0.35, 
+                             point.padding = 0.5,
+                             segment.color = 'grey50'
+                             ) 
+                       )
+                  )
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.50)
+}
+```
+\vspace{5mm} 
+  
+\newpage  
+### 3.2 Formal Comparison of Item Diffculty across Test Forms  
+In accordance with Equation 1, a formal inspection of item difficulty is provided in Table 1.  
+  
+\vspace{5mm} 
+
+```{r CHUNK7_Formal_Invariance, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
+EQ_df  %>%                                                           
+  dplyr::mutate(
+    `Common Link Items` = EQ_df$`Common Link Items`,
+    `Form A Deltas` = EQ_df$`Form A Deltas`,
+    `Form A SEs` = EQ_df$`Form A SEs`,
+    `Form B Deltas` = EQ_df$`Form B Deltas`,
+    `Form B SEs` = EQ_df$`Form B SEs`,
+    `Standardized Diff. (z)` = kableExtra::cell_spec(`Standardized Diff. (z)`, 
+                                     "latex", 
+                                     color = ifelse(`Standardized Diff. (z)` >= 1.96 | `Standardized Diff. (z)` < -1.96, "red", "black"))
+  ) %>%
+  dplyr::select(`Common Link Items`, `Form A Deltas`, `Form B Deltas`, `Form A SEs`, `Form B SEs`, `Standardized Diff. (z)`) %>%
+  knitr::kable(format="latex", escape = F, booktabs = T, linesep = "", align='cc', caption= "Formal Check for Item Difficulty Invariance", longtable=T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "repeat_header"), font_size = 11) %>%
+  kableExtra::footnote(general = "Statistically significant results (with z-scores equal to or above |1.96|) are highlighted in red.") 
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.60)
+}
+```
+  
+\vspace{5mm}  
+  
+Analysis of the `r link.item.n` link items of interest suggested that `r sum.invariance.items` exhibited substantive item difficulty invariance (i.e., with absolute z-scores greater than |1.96|).  
+  
+\vspace{5mm} 
+  
+\newpage  
+  
+### 3.3 Standard Error of Equating  
+The equating error provides an indication of the amount of uncertainty caused by the sampling of link items. The standard error of equating for fixed item equating is calculated in accordance with Equation 2. 
+  
+The equating error was $\varepsilon$ = `r se.equate` logits.  
+ 
+## 4. Final Fixed Equating Procedure 
+Having undertaken the item difficulty invariance testing in Chapters 2 and 3, this section reports on the fixed equating procedure run on the item-response data from Test Form B. After fixing the link item difficulty estimates in Test Form B to those estimated in Test Form A, the mean item difficulty in Test Form B was `r avg.item.diff` (SD = `r sd.item.diff`). The mean person ability for Test Form B was `r avg.person.diff` (SD = `r sd.person.diff`). Figure 2 provides a density plot for student ability ($\theta$) of the two groups who sat the respective test forms.  
+  
+\vspace{5mm} 
+  
+```{r CHUNK8_Density_plot_prep, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+df <- data.frame(
+  test.form = factor(c(rep("Form A", length(theta1)), 
+                       rep("Form B", length(mod2.mod1.equated$person$EAP))
+                       )
+                     ),
+  c(theta1, mod2.mod1.equated$person$EAP)
+)
+
+colnames(df) <- c("Test_Form", "Equated_Theta")
+
+mu <- plyr::ddply(df, "Test_Form", summarise, grp.mean=mean(Equated_Theta))
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.70)
+}
+```
+
+
+```{r CHUNK9_Density_plot, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
+ggplot(df, aes(x = Equated_Theta, fill = Test_Form)) + 
+  ggtitle("Figure 2. Density Plot for Equated Student Ability (Theta)") +
+  geom_density()+
+  geom_vline(data = mu, 
+             aes(xintercept = grp.mean, 
+                 color = Test_Form),
+             linetype="dashed",
+             size = 1.5) +
+  geom_density(alpha=0.4) + 
+  xlim(min(df$Equated_Theta) -.7, max(df$Equated_Theta) + .7) 
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.80)
+}
+```
+  
+Note. Dashed lines represent respective group means.  
+\vspace{5mm}  
+  
+```{r CHUNK10_Outputted_Tables, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+Person.stats <- mod2.mod1.equated$person
+Person.stats <- cbind.data.frame(Person.stats, rep(se.equate, nrow(mod2.mod1.equated$person)), rep(two.se.equate, nrow(mod2.mod1.equated$person)))
+colnames(Person.stats)[8:9] <- c("se", "2se") 
+
+Item.details <- mod2.mod1.equated$xsi
+
+thr.df <-  TAM::tam.threshold(mod2.mod1.equated)
+
+Plausible.values <-  TAM::tam.pv(mod2.mod1.equated)
+Plausible.values <- Plausible.values$pv
+
+resp <- resp2
+
+##### COMPILE #####
+list.of.data <- list("Person Results (fixed on Form A)" = Person.stats, 
+                     "Item Results (fixed on link items)" = Item.details,
+                     "Item Thresholds (fixed on Form A)" = thr.df, "Plausible Values (fixed on Form A)" = Plausible.values,
+                     "Item Response Data" = resp)
+
+openxlsx::write.xlsx(list.of.data, file = params$excel_name, append = TRUE)
+
+end.time <- Sys.time()
+
+full.rep.time <- end.time - start.time
+full.rep.time <- round(as.numeric(full.rep.time), 3)
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.100)
+}
+```
+
+

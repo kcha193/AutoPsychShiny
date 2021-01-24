@@ -27,7 +27,7 @@ MML_UI <- function(id) {
        the results of the analysis to the broader population from which the sample 
          students were drawn."),
        p("")
-     ),
+              ),
     wellPanel(
        h4("1. Prepare data"),
        p("Before using the tool, ensure that your data meet the following requirements:"),
@@ -117,7 +117,7 @@ MML_UI <- function(id) {
        p(""),
     
        selectizeInput(ns("constraint"), "Constraint:", 
-                      choices = c("Item" = "item", "Cases" = "cases")
+                      choices = c("Cases" = "cases", "Item" = "item")
                      ) %>%                           
        shinyInput_label_embed(icon("question-circle") %>%
        bs_embed_tooltip(title = "Analysis for the report includes a specialized 
@@ -230,7 +230,6 @@ MML_UI <- function(id) {
                  options = list(container = "body")
                 ),
     
-     )   # wellPanel
-  )       # column
-
-}
+     )    # wellPanel final
+  )       # taglList wrapper
+}         # function wrapper
