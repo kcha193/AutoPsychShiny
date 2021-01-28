@@ -4,8 +4,8 @@
 version_number <- "0.1.0"
 
 # Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
-autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis", "CTT", "psychometric", 
-                    "TAM", "cowplot", "openxlsx", "reshape2", "Hmisc", "xtable", 
+autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis", 
+                    "CTT", "psychometric", "irr", "TAM", "cowplot", "openxlsx", "reshape2", "Hmisc", "xtable", 
                     "knitr", "rmarkdown", "kableExtra", "english", "shiny", "shinyjs",
                     "shinythemes", "shinyBS", "bsplus", "shinyWidgets")
 packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()] 

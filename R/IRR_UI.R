@@ -10,13 +10,11 @@ IRR_UI <- function(id) {
     wellPanel(
       h4("Inter-Rater Reliability Tool"),
       p("This tool is particularly useful for test and rubric developers interested 
-                                    in improving and validating items and rubrics that involve multiple 
-                                    ratings for a single skill or developmental competence."),
+                                    in improving and validating items and rubrics that involve judgements of 
+                                    student competence, for example, 'Essay Organization'."),
       p(""),
       p("The tool computes different varieties of the intra-class correlation 
-                                   coefficient, which is an index of inter-rater reliability. In addition, 
-                                   an F test (for the measurement of between-rater effects) and confidence 
-                                   intervals are also computed."),
+                                   coefficient, which is an index of inter-rater reliability."),
       p("")
     ),
     wellPanel(
@@ -28,9 +26,9 @@ IRR_UI <- function(id) {
                                    raters (or, coders) as columns (e.g., Rater_1, Rater_2, Rater_3); and,"),
       p(""),
       p("(b) The ICC tool handles missing data listwise, meaning that when 
-                                   a missing value is identified, the entire row (case) is removed from 
-                                   the analysis (the Krippendorff's alpha, available below, may be more 
-                                   suitiable when missing data is present)")
+                                   a missing value is identified, the entire row (student/case) is removed from 
+                                   the analysis (the Krippendorff's alpha may be more 
+                                   suitiable when missing data is present).")
     ),
     wellPanel(
       h4("2. Upload your inter-rater reliability data (csv)"),
@@ -47,7 +45,7 @@ IRR_UI <- function(id) {
     wellPanel(
       h4("3. Specify the construct that the raters are measuring and identify the students"),
       p(""),
-      textInput(ns("construct"), "Construct:", placeholder = "Test Topic"),
+      textInput(ns("construct"), "Scored Topic:", placeholder = "ScoredTopic"),
       bsTooltip(ns("construct"), "E.g., Essay Organization", "right",
                 options = list(container = "body")
       ),
@@ -93,7 +91,7 @@ IRR_UI <- function(id) {
                                  "Average" = "average")
       ) %>%                           
         shinyInput_label_embed(icon("question-circle") %>%
-                                 bs_embed_tooltip(title = "(a) For single, each student score is not an aggregate of other scores; (b) for average, each student score is an aggregate of several scores"
+                                 bs_embed_tooltip(title = "(a) For single, each student score is not an aggregate of other scores; (b) for average, each student score is an aggregate of several scores."
                                  )
         ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
     ),
@@ -103,7 +101,7 @@ IRR_UI <- function(id) {
                   "Specify confidence interval level for ICC statistic", 
                   min = 0.80, max = 0.99, value = 0.95, step = 0.01) %>%
         shinyInput_label_embed(icon("question-circle") %>%
-                                 bs_embed_tooltip(title = "95 is a common confidnce interval for this statistic.")
+                                 bs_embed_tooltip(title = "95% is a common confidnce interval for this statistic.")
         ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
       p("")
     ),
