@@ -40,7 +40,9 @@ options(shiny.maxRequestSize = 3*1024^2)
 
 # UI file starts here -------------------------------------------------- 
 
-ui <- fluidPage(
+# tags$head script just below makes all font white
+
+ui <- fluidPage(tags$head(tags$style(HTML("a {color: white}"))),
       tabsetPanel(
 
 # Title -------------------------------------------------------------------
@@ -68,9 +70,9 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
          ),
          hr(),
-         tags$h3("Architect:",                                                     # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-                        "Dr Matthew Courtney (PhD)"
+         tags$h3("Lead Architect:",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
+                        "        Dr Matthew Courtney (PhD)"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
@@ -78,7 +80,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Chief Developer:",                                                    # h2 header is the subtitle underneath the h1 header
+         tags$h3("Lead Developer:",                                                    # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
                         "Dr Kevin Chang (PhD)"
                  ),
@@ -88,18 +90,18 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Chief Psychometrician:",                                               # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                        "Dr Zhonghua Zhang (PhD)"),
+         tags$h3("Lead Psychometrician:",                                               # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
+                        "Dr Bing Mei (PhD)"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
                  )
                  )
          ),
-         tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Bing Mei (PhD)"
+         tags$h3("Contributing Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:k.meissel@auckland.ac.nz?Subject=Shiny%20Help",
+                        "Dr Kane Meissel (PhD)"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                               line-height: 1.1; font-size: 10pt;
@@ -107,9 +109,19 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Contributing Psychometrician:",                                        # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
                         "Dr Luke Rowe (PhD)"
+                 ),
+                 tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1; font-size: 10pt;
+                                                              color: #FFFFFF;}"
+                 )
+                 )
+         ),
+         tags$h3("Contributing Mathematician:",                                        # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:laila.educator@gmail.com?Subject=Shiny%20Help",
+                        "Ms Laila Issayeva (MEd)"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
@@ -121,8 +133,9 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
            column(11, 
                   wellPanel(
                     h4("Introduction"),
-                    p("Welcome to Automated Psychometrics, a novel website that allows test 
-                              developers, educational institutions, and researchers to:"),
+                    p("Welcome to Automated Psychometrics, a novel website that allows teachers, 
+                      school assessment leaders, test developers, educational institutions, 
+                      and researchers to:"),
                     p(""),
                     p("(1) Check the general quality of student assessments and 
                       developmental rubrics,"),
@@ -142,14 +155,16 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                     h4("Team Vision"),
                     p("The autopsych team draws on extensive expertise in educational and 
                     psychological assessment, quantitative research methods, statistical programming, 
-                    web-design, pedagogy, and online learning. Drawing on this multi-disciplinary 
-                    skillset, the team's visions is to promote and make high quality assessment 
-                    and research ubiquitously accessible to the developed and developing world.")
+                    web-design, teaching pedagogy, and online learning. The team collaborates to provide 
+                    this app and its various features from different parts of the Asia-Pacific region 
+                    including New Zealand, Australia, China, and Central Asia. The team's visions is 
+                    to promote high quality assessment and research  accessible to the developed and 
+                    developing world.")
                   ),   # WellPanel
                   wellPanel(
                     h4("Use"),
                     p("The website and all functionality was built using the open-source R programming 
-                    language and received no external funding. The autopsych appis a free software 
+                    language and received no external funding. The autopsych app is a free software 
                     and you can redistribute it and or modify it under the terms of the GNU GPL 3. 
                     In your work, cite as:"),
                     p(""),
@@ -166,8 +181,8 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                     same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you 
                     must show them these terms so they know their rights' (https://www.gnu.org/licenses/gpl-3.0.en.html)"),
                     p(""),
-                    p("'The intentionis to enshrine the rights of users to share and build on ideas falls into the philospohical 
-                      concept of common heritage (i.e., standing on the shoulder of giants). It is a bridging mechanism that 
+                    p("'The intention is to enshrine the rights of users to share and build on ideas falls into the philospohical 
+                      concept of common heritage (i.e., standing on the shoulders of giants). It is a bridging mechanism that 
                       encourages growth from social knowledge' https://snyk.io")
                   )
            ),        # Column
@@ -204,22 +219,22 @@ tabPanel("Uni-Dim Rasch (MML)",
          tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
                         "Dr Matthew Courtney (PhD)"
-                 ),
+                       ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
                                                              color: #FFFFFF;}"
-                 )
-                 )
-         ),
+                                )
+                           )
+                ),
          tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                        "Dr Zhonghua Zhang (PhD)"),
+                 tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
+                        "Dr Bing Mei (PhD)"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
-                 )
-                 )
-         ),
+                                )
+                           )
+                ),
          fluidRow(
            column(11,
                   MML_UI("MML"),
@@ -272,7 +287,7 @@ tabPanel("Many-Facets Rasch (DIF)",
                 ),
          tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-                        "Dr Zhonghua Zhang (PhD)"),
+                        "Dr Bing Mei (PhD)"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
@@ -322,6 +337,25 @@ tabPanel("Many-Facets Rasch (DIF)",
                               )
                       ),
                       hr(), 
+                      tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
+                              tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
+                                     "Dr Matthew Courtney (PhD)"
+                              ),
+                              tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                             line-height: 1.1; font-size: 10pt;
+                                                             color: #FFFFFF;}"
+                              )
+                              )
+                      ),
+                      tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                              tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
+                                     "Dr Bing Mei (PhD)"),
+                              tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
+                              )
+                              )
+                      ),
                       fluidRow(
                         column(11,
                                EQUATE_UI("EQUATE"),
@@ -458,171 +492,58 @@ tabPanel("ANOVA",
 
 
 # Inter-Rater Reliability ------------------------------------------------------
-            # tabPanel("Inter-Rater Reliability",
-            #          fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
-            #          tags$style(type="text/css",
-            #                     "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-            #                     "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-            #                     " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-            #                     ),
-            #          shinyjs::useShinyjs(),                                                         # activate javascript in the application
-            #          tags$h1("Inter-Rater Reliability Analysis",
-            #                  tags$img(src = "hex5.png", height = 149, width = 135, 
-            #                           style = "float:right;margin-top:-18.5px;"
-            #                          ),
-            #                  tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
-            #                                                   line-height: 1.1; font-size: 60px;
-            #                                                   color: #FFFFFF;}"
-            #                                  )
-            #                             )
-            #                 ),
-            #          tags$h2("Toward Valid Assessments and Developmental Rubrics",                  # h2 header is the subtitle underneath the h1 header
-            #                  tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
-            #                                                  line-height: 1.1; font-size: 18pt;
-            #                                                  color: #FFFFFF;}"
-            #                                 )
-            #                            )
-            #                 ),
-            #          hr(), 
-            #          tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
-            #                  tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-            #                         "Dr Eric 'Bing' Mei (PhD)"
-            #                        ),
-            #                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-            #                                                  line-height: 1.1; font-size: 10pt;
-            #                                                  color: #FFFFFF;}"
-            #                                 )
-            #                            )
-            #                  ),
-            #          tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
-            #                  tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-            #                         "Dr Matthew Courtney (PhD)"),
-            #                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-            #                                                         line-height: 1.1; font-size: 10pt;
-            #                                                         color: #FFFFFF;}"
-            #                                 )
-            #                            )
-            #                  ),
-            #          tags$h3("Statistician:",                                                    # h2 header is the subtitle underneath the h1 header
-            #                  tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
-            #                         "Dr Matthew Courtney (PhD)"),
-            #                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-            #                                                         line-height: 1.1; font-size: 10pt;
-            #                                                         color: #FFFFFF;}"
-            #                                  )
-            #                            )
-            #                 ),
-            #          fluidRow(
-            #            column(11,
-            #                   wellPanel(
-            #                     h4("Inter-Rater Reliability Tool"),
-            #                     p("This tool is particularly useful for test and rubric developers interested 
-            #                        in improving and validating items and rubrics that involve multiple 
-            #                        ratings for a single skill or developmental competence."),
-            #                     p(""),
-            #                     p("The tool computes different varieties of the intra-class correlation 
-            #                       coefficient, which is an index of inter-rater reliability. In addition, 
-            #                       an F test (for the measurement of between-rater effects) and confidence 
-            #                       intervals are also computed."),
-            #                     p("")
-            #                   ),
-            #                   wellPanel(
-            #                     h4("1. Prepare data"),
-            #                     p("Before using the ICC tool, ensure that your data meet the following 
-            #                       requirements:"),
-            #                     p(""),
-            #                     p("(a) A csv formatted spreadsheet with subject (students) as rows and 
-            #                       raters (or, coders) as columns (e.g., Rater_1, Rater_2, Rater_3); and,"),
-            #                     p(""),
-            #                     p("(b) The ICC tool handles missing data listwise, meaning that when 
-            #                       a missing value is identified, the entire row (case) is removed from 
-            #                       the analysis (the Krippendorff's alpha, available below, may be more 
-            #                       suitiable when missing data is present)")
-            #                   ),
-            #                   wellPanel(
-            #                     h4("2. Upload your inter-rater reliability data (csv)"),
-            #                     p(""),
-            #                     fileInput("input_file", "Choose your file (.csv)",                  # The file is observed by the UI when it is uploaded successfully.
-            #                               multiple = FALSE, accept = c("text/csv", "text/comma-separated-values, 
-            #                                                        text/plain", ".csv", ".xlsx", ".xls"
-            #                                                           )
-            #                              ) %>%                                                      # Pipe into new function
-            #                       shinyInput_label_embed(icon("question-circle") %>%                # Pipe into other function; Other icons are also possible, see ?shiny::icon or https://fontawesome.com/icons?d=gallery&q=question 
-            #                                                bs_embed_tooltip(title = "If you would like to cite this tool, feel free: Courtney, M. G. R., & Xxxxx, X. (XXXX). Auto-psych: a novel shiny app for the psychometric analysis and scoring of assessment and survey data. Xxxxxxxxx and Xxxxxxxxx.")
-            #                                              )                                          # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                             ),
-            #                   wellPanel(
-            #                     h4("3. Specify the construct that the raters are measuring and identify the students"),
-            #                     p(""),
-            #                     textInput("construct", "Construct:", placeholder = "Test Topic"),
-            #                     bsTooltip("construct", "E.g., Numeracy or Literacy", "right",
-            #                               options = list(container = "body")
-            #                              ),
-            #                     
-            #                     textInput("population", "Focal group:", placeholder = "Students"),  # 2. input: sample of interest (though modelling has population-bsed assumptions)
-            #                     bsTooltip("population", "E.g., Central School Grade 10 Students", "right",
-            #                               options = list(container = "body")
-            #                              )
-            #                             ),
-            #                   wellPanel(
-            #                     h4("4. Specify the model"),
-            #                     p(""),
-            #                     
-            #                     selectizeInput("model", "Select either the One-way or Two-way model",
-            #                                    choices = c("One-way" = "oneway", 
-            #                                                "Two-way" = "twoway")
-            #                                   ) %>%              
-            #                     shinyInput_label_embed(icon("question-circle") %>%
-            #                       bs_embed_tooltip(title = "(a) for One-way, raters randomly sampled for each subject; (b) for Two-way, the same raters are used across across subjects"
-            #                                       )
-            #                                           ),
-            #                     p("")
-            #                             ),
-            #                   wellPanel(
-            #                     h4("5. Select the Type"),
-            #                     p(""),
-            #                     
-            #                     selectizeInput("type", "Select either Agreement or Consistency:", 
-            #                                    choices = c("Agreement" = "agreement", 
-            #                                                "Consistency" = "consistency")
-            #                                   ) %>%                           
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                         bs_embed_tooltip(title = "(a) For agreement, IRR is characterized by agreement in absolute terms across raters; (b) for consistency, IRR is characterised by correlation in scores across raters."
-            #                                         )
-            #                                             ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                            ),
-            #                   wellPanel(
-            #                     h4("6. Select Confidence Intervals"),
-            #                     sliderInput("conf.level", 
-            #                                 "Specify confidence interval level for ICC statistic", 
-            #                                 min = 0.80, max = 0.99, value = 0.95, step = 0.01) %>%
-            #                       shinyInput_label_embed(icon("question-circle") %>%
-            #                         bs_embed_tooltip(title = "95 is a common confidnce interval for this statistic.")
-            #                                             ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
-            #                     p("")
-            #                            ),
-            #                   wellPanel(
-            #                     h4("7. Include your own recommendations"),
-            #                     p(""),
-            #                     
-            #                     textAreaInput("recommendations", "Notes:", 
-            #                                   placeholder = "There are no notes for this report",
-            #                                   height = '150px'),
-            #                     bsTooltip("recommendations",
-            #                               "These notes will be reported at the start of the PDF technical 
-            #                          report. Make any notes you like about the original data or report 
-            #                          itself.",
-            #                               "right",
-            #                               options = list(container = "body")
-            #                     ),
-            #                     
-            #                     shinyjs::disabled(downloadButton("report", "Generate PDF report and 
-            #                                                 spreadsheet")                           # 'report' is the official name of the download button (used in UI, disabled at the start and activated...             
-            #                     )                                                                   # when conditions met in server logic), renamed as "Generate PDF report and spreadsheet'
-            #                   )   # wellPanel
-            #            )       # column
-            #          )         # fluidRow
-            # ),                # IRR tabPanel
+             tabPanel("Inter-Rater Reliability",
+                      fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
+                      tags$style(type="text/css",
+                                 "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                 "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                 " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                                 ),
+                      shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                      tags$h1("Inter-Rater Reliability Analysis",
+                              tags$img(src = "hex5.png", height = 149, width = 135, 
+                                       style = "float:right;margin-top:-18.5px;"
+                                      ),
+                              tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                                               line-height: 1.1; font-size: 60px;
+                                                               color: #FFFFFF;}"
+                                              )
+                                         )
+                             ),
+                      tags$h2("Toward Valid Assessments and Developmental Rubrics",                  # h2 header is the subtitle underneath the h1 header
+                              tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1; font-size: 18pt;
+                                                              color: #FFFFFF;}"
+                                             )
+                                        )
+                             ),
+                      hr(), 
+                      tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
+                              tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
+                                     "Dr Bing Mei (PhD)"
+                                    ),
+                              tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                              line-height: 1.1; font-size: 10pt;
+                                                              color: #FFFFFF;}"
+                                             )
+                                        )
+                              ),
+                      tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
+                              tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
+                                     "Dr Matthew Courtney (PhD)"),
+                              tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
+                                                                     line-height: 1.1; font-size: 10pt;
+                                                                     color: #FFFFFF;}"
+                                             )
+                                        )
+                              ),
+                      fluidRow(
+                        column(11,
+                               IRR_UI("IRR") ,
+                               download_UI("IRR")
+                        )       # column
+                      )         # fluidRow
+             ),                # IRR tabPanel
 
 
 # Version number
@@ -686,8 +607,8 @@ tabPanel("ANOVA",
                                 p(""),
                                 p("[Release Date: 21 November, 2020]"),
                                 p(""),
-                                p("Contributors: Drs Matthew Courtney, Kevin Chang, Zhonghua Zhang, Eric 
-                                  'Bing' Mei, & Luke Rowe")
+                                p("Contributors: Drs Matthew Courtney, Kevin Chang, Eric 
+                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Ms Laila Issayeva")
                                        )
                               )       # column
                              )        # fluidRow
@@ -696,7 +617,7 @@ tabPanel("ANOVA",
 
 # Team -------------------------------------------------------------------------            
             tabPanel("Team",
-                     tabsetPanel(tabPanel("Architect", 
+                     tabsetPanel(tabPanel("Lead Architect", 
                         fluidRow(column(width = 6)),
                         theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
                         tags$style(type="text/css",
@@ -728,11 +649,11 @@ tabPanel("ANOVA",
                         fluidRow(
                           column(11,
                                  wellPanel(
-                                   h4("Architect:"),
+                                   h4("Lead Architect:"),
                                    p(""),
                                    p("Dr Matthew Gordon Ray Courtney (PhD)"),
                                    p(""),
-                                   p("The Architect, Dr Courtney, is the founder of the website and provides expertise in psychometrics, 
+                                   p("The Lead Architect, Dr Courtney, is the founder of the website and provides expertise in psychometrics, 
                                      quantitative research methods, automation of technical reports and outputs, web UI development, and related 
                                      research and communication.")
                                           ),
@@ -846,7 +767,7 @@ tabPanel("ANOVA",
                               )             # End Chief Architect fluid row
                        ),                   # End Chief Architect inner tab panel
                
-               tabPanel("Chief Developer", 
+               tabPanel("Lead Developer", 
                         fluidRow(column(width = 6)),
                         theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
                         tags$style(type="text/css",
@@ -878,11 +799,11 @@ tabPanel("ANOVA",
                         fluidRow(
                           column(11,
                                  wellPanel(
-                                   h4("Chief Programmer:"),
+                                   h4("Lead Developer:"),
                                    p(""),
                                    p("Dr Kevin Chih-Tao Chang (PhD)"),
                                    p(""),
-                                   p("As Chief Programmer, Dr Chang provides expertise in experimental methods, reactive programming, 
+                                   p("As Lead Developer, Dr Chang provides expertise in experimental methods, reactive programming, 
                                    R Shiny software development, IT operations, and software testing.")
                                           ),
                                  wellPanel(
@@ -945,7 +866,7 @@ tabPanel("ANOVA",
                         )             # End Chief Architect fluid row
                ),
                
-               tabPanel("Chief Psychometrician", 
+               tabPanel("Lead Psychometrician", 
                         fluidRow(column(width = 6)),
                         theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
                         tags$style(type="text/css",
@@ -977,67 +898,80 @@ tabPanel("ANOVA",
                         fluidRow(
                           column(11,
                                  wellPanel(
-                                   h4("Chief Psychometrician:"),
+                                   h4("Lead Psychometrician:"),
                                    p(""),
-                                   p("Dr Zhonghua Zhang (PhD)"),
+                                   p("Dr Bing Mei (PhD)"),
                                    p(""),
-                                   p("As Chief Psychometrician, Dr Chang provides expertise in item response theory (IRT), R programming, test equating 
-                                   , and omputational efficiency.")
-                                           ),
+                                   p("As a Contributing Psychometrician, Dr Bing Mei expertise in educational statistics, online education, and R programming.")
+                                    ),
                                  wellPanel(
                                    h4("Qualifications:"),
                                    p(""),
-                                   p("Doctor of Philosophy in Psychology [201X], The University of 
-                                     XXXXXXX, XXXXXXXXX"),
-                                   p(""),                                                     
-                                   p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
-                                     XXXXXXXXX, XXXXXXXXXXX"),
+                                   p("Doctor of Education [2012], The University of Auckland, 2017"),
+                                   p(""),    
+                                   p("Master of Arts [2006], Henan University, 2009"),
+                                   p(""),  
+                                   p("Bachelor of English [1999], Henan University, 2003"),
                                    p("")
                                            ),
                                  wellPanel(
                                    h4("Bio:"),
-                                   p("Dr Zhang is an experienced psychometrician and educational statistician. He is highly skilled in psychometric 
-                                   and educational research, quantitative methods, and R programming."),
+                                   p("Dr Mei is an associate professor from the School of Foreign Languages at Henan University. 
+                                     His research interests include educational statistics, technology-enhanced language learning, 
+                                     technology acceptance, and teacher education. His current research project focuses on the 
+                                     potential use of AR/VR in the educational context."),
                                    p(""),
-                                   p("For his PhD, Dr Zhang"),
-                                   p(""),
-                                   p("After completing his PhD, he spent XXX years...Dr Zhang is an  A list of Dr Chang's publications are provided below:"),
-                                           ),
+                                   p("After completing his PhD, he spent two years working as a project assistant and one year 
+                                     working as a research fellow at the University of Auckland."),
+                                   p("") ),
                                  wellPanel(
                                    h4("ACADEMIC JOURNAL ARTICLES:"),
                                    p(""),
-                                   h4("Psychometrics"),
+                                   p("1. Sun, P. P., & Mei, B. (2020). Modeling preservice Chinese-as-a-second/foreign-language teachers’ 
+                                     adoption of educational technology: A technology acceptance perspective. Computer Assisted 
+                                     Language Learning, 0(0), 1–24. https://doi.org/10.1080/09588221.2020.1750430 (H=45, Q1)"),
                                    p(""),
-                                   p("1. (H = XXX; QX)"),
+                                   p("2. Mei, B. (2019a). Language teacher education and technology: Approaches and practices. 
+                                     Calico Journal, 36(3), 240–242. https://doi.org/10.1558/cj.35737 (H=31, Q1)"),
                                    p(""),
-                                   p("2. (H = XXX; QX)"),
+                                   p("3. Mei, B. (2019b). Preparing preservice EFL teachers for CALL normalisation: A technology 
+                                     acceptance perspective. System, 83, 13–24. https://doi.org/10.1016/j.system.2019.02.011 
+                                     (H = 71, Q1)"),
                                    p(""),
-                                   p("3. (H = XXX; QX)"),
+                                   p("4. Mei, B., & Yang, S. (2019). Nurturing environmental education at the tertiary education level 
+                                     in China: Can mobile augmented reality and gamification help? Sustainability, 11(16), 4292. 
+                                     https://doi.org/10.3390/su11164292 (H=68, Q2)"),
                                    p(""),
-                                   h4("Educational Psychology"),
-                                   p("4. (H = XXX; QX)"),
+                                   p("5. Teo, T., Sang, G., Mei, B., & Hoi, C. K. W. (2019). Investigating pre-service teachers’ 
+                                     acceptance of Web 2.0 technologies in their future teaching: A Chinese perspective. Interactive 
+                                     Learning Environments, 27(4), 530–546. https://doi.org/10.1080/10494820.2018.1489290 (H=38, Q1)"),
                                    p(""),
-                                   p("5. (H = XXX; QX)"),
+                                   p("6. Yang, S., & Mei, B. (2018). Understanding learners’ use of augmented reality in language 
+                                     learning: Insights from a case study. Journal of Education for Teaching, 44(4), 511–513. 
+                                     https://doi.org/10.1080/02607476.2018.1450937 (H=34, Q1)"),
                                    p(""),
-                                   p("6. (H = XXX; QX)"),
+                                   p("7. Yang, S., Mei, B., & Yue, X. (2018). Mobile augmented reality assisted chemical education: 
+                                     Insights from elements 4d. Journal of Chemical Education, 95(6), 1060–1062. 
+                                     https://doi.org/10.1021/acs.jchemed.8b00017(H =77, Q2)"),
                                    p(""),
-                                   h4("Educational Measurement"),
-                                   p("7.  (H = XXX; QX)"),
+                                   p("8. Mei, B., & Brown, G. T. L. (2018). Conducting Online Surveys in China. Social Science 
+                                     Computer Review, 36(6), 721–734. https://doi.org/10.1177/0894439317729340 (H=67, Q1)"),
                                    p(""),
-                                   p("8.  (H = XXX; QX)"),
+                                   p("9. Mei, B., Brown, G. T. L., & Teo, T. (2018). Toward an Understanding of Preservice 
+                                     English as a Foreign Language Teachers’ Acceptance of Computer-Assisted Language 
+                                     Learning 2.0 in the People’s Republic of China. Journal of Educational Computing 
+                                     Research, 56(1), 74–104. https://doi.org/10.1177/0735633117700144 (H=57, Q1)"),
                                    p(""),
-                                   p("9.  (H = XXX; QX)"),
-                                   p(""),
-                                   p("10.  (H = XXX; QX)"),
-                                   p(""),
-                                   p("11.  (H = XXX; QX)"),
+                                   p("10. Mei, B., & May, L. (2018). Reflective renovation: Insights from a collaborative and 
+                                     active learning space project evaluation. Australasian Journal of Educational Technology, 
+                                     34(6). https://doi.org/10.14742/ajet.4476 (H=43, Q1)"),
                                    p("")
-                                 ) # End wellPanel
+                                 )    # End wellPanel
                           )           # End column 11 units wide
-                        )             # End Chief Architect fluid row
+                        )             # End lead Architect fluid row
                        ),
                
-               tabPanel("Psychometrician", 
+               tabPanel("Contributing Psychometrician", 
                         fluidRow(column(width = 6)),
                         theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
                         tags$style(type="text/css",
@@ -1069,19 +1003,20 @@ tabPanel("ANOVA",
                         fluidRow(
                           column(11,
                                  wellPanel(
-                                   h4("Psychometrician"),
+                                   h4("Contributing Psychometrician"),
                                    p(""),
-                                   p("Dr Eric 'Bing' Mei (PhD)"),
+                                   p("Dr Kane Meissel (PhD)"),
                                    p(""),
-                                   p("As a Psychometrician, Dr Mei Chang expertise in educational statistics, automated reporting systems, R programming, 
+                                   p("As a Contributing Psychometrician, Dr Kane Miessel has expertise in educational statistics,
+                                   especially in the application of multi-level models to educational data, R programming, and 
                                    online learning.")
                                           ),
                                  wellPanel(
                                    h4("Qualifications:"),
                                    p(""),
-                                   p("Doctor of Education [201X], The University of Auckland, 201X"),
+                                   p("Doctor of Psychology [2013], The University of Auckland, 201X"),
                                    p(""),               
-                                   p("Master of Education [201X], The University of Auckland, 201X"),
+                                   p("Master of Education [2010], The University of Auckland, 201X"),
                                    p(""), 
                                    p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
                                      XXXXXXXXX, XXXXXXXXXXX"),
@@ -1089,12 +1024,12 @@ tabPanel("ANOVA",
                                           ),
                                  wellPanel(
                                    h4("Bio:"),
-                                   p("Dr Mei is an experienced psychometrician and educational statistician. He has experience providing support to post-graduate 
+                                   p("Dr Meissel is an experienced psychometrician and educational statistician. He has experience providing support to post-graduate 
                                    students looking to manage data and apply multivariate statistics for educational insights."),
                                    p(""),
-                                   p("For his PhD, Dr Mei"),
+                                   p("For his PhD, Dr Meissel..."),
                                    p(""),
-                                   p("After completing his PhD, he spent XXX years...Dr Mei is an  A list of Dr Mei's publications are provided below:"),
+                                   p("After completing his PhD, he spent XXX years...Dr Meissel is an... A list of Dr Mei's publications are provided below:"),
                                            ),
                                  wellPanel(
                                    h4("ACADEMIC JOURNAL ARTICLES:"),
@@ -1221,6 +1156,145 @@ tabPanel("ANOVA",
                           )           # End column 11 units wide
                         )             # End Chief Architect fluid row
                        )                    # End Contributing Psychometrician tabset panel
+               
+               
+               
+               ,
+               
+               tabPanel("Contributing Psychometrician", 
+                        fluidRow(column(width = 6)),
+                        theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
+                        tags$style(type="text/css",
+                                   "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                                   "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                                   " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+                        ),
+                        shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                        tags$h1("Automated Psychometrics",
+                                tags$img(src = "hex5.png", 
+                                         height = 149, 
+                                         width = 135, 
+                                         style = "float:right;margin-top:-18.5px;"
+                                ),
+                                tags$style(HTML("h1{font-family: 'Open Sans'; font-weight: 500;
+                                            line-height: 1.1; font-size: 60px;
+                                            color: #FFFFFF;}"
+                                )
+                                )
+                        ),
+                        tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                                tags$style(HTML("h2{font-family: 'Open Sans'; font-weight: 500;
+                                           line-height: 1.1; font-size: 18pt;
+                                           color: #FFFFFF;}"
+                                )
+                                )
+                        ),
+                        hr(), 
+                        fluidRow(
+                          column(11,
+                                 wellPanel(
+                                   h4("Contributing Psychometrician"),
+                                   p(""),
+                                   p("Ms Laila Issayeva (B.Mathematics, M. Ed)"),
+                                   p(""),
+                                   p("As a Contributing Psychometrician, Ms Laila Issayeva has expertise in item writing, test development, psychometrics, 
+                                     and a developing interest in R programming.")
+                                 ),
+                                 wellPanel(
+                                   h4("Qualifications:"),
+                                   p(""),               
+                                   p("Master of Science in Educational Leadership (focus: School Leadership and 
+                                     Improvement Management) [2017], Nazarbayev University, Kazakhstan"),
+                                   p(""), 
+                                   p("Bachelor of Education (major: Mathematics, minor: Computer Science) [2007], K. 
+                                     Zhubanov Aktobe Regional University, Aktobe, Kazakhstan"),
+                                   p("")
+                                 ),
+                                 wellPanel(
+                                   h4("Bio:"),
+                                   p("Ms Laila Issayeva is an experienced educator with more than 10 years of teaching Mathematics 
+                                   to secondary and high school students, including teaching IGCSE, AS level, and A level. During 
+                                   her teaching time, Laila was instrumental in developing lesson plans, integrated Mathematics 
+                                   subject programs collaboratively with Cambridge Assessment International Education (CAIE, 
+                                   Cambridge, the UK)."),
+                                   p(""),
+                                   p("Ms Issayeva is an Educational Measurement specialist and has good skills at developing 
+                                   assessment tools, processing exams, setting standards, analyzing (CTT&amp;IRT), interpreting, and 
+                                   presenting data (reports, slides). Laila has been overseeing the development and implementation 
+                                   of a national Student Performance Monitoring system for Mathematics in cooperation with the 
+                                   psychometricians from the Institute for Educational Measurement Cito (Cito, Arnhem, the Netherlands) 
+                                   for six years. Now, she spearheads the process of shifting its format from computer-based to 
+                                   computerized adaptive testing (CAT)"),
+                                   p(""),
+                                   p("Laila is actively involved into the process of developing, marking, and grading External Summative 
+                                   Assessment Examinations accredited by CAIE. Recently, she has conceptualized and administered 
+                                   functional literacy tests for Mathematics, Reading, and Sciences nationwide."), 
+                                   p(""),
+                                   p("Within the Master&#39;s program, Laila completed a qualitative study to explore the extent of 
+                                   accessibility and applicability of Student Performance Monitoring reports for Mathematics teachers, 
+                                   and eventually optimized those reports."),
+                                   p(""),
+                                   p("Starting from 2016, Ms Issayeva has taken part in the international annual conferences of AEA-Europe 
+                                   and IAEA and has produced several papers (available on www.researchgate.net) and presentations based on 
+                                   the research projects. She has co-authored several manuals and guidelines for educators to help them 
+                                   develop a valid and reliable student performance monitoring system. A list of Laila Issayeva’s 
+                                   research outputs is provided below:"),
+                                   p("")
+                                 ),
+                                 wellPanel(
+                                   h4("CONFERENCE PAPERS AND PRESENTATIONS:"),
+                                   p(""),
+                                   h4("Psychometrics"),
+                                   p(""),
+                                   p("Issayeva L., Rakhymbayeva Z., &amp; Temirtassov, D. (2018, October 25). The unification of a 
+                                   student ability scale: first results of the psychometric research study [Presentation]. The 10th 
+                                   NIS International Research-to-Practice Conference “Next Generation Schools”, Astana, Kazakhstan. 
+                                   https://www.researchgate.net/publication/340816106"),
+                                   p(""),
+                                   p("Issayeva L., Dieteren, N., &amp; Crans, S. (2018, October 15). Curriculum sampling as a strategy 
+                                   employed for a student performance monitoring system for Mathematics at Nazarbayev Intellectual 
+                                   Schools [Conference paper]. The 44 th International Association for Educational Assessment 
+                                   Conference “Assessment and Big Data”, Oxford, the UK. https://www.researchgate.net/publication/328293279"),
+                                   p(""),
+                                   p("Issayeva L., Dieteren, N., &amp; Crans, S. (2017, November 9). Assessment tool validation research 
+                                   at Nazarbayev Intellectual Schools: student performance monitoring system for Mathematics [Conference paper]. 
+                                   The 18th Association for Educational Assessment in Europe Conference 'Assessment cultures in a globalised world', 
+                                   Prague, Czech Republic. https://www.researchgate.net/publication/335033501"),
+                                   p(""),
+                                   p("Issayeva, L., &amp; Temirtassov, D. (2017, October 26). Current approaches to the external assessment 
+                                   of student achievement in Mathematics at Nazarbayev Intellectual Schools [Presentation]. The 9 th NIS 
+                                   International Research-to-Practice Conference “Values, Wellbeing and Innovation for the Future of 
+                                   Education”, Astana, Kazakhstan. https://www.researchgate.net/publication/340931566"),
+                                   p(""),
+                                   p("Issayeva, L., Temirtassov, D., Dieteren, N., Crans, S., &amp; Kamphuis, F. (2016, November 5). 
+                                   Student performance monitoring for Mathematics as an effective instrument to adjust individual 
+                                   learning paths for students and to enhance didactic tools for teachers at Nazarbayev Intellectual 
+                                   Schools [Conference paper]. The 17 th Association for Educational Assessment in Europe Conference 
+                                   'Social and Political underpinnings of educational assessment: Past, present and future', Limassol, 
+                                   Cyprus. https://www.researchgate.net/publication/340931730"),
+                                   p(""),
+                                   h4("Academic Publications"),
+                                   p(""),
+                                   p("Issayeva, L., Temirtassov, D., Tursynova, L., &amp; Mozhayeva, O. (2019). Guidelines for item 
+                                   development to conduct Student Performance Monitoring for Mathematics at Intellectual Schools. 
+                                   Unpublished manuscript. ISBN 978-601-328-598-6. https://www.researchgate.net/publication/335160752"),
+                                   p(""),
+                                   p("Issayeva, L., Temirtassov, D., Tursynova, L., &amp; Mozhayeva, O. (2019). Guidelines for using 
+                                   reports upon Student Performance Monitoring at Intellectual Schools in teaching practice. 
+                                   Unpublished manuscript. ISBN 978-601-328-597-9. https://www.researchgate.net/publication/335161015"),
+                                   p(""),
+                                   p("Mozhayeva, O., Tursynova, L., Temirtassov, D., &amp; Issayeva, L. (2019). Conceptual framework 
+                                   of a Student Performance Monitoring system at Intellectual Schools. Unpublished manuscript. 
+                                   ISBN 978-601-328-596-2. https://www.researchgate.net/publication/335160822"),
+                                   p(""),
+                                   p("Mozhayeva, O., Tursynova, L., Temirtassov, D., Issayeva, L., &amp; Bissenov, Y. (2019). Instructions 
+                                   for organizing and conducting a Student Performance Monitoring for Mathematics at Intellectual Schools. 
+                                   Unpublished manuscript. ISBN 978-601-328-599-3. https://www.researchgate.net/publication/335160711"),
+                                   p("")
+                                 ) # End wellPanel
+                          )           # End column 11 units wide
+                        )             # End Chief Architect fluid row
+               )                    # End Contributing Psychometrician tabset panel
                ),                           # End embedded tabset panel
    ),                                       # End main Team tabset
 
@@ -1271,8 +1345,8 @@ tabPanel("ANOVA",
                                 p(""),
                                 p("[Release Date: 21 November, 2020]"),
                                 p(""),
-                                p("Contributors: Drs Matthew Courtney, Kevin Chang, Zhonghua Zhang, Eric 
-                                  'Bing' Mei, & Luke Rowe")
+                                p("Contributors: Drs Matthew Courtney, Kevin Chang, Eric 
+                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Laila Issayeva")
                                        )
                              )       # column
                             )        # fluidRow
