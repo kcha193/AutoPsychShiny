@@ -97,7 +97,7 @@ if (params$rendered_by_shiny){
 
 ```{r CHUNK2 run model, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
 #### Run model ####
-ICC <- icc(datafile, model = chosenmodel, type = chosentype, unit = chosenunit, conf.level = chosenCI)
+ICC <- irr::icc(datafile, model = chosenmodel, type = chosentype, unit = chosenunit, conf.level = chosenCI)
 
 #### Extract rater number ####                                                  # Choosing four #, results in drop-down arrow to left of code
 Raters <- ncol(datafile)
@@ -246,8 +246,8 @@ if (params$rendered_by_shiny){
 
   
 ```{r CHUNK3, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
-kable(ICC.table, "latex", booktabs=T, align = 'l', caption="Interpreting the ICC Value") %>%
-  kable_styling(latex_options = c("striped"), font_size = 11)
+knitr::kable(ICC.table, "latex", booktabs=T, align = 'l', caption="Interpreting the ICC Value") %>%
+  kableExtra::kable_styling(latex_options = c("striped"), font_size = 11)
 
 if (params$rendered_by_shiny){
     shiny::setProgress(1.00)

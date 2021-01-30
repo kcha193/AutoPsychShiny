@@ -90,7 +90,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Lead Psychometrician:",                                               # h2 header is the subtitle underneath the h1 header
+         tags$h3("Lead Psychometrician:",                                       # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
                         "Dr Bing Mei (PhD)"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
@@ -99,7 +99,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Contributing Psychometrician:",                                               # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Psychometrician:",                               # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:k.meissel@auckland.ac.nz?Subject=Shiny%20Help",
                         "Dr Kane Meissel (PhD)"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
@@ -108,7 +108,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Contributing Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Psychometrician:",                               # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
                         "Dr Luke Rowe (PhD)"
                  ),
@@ -118,7 +118,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Contributing Mathematician:",                                        # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Mathematician:",                                 # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:laila.educator@gmail.com?Subject=Shiny%20Help",
                         "Ms Laila Issayeva (MEd)"
                  ),
@@ -1409,6 +1409,8 @@ server <- function(input, output, session){
   download_Server("FACETS", zip_name = "pyschometric_analysis_FACETS.zip", type = "FACETS") # FACETS
 
   download_Server("EQUATE", zip_name = "pyschometric_analysis_EQUATE.zip", type = "EQUATE") # EQUATE
+  
+  download_Server("IRR", zip_name = "pyschometric_analysis_IRR.zip", type = "IRR") # EQUATE
 
 }  # server function wrapper
 
