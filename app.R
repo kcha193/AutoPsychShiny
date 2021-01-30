@@ -99,13 +99,12 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Contributing Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Psychometrician:",                                               # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:k.meissel@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Kane Meissel (PhD)"
-                 ),
+                        "Dr Kane Meissel (PhD)"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
-                                                              line-height: 1.1; font-size: 10pt;
-                                                              color: #FFFFFF;}"
+                                                                    line-height: 1.1; font-size: 10pt;
+                                                                    color: #FFFFFF;}"
                  )
                  )
          ),
