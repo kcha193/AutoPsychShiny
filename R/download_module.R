@@ -72,7 +72,7 @@ download_Server <- function(id,
             
             # Now we can get our inputs and use them in the .Rmd
             
-            if(type == "MML"){
+            if(type %in% c("MML", "FACETS")){
               params <- list(datapath = input$input_file$datapath,                # Set up parameters to pass to Rmd document
                              recommendations = input$recommendations,
                              construct = input$construct,
