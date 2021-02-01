@@ -364,7 +364,7 @@ full.rep.time <- end.time - start.time
 full.rep.time <- round(as.numeric(full.rep.time), 3)
 
 if (params$rendered_by_shiny){
-    shiny::setProgress(0.100)
+    shiny::setProgress(0.90)
 }
 ```
 

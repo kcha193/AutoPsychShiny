@@ -145,14 +145,16 @@ if(chosentype =="consistency"){
 
 #### Extract unit information for ICC test ####
 if(chosenunit == "single"){
-      unitinfo <- "The unit of analysis in this instance was each individual score 
-      assigned by the raters to each student. No aggregation of item scores was 
-      undertaken prior to assigning each score to each student."
+      unitinfo <- "The unit of analysis in this instance was 'single'. This 
+      means that the ICC index pertains to the reliability associated with one typical 
+      rater among the group of raters."
       unitinfodetail<- "single"
 } else{
-      unitinfo <- "The unit of analysis in this instance was the mean of several 
-      ratings. In this instance, the scores assigned to each student was derived 
-      from the mean of several ratings (or the sum of several scoring criteria)."
+      unitinfo <- "The unit of analysis in this instance was the 'average'. This means 
+      that the ICC index pertains to the reliability associated with the average 
+      student scores derived from the group of raters. The ICC index in this case is 
+      always higher than the This is always higher than the one derived from the 
+      single unit of analysis."
       unitinfodetail<- "average"}  
 
 #### Extract CI results ####

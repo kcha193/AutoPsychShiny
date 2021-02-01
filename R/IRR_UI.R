@@ -64,7 +64,8 @@ IRR_UI <- function(id) {
                                  "Two-way" = "twoway")
       ) %>%              
         shinyInput_label_embed(icon("question-circle") %>%
-                                 bs_embed_tooltip(title = "(a) for One-way, raters randomly sampled for each subject; (b) for Two-way, the same raters are used across across subjects"
+                                 bs_embed_tooltip(title = "(a) for One-way, raters randomly sampled for each subject; (b) for Two-way, the same 
+                                                  raters are used across across subjects"
                                  )
         ),
       p("")
@@ -78,7 +79,8 @@ IRR_UI <- function(id) {
                                  "Consistency" = "consistency")
       ) %>%                           
         shinyInput_label_embed(icon("question-circle") %>%
-                                 bs_embed_tooltip(title = "(a) For agreement, IRR is characterized by agreement in absolute terms across raters; (b) for consistency, IRR is characterised by correlation in scores across raters."
+                                 bs_embed_tooltip(title = "(a) For agreement, IRR is characterized by agreement in absolute terms across raters; 
+                                                  (b) for consistency, IRR is characterised by correlation in scores across raters."
                                  )
         ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
     ),
@@ -86,12 +88,14 @@ IRR_UI <- function(id) {
       h4("6. Select the Unit"),
       p(""),
       
-      selectizeInput(ns("unit"), "Select either Agreement or Consistency:", 
+      selectizeInput(ns("unit"), "Select either Single or Average:", 
                      choices = c("Single" = "single", 
                                  "Average" = "average")
       ) %>%                           
         shinyInput_label_embed(icon("question-circle") %>%
-                                 bs_embed_tooltip(title = "(a) For single, each student score is not an aggregate of other scores; (b) for average, each student score is an aggregate of several scores."
+                                 bs_embed_tooltip(title = "(a) For single, the ICC index pertains to the reliability for the ratings for one 
+                                                  typical rater among the group of raters; (b) for average, the ICC pertains to the reliability 
+                                                  for the average student scores derived from the group of raters (always higher)."
                                  )
         ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
     ),

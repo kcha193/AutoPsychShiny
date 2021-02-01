@@ -696,7 +696,7 @@ if (params$rendered_by_shiny){
 
 
 ```{r CHUNK21a_Facets_analysis, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
-# Establish facet formula
+# Establish facet formula #* note TAM::tam.mml Example 8, base formula
 facet.name <- colnames(facet)
 string.formula <- paste("~item*", facet.name, sep="")
 formulaA <- as.formula(string.formula)
@@ -1015,12 +1015,12 @@ Outfit MNSQ (mean square) person fit statistics are also generated for the purpo
 Many facets Rasch analysis can be undertaken to explore the effects of student group membership on item difficulty. This form of analysis can be used to identify items that might be bias toward certain student groups. Items that appear especially bias may be flagged for removal from the test or instrument. The many-facets Rasch model employed in this report extends Equation 4 to include a student group ($g$) by item ($i$) interaction term and is presented in Equation 9.  
  
 \begin{equation}
-P(x_{ni}=1|\theta_n,\delta_i)=\frac{e^{a(\theta_n-(\delta_i + D_{gi}))}}{1+e^{a(\theta_n-(\delta_i + D_{gi}))}}
+P(x_{ni}=1|\theta_n,\delta_i)=\frac{e^{(\theta_n-(\delta_i + G_{g} + D_{gi}))}}{1+e^{(\theta_n-(\delta_i + G_{g} + D_{gi}))}}
 \end{equation}  
 
 Where partial credit scoring applied, the same $D_{gi}$ element can be included to the right of the $\delta_i$ element in the partial credit model (Equation 5). 
   
-Basically, Equation 9 specifies that the probability of success on each item depends on an adjustment to the difficulty of the item as a consequence of the membership of students in a group. If, for example, an item favours male students, the $D_{gi}$ element (reflecting membership to the male student group) will be negative, reflecting the fact that the item is easier for males. Conversely, a negative value for the male group membership would also reflect item bias against female counterparts. It should be noted that DIF is not associated with overall performance differences between groups as the sum of $D_{gi}$ across all elements is zero. Further, if the effect of male group membership on an item is $D_{gi}=-.2$, then, conversely, the effect of female group membership on the same items would be $D_{gi}=.2$ making the overall difference between groups, 0.4 logits.  
+Basically, Equation 9 specifies that the probability of success on each item depends on an overall adjustment to the difficulty of the item as a consequence of the membership of students in a group ($G_{g}$). In addition to the overall adjustment to item difficulty as a conseuqnece of group membership, another adjustment is made, respectively, for each item, $D_{gi}$. If, for example, an item favours male students, the $D_{gi}$ element (reflecting membership to the male student group) will be negative, reflecting the fact that the item is easier for males. Conversely, a negative value for the male group membership would also reflect item bias against female counterparts. It should be noted that DIF is not associated with overall performance differences between groups as the sum of $D_{gi}$ across all elements is zero. Further, if the effect of male group membership on an item is $D_{gi}=-.2$, then, conversely, the effect of female group membership on the same items would be $D_{gi}=.2$ making the overall difference between groups, 0.4 logits.  
   
 In addition to the reporting of $D_{gi}$ for each item, with negative values suggesitng that the item favours the focal group, standard errors for each $D_{gi}$ are also given. By dividing the $D_{gi}$ estimate by its standard error, we are able to generate a z-statistic. The z-statistic can be transformed to a p value and hence a level of statistical significance can be determined for each DIF estimate. Though, statistical significance is often reached when sample sizes are very large so practical significance is also important. An overall difference in logits of 0.5 is commonly used as a cut-off value (Wu, Tam, & Jen, p. 215). There are different appraoches to dealing with items that exhibit DIF. Items exhibiting DIF may be removed, split as items for different groups, and left in the test (see Wu, Tam, & Jen, pp. 217-223 for a complete discussion).  
   
