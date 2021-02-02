@@ -12,7 +12,7 @@ download_UI <- function(id){
 
 download_Server <- function(id, 
                             zip_name,
-                            type = c("MML", "FACETS", "EQUATE")) {
+                            type = c("MML", "FACETS", "EQUATE", "IRR")) {
   
   type <- match.arg(type)
   
@@ -27,7 +27,7 @@ download_Server <- function(id,
       output$report <- downloadHandler(                                         # This function makes the download     
         filename = zip_name,                                                    # The zip file created
         content = function(file){                                               # download handler is the main part of the application to make the RmD file. 
-          withProgress(message = 'R Shiny Boosted Rendering',{                  # Set a progress bar because it can take some time
+          withProgress(message = 'Rendering report...',{                  # Set a progress bar because it can take some time
                      
                          
             tempdir <- tempdir()                                                # Copy the report file to a temporary directory before processing it, in case we don't have write permissions to the current working dir (which can happen when deployed).
@@ -56,13 +56,23 @@ download_Server <- function(id,
               
               excel_name <- "EQUATE_tables.xlsx"
               pdf_name <- "EQUATE_report.pdf"
+            } else if(type == "IRR"){
+              tempReport <- file.path(tempdir, "IRR.Rmd")                    # Create the filepath where the tempory rmd file resides
+              file.copy("Rmd/IRR.Rmd", tempReport, overwrite = TRUE)         # Copy the rmd file from the scripts folder to the path above
+              
+              pdf_name <- "IRR_report.pdf"
+              
             }
 
-            node.sequence <- as.numeric(strsplit(input$node.sequence,",")[[1]]) # The tempdir constantly changes at shinyapps.io, that is why we have to repeat this process every time.
+            
+            if(type != "IRR"){
+              node.sequence <- as.numeric(strsplit(input$node.sequence,",")[[1]]) # The tempdir constantly changes at shinyapps.io, that is why we have to repeat this process every time.
+            }
+           
             
             # Now we can get our inputs and use them in the .Rmd
             
-            if(type == "MML"){
+            if(type %in% c("MML", "FACETS")){
               params <- list(datapath = input$input_file$datapath,                # Set up parameters to pass to Rmd document
                              recommendations = input$recommendations,
                              construct = input$construct,
@@ -112,10 +122,24 @@ download_Server <- function(id,
                               rendered_by_shiny = TRUE,                            # we need rendered_by_shiny to update the progress bar
                               excel_name = excel_name
               )
+            } 
+            
+             # Different set of parameters for IRR tab
+            if(type == "IRR"){
+              
+              params <- list(datapath = input$input_file$datapath,  
+                             recommendations = input$recommendations,
+                             construct = input$construct,
+                             population = input$population,
+                             model = input$model,
+                             type = input$type,
+                             unit = input$unit,
+                             conf.level = input$conf.level,
+                             rendered_by_shiny = TRUE                          # we need rendered_by_shiny to update the progress bar
+              )
             }            
             
-
-            
+  
             file1 <- file.path(tempdir, pdf_name)   
             # Knit the document, passing in the `params` list, and eval it in a child of the global environment (this isolates the code in the document from the code in this app).
             rmarkdown::render(tempReport,
@@ -124,7 +148,11 @@ download_Server <- function(id,
                               envir = new.env(parent = globalenv())
             )                                                            # file1 is the path of the PDF output
             
-            file2 <- file.path(tempdir, excel_name)                   # file2 is the path of the xlsx output coming from the markdown
+            if(type != "IRR"){
+              file2 <- file.path(tempdir, excel_name)                   # file2 is the path of the xlsx output coming from the markdown
+            } else {
+              file2 <- NULL
+            }
             
             file_1_and_2 <- c(file1, file2)                              # combine all the files to zip them
             

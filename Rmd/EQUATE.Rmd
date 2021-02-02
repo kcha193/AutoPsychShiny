@@ -293,7 +293,7 @@ The equating error provides an indication of the amount of uncertainty caused by
 The equating error was $\varepsilon$ = `r se.equate` logits.  
  
 ## 4. Final Fixed Equating Procedure 
-Having undertaken the item difficulty invariance testing in Chapters 2 and 3, this section reports on the fixed equating procedure run on the item-response data from Test Form B. After fixing the link item difficulty estimates in Test Form B to those estimated in Test Form A, the mean item difficulty in Test Form B was `r avg.item.diff` (SD = `r sd.item.diff`). The mean person ability for Test Form B was `r avg.person.diff` (SD = `r sd.person.diff`). Figure 2 provides a density plot for student ability ($\theta$) of the two groups who sat the respective test forms.  
+Having undertaken the item difficulty invariance testing in Chapters 2 and 3, this section reports on the fixed equating procedure run on the item-response data from Test Form B. After fixing the link item difficulty estimates in Test Form B to those estimated in Test Form A, the mean item difficulty in Test Form B was `r avg.item.diff` (SD = `r sd.item.diff`). The mean person ability for Test Form B was `r avg.person.diff` (SD = `r sd.person.diff`). Figure 2 provides a density plot for student ability ($\vartheta$) of the two groups who sat the respective test forms.  
   
 \vspace{5mm} 
   
@@ -364,7 +364,7 @@ full.rep.time <- end.time - start.time
 full.rep.time <- round(as.numeric(full.rep.time), 3)
 
 if (params$rendered_by_shiny){
-    shiny::setProgress(0.100)
+    shiny::setProgress(0.90)
 }
 ```
 

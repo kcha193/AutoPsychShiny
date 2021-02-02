@@ -1,0 +1,286 @@
+---
+title:  | 
+  |
+  | Auto-Psych R Shiny Tool Output
+  |
+  |
+  |
+  |
+  |
+  |
+  | 
+  | Automated Psychometric Analysis
+  | Inter-Rater Reliability [IRR] Report
+  | 
+  |
+  |
+  | 
+  | Technical Report, version IRR_ICC_0.1.0
+  |
+  |
+  | 
+  |
+  |
+  | 
+  | 
+author:  | 
+  | Courtney, M. G. R., Chang, K. C-T., Mei, B., Meissel, K., & Rowe, L. & Issayeva, L. (20XX).
+  | autopsych: A Novel Shiny Tool for the Validation and Psychometric 
+  | Analysis of Assessment Data. Journal of Xxxxxxxx Xxxxxxxxx, X(X). doi. 
+  | XXXXXXXXXX/XXXXXXX
+
+output: pdf_document
+includes:
+      in_header: \usepackage{longtable}
+
+date: "`r format(Sys.time(), 'Report produced: %B %d, %Y, %H:%M:%OS')`" 
+ 
+params:
+  datapath: NA
+  recommendations: NA
+  construct: NA
+  population: NA
+  model: NA
+  type: NA
+  unit: NA
+  conf.level: NA
+  rendered_by_shiny: FALSE
+ 
+header-includes:
+- \usepackage{longtable}
+- \usepackage{booktabs}
+- \usepackage{colortbl}
+  
+---
+  
+\fontfamily{cmss}
+\fontsize{14}{12}
+\fontseries{b}
+\selectfont
+
+\newpage
+
+\setcounter{tocdepth}{4}
+\tableofcontents  
+
+\newpage  
+
+```{r CHUNK1 Input parameters, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
+#### 1. Initial start time and data ####
+start.time <- Sys.time()
+datafile <- read.csv(params$datapath)
+
+#### 2. Report settings ####
+Recommendations <- params$recommendations
+test.topic <- params$construct
+Population <- params$population
+chosenmodel <- params$model
+chosentype <- params$type
+chosenunit <- params$unit
+chosenCI <- params$conf.level 
+
+#### 3. Adjust placeholders (blank strings) for actual relevant string objects
+if(test.topic == ""){
+  test.topic <- "Test Topic"
+}
+
+if(Population == ""){
+  Population <- "Students"
+}
+
+#### 4. Give rendering progress in UI to communicate with user throughout report ####
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.01)
+}
+```
+  
+
+```{r CHUNK2 run model, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
+#### Run model ####
+ICC <- irr::icc(datafile, model = chosenmodel, type = chosentype, unit = chosenunit, conf.level = chosenCI)
+
+#### Extract CI results ####
+ICC.conflevel <- paste(ICC$conf.level*100, "%", sep="")
+ICC.value <- round(ICC$value, 2)
+ICC.lbound <- round(ICC$lbound, 3)
+ICC.ubound <- round(ICC$ubound, 3)
+
+#### Extract rater number ####                                                  # Choosing four #, results in drop-down arrow to left of code
+Raters <- ncol(datafile)
+
+#### Extract subject number ####
+Observation <- nrow(datafile)
+
+#### Extract model information for ICC test ####
+if(chosenmodel == "oneway"){
+      modelinfo <- "This inter-rater reliability test makes the assumption that 
+      the same raters (i.e., known judges) are used in each instance to assess 
+      student performance. This means that the coloumns in the data have meaning 
+      and only the students could be considered 'random effects'. To account for 
+      this goal in the icc function, the 'oneway' model argument is used."
+      modelinfodetail <- "one-way model"
+} else{
+      modelinfo <- "This inter-rater reliability test makes the assumption that 
+      different raters (i.e., judges) are used in each instance to assess 
+      student performance. This means that the coloumns in the data have no meaning 
+      as the raters are chosen at random. Therefore, both the students and the raters 
+      could be considered random effects in the model. To account for this goal in 
+      the icc function, the 'twoway' model argument is used."
+      modelinfodetail <- "two-way model"}
+
+#### Extract type information for ICC test ####
+if(chosentype =="consistency"){
+      typeinfo <- "In this test of inter-rater reliability, the consistency of the 
+      ratings for each student was of interest. For example, if Rater 1 rates three 
+      students 2, 3, 4, respectively, then Rater 2 rates the same three students, 
+      3, 4, 5, then inter-rater reliability would be considered high. in this instance, 
+      differences in the mean scores of identifiable judges is not of interest. 
+      To account for this goal in the icc function, the 'consistency' type argument 
+      is used."
+      typeinfodetail <- "consistency"
+} else{
+      typeinfo <- "In this test of inter-rater reliability, the overall agreement 
+      is of specific interest. For example, if Rater 1 rates three students, 2, 3, 4,
+      respectively, then Rater 2 rates the same three students 3, 4, 5, then, 
+      although students are rated in a consistently ordered manner, the mean ratings 
+      are different suggestive of some systemic leniency/harshness. Because the level 
+      of overall agreement is of interest here, the analysis takes account of this. 
+      To account for this goal in the icc function, the 'agreement' type argument 
+      is used."
+      typeinfodetail <- "agreement"}                                                              
+
+#### Extract unit information for ICC test ####
+if(chosenunit == "single"){
+      unitinfo <- "The unit of analysis in this instance was 'single'. This 
+      means that the ICC index pertains to the reliability associated with one typical 
+      rater among the group of raters."
+      unitinfodetail<- "single"
+} else{
+      unitinfo <- "The unit of analysis in this instance was the 'average'. This means 
+      that the ICC index pertains to the reliability associated with the average 
+      student scores derived from the group of raters. The ICC index in this case is 
+      always higher than the This is always higher than the one derived from the 
+      single unit of analysis."
+      unitinfodetail<- "average"}  
+
+if (ICC.value < .40){
+  ICC.valuereport <- "The ICC value in this instance was less than .40, indicating poor agreement"
+  }else if (ICC.value >=.40 && ICC.value <=.59){
+    ICC.valuereport <- "The ICC value in this instance was between .40 and .59, indicating fair/moderate agreement"
+    } else if (ICC.value >=.60 && ICC.value <=.75){
+    ICC.valuereport <- "The ICC value in this instance was between .60 and .75, indicating good aggreement"
+    }else{ICC.valuereport <- "The ICC value in this instance was between .75 and 1.0, indicating excellent eagreement"} 
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.33)
+}
+```
+
+\newpage
+
+# INFORMATION PAGE
+This is an automatically-generated psychometric technical report based on the student-rater data and model arguments provided. 
+The report includes a description of the general methodology used, descriptive statistics of the data, and a summary of key results. To cite this tool, use: 
+   
+   Courtney, M. G. R., Chang, K. C-T., Mei, B., Meissel, K., Rowe, L., & Issayeva, L. (20XX). autopsych: a novel shiny app for the psychometric analysis and scoring of assessment and survey data. The X Journal.
+ 
+The main author would like to thank Drs Zhang, Wu, Wilson, McGaw, and Nguyen for their support. This utility can be considered a public good. 
+  
+  Github repository: XXXXXXXXXXX
+  
+\newpage 
+ 
+# TECHNICAL SUMMARY 
+This is a summary of the psychometric technical report which examines the inter-rater reliabilty of the scores assigned by the `r Raters` raters for the `r Observation` students pertaining to the topic, `r test.topic`. The focal group (students) of the analysis were `r Population`. The analysis leans on the $irr$ package (Gamer, Lemon, Fellows, & Singh, 2019). 
+
+An intra-class correlation (ICC) analysis was undertaken on the rater-student response data provided. The analysis was undertaken to assess the degree to which the raters of the students were consistent for scoring the students. Consistent ratings would suggest that the tool was potentially useful for measuring the trait of interest, in this instance, `r test.topic`.  
+
+The intra-class correlation statistic was estimated using the following assumptions: model = `r modelinfodetail`, type = `r typeinfodetail`, unit = `r unitinfodetail` with the confidence level of the interval set to `r ICC.conflevel` (McGraw & Wong, 1996). The estimated ICC value is `r ICC.value`. `r ICC.valuereport` (Hallgren,2012).  
+  
+# 1. ICC Model Specifications
+## 1.1 ICC General Methodology
+The intra-class correlation (ICC) estimate is a widely used reliability index for testing inter-rater reliability (IRR) for ordinal interval and ratio variables. The ICC statistic usually ranges between 0 and 1 (though $-\infty$ is possible, highly implausible!). The ICC statistic is calculated for (a) fully crossed designs where each student has a rating from a rater and (b) where all students are rated by multiple raters (Table 1, where both a and b met, see top left quadrant).  
+  
+# Recommendations 
+`r Recommendations`
+  
+  
+\newpage
+Table 1. Four Types of Rater Designs  
+  
+|  | All students rated by multiple raters |  |  |  | Subset of students rated by multiple raters |  |  |  |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Design  fully  crossed |  | Rater A | Rater B | Rater C |  | Rater A | Rater B | Rater C |
+|  | Student 1 | X | X | X | Student 1 | X | X | X |
+|  | Student 2 | X | X | X | Student 2 | X |  |  |
+|  | Student 3 | X | X | X | Student 3 | X | X | X |
+|  | Student 4 | X | X | X | Student 4 |  | X |  |
+|  |  | Rater A | Rater B | Rater C |  | Rater A | Rater B | Rater C |
+| Design  not  fully  crossed | Student 1 |  | X | X | Student 1 | X | X |  |
+|  | Student 2 | X |  | X | Student 2 | X |  |  |
+|  | Student 3 |  | X | X | Student 3 |  | X | X |
+|  | Student 4 | X | X |  | Student 4 |  | X |  |  
+  
+Where designs are not fully crossed (and where only a subset of students are rated by all raters), other inter-rater reliability statistics are used (e.g., Krippendorff's $\alpha$; Krippendorff, 1980). However, before undertaking the ICC procedure, it is necessary for researchers to choose the appropriate form of ICC for their analyses. Thereafter, selection of the correct ICC statistic is determined by considering the ICC model, model type, and unit:
+  
+First, a model should be specified on the basis of the way raters are selected for the study. If each student is rated by a different raters who is chosen at random, one should choose a one-way model. Otherwise, a two-way model is chosen when each student is rated by the same set of known raters (who happen to be randomly chosen from a broader population of raters, or, happen to be chosen specifically for the task at hand).  
+  
+Second, the researcher should specify the ICC model type (i.e., "consistency" or "agreement"). If one is interested in whether different raters assign the exact same score to the same subject, "agreement" should be specified. Conversely, if one is interested in whether raters’ scores to the same group of subjects in the same 'order', "consistency" should be specified. Note that in a "oneway" model (where each student is rated by a rater at random), "consistency" remains the only option (in this instance, levels of absolute agreement between known raters cannot be calculated).  
+  
+Third, it is necessary to set the unit (or, "form") of analysis for the ICC statistic. If the ultimate score that the rater assigned to student is derived from several items, then "average" should be chosen. However, if the score is not the result of an average and represents a single rater score, "single is specified.  
+  
+In addition to the model specification, one can select the level of confidence for the ICC value itself. If one chooses 95% (which is common), then the upper and lower 95% confidence interval can be specified. 
+
+Various rules-of-thumb exist for the interpretation of the ICC statistic. For this report, we use the recommendations provided by Hallgren (2012) provided in Table 2.  
+  
+
+```{r CHUNK2, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+ICC.interpret.desc <- c("Excellent","Good","Acceptable","Poor")
+ICC.interpret.values <- c("0.75-1.00","0.60-0.74","0.40-0.59","0.00-0.39")
+ICC.table <- cbind(ICC.interpret.desc, ICC.interpret.values)
+ICC.table <- as.data.frame(ICC.table)
+colnames(ICC.table) <- c("ICC Statistic", "ICC value")
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(0.66)
+}
+```
+
+  
+```{r CHUNK3, echo=FALSE, fig.height=7, fig.width=10, message=TRUE, warning=FALSE}
+knitr::kable(ICC.table, "latex", booktabs=T, align = 'l', caption="Interpreting the ICC Value") %>%
+  kableExtra::kable_styling(latex_options = c("striped"), font_size = 11)
+
+if (params$rendered_by_shiny){
+    shiny::setProgress(1.00)
+}
+
+finish.time <- Sys.time()   
+total.process.time <- round(finish.time - start.time, 2)
+```
+
+# 2. Current ICC Procedures  
+The procedures used to estimate the ICC statistic for the ratings for the `r test.topic` topic were as follows:  
+  
+## 2.1 ICC Model  
+`r typeinfo`  
+ 
+## 2.2 ICC Type 
+`r typeinfo` 
+
+## 2.3 ICC Unit of Interest 
+`r unitinfo` 
+
+## 2.4 ICC Confidence Intervals  
+The ICC test `r ICC.conflevel` confidence interval ranges between `r ICC.lbound` and `r ICC.ubound`, meaning that there is `r ICC.conflevel` chance that the true ICC value lands on any point between `r ICC.lbound` and `r ICC.ubound`. 
+  
+This analysis took `r total.process.time` seconds to complete.  
+  
+# 3. REFERENCES  
+Gamer, M., Lemon, J., Fellows, I, & Singh, P. (2019). irr: Various coefficients of interrater reliability and agreement. R package version 0.84.1. https://CRAN.R-project.org/package=irr  
+  
+Hallgren, K. A. (2012). Computing Inter-Rater Reliability for Observational Data: An Overview and Tutorial. Tutorials in Quantitative Methods for Psychology, 8(1), 23–34. https://doi.org/10.20982/tqmp.08.1.p023  
+  
+Krippendorff, K. (1980). Content analysis: An introduction to its methodology. Beverly Hills, CA: Sage.  
+  
+McGraw, K.O., & Wong, S.P. (1996), Forming inferences about some intraclass correlation coefficients. Psychological Methods, 1, 30-46.  

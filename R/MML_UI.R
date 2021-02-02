@@ -22,10 +22,7 @@ MML_UI <- function(id) {
        The analysis uses a specialized scoring algorithm that places estimates 
        of student ability and item difficulty on the same scale. This enables 
        educators to identify sets of questions and associated skills that students 
-       might be ready to tackle with additional support. Analysts using this tool 
-       (as opposed to the JML tool) will be primarily interested in generalizing 
-       the results of the analysis to the broader population from which the sample 
-         students were drawn."),
+       might be ready to tackle with additional support."),
        p("")
               ),
     wellPanel(
