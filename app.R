@@ -1,7 +1,7 @@
 # Kevin to give review of version number below:
 # It's like a global variable that makes changes throughout trail tabs
 
-version_number <- "0.1.0"
+version_number <- "0.2.0"
 
 # Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
 autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis", 
