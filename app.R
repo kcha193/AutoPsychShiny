@@ -72,9 +72,9 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
          ),
          hr(),
-         tags$h3("Lead Architect:",                                                     # h2 header is the subtitle underneath the h1 header
+         tags$h3("Lead Architect: Dr Matthew Courtney (PhD)",                                                     # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
-                        "Dr Matthew Courtney (PhD): matthew.courtney@nu.edu.kz"
+                        "matthew.courtney@nu.edu.kz"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
@@ -82,9 +82,9 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Lead Developer:",                                                    # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
-                        "Dr Kevin Chang (PhD): kevin.ct.chang@gmail.com"
+         tags$h3("Lead Developer: Dr Kevin Chang (PhD)",                                                    # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:kcha193@aucklanduni.ac.nz?Subject=Shiny%20Help",
+                        "kcha193@aucklanduni.ac.nz"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
@@ -92,27 +92,27 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Lead Psychometrician:",                                       # h2 header is the subtitle underneath the h1 header
+         tags$h3("Lead Psychometrician: Dr Bing Mei (PhD)",                                       # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Bing Mei (PhD): b.mei@auckland.ac.nz"),
+                        "b.mei@auckland.ac.nz"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
                  )
                  )
          ),
-         tags$h3("Contributing Psychometrician:",                               # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Psychometrician: Dr Kane Meissel (PhD)",                               # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:k.meissel@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Kane Meissel (PhD): k.meissel@auckland.ac.nz"),
+                        "k.meissel@auckland.ac.nz"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
                  )
                  )
          ),
-         tags$h3("Contributing Psychometrician:",                               # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Psychometrician: Dr Luke Rowe (PhD)",                               # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:luke.rowe@acu.edu.au?Subject=Shiny%20Help",
-                        "Dr Luke Rowe (PhD): luke.rowe@acu.edu.au"
+                        "luke.rowe@acu.edu.au"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                               line-height: 1.1; font-size: 10pt;
@@ -120,9 +120,9 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
                  )
          ),
-         tags$h3("Contributing Mathematician:",                                 # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Mathematician: Ms Laila Issayeva",                                 # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:laila.educator@gmail.com?Subject=Shiny%20Help",
-                        "Ms Laila Issayeva (MEd): laila.educator@gmail.com"
+                        "laila.educator@gmail.com"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
@@ -450,7 +450,7 @@ tabPanel("ANOVA",
                             ),
                      hr(),  
                      tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
-                             tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
+                             tags$a(href = "mailto:kcha193@aucklanduni.ac.nz?Subject=Shiny%20Help",
                                     "Dr Kevin Chang (PhD)"
                                    ),
                              tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;

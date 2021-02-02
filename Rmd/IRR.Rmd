@@ -77,7 +77,7 @@ Population <- params$population
 chosenmodel <- params$model
 chosentype <- params$type
 chosenunit <- params$unit
-chosenCI <- params$conf.level
+chosenCI <- params$conf.level 
 
 #### 3. Adjust placeholders (blank strings) for actual relevant string objects
 if(test.topic == ""){
@@ -98,6 +98,12 @@ if (params$rendered_by_shiny){
 ```{r CHUNK2 run model, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
 #### Run model ####
 ICC <- irr::icc(datafile, model = chosenmodel, type = chosentype, unit = chosenunit, conf.level = chosenCI)
+
+#### Extract CI results ####
+ICC.conflevel <- paste(ICC$conf.level*100, "%", sep="")
+ICC.value <- round(ICC$value, 2)
+ICC.lbound <- round(ICC$lbound, 3)
+ICC.ubound <- round(ICC$ubound, 3)
 
 #### Extract rater number ####                                                  # Choosing four #, results in drop-down arrow to left of code
 Raters <- ncol(datafile)
@@ -156,12 +162,6 @@ if(chosenunit == "single"){
       always higher than the This is always higher than the one derived from the 
       single unit of analysis."
       unitinfodetail<- "average"}  
-
-#### Extract CI results ####
-ICC.value <- round(ICC$value, 2)
-ICC.conflevel <- paste(100*ICC$conf.level, '%', sep="")
-ICC.lbound <- round(ICC$lbound, 3)
-ICC.ubound <- round(ICC$ubound, 3)
 
 if (ICC.value < .40){
   ICC.valuereport <- "The ICC value in this instance was less than .40, indicating poor agreement"

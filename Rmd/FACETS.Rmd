@@ -856,20 +856,20 @@ To assess the degree to which each discrimination index is inflated due to the i
 The one parameter logistic model (1PLM), or Rasch model, is one of a family of Item Response Theory (IRT) models that support the design, analysis, and scoring of tests, questionnaires, and other instruments that measure abilities or attributes (Wright & Mok, 2004). When item-response data is dichotomous (i.e., right or wrong; 0 or 1), and it is assumed that one dimension or trait (such as numeracy ability) is being measured, a unidimensional Rasch model can be written as,  
   
 \begin{equation}
-P(X_{ni}=1|\theta_n,\delta_i)=\frac{e^{[D(\theta_n-\delta_i)]}}{1+e^{[D(\theta_n-\delta_i)]}}
+P(X_{ni}=1|\vartheta_n,\delta_i)=\frac{e^{[D(\vartheta_n-\delta_i)]}}{1+e^{[D(\vartheta_n-\delta_i)]}}
 \end{equation}  
   
 \vspace{4mm}
-where $P(X_{ni}=1|\theta_n,\delta_i)$ is student $n$'s probability of scoring 1, rather than 0, on item $i$, given person $n$'s fixed ability and item $i$'s fixed difficulty; $e$ is the mathematical constant, approximately 2.718; $D$ is the scaling factor of 1.702 in order to match the logistic and probit metrics very closely (Lord & Novick, 1968) (for simplicity, this constant can be removed from subsequent formulae). 
+where $P(X_{ni}=1|\vartheta_n,\delta_i)$ is student $n$'s probability of scoring 1, rather than 0, on item $i$, given person $n$'s fixed ability and item $i$'s fixed difficulty; $e$ is the mathematical constant, approximately 2.718; $D$ is the scaling factor of 1.702 in order to match the logistic and probit metrics very closely (Lord & Novick, 1968) (for simplicity, this constant can be removed from subsequent formulae). 
 
-In the Rasch model, the probability of student $n$ obtaining a correct response to item $i$ is a function of student ability ($\theta_n$) and item difficulty ($\delta_i$). Under the family of Rasch models, student ability estimates ($\theta$) are special estimates of students' percentage correct scores while item difficulty estimates are special transformations of item percentage incorrect scores. The transformation of such scores involves converting percentage values to log-odds estimates enabling the formation of a single uniform logit scale for which both students and items can be placed.  
+In the Rasch model, the probability of student $n$ obtaining a correct response to item $i$ is a function of student ability ($\vartheta_n$) and item difficulty ($\delta_i$). Under the family of Rasch models, student ability estimates ($\vartheta$) are special estimates of students' percentage correct scores while item difficulty estimates are special transformations of item percentage incorrect scores. The transformation of such scores involves converting percentage values to log-odds estimates enabling the formation of a single uniform logit scale for which both students and items can be placed.  
   
-Mathematically, when $\theta_n$ matches $\delta_i$ (i.e., $\theta-\delta=0$), the probability of student scoring 1 is 50:50, or p = .50; consider, $\frac{e^{\theta-\delta}}{1+e^\theta-\delta}=.50$. However, when $\theta-\delta=1$, for example, p = .73, and when $\theta-\delta=-1$, p = .27. For the dichotomous Rasch model, the numerator, $1+e^{\theta=\delta}$ represents the probability of score 0 and 1.  
+Mathematically, when $\vartheta_n$ matches $\delta_i$ (i.e., $\vartheta-\delta=0$), the probability of student scoring 1 is 50:50, or p = .50; consider, $\frac{e^{\vartheta-\delta}}{1+e^\vartheta-\delta}=.50$. However, when $\vartheta-\delta=1$, for example, p = .73, and when $\vartheta-\delta=-1$, p = .27. For the dichotomous Rasch model, the numerator, $1+e^{\vartheta=\delta}$ represents the probability of score 0 and 1.  
   
 We can make our notation more explicit to define person $n$'s probability of scoring 1 on item $i$ as follows (Masters & Wright, 1984), 
 
 \begin{equation}
-P(X_{ni}=1|\theta_n,\delta_i)=\frac{e^{(\theta_n-\delta_{i1})}}{1+e^{(\theta_n-\delta_{i1})}}
+P(X_{ni}=1|\vartheta_n,\delta_i)=\frac{e^{(\vartheta_n-\delta_{i1})}}{1+e^{(\vartheta_n-\delta_{i1})}}
 \end{equation}  
   
 \vspace{4mm}
@@ -877,7 +877,7 @@ P(X_{ni}=1|\theta_n,\delta_i)=\frac{e^{(\theta_n-\delta_{i1})}}{1+e^{(\theta_n-\
 The dichotomous unidimensional Rasch model has been extended to account for polytomous item responses such as 0, 1 and 2 (Andrich, 1978; Masters, 1982). In a general sense, the dichotomous Rasch model is extended to account for polytomous responses by representing each pair of adjacent scores as a string of ordered categories,  
   
 \begin{equation}
-P(X_{nij}=x|\theta_n,\delta_{ij})=\frac{e^{(\theta_n-\delta_{ij})}}{1+e^{(\theta_n-\delta_{ij})}}, j = 1, 2, ..., m_{i}.
+P(X_{nij}=x|\vartheta_n,\delta_{ij})=\frac{e^{(\vartheta_n-\delta_{ij})}}{1+e^{(\vartheta_n-\delta_{ij})}}, j = 1, 2, ..., m_{i}.
 \end{equation}  
   
 \vspace{4mm} 
@@ -891,7 +891,7 @@ In Masters' (1982) PCM model, the probability of each individual score category 
 In the case of a partial credit scoring item with 0, 1, and 2 as possible scores, the probability of scoring $1$ as opposed to $0$ or $1$ is given by,  
   
 \begin{equation}
-P(1/0,1)=\frac{e^{(\theta_n-\delta_{i1})}}{1+e^{(\theta_n-\delta_{i1})}}
+P(1/0,1)=\frac{e^{(\vartheta_n-\delta_{i1})}}{1+e^{(\vartheta_n-\delta_{i1})}}
 \end{equation} 
 
 \vspace{4mm}  
@@ -899,44 +899,40 @@ P(1/0,1)=\frac{e^{(\theta_n-\delta_{i1})}}{1+e^{(\theta_n-\delta_{i1})}}
 and the probability of scoring $2$ as opposed to $1$ or $2$ is given by,
   
 \begin{equation}
-P(2/1,2)=\frac{e^{(\theta_n-\delta_{i2})}}{1+e^{(\theta_n-\delta_{i2})}}
+P(2/1,2)=\frac{e^{(\vartheta_n-\delta_{i2})}}{1+e^{(\vartheta_n-\delta_{i2})}}
 \end{equation} 
 
 \vspace{4mm}
 
-While the derivation of Masters' (1982) PCM is based on adjacent score probabilities, the probability for each score for different levels of student ability ($\theta$) can also be derived. For the example, for partial credit item with 0, 1, and 2 scores, the probability of person $n$ achieving score $1$ is given by,  
+While the derivation of Masters' (1982) PCM is based on adjacent score probabilities, the probability for each score for different levels of student ability ($\vartheta$) can also be derived. For the example, for partial credit item with 0, 1, and 2 scores, the probability of person $n$ achieving score $1$ is given by,  
   
 \begin{equation}
-P(X=1)=\frac{e^{(\theta_n-\delta_{i1})}}{[1+e^{(\theta_n-\delta_{i1})}]+[e^{(2\theta_n-(\delta_{i1}+\delta_{i2}))}]}
+P(X=1)=\frac{e^{(\vartheta_n-\delta_{i1})}}{[1+e^{(\vartheta_n-\delta_{i1})}]+[e^{(2\vartheta_n-(\delta_{i1}+\delta_{i2}))}]}
 \end{equation} 
   
 \vspace{4mm}
 and the probability of person $n$ achieving score $2$ is given by,  
   
 \begin{equation}
-P(X=1)=\frac{e^{(2\theta_n-(\delta_{i1}+\delta_{i2}))}}{[1+e^{(\theta_n-\delta_{i1})}]+[e^{(2\theta_n-(\delta_{i1}+\delta_{i2}))}]}
+P(X=1)=\frac{e^{(2\vartheta_n-(\delta_{i1}+\delta_{i2}))}}{[1+e^{(\vartheta_n-\delta_{i1})}]+[e^{(2\vartheta_n-(\delta_{i1}+\delta_{i2}))}]}
 \end{equation} 
 
-where the $m-1$ Partial Credit Model (PCM) delta ($\delta$) parameters reflect the point at which the probability of being in category $k$ and category $k-1$ are equal, as illustrated in Figure X.  
-
-[Figure X]
-
-As an example, substituting $\theta$ = -1, 0, and 1 into Equation X, we find that the probability of scoring Category 1 is $p=.468$, $p=.576$ and $p=.468$, respectively. However, it should be noted that the PCM delta parameters may not be ordered when the probability of a middle response category (e.g., 1 in 0, 1, 2 scores) are not common (see Wu, Tam, Jen, 2016, pp. 164-166). Thurstonian gammas ($\gamma$) provide a more appropriate alternative where $\gamma$ is defined as the ability at which the probability of achieving score $k$ or higher reaches $p=0.50$ (See Figure XX).  
+where the $m-1$ Partial Credit Model (PCM) delta ($\delta$) parameters reflect the point at which the probability of being in category $k$ and category $k-1$ are equal.  
   
-[Figure XX]
+As an example, substituting $\vartheta$ = -1, 0, and 1 into Equation X, we find that the probability of scoring Category 1 is $p=.468$, $p=.576$ and $p=.468$, respectively. However, it should be noted that the PCM delta parameters may not be ordered when the probability of a middle response category (e.g., 1 in 0, 1, 2 scores) are not common (see Wu, Tam, Jen, 2016, pp. 164-166). Thurstonian gammas ($\gamma$) (thresholds) provide a more appropriate alternative where $\gamma$ is defined as the ability at which the probability of achieving score $k$ or higher reaches $p=0.50$.  
   
 Therefore, Thurstonian $\gamma$'s can be viewed as developmental "cut points" for dividing ability into a continuum of score regions (Wu, Tam, Jen, 2016). Also, it should be noted that in the case of the dichotomous Rasch model, Thurstonian $\gamma$'s are equivalent to $\delta$ parameters. 
-
+  
 Other polytomous Rasch models have been devised however, Master's PCM model has become prominent due to it's flexibility. Andrich (1978a; 1978b) proposed an alternative to the Partial Credit Model (Masters & Wright, 1984) where response categories are assigned intersection parameters (thresholds) that are considered equal across items. However, this is generally considered quite restrictive and only appropriate for polytomous data with fixed anchors across all items, such as "disagree", "neutral", and "agree" response categories. 
   
 ##### 3.4.1.3 Parameter Estimation
-Because the dichotomous Rasch model is just a special case of the PCM, modern software packages, such as the open-source TAM package (Robitzsch, Kiefer, & Wu, 2018), can model both dichotonous and polytomous item scores (or mixtures of such scores). After the data is collected, item $\delta$ and person $\theta$ parameters can be estimated. This is commonly done in two steps with item $\delta$ parameters estimated independently of $\theta$ (model calibration step), thereafter, while fixing item $\delta$s person ability $\theta$s are then estimated in a latter step.
+Because the dichotomous Rasch model is just a special case of the PCM, modern software packages, such as the open-source TAM package (Robitzsch, Kiefer, & Wu, 2018), can model both dichotonous and polytomous item scores (or mixtures of such scores). After the data is collected, item $\delta$ and person $\vartheta$ parameters can be estimated. This is commonly done in two steps with item $\delta$ parameters estimated independently of $\vartheta$ (model calibration step), thereafter, while fixing item $\delta$s person ability $\vartheta$s are then estimated in a latter step.
   
 ##### 3.4.1.4 Model Calibration  
-Model calibration involves maximizing the full model likelihood ($L(\theta,\delta)$) with regards to all item $\delta$ parameters. The model callibration method chosen herein is marginal maximum likelihood (MML) which assumes a prior distribution (commonly a normal distribution) for student ability estimates. Marginal maximum likelihood (MML) estimation (see Expectation Maximization algorithm, Bock & Aitkin, 1981) was used as this estimation method has been shown to produce more stable person and item estimates related to the associated population. The assumed discretized population profile (prior distribution) of the sample students can be pre-set. In the TAM package, this is a standard normal distribution with 21 nodes ranging from $theta=-6$ to $theta=6$. Unlike other Rasch model estimation methods (i.e., JML and CML), the MML method can handle perfect item and person response patterns (i.e., attribute an estimate of $\theta$ or $delta$) making this callibration method quite useful in various data situations. 
+Model calibration involves maximizing the full model likelihood ($L(\vartheta,\delta)$) with regards to all item $\delta$ parameters. The model callibration method chosen herein is marginal maximum likelihood (MML) which assumes a prior distribution (commonly a normal distribution) for student ability estimates. Marginal maximum likelihood (MML) estimation (see Expectation Maximization algorithm, Bock & Aitkin, 1981) was used as this estimation method has been shown to produce more stable person and item estimates related to the associated population. The assumed discretized population profile (prior distribution) of the sample students can be pre-set. In the TAM package, this is a standard normal distribution with 21 nodes ranging from $theta=-6$ to $theta=6$. Unlike other Rasch model estimation methods (i.e., JML and CML), the MML method can handle perfect item and person response patterns (i.e., attribute an estimate of $\vartheta$ or $delta$) making this callibration method quite useful in various data situations. 
 
 ##### 3.4.1.5 Student ability estimation
-Once the item $\delta$ parameters are estimated via MML, they are set as fixed values making student ability estimation possible. There are several specific methods for estimating student ability. Here we make use of the $expected a priori$ or EAP student ability estimation ($\hat{\theta}_{EAP}$) (Bock & Mislevy, 1982). In the aforementioned $TAM$ package ($version\hspace{.1cm}2.10{\text -}24$), the EAP point ability estimates are based on the mean of the posterior distribution. The EAP ability point estimates have been proven to be less biased than other estimates of $theta$ (e.g., those based on JML estimation, see Wu, Tam, & Jen, 2016, pp. 267-271 for further details). 
+Once the item $\delta$ parameters are estimated via MML, they are set as fixed values making student ability estimation possible. There are several specific methods for estimating student ability. Here we make use of the $expected a priori$ or EAP student ability estimation ($\hat{\vartheta}_{EAP}$) (Bock & Mislevy, 1982). In the aforementioned $TAM$ package ($version\hspace{.1cm}2.10{\text -}24$), the EAP point ability estimates are based on the mean of the posterior distribution. The EAP ability point estimates have been proven to be less biased than other estimates of $theta$ (e.g., those based on JML estimation, see Wu, Tam, & Jen, 2016, pp. 267-271 for further details). 
   
 IRT analysis for this report was undertaken with the assistance of the $TAM$ package ($version\hspace{.1cm}2.10{\text -}24$; Robitzsch, Kiefer, & Wu, 2018). The $TAM$ package enables automated analysis of either dichotomous or polytomous (partial credit; i.e., 0, 1, 2) scored data.  
   
@@ -947,7 +943,7 @@ This specific flexible approach to modeling student performance (and other perso
     
 #### 3.4.2 IRT estimates of reliability  
 \hfill\break
-According to Robitzsch, Kiefer, and Wu (2018), if we let $v$ denote the variance of theta ($\theta$) estimates and let $s$ denote the average of the squared error for those estimates, then, the EAP reliability is defined as $v/(v+s)$, while the WLE reliability is defined as $(v-s)/v$. Therefore, the EAP formula sums total variance in the denominator.  
+According to Robitzsch, Kiefer, and Wu (2018), if we let $v$ denote the variance of theta ($\vartheta$) estimates and let $s$ denote the average of the squared error for those estimates, then, the EAP reliability is defined as $v/(v+s)$, while the WLE reliability is defined as $(v-s)/v$. Therefore, the EAP formula sums total variance in the denominator.  
   
 #### 3.4.3 Note on secondary analysis of data  
 \hfill\break 
@@ -1015,12 +1011,12 @@ Outfit MNSQ (mean square) person fit statistics are also generated for the purpo
 Many facets Rasch analysis can be undertaken to explore the effects of student group membership on item difficulty. This form of analysis can be used to identify items that might be bias toward certain student groups. Items that appear especially bias may be flagged for removal from the test or instrument. The many-facets Rasch model employed in this report extends Equation 4 to include a student group ($g$) by item ($i$) interaction term and is presented in Equation 9.  
  
 \begin{equation}
-P(x_{ni}=1|\theta_n,\delta_i)=\frac{e^{(\theta_n-(\delta_i + G_{g} + D_{gi}))}}{1+e^{(\theta_n-(\delta_i + G_{g} + D_{gi}))}}
+P(x_{ni}=1|\vartheta_n,\delta_i)=\frac{e^{(\vartheta_n-(\delta_i + G_{g} + D_{gi}))}}{1+e^{(\vartheta_n-(\delta_i + G_{g} + D_{gi}))}}
 \end{equation}  
 
 Where partial credit scoring applied, the same $D_{gi}$ element can be included to the right of the $\delta_i$ element in the partial credit model (Equation 5). 
   
-Basically, Equation 9 specifies that the probability of success on each item depends on an overall adjustment to the difficulty of the item as a consequence of the membership of students in a group ($G_{g}$). In addition to the overall adjustment to item difficulty as a conseuqnece of group membership, another adjustment is made, respectively, for each item, $D_{gi}$. If, for example, an item favours male students, the $D_{gi}$ element (reflecting membership to the male student group) will be negative, reflecting the fact that the item is easier for males. Conversely, a negative value for the male group membership would also reflect item bias against female counterparts. It should be noted that DIF is not associated with overall performance differences between groups as the sum of $D_{gi}$ across all elements is zero. Further, if the effect of male group membership on an item is $D_{gi}=-.2$, then, conversely, the effect of female group membership on the same items would be $D_{gi}=.2$ making the overall difference between groups, 0.4 logits.  
+Basically, Equation 9 specifies that the probability of success on each item depends on an overall adjustment to the difficulty of the item as a consequence of the membership of students in a group ($G_{g}$). In addition to the overall adjustment to item difficulty as a conseuqnece of group membership, another adjustment is made, respectively, for each item, $D_{gi}$. If, for example, an item favours male students, the $D_{gi}$ element (reflecting membership to the male student group) will be negative, reflecting the fact that the item is easier for males. Conversely, a negative value for the male group membership would also reflect item bias against female counterparts. It should be noted that DIF is not associated with overall performance differences between groups as the sum of $D_{gi}$ across all elements is zero. Further, if the effect of male group membership on an item is $D_{gi}=-.2$, then, conversely, the effect of female group membership on the same items would be $D_{gi}=.2$ making the overall difference between groups, 0.4 logits. 
   
 In addition to the reporting of $D_{gi}$ for each item, with negative values suggesitng that the item favours the focal group, standard errors for each $D_{gi}$ are also given. By dividing the $D_{gi}$ estimate by its standard error, we are able to generate a z-statistic. The z-statistic can be transformed to a p value and hence a level of statistical significance can be determined for each DIF estimate. Though, statistical significance is often reached when sample sizes are very large so practical significance is also important. An overall difference in logits of 0.5 is commonly used as a cut-off value (Wu, Tam, & Jen, p. 215). There are different appraoches to dealing with items that exhibit DIF. Items exhibiting DIF may be removed, split as items for different groups, and left in the test (see Wu, Tam, & Jen, pp. 217-223 for a complete discussion).  
   
@@ -1611,7 +1607,7 @@ if (params$rendered_by_shiny){
 }
 ```
   
-The test information and standard error curve graph is presented in Figure 6. Test information at the lower end of theta was estimated at `r TI.lower` whilst test information at the higher end was estimated at `r TI.upper`. Test information was maximised where $\theta$=`r max.theta` (test information = `r TI.max.r`). The standard errors for theta (which have an inverse relationship to the test information) are also presented in Figure 5. The standard error at the lower end of theta was estimated at `r SE.lower` and at the higher end of theta was `r SE.upper`, and, where test information was maximised, the minimum standard error was `r SE.min.r`.  
+The test information and standard error curve graph is presented in Figure 6. Test information at the lower end of theta was estimated at `r TI.lower` whilst test information at the higher end was estimated at `r TI.upper`. Test information was maximised where $\vartheta$=`r max.theta` (test information = `r TI.max.r`). The standard errors for theta (which have an inverse relationship to the test information) are also presented in Figure 5. The standard error at the lower end of theta was estimated at `r SE.lower` and at the higher end of theta was `r SE.upper`, and, where test information was maximised, the minimum standard error was `r SE.min.r`.  
   
 \vspace{5mm}  
    

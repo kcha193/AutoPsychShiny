@@ -134,7 +134,7 @@ download_Server <- function(id,
                              model = input$model,
                              type = input$type,
                              unit = input$unit,
-                             conf.level = NA,
+                             conf.level = input$conf.level,
                              rendered_by_shiny = TRUE                          # we need rendered_by_shiny to update the progress bar
               )
             }            
