@@ -5,9 +5,10 @@ version_number <- "0.1.0"
 
 # Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
 autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis", 
-                    "CTT", "psychometric", "irr", "TAM", "cowplot", "openxlsx", "reshape2", "Hmisc", "xtable", 
-                    "knitr", "rmarkdown", "kableExtra", "english", "shiny", "shinyjs",
-                    "shinythemes", "shinyBS", "bsplus", "shinyWidgets")
+                    "CTT", "psychometric", "irr", "TAM", "cowplot", "openxlsx", "reshape2", 
+                    "Hmisc",  "NCmisc" ,"xtable", "knitr", "rmarkdown", "kableExtra", 
+                    "english", "shiny", "shinyjs", "shinythemes", "shinyBS", "bsplus", 
+                    "shinyWidgets")
 packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()] 
 
 
@@ -28,7 +29,8 @@ lapply(packages_to_load, library, character.only = TRUE)
 
 
 # This line of code will set the maximum allowed file size of uploads (3MB), adjustable to computational power.
-options(shiny.maxRequestSize = 3*1024^2)
+# options(shiny.maxRequestSize = 3*1024^2)
+options(shiny.maxRequestSize=600*1024^2)
 
 # Define UI for app that lets you select desired inputs
 
@@ -72,7 +74,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
          hr(),
          tags$h3("Lead Architect:",                                                     # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
-                        "        Dr Matthew Courtney (PhD)"
+                        "Dr Matthew Courtney (PhD): matthew.courtney@nu.edu.kz"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
@@ -82,7 +84,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
          ),
          tags$h3("Lead Developer:",                                                    # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:kevin.ct.chang@gmail.com?Subject=Shiny%20Help",
-                        "Dr Kevin Chang (PhD)"
+                        "Dr Kevin Chang (PhD): kevin.ct.chang@gmail.com"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
@@ -92,7 +94,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
          ),
          tags$h3("Lead Psychometrician:",                                       # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Bing Mei (PhD)"),
+                        "Dr Bing Mei (PhD): b.mei@auckland.ac.nz"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
@@ -101,7 +103,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
          ),
          tags$h3("Contributing Psychometrician:",                               # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:k.meissel@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Kane Meissel (PhD)"),
+                        "Dr Kane Meissel (PhD): k.meissel@auckland.ac.nz"),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                                     line-height: 1.1; font-size: 10pt;
                                                                     color: #FFFFFF;}"
@@ -109,8 +111,8 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  )
          ),
          tags$h3("Contributing Psychometrician:",                               # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Luke Rowe (PhD)"
+                 tags$a(href = "mailto:luke.rowe@acu.edu.au?Subject=Shiny%20Help",
+                        "Dr Luke Rowe (PhD): luke.rowe@acu.edu.au"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                               line-height: 1.1; font-size: 10pt;
@@ -120,7 +122,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
          ),
          tags$h3("Contributing Mathematician:",                                 # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:laila.educator@gmail.com?Subject=Shiny%20Help",
-                        "Ms Laila Issayeva (MEd)"
+                        "Ms Laila Issayeva (MEd): laila.educator@gmail.com"
                  ),
                  tags$style(HTML("h3{font-family: 'Open Sans'; font-weight: 500;
                                                              line-height: 1.1; font-size: 10pt;
@@ -1218,7 +1220,7 @@ tabPanel("ANOVA",
                                    Cambridge, the UK)."),
                                    p(""),
                                    p("Ms Issayeva is an Educational Measurement specialist and has good skills at developing 
-                                   assessment tools, processing exams, setting standards, analyzing (CTT&amp;IRT), interpreting, and 
+                                   assessment tools, processing exams, setting standards, analyzing (CTT & IRT), interpreting, and 
                                    presenting data (reports, slides). Laila has been overseeing the development and implementation 
                                    of a national Student Performance Monitoring system for Mathematics in cooperation with the 
                                    psychometricians from the Institute for Educational Measurement Cito (Cito, Arnhem, the Netherlands) 
@@ -1229,7 +1231,7 @@ tabPanel("ANOVA",
                                    Assessment Examinations accredited by CAIE. Recently, she has conceptualized and administered 
                                    functional literacy tests for Mathematics, Reading, and Sciences nationwide."), 
                                    p(""),
-                                   p("Within the Master&#39;s program, Laila completed a qualitative study to explore the extent of 
+                                   p("Within the Masters program, Laila completed a qualitative study to explore the extent of 
                                    accessibility and applicability of Student Performance Monitoring reports for Mathematics teachers, 
                                    and eventually optimized those reports."),
                                    p(""),
@@ -1245,48 +1247,46 @@ tabPanel("ANOVA",
                                    p(""),
                                    h4("Psychometrics"),
                                    p(""),
-                                   p("Issayeva L., Rakhymbayeva Z., &amp; Temirtassov, D. (2018, October 25). The unification of a 
+                                   p("Issayeva L., Rakhymbayeva Z., & Temirtassov, D. (2018, October 25). The unification of a 
                                    student ability scale: first results of the psychometric research study [Presentation]. The 10th 
                                    NIS International Research-to-Practice Conference “Next Generation Schools”, Astana, Kazakhstan. 
                                    https://www.researchgate.net/publication/340816106"),
                                    p(""),
-                                   p("Issayeva L., Dieteren, N., &amp; Crans, S. (2018, October 15). Curriculum sampling as a strategy 
+                                   p("Issayeva L., Dieteren, N., & Crans, S. (2018, October 15). Curriculum sampling as a strategy 
                                    employed for a student performance monitoring system for Mathematics at Nazarbayev Intellectual 
                                    Schools [Conference paper]. The 44 th International Association for Educational Assessment 
                                    Conference “Assessment and Big Data”, Oxford, the UK. https://www.researchgate.net/publication/328293279"),
                                    p(""),
-                                   p("Issayeva L., Dieteren, N., &amp; Crans, S. (2017, November 9). Assessment tool validation research 
+                                   p("Issayeva L., Dieteren, N., & Crans, S. (2017, November 9). Assessment tool validation research 
                                    at Nazarbayev Intellectual Schools: student performance monitoring system for Mathematics [Conference paper]. 
                                    The 18th Association for Educational Assessment in Europe Conference 'Assessment cultures in a globalised world', 
                                    Prague, Czech Republic. https://www.researchgate.net/publication/335033501"),
                                    p(""),
-                                   p("Issayeva, L., &amp; Temirtassov, D. (2017, October 26). Current approaches to the external assessment 
+                                   p("Issayeva, L., Temirtassov, D. (2017, October 26). Current approaches to the external assessment 
                                    of student achievement in Mathematics at Nazarbayev Intellectual Schools [Presentation]. The 9 th NIS 
                                    International Research-to-Practice Conference “Values, Wellbeing and Innovation for the Future of 
                                    Education”, Astana, Kazakhstan. https://www.researchgate.net/publication/340931566"),
                                    p(""),
-                                   p("Issayeva, L., Temirtassov, D., Dieteren, N., Crans, S., &amp; Kamphuis, F. (2016, November 5). 
+                                   p("Issayeva, L., Temirtassov, D., Dieteren, N., Crans, S., & Kamphuis, F. (2016, November 5). 
                                    Student performance monitoring for Mathematics as an effective instrument to adjust individual 
                                    learning paths for students and to enhance didactic tools for teachers at Nazarbayev Intellectual 
                                    Schools [Conference paper]. The 17 th Association for Educational Assessment in Europe Conference 
                                    'Social and Political underpinnings of educational assessment: Past, present and future', Limassol, 
                                    Cyprus. https://www.researchgate.net/publication/340931730"),
                                    p(""),
-                                   h4("Academic Publications"),
-                                   p(""),
-                                   p("Issayeva, L., Temirtassov, D., Tursynova, L., &amp; Mozhayeva, O. (2019). Guidelines for item 
+                                   p("Issayeva, L., Temirtassov, D., Tursynova, L., & Mozhayeva, O. (2019). Guidelines for item 
                                    development to conduct Student Performance Monitoring for Mathematics at Intellectual Schools. 
                                    Unpublished manuscript. ISBN 978-601-328-598-6. https://www.researchgate.net/publication/335160752"),
                                    p(""),
-                                   p("Issayeva, L., Temirtassov, D., Tursynova, L., &amp; Mozhayeva, O. (2019). Guidelines for using 
+                                   p("Issayeva, L., Temirtassov, D., Tursynova, L., & Mozhayeva, O. (2019). Guidelines for using 
                                    reports upon Student Performance Monitoring at Intellectual Schools in teaching practice. 
                                    Unpublished manuscript. ISBN 978-601-328-597-9. https://www.researchgate.net/publication/335161015"),
                                    p(""),
-                                   p("Mozhayeva, O., Tursynova, L., Temirtassov, D., &amp; Issayeva, L. (2019). Conceptual framework 
+                                   p("Mozhayeva, O., Tursynova, L., Temirtassov, D., & Issayeva, L. (2019). Conceptual framework 
                                    of a Student Performance Monitoring system at Intellectual Schools. Unpublished manuscript. 
                                    ISBN 978-601-328-596-2. https://www.researchgate.net/publication/335160822"),
                                    p(""),
-                                   p("Mozhayeva, O., Tursynova, L., Temirtassov, D., Issayeva, L., &amp; Bissenov, Y. (2019). Instructions 
+                                   p("Mozhayeva, O., Tursynova, L., Temirtassov, D., Issayeva, L., & Bissenov, Y. (2019). Instructions 
                                    for organizing and conducting a Student Performance Monitoring for Mathematics at Intellectual Schools. 
                                    Unpublished manuscript. ISBN 978-601-328-599-3. https://www.researchgate.net/publication/335160711"),
                                    p("")

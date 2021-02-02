@@ -14,7 +14,7 @@ IRR_UI <- function(id) {
                                     student competence, for example, 'Essay Organization'."),
       p(""),
       p("The tool computes different varieties of the intra-class correlation 
-                                   coefficient, which is an index of inter-rater reliability."),
+                                   coefficient, which is an index of inter-rater reliability (or, rater consistency)."),
       p("")
     ),
     wellPanel(
