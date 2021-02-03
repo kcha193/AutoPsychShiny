@@ -1,10 +1,6 @@
 
 
-library(janitor)
-library(tidyverse)
-library(lmerTest)
-library(emmeans)
-library(openxlsx)
+library(magrittr)
 
 
 # Module definition, new method
@@ -13,47 +9,47 @@ anova_UI <- function(id) {
   
   tagList(
     fluidRow(                                                                                              
-        column(11,                                                                                                         
-               wellPanel(h4("Data inputs"),
-                         fluidRow(column(6,
-                                         fileInput(ns("anova_input_file"),                                                                            
-                                                   "Choose your file from Uni-Dim Rasch tab",
-                                                   accept = c(".xlsx",".xls")
-                                                   )
-                                        ),
-                                  column(6,
-                                         fileInput(ns("anova_input_group"), 
-                                                   "Choose your file from containing the groups", 
-                                                   accept = c(".xlsx",".xls")
-                                                   )
-                                        )
-                                  ),  # fluidRow                                                               
-                                  
-                                  h4("Select a group variable to perform ANOVA test"),
-                                  uiOutput(ns("select_group")),
-                                  h4("Diagnostic plots"),
-                                  tabsetPanel(tabPanel("Box plot",
-                                                       plotOutput(ns("bar_plot"))
-                                                       ),
-                                              tabPanel("Normality check", 
-                                                       plotOutput(ns("normcheck")))
-                                             ), 
-                                  h4("ANOVA results"),
-                                  tabsetPanel(tabPanel("ANOVA table", 
-                                                       tableOutput(ns("anova_tab"))
-                                                       ),
-                                              tabPanel("Estimated marginal means",
-                                                       tableOutput(ns("group_means"))
-                                                       ),
-                                              tabPanel("Tukey Pairwise comparison",
-                                                       tableOutput(ns("pairwise_compare"))
-                                                       )
-                                              ) # tabsetPanel wrapper
-                                 ) # fluidRow wrapper
-                       ) # wellPanel wrapper
-             ) # Column wrapper
-  ) 
-  }
+      column(11,                                                                                                         
+             wellPanel(h4("Data inputs"),
+                       fluidRow(column(6,
+                                       fileInput(ns("anova_input_file"),                                                                            
+                                                 "Choose your file from Uni-Dim Rasch tab",
+                                                 accept = c(".xlsx",".xls")
+                                       )
+                       ),
+                       column(6,
+                              fileInput(ns("anova_input_group"), 
+                                        "Choose your file from containing the groups", 
+                                        accept = c(".xlsx",".xls")
+                              )
+                       )
+                       ),  # fluidRow                                                               
+                       
+                       h4("Select a group variable to perform ANOVA test"),
+                       uiOutput(ns("select_group")),
+                       h4("Diagnostic plots"),
+                       tabsetPanel(tabPanel("Box plot",
+                                            plotOutput(ns("bar_plot"))
+                       ),
+                       tabPanel("Normality check", 
+                                plotOutput(ns("normcheck")))
+                       ), 
+                       h4("ANOVA results"),
+                       tabsetPanel(tabPanel("ANOVA table", 
+                                            tableOutput(ns("anova_tab"))
+                       ),
+                       tabPanel("Estimated marginal means",
+                                tableOutput(ns("group_means"))
+                       ),
+                       tabPanel("Tukey Pairwise comparison",
+                                tableOutput(ns("pairwise_compare"))
+                       )
+                       ) # tabsetPanel wrapper
+             ) # fluidRow wrapper
+      ) # wellPanel wrapper
+    ) # Column wrapper
+    ) 
+}
 
 
 anova_Server <- function(id) {
@@ -68,11 +64,11 @@ anova_Server <- function(id) {
       anova_data <- 
         reactive({
           
-        file <- input$anova_input_file
+          file <- input$anova_input_file
       
         req(file)
     
-        read.xlsx(file$datapath, sheet =  "Person Results")
+        openxlsx::read.xlsx(file$datapath, sheet =  "Person Results")
       })
       
       
@@ -84,7 +80,7 @@ anova_Server <- function(id) {
 
           req(file)
           
-          read.xlsx(file$datapath, sheet = 1)
+          openxlsx::read.xlsx(file$datapath, sheet = 1)
         })
       
       
@@ -93,7 +89,7 @@ anova_Server <- function(id) {
         renderUI({
         
         group_dat <- 
-          group_data() %>% clean_names() 
+          group_data() %>% janitor::clean_names() 
         
         selectInput(ns("category"), "", names(group_dat)[-1])
         })
@@ -103,18 +99,18 @@ anova_Server <- function(id) {
       final_dat <- reactive({
         
         anova_dat <- anova_data() %>% 
-          clean_names() %>% 
-          select(participant_id, ability_theta)
+          janitor::clean_names() %>% 
+          dplyr::select(participant_id, ability_theta)
         
         group_dat <- group_data()%>% 
-          clean_names() %>% 
-          select(participant_id, matches(req(input$category)))
+          janitor::clean_names() %>% 
+          dplyr::select(participant_id, matches(req(input$category)))
         
         names(group_dat) <- 
           gsub(input$category, "Group", names(group_dat))
         
         final_dat <- 
-          anova_dat %>% left_join(group_dat)
+          anova_dat %>% dplyr::left_join(group_dat)
         
         final_dat
       })
@@ -162,7 +158,7 @@ anova_Server <- function(id) {
       output$group_means <- renderTable({
         
         tab <-
-          emmeans(fit_anova(), ~ Group) %>%
+          emmeans::emmeans(fit_anova(), ~ Group) %>%
           as.data.frame()
         
         tab
@@ -173,7 +169,7 @@ anova_Server <- function(id) {
       output$pairwise_compare <- renderTable({
    
         tab <- 
-          pairs(emmeans(fit_anova(), ~ Group), 
+          pairs(emmeans::emmeans(fit_anova(), ~ Group), 
                 adjust = "none") %>% 
           rbind(adjust = "tukey") %>%
           as.data.frame() 
@@ -191,6 +187,6 @@ anova_Server <- function(id) {
 # server <- function(input, output, session) {
 #   anova_Server("anova")
 # }
-# shinyApp(ui, server)
+# shiny::shinyApp(ui, server)
 
 

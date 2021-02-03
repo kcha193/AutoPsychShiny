@@ -8,7 +8,7 @@ autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis
                     "CTT", "psychometric", "irr", "TAM", "cowplot", "openxlsx", "reshape2", 
                     "Hmisc",  "NCmisc" ,"xtable", "knitr", "rmarkdown", "kableExtra", 
                     "english", "shiny", "shinyjs", "shinythemes", "shinyBS", "bsplus", 
-                    "shinyWidgets")
+                    "shinyWidgets", "janitor", "magrittr", "emmeans", "s20x")
 packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()] 
 
 
@@ -21,7 +21,8 @@ if(packageVersion("shiny") < "1.5.0") {
 }
 
 # Ensure all necessary packages loaded loaded to library (some use package::function throughout script so do not need to be loaded)
-packages_to_load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets")
+packages_to_load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets",
+                      "magrittr", "ggplot2")
 
 # Ensure all necessary packages loaded to library
 lapply(packages_to_load, library, character.only = TRUE)
