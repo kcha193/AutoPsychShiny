@@ -308,7 +308,10 @@ df <- data.frame(
 
 colnames(df) <- c("Test_Form", "Equated_Theta")
 
-mu <- plyr::ddply(df, "Test_Form", summarise, grp.mean=mean(Equated_Theta))
+FormA.FormB.means <- tapply(df[,2], df$Test_Form, FUN=function(x)mean(x, na.rm=T))
+mu <- cbind.data.frame(as.factor(names(FormA.FormB.means)), FormA.FormB.means)
+rownames(mu) <- NULL
+colnames(mu) <- c("Test_Form", "grp.mean")
 
 if (params$rendered_by_shiny){
     shiny::setProgress(0.70)
