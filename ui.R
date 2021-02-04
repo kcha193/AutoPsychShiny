@@ -1,15 +1,13 @@
-# Kevin to give review of version number below:
-# It's like a global variable that makes changes throughout trail tabs
 
 version_number <- "0.2.0"
 
 # Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
-autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis", 
-                    "CTT", "psychometric", "irr", "TAM", "cowplot", "openxlsx", "reshape2", 
-                    "Hmisc",  "NCmisc" ,"xtable", "knitr", "rmarkdown", "kableExtra", 
-                    "english", "shiny", "shinyjs", "shinythemes", "shinyBS", "bsplus", 
+autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis",
+                    "CTT", "psychometric", "irr", "TAM", "cowplot", "openxlsx", "reshape2",
+                    "Hmisc",  "NCmisc" ,"xtable", "knitr", "rmarkdown", "kableExtra",
+                    "english", "shiny", "shinyjs", "shinythemes", "shinyBS", "bsplus",
                     "shinyWidgets", "janitor", "magrittr", "emmeans", "s20x")
-packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()] 
+packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()]
 
 
 if(length(packages_required) > 0) {
@@ -22,7 +20,7 @@ if(packageVersion("shiny") < "1.5.0") {
 
 # Ensure all necessary packages loaded loaded to library (some use package::function throughout script so do not need to be loaded)
 packages_to_load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets",
-                      "magrittr", "ggplot2")
+                      "magrittr", "ggplot2", "shiny")
 
 # Ensure all necessary packages loaded to library
 lapply(packages_to_load, library, character.only = TRUE)
@@ -33,20 +31,13 @@ lapply(packages_to_load, library, character.only = TRUE)
 # options(shiny.maxRequestSize = 3*1024^2)
 options(shiny.maxRequestSize=600*1024^2)
 
-# Define UI for app that lets you select desired inputs
-
-# tags$style enables nice styling
-# fonts at: https://fonts.google.com and you have to find ones which are open source
-# "Open Sans" is a nice option
-# "simplex" is a nice theme, though "cosmo" chosen here.
-# Themes at: https://rstudio.github.io/shinythemes/ 
-
 # UI file starts here -------------------------------------------------- 
 
-# tags$head script just below makes all font white
-
-ui <- fluidPage(tags$head(tags$style(HTML("a {color: #C0C0C0}"))),
-      tabsetPanel(
+shinyUI(
+    fluidPage(
+        tags$head(tags$style(HTML("a {color: #C0C0C0}"))),
+        
+        tabsetPanel(
 
 # Title -------------------------------------------------------------------
 tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
@@ -1228,30 +1219,4 @@ tabPanel("Contact",
 )                # Contact tabPanel end
       )                   # tabsetPanel
 )                      # fluidPage
-
-# Server file starts here -------------------------------------------------- 
-server <- function(input, output, session){
-  
-  
-  
-  # ANOVA server -------------------------------------------------------------------            
-  
-  anova_Server("anova") # ANOVA module
-  
-  # Download server -------------------------------------------------------------------            
-  
-  download_Server("MML", zip_name = "pyschometric_analysis_MML.zip", type = "MML") # MML
-  
-  download_Server("FACETS", zip_name = "pyschometric_analysis_FACETS.zip", type = "FACETS") # FACETS
-  
-  download_Server("EQUATE", zip_name = "pyschometric_analysis_EQUATE.zip", type = "EQUATE") # EQUATE
-  
-  download_Server("IRR", zip_name = "pyschometric_analysis_IRR.zip", type = "IRR") # EQUATE
-  
-}  # server function wrapper
-
-shinyApp(ui = ui, server = server)
-
-
-
-
+)
