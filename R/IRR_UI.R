@@ -10,25 +10,24 @@ IRR_UI <- function(id) {
     wellPanel(
       h4("Inter-Rater Reliability Tool"),
       p("This tool is particularly useful for test and rubric developers interested 
-                                    in improving and validating items and rubrics that involve judgements of 
-                                    student competence, for example, 'Essay Organization'."),
+         in improving and validating items and rubrics that involve judgements of 
+         student competence, for example, 'Essay Organization'."),
       p(""),
       p("The tool computes different varieties of the intra-class correlation 
-                                   coefficient, which is an index of inter-rater reliability (or, rater consistency)."),
+         coefficient, which is an index of inter-rater reliability (or, rater consistency)."),
       p("")
     ),
     wellPanel(
       h4("1. Prepare data"),
-      p("Before using the ICC tool, ensure that your data meet the following 
-                                   requirements:"),
+      p("Before using the ICC tool, ensure that your data meet the following requirements:"),
       p(""),
       p("(a) A csv formatted spreadsheet with subject (students) as rows and 
-                                   raters (or, coders) as columns (e.g., Rater_1, Rater_2, Rater_3); and,"),
+         raters (or, coders) as columns (e.g., Rater_1, Rater_2, Rater_3); and,"),
       p(""),
       p("(b) The ICC tool handles missing data listwise, meaning that when 
-                                   a missing value is identified, the entire row (student/case) is removed from 
-                                   the analysis (the Krippendorff's alpha may be more 
-                                   suitiable when missing data is present).")
+         a missing value is identified, the entire row (student/case) is removed from 
+         the analysis (the Krippendorff's alpha may be more 
+         suitiable when missing data is present).")
     ),
     wellPanel(
       h4("2. Upload your inter-rater reliability data (csv)"),

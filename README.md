@@ -21,5 +21,5 @@ The website and all functionality was built using the open-source R programming 
 
 Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). Auto-psych: a novel shiny app for the psychometric analysis and scoring of assessment and survey data. The X Journal, X(X), XXX-XXX. doi. XXXXXXXXXXXXX.
 
-#### Notes on sim.data ####
-The sim.data file includes the item-response data used for doing the app testing on the MML tab. The file also includes the script used to simulate the data. 
+### Notes on sim_data
+The sim_data file includes the item-response data used for doing the app testing on the MML tab. The file also includes the script used to simulate the data. 
