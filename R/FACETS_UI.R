@@ -9,32 +9,32 @@ FACETS_UI <- function(id) {
     wellPanel(
       h4("Many-facets Rasch analysis tool"),
       p("This tool extends the functionality of the Uni-Dimensional Rasch
-                                   analysis to include an examination of item (question) bias via the
-                                   application of many-facets Rasch analysis. This form of analysis
-                                   provides insight into how some questions (or developmental criteria)
-                                   might function differently across student groups."),
+         analysis to include an examination of item (question) bias via the
+         application of many-facets Rasch analysis. This form of analysis
+         provides insight into how some questions (or developmental criteria)
+         might function differently across student groups."),
       p(""),
       p("The tool also takes an item-response matrix (i.e., a spreadsheet
-                                   of student test results). Though, the tool requires that the first
-                                   column specifies the binary facet of interest (e.g., column header
-                                   'gender'). The variable needs to be numeric with coding 1 (representing
-                                   male, for example) and 2 (representing female, for example). The
-                                   report includes and produces a detailed narrated technical report
-                                   and organized spreadsheets that reflect the function of the test and
-                                   each question, as well as a report  on item bias."),
+         of student test results). Though, the tool requires that the first
+         column specifies the binary facet of interest (e.g., column header
+         'gender'). The variable needs to be numeric with coding 1 (representing
+         male, for example) and 2 (representing female, for example). The
+         report includes and produces a detailed narrated technical report
+         and organized spreadsheets that reflect the function of the test and
+         each question, as well as a report  on item bias."),
       p(""),
       p("The report is based on the application of classical test theory (CTT)
-                                   and item-response theory (IRT; here, a unidimensional Rasch, or 1PL,
-                                   model, and extended many-facets analysis). The analysis uses a specialized
-                                   scoring algorithm that places estimates of student ability and item
-                                   difficulty on the same scale. This enables educators to identify sets
-                                   of questions and associated skills that students might be ready to
-                                   tackle with additional support. Analysts using this tool (as opposed
-                                   to the JML tool, in production) will be primarily interested in generalizing
-                                   the results of the analysis to the broader population from which
-                                   the sample students were drawn. Insights into potential item bias
-                                   can be helpful for checking that the scale operates in a reasonably
-                                   similar way across groups of interest."),
+         and item-response theory (IRT; here, a unidimensional Rasch, or 1PL,
+         model, and extended many-facets analysis). The analysis uses a specialized
+         scoring algorithm that places estimates of student ability and item
+         difficulty on the same scale. This enables educators to identify sets
+         of questions and associated skills that students might be ready to
+         tackle with additional support. Analysts using this tool (as opposed
+         to the JML tool, in production) will be primarily interested in generalizing
+         the results of the analysis to the broader population from which
+         the sample students were drawn. Insights into potential item bias
+         can be helpful for checking that the scale operates in a reasonably
+         similar way across groups of interest."),
       p("")
     ),
     

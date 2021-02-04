@@ -9,19 +9,19 @@ EQUATE_UI <- function(id) {
       p(""),
       p("Test equating is commonly carried out when two (or more) test forms are administered 
          to different groups of students. For example, imagine a 40 item Numeracy test (Form A) 
-                                                    is administered to a group of Grade 3 students. At the same time, another 40 item Numeracy 
-                                                    test (Form B) is administered to a group of Grade 4 students. In order for both groups of students 
-                                                    to receive a fair score on a single scale, the test designers built in some overlap where 10 
-                                                    link items (questions) are delivered in both Test Form A and B assessments (with link items 
-                                                    generally a little difficult for Form A students, and easy for Form B students). In order to 
-                                                    provide all of the students with a fair score on a single unified scale, one needs to carry 
-                                                    out test equating."),
+         is administered to a group of Grade 3 students. At the same time, another 40 item Numeracy 
+         test (Form B) is administered to a group of Grade 4 students. In order for both groups of students 
+         to receive a fair score on a single scale, the test designers built in some overlap where 10 
+         link items (questions) are delivered in both Test Form A and B assessments (with link items 
+         generally a little difficult for Form A students, and easy for Form B students). In order to 
+         provide all of the students with a fair score on a single unified scale, one needs to carry 
+         out test equating."),
       p(""),
       p("Test equating is also carried out when you are tracking student progress across two time periods. 
-                                                    Imagine delivering Test Form A at the start of a school year andTest Form B at the conclusion 
-                                                    of a school year. Your aim is to provide stakeholders with an understanding of the extent to which 
-                                                    each tudent improved for the given period. In this instance, in order to provide students with 
-                                                    a fair score for each time period on a unified scale, one needs to carry out test equating."),
+        Imagine delivering Test Form A at the start of a school year andTest Form B at the conclusion 
+        of a school year. Your aim is to provide stakeholders with an understanding of the extent to which 
+        each tudent improved for the given period. In this instance, in order to provide students with 
+        a fair score for each time period on a unified scale, one needs to carry out test equating."),
       p(""),
       p("Here, we make one common and flexible form of equating, fixed-anchor equating, automatically accessible.")
     ),
@@ -30,27 +30,27 @@ EQUATE_UI <- function(id) {
       h4("Fixed anchor equating tool"),
       p(""),
       p("Fixed anchor equating is useful as it enables test administrators to report scores to 
-                                                    students that reflect their respective original scales. In this instance, the ability 
-                                                    scores from Form A (student theta estimates) remain unchanged. However, with fixed anchor 
-                                                    equating, student ability estimates from Form B are mapped onto the Form A test 
-                                                    so that all students' scores can be compared on a single unified scale."),
+         students that reflect their respective original scales. In this instance, the ability 
+         scores from Form A (student theta estimates) remain unchanged. However, with fixed anchor 
+         equating, student ability estimates from Form B are mapped onto the Form A test 
+         so that all students' scores can be compared on a single unified scale."),
       p(""),
       p("The fixed-anchor equating tool provided here makes use of separately calibrated data 
-                                                    from Forms A and B. The tool simply takes the outputted spreadsheets from each of the 
-                                                    respective uni-dimensional Rasch analyses to (a) compare item difficulty estimates across 
-                                                    test forms, and (b) undertake the fixed equating procedure placing Form B test takers on 
-                                                    the Form A scale.")
+         from Forms A and B. The tool simply takes the outputted spreadsheets from each of the 
+         respective uni-dimensional Rasch analyses to (a) compare item difficulty estimates across 
+         test forms, and (b) undertake the fixed equating procedure placing Form B test takers on 
+         the Form A scale.")
     ),
     
     wellPanel(
       h4("1. Prepare your data:"),
       p(""),
       p("(a) Carefully prepare item-response matrices (.csv files) for test Forms A and B ensuring 
-                                                    that the link (common) items are labelled exactly the same."),
+         that the link (common) items are labelled exactly the same."),
       p(""),
       p("(b) Carry out a uni-dimensional Rasch analysis on the item-response data from Test 
-                                                    Form A and save the outputted spreadsheet as 'Form_A_MML_tables.xlsx'. Carry out the same analysis 
-                                                    on the item-response data from Test Form B.")
+         Form A and save the outputted spreadsheet as 'Form_A_MML_tables.xlsx'. Carry out the same analysis 
+         on the item-response data from Test Form B.")
     ),                    # End 2nd wellPanel
     wellPanel(
       
