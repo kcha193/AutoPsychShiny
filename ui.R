@@ -1,5 +1,5 @@
 
-version_number <- "0.2.0"
+version_number <- "1.0.0"
 
 
 # This line of code will set the maximum allowed file size of uploads (3MB), adjustable to computational power.
