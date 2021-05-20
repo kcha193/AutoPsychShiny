@@ -9,9 +9,12 @@ IRR_UI <- function(id) {
   tagList(
     wellPanel(
       h4("Inter-Rater Reliability Tool"),
-      p("This tool is particularly useful for test and rubric developers interested 
-         in improving and validating items and rubrics that involve judgements of 
-         student competence, for example, 'Essay Organization'."),
+      p("This tool computes the inter-rater reliability (or rater consistency), using 
+      the intra-class correlation coefficient (ICC). The ICC can be used to indicate 
+      the level of agreement between two (or more) raters (or tests). An ICC close to 
+      1 indicates strong agreement while a low ICC (near 0) indicates that poor agreement. 
+      This tool is particularly useful for test and rubric developments aiming to validate 
+      and improve test items or rubrics involving judgements about student competence."),
       p(""),
       p("The tool computes different varieties of the intra-class correlation 
          coefficient, which is an index of inter-rater reliability (or, rater consistency)."),
@@ -21,13 +24,13 @@ IRR_UI <- function(id) {
       h4("1. Prepare data"),
       p("Before using the ICC tool, ensure that your data meet the following requirements:"),
       p(""),
-      p("(a) A csv formatted spreadsheet with subject (students) as rows and 
+      p("(a) A csv formatted spreadsheet with students as rows and 
          raters (or, coders) as columns (e.g., Rater_1, Rater_2, Rater_3); and,"),
       p(""),
       p("(b) The ICC tool handles missing data listwise, meaning that when 
          a missing value is identified, the entire row (student/case) is removed from 
          the analysis (the Krippendorff's alpha may be more 
-         suitiable when missing data is present).")
+         suitable when missing data is present).")
     ),
     wellPanel(
       h4("2. Upload your inter-rater reliability data (csv)"),
@@ -50,7 +53,7 @@ IRR_UI <- function(id) {
       ),
       
       textInput(ns("population"), "Focal group:", placeholder = "Students"),  # 2. input: sample of interest (though modelling has population-bsed assumptions)
-      bsTooltip(ns("population"), "E.g., Central School Grade 10 Students", "right",
+      bsTooltip(ns("population"), "E.g., Central School Grade 10 Students. Note that this is a free text response and does not need to match any of the variable names in your dataset", "right",
                 options = list(container = "body")
       )
     ),
@@ -63,8 +66,8 @@ IRR_UI <- function(id) {
                                  "Two-way" = "twoway")
       ) %>%              
         shinyInput_label_embed(icon("question-circle") %>%
-                                 bs_embed_tooltip(title = "(a) for One-way, raters randomly sampled for each subject; (b) for Two-way, the same 
-                                                  raters are used across across subjects"
+                                 bs_embed_tooltip(title = "(a) for One-way, raters randomly sampled for each student; (b) for Two-way, the same 
+                                                  raters are used across across student."
                                  )
         ),
       p("")
@@ -79,7 +82,7 @@ IRR_UI <- function(id) {
       ) %>%                           
         shinyInput_label_embed(icon("question-circle") %>%
                                  bs_embed_tooltip(title = "(a) For agreement, IRR is characterized by agreement in absolute terms across raters; 
-                                                  (b) for consistency, IRR is characterised by correlation in scores across raters."
+                                                  (b) for consistency, IRR is characterised by correlation (same rank-order) in scores across raters."
                                  )
         ),                                          # End of shinyInput_labelembed function (piping occurs withing that function)
     ),
@@ -109,7 +112,7 @@ IRR_UI <- function(id) {
       p("")
     ),
     wellPanel(
-      h4("8. Include your own recommendations"),
+      h4("8. Include your own recommendations (just any notes about the students or assessment considered relevant):"),
       p(""),
       
       textAreaInput(ns("recommendations"), "Notes:", 

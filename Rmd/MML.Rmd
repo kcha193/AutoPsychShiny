@@ -24,7 +24,7 @@ title:  |
   | 
   | 
 author:  | 
-  | Courtney, M. G. R., Chang, K. C-T., Mei, B., Meissel, K., Rowe, L., & Issayeva, L. (20XX).
+  | Courtney, M. G. R., Chang, K. C-T., Mei, B., Meissel, K., Rowe, L., & Xxxxxxx, X. (20XX).
   | autopsych: A Novel Shiny Tool for the Validation and Psychometric 
   | Analysis of Assessment Data. Journal of Xxxxxxxx Xxxxxxxxx, X(X). doi. 
   | XXXXXXXXXX/XXXXXXX

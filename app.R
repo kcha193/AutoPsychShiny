@@ -95,9 +95,9 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
                  ),
                  tags$style(HTML(h3_css))
          ),
-         tags$h3("Contributing Mathematician: Ms Laila Issayeva",                                 # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:laila.educator@gmail.com?Subject=Shiny%20Help",
-                        "laila.educator@gmail.com"
+         tags$h3("Contributing Mathematician: Xx Xxxxx Xxxxxxxx (B.Math, M.Ed)",                                 # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:Xxxxx.xxxxxxx@gmail.com?Subject=Shiny%20Help",
+                        "Xxxxx.xxxxxxx@gmail.com"
                  ),
                  tags$style(HTML(h3_css))
          ),
@@ -180,17 +180,22 @@ tabPanel("Uni-Dim Rasch (MML)",
                 tags$style(HTML(h2_css))
          ),
          hr(), 
-         tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
-                        "Dr Matthew Courtney (PhD)"
+         tags$h3("Architect: Dr Matthew Courtney",                                                            # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
+                        "matthew.courtney@nu.edu.kz"
                        ),
                  tags$style(HTML(h3_css))
                 ),
-         tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+         tags$h3("Psychometrician: Dr Bing Mei",                                                     # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Bing Mei (PhD)"),
+                        "b.mei@auckland.ac.nz"),
                  tags$style(HTML(h3_css))
                 ),
+         tags$h3("Mathematician: Xx Xxxxx Xxxxxxxx",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:Xxxxx.xxxxx@gmail.com?Subject=Shiny%20Help",
+                        "Xxxxx.xxxxxxx@gmail.com"),
+                 tags$style(HTML(h3_css))
+         ),
          fluidRow(
            column(11,
                   MML_UI("MML"),
@@ -234,6 +239,11 @@ tabPanel("Many-Facets Rasch (DIF)",
                         "Dr Bing Mei (PhD)"),
                  tags$style(HTML(h3_css))
                 ),
+         tags$h3("Mathematician: Xx Xxxxx Xxxxxxxx",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:Xxxx.xxxxx@gmail.com?Subject=Shiny%20Help",
+                        "Dr Bing Mei (PhD)"),
+                 tags$style(HTML(h3_css))
+         ),
          fluidRow(
              column(11,
                     FACETS_UI("FACETS"),
@@ -271,6 +281,11 @@ tabPanel("Rasch Equating",
                                       tags$a(href = "mailto:matty_courtney@hotmail.com?Subject=Shiny%20Help",
                                              "Dr Matthew Courtney (PhD)"
                                       ),
+                                      tags$style(HTML(h3_css))
+                              ),
+                              tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                                      tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
+                                             "Dr Bing Mei (PhD)"),
                                       tags$style(HTML(h3_css))
                               ),
                               tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
@@ -409,16 +424,27 @@ tabPanel("Inter-Rater Reliability",
                  tags$style(HTML(h2_css))
          ),
          hr(), 
-         tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
+         tags$h3("Architect: Dr Bing Mei",                                                          # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "Dr Bing Mei (PhD)"
+                        "b.mei@auckland.ac.nz"
                  ),
                  tags$style(HTML(h3_css))
          ),
-         tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
+         tags$h3("Psychometrician: Dr Matthew Courtney",                                                    # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
-                        "Dr Matthew Courtney (PhD)"),
+                        "matthew.courtney@nu.edu.kz"),
                  tags$style(HTML(h3_css))
+         ),
+         tags$h3("Contributing Psychometrician: Dr Kane Meissel (PhD)",                               # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:k.meissel@auckland.ac.nz?Subject=Shiny%20Help",
+                        "k.meissel@auckland.ac.nz"),
+                 tags$style(HTML(h3_css))
+         ),
+         tags$h3("Contributing Psychometrician: Dr Luke Rowe (PhD)",                               # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:luke.rowe@acu.edu.au?Subject=Shiny%20Help",
+                        "luke.rowe@acu.edu.au"
+                 ),
+         tags$style(HTML(h3_css))
          ),
          fluidRow(
            column(11,
@@ -483,7 +509,7 @@ tabPanel(paste0("autopsych Version ", version_number),
                     p("[Release Date: 21 November, 2020]"),
                     p(""),
                     p("Contributors: Drs Matthew Courtney, Kevin Chang, Eric 
-                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Ms Laila Issayeva")
+                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Xx Xxxxx Xxxxxxxx")
                   )
            )       # column
          )        # fluidRow
@@ -1022,9 +1048,9 @@ tabPanel("Team",
                            wellPanel(
                              h4("Contributing Psychometrician"),
                              p(""),
-                             p("Ms Laila Issayeva (B.Mathematics, M. Ed)"),
+                             p("Xx Xxxxx Xxxxxxxx (B.Mathematics, M. Ed)"),
                              p(""),
-                             p("As a Contributing Psychometrician, Ms Laila Issayeva has expertise in item writing, test development, psychometrics, 
+                             p("As a Contributing Psychometrician, Xx Xxxxx Xxxxxxxx has expertise in item writing, test development, psychometrics, 
                                      and a developing interest in R programming.")
                            ),
                            wellPanel(
@@ -1039,32 +1065,32 @@ tabPanel("Team",
                            ),
                            wellPanel(
                              h4("Bio:"),
-                             p("Ms Laila Issayeva is an experienced educator with more than 10 years of teaching Mathematics 
+                             p("Xx Xxxxx Xxxxxxxx is an experienced educator with more than 10 years of teaching Mathematics 
                                    to secondary and high school students, including teaching IGCSE, AS level, and A level. During 
-                                   her teaching time, Laila was instrumental in developing lesson plans, integrated Mathematics 
+                                   her teaching time, Xxxxx  was instrumental in developing lesson plans, integrated Mathematics 
                                    subject programs collaboratively with Cambridge Assessment International Education (CAIE, 
                                    Cambridge, the UK)."),
                              p(""),
-                             p("Ms Issayeva is an Educational Measurement specialist and has good skills at developing 
+                             p("Xx Xxxxxxx is an Educational Measurement specialist and has good skills at developing 
                                    assessment tools, processing exams, setting standards, analyzing (CTT & IRT), interpreting, and 
-                                   presenting data (reports, slides). Laila has been overseeing the development and implementation 
+                                   presenting data (reports, slides). Xx XXXXXX has been overseeing the development and implementation 
                                    of a national Student Performance Monitoring system for Mathematics in cooperation with the 
                                    psychometricians from the Institute for Educational Measurement Cito (Cito, Arnhem, the Netherlands) 
                                    for six years. Now, she spearheads the process of shifting its format from computer-based to 
                                    computerized adaptive testing (CAT)"),
                              p(""),
-                             p("Laila is actively involved into the process of developing, marking, and grading External Summative 
+                             p("XXxxxx is actively involved into the process of developing, marking, and grading External Summative 
                                    Assessment Examinations accredited by CAIE. Recently, she has conceptualized and administered 
                                    functional literacy tests for Mathematics, Reading, and Sciences nationwide."), 
                              p(""),
-                             p("Within the Masters program, Laila completed a qualitative study to explore the extent of 
+                             p("Within the Masters program, Xxxxxx completed a qualitative study to explore the extent of 
                                    accessibility and applicability of Student Performance Monitoring reports for Mathematics teachers, 
                                    and eventually optimized those reports."),
                              p(""),
-                             p("Starting from 2016, Ms Issayeva has taken part in the international annual conferences of AEA-Europe 
+                             p("Starting from 2016, Xx XXXxxxx has taken part in the international annual conferences of AEA-Europe 
                                    and IAEA and has produced several papers (available on www.researchgate.net) and presentations based on 
                                    the research projects. She has co-authored several manuals and guidelines for educators to help them 
-                                   develop a valid and reliable student performance monitoring system. A list of Laila Issayeva’s 
+                                   develop a valid and reliable student performance monitoring system. A list of Xxxxx Xxxxxxxx’s 
                                    research outputs is provided below:"),
                              p("")
                            ),
@@ -1163,7 +1189,7 @@ tabPanel("Highlights",
                             p("[Release Date: 21 November, 2020]"),
                             p(""),
                             p("Contributors: Drs Matthew Courtney, Kevin Chang, Eric 
-                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Laila Issayeva")
+                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Xxxxx Xxxxxxxx")
                   )
            )       # column
          )        # fluidRow
