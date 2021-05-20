@@ -1,30 +1,31 @@
 
-version_number <- "0.2.0"
 
-# Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
-autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis",
-                    "CTT", "psychometric", "irr", "TAM", "cowplot", "openxlsx", "reshape2",
-                    "Hmisc",  "NCmisc" ,"xtable", "knitr", "rmarkdown", "kableExtra",
-                    "english", "shiny", "shinyjs", "shinythemes", "shinyBS", "bsplus",
-                    "shinyWidgets", "janitor", "magrittr", "emmeans", "s20x")
-packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()]
+# # Ensure all necessary packages installed on machine (tidyverse covers ggplot2 and dplyr)
+# autopsych_pack <- c("ggrepel", "plyr", "scales", "tidyverse", "ShinyItemAnalysis",
+#                     "CTT", "psychometric", "irr", "TAM", "cowplot", "openxlsx", "reshape2",
+#                     "Hmisc",  "NCmisc" ,"xtable", "knitr", "rmarkdown", "kableExtra",
+#                     "english", "shiny", "shinyjs", "shinythemes", "shinyBS", "bsplus",
+#                     "shinyWidgets", "janitor", "magrittr", "emmeans", "s20x")
+# packages_required <- autopsych_pack[!autopsych_pack %in% installed.packages()]
+# 
+# 
+# if(length(packages_required) > 0) {
+#   install.packages(packages_required)
+# }
+# 
+# if(packageVersion("shiny") < "1.5.0") {
+#   install.packages("shiny")
+# }
+# 
+# # Ensure all necessary packages loaded loaded to library (some use package::function throughout script so do not need to be loaded)
+# packages_to_load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets",
+#                       "magrittr", "ggplot2", "shiny")
+# 
+# # Ensure all necessary packages loaded to library
+# lapply(packages_to_load, library, character.only = TRUE)
+# # For list of packages, see associated publication.
 
-
-if(length(packages_required) > 0) {
-  install.packages(packages_required)
-}
-
-if(packageVersion("shiny") < "1.5.0") {
-  install.packages("shiny")
-}
-
-# Ensure all necessary packages loaded loaded to library (some use package::function throughout script so do not need to be loaded)
-packages_to_load <- c("scales", "shinythemes",  "shinyBS", "bsplus", "shinyWidgets",
-                      "magrittr", "ggplot2", "shiny")
-
-# Ensure all necessary packages loaded to library
-lapply(packages_to_load, library, character.only = TRUE)
-# For list of packages, see associated publication.
+version_number <- "1.0.0"
 
 
 # This line of code will set the maximum allowed file size of uploads (3MB), adjustable to computational power.
@@ -35,17 +36,19 @@ options(shiny.maxRequestSize=600*1024^2)
 
 shinyUI(
     fluidPage(
-        tags$head(tags$style(HTML("a {color: #C0C0C0}"))),
-        
-        tabsetPanel(
+
+      theme = shinytheme("cosmo"),
+      tags$head(tags$style(HTML("a {color: #C0C0C0}"))),
+      tags$style(type = "text/css",
+                 "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
+                 "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
+                 " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}",
+                 " h4 {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
+      ),
+      tabsetPanel(
 
 # Title -------------------------------------------------------------------
-tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
-         tags$style(type = "text/css", 
-                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-         ),
+tabPanel("Home", fluid = TRUE, 
          setBackgroundImage(src = "shiny_background8.png"),
          shinyjs::useShinyjs(),
          tags$h1("Automated Psychometrics",
@@ -154,12 +157,7 @@ tabPanel("Home", fluid = TRUE, theme = shinytheme("cosmo"),
 
 # Uni-Dim Rasch (MML) -----------------------------------------------------
 tabPanel("Uni-Dim Rasch (MML)", 
-         fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
-         tags$style(type="text/css",
-                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-         ),
+         fluid = TRUE,                                 # css means cascading style sheets, describing how html elements are displayed on screen
          shinyjs::useShinyjs(),                                                          # activate javascript in the application
          tags$h1("Uni-Dimensional Rasch Analysis",
                  tags$img(src = "hex5.png", height = 149, width = 135, 
@@ -202,12 +200,7 @@ tabPanel("Uni-Dim Rasch (MML)",
 # Many-Facets Rasch (DIF) -------------------------------------------------
 # Baseline build (MC to expand unidimensional build to account for item classiciation into dimensions.
 tabPanel("Many-Facets Rasch (DIF)",
-         fluid = TRUE, theme = shinytheme("cosmo"),                                      # css means cascading style sheets, describing how html elements are displayed on screen
-         tags$style(type="text/css",
-                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                    ),
+         fluid = TRUE,                              # css means cascading style sheets, describing how html elements are displayed on screen
          shinyjs::useShinyjs(),                                                          # activate javascript in the application
          tags$h1("Many-Facets Rasch Analysis",
                  tags$img(src = "hex5.png", height = 149, width = 135,
@@ -249,12 +242,6 @@ tabPanel("Many-Facets Rasch (DIF)",
 tabPanel("Rasch Equating",
          tabsetPanel(tabPanel("Fixed Anchor", 
                               fluidRow(column(width = 6)),
-                              theme = shinytheme("cosmo"),
-                              tags$style(type="text/css",
-                                         "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                         "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                         " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                              ),
                               shinyjs::useShinyjs(),                                                         # activate javascript in the application
                               tags$h1("Fixed Anchor Test Equating",
                                       tags$img(src = "hex5.png", 
@@ -294,12 +281,6 @@ tabPanel("Rasch Equating",
          
          tabPanel("Concurrent", 
                   fluidRow(column(width = 6)),
-                  theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                  tags$style(type="text/css",
-                             "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                             "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                             " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                  ),
                   shinyjs::useShinyjs(),                                                         # activate javascript in the application
                   tags$h1("Concurrent Test Equating",
                           tags$img(src = "hex5.png", 
@@ -342,13 +323,7 @@ tabPanel("Rasch Equating",
 # ANOVA ----------------------------------------------------------
 
 tabPanel("ANOVA",
-         fluid = TRUE, theme = shinytheme("cosmo"),
-         tags$style(type = "text/css", 
-                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-         ),
-         
+         fluid = TRUE, 
          setBackgroundImage(src = "shiny_background8.png"),
          shinyjs::useShinyjs(),                                                         # activate javascript in the application
          tags$h1("One-Way ANOVA Analysis",
@@ -398,12 +373,7 @@ tabPanel("ANOVA",
 
 # Inter-Rater Reliability ------------------------------------------------------
 tabPanel("Inter-Rater Reliability",
-         fluid = TRUE, theme = shinytheme("cosmo"),                                     # css means cascading style sheets, describing how html elements are displayed on screen
-         tags$style(type="text/css",
-                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-         ),
+         fluid = TRUE, 
          shinyjs::useShinyjs(),                                                         # activate javascript in the application
          tags$h1("Inter-Rater Reliability Analysis",
                  tags$img(src = "hex5.png", height = 149, width = 135, 
@@ -448,12 +418,7 @@ tabPanel("Inter-Rater Reliability",
 
 # Version number
 tabPanel(paste0("autopsych Version ", version_number), 
-         fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
-         tags$style(type="text/css",
-                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-         ),
+         fluid = TRUE, 
          shinyjs::useShinyjs(),                                                         # activate javascript in the application
          tags$h1(paste0("Current Version: autopsych_", version_number),
                  tags$img(src = "hex5.png", height = 149, width = 135, 
@@ -511,12 +476,6 @@ tabPanel(paste0("autopsych Version ", version_number),
 tabPanel("Team",
          tabsetPanel(tabPanel("Lead Architect", 
                               fluidRow(column(width = 6)),
-                              theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                              tags$style(type="text/css",
-                                         "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                                         "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                                         " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                              ),
                               shinyjs::useShinyjs(),                                                         # activate javascript in the application
                               tags$h1("Automated Psychometrics",
                                       tags$img(src = "hex5.png", 
@@ -653,12 +612,6 @@ tabPanel("Team",
          
          tabPanel("Lead Developer", 
                   fluidRow(column(width = 6)),
-                  theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                  tags$style(type="text/css",
-                             "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                             "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                             " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                  ),
                   shinyjs::useShinyjs(),                                                         # activate javascript in the application
                   tags$h1("Automated Psychometrics",
                           tags$img(src = "hex5.png", 
@@ -744,13 +697,7 @@ tabPanel("Team",
          
          tabPanel("Lead Psychometrician", 
                   fluidRow(column(width = 6)),
-                  theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                  tags$style(type="text/css",
-                             "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                             "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                             " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                  ),
-                  shinyjs::useShinyjs(),                                                         # activate javascript in the application
+                   shinyjs::useShinyjs(),                                                         # activate javascript in the application
                   tags$h1("Automated Psychometrics",
                           tags$img(src = "hex5.png", 
                                    height = 149, 
@@ -841,12 +788,6 @@ tabPanel("Team",
          
          tabPanel("Contributing Psychometrician", 
                   fluidRow(column(width = 6)),
-                  theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                  tags$style(type="text/css",
-                             "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                             "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                             " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                  ),
                   shinyjs::useShinyjs(),                                                         # activate javascript in the application
                   tags$h1("Automated Psychometrics",
                           tags$img(src = "hex5.png", 
@@ -927,12 +868,6 @@ tabPanel("Team",
          
          tabPanel("Contributing Psychometrician", 
                   fluidRow(column(width = 6)),
-                  theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                  tags$style(type="text/css",
-                             "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                             "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                             " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                  ),
                   shinyjs::useShinyjs(),                                                         # activate javascript in the application
                   tags$h1("Automated Psychometrics",
                           tags$img(src = "hex5.png", 
@@ -1015,12 +950,6 @@ tabPanel("Team",
          
          tabPanel("Contributing Psychometrician", 
                   fluidRow(column(width = 6)),
-                  theme = shinytheme("cosmo"),                                                   # css means cascading style sheets, describing how html elements are displayed on screen
-                  tags$style(type="text/css",
-                             "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                             "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                             " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-                  ),
                   shinyjs::useShinyjs(),                                                         # activate javascript in the application
                   tags$h1("Automated Psychometrics",
                           tags$img(src = "hex5.png", 
@@ -1142,12 +1071,7 @@ tabPanel("Team",
 
 # Highlights -------------------------------------------------------------------            
 tabPanel("Highlights",
-         fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
-         tags$style(type="text/css",
-                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-         ),
+         fluid = TRUE,
          shinyjs::useShinyjs(),                                                         # activate javascript in the application
          tags$h1(paste0("Highlights"),
                  tags$img(src = "hex5.png", height = 149, width = 135, 
@@ -1188,12 +1112,7 @@ tabPanel("Highlights",
 
 # Contact -------------------------------------------------------------------                
 tabPanel("Contact", 
-         fluid = TRUE, theme = shinytheme("cosmo"),               # css means cascading style sheets, describing how html elements are displayed on screen
-         tags$style(type="text/css",
-                    "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
-                    "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
-                    " * {font-family: Open Sans; font-weight: 500; line-height: 1.1}"
-         ),
+         fluid = TRUE, 
          shinyjs::useShinyjs(),                                                         # activate javascript in the application
          tags$h1(paste0("Contact"),
                  tags$img(src = "hex5.png", height = 149, width = 135, 
