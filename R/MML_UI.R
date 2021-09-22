@@ -11,7 +11,7 @@ MML_UI <- function(id) {
        h4("Rasch analysis tool"),
        p("This tool is useful for improving the quality of tests and developmental 
        rubrics that focus on measuring a single construct or skill, such as student 
-         reading abilility."),
+         reading ability."),
        p(""),
        p("The tool takes an item-response matrix (i.e., a spreadsheet of student 
           test results) and produces a detailed narrated technical report and organized 
@@ -31,7 +31,7 @@ MML_UI <- function(id) {
        p(""),
        p("(a) The header of the csv file (top row) includes consistent numbering 
          that includes ones and 10s columns. E.g., Item.01, Item.02,... Item.20 
-         (not Item.1, Item.2,... Item.20)"),
+         (not Item.1, Item.2,... Item.20);"),
        p(""),
        p("(b) Under the row of item descriptors (the header), item-responses may 
          include dichotomous (0, 1) or polytomous (0, 1, 2... max 9) data;"),

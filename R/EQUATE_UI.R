@@ -18,9 +18,9 @@ EQUATE_UI <- function(id) {
          out test equating."),
       p(""),
       p("Test equating is also carried out when you are tracking student progress across two time periods. 
-        Imagine delivering Test Form A at the start of a school year andTest Form B at the conclusion 
+        Imagine delivering Test Form A at the start of a school year and Test Form B at the conclusion 
         of a school year. Your aim is to provide stakeholders with an understanding of the extent to which 
-        each tudent improved for the given period. In this instance, in order to provide students with 
+        each student improved for the given period. In this instance, in order to provide students with 
         a fair score for each time period on a unified scale, one needs to carry out test equating."),
       p(""),
       p("Here, we make one common and flexible form of equating, fixed-anchor equating, automatically accessible.")
@@ -45,16 +45,16 @@ EQUATE_UI <- function(id) {
     wellPanel(
       h4("1. Prepare your data:"),
       p(""),
-      p("(a) Carefully prepare item-response matrices (.csv files) for test Forms A and B ensuring 
-         that the link (common) items are labelled exactly the same."),
+      p("(a) Carefully prepare item-response matrices (.csv files) for Test Forms A and B ensuring 
+         that the link (common) items are labelled exactly the same (in preparation for the Uni-Dim Rasch (MML) tab)."),
       p(""),
-      p("(b) Carry out a uni-dimensional Rasch analysis on the item-response data from Test 
+      p("(b) Carry out a uni-dimensional Rasch analysis (Uni-Dim Rasch) on the item-response data from Test 
          Form A and save the outputted spreadsheet as 'Form_A_MML_tables.xlsx'. Carry out the same analysis 
-         on the item-response data from Test Form B.")
+         on the item-response data from Test Form B and save as 'Form_B_MML_tables.xlsx'.")
     ),                    # End 2nd wellPanel
     wellPanel(
       
-      h4("2. Upload test Form A and B table files:"),
+      h4("2. Upload 'Form_A_MML_tables.xlsx' and 'Form_B_MML_tables.xlsx' files:"),
       fluidRow(column(6,
                       fileInput(ns("datapath_A"),                                           #* change "input_file to" to ns("input_file") in EQUATE_UI.R file                                        
                                 "Upload 'Form_A_MML_tables.xlsx':",

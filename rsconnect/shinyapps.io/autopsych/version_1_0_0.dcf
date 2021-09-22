@@ -5,10 +5,10 @@ account: autopsych
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3637843
-bundleId: 4619398
+bundleId: 5058377
 url: https://autopsych.shinyapps.io/version_1_0_0/
-when: 1621498884.522
-lastSyncTime: 1621498884.52206
+when: 1632281044.52209
+lastSyncTime: 1632281044.5221
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: bitbucket-pipelines.yml|sim_data/Simulation.R

@@ -42,7 +42,7 @@ FACETS_UI <- function(id) {
     wellPanel(h4("1. Prepare data"),
               p("Before using the tool, ensure that your data meet the following requirements:"),
               p(""),
-              p("(a) The first column of the csv file is the binaey facet of interest, e.g., 
+              p("(a) The first column of the csv file is the binary facet of interest, e.g., 
                 gender. The coding is decided by the user such as 1 for male and 2 for female."),
               p(""),
               p("(b) The header of the csv file (top row) includes consistent numbering 

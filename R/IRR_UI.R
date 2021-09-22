@@ -12,7 +12,7 @@ IRR_UI <- function(id) {
       p("This tool computes the inter-rater reliability (or rater consistency), using 
       the intra-class correlation coefficient (ICC). The ICC can be used to indicate 
       the level of agreement between two (or more) raters (or tests). An ICC close to 
-      1 indicates strong agreement while a low ICC (near 0) indicates that poor agreement. 
+      1 indicates strong agreement while a low ICC (near 0) indicates poor agreement. 
       This tool is particularly useful for test and rubric developments aiming to validate 
       and improve test items or rubrics involving judgements about student competence."),
       p(""),

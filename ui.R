@@ -38,7 +38,7 @@ shinyUI(
     fluidPage(
 
       theme = shinytheme("cosmo"),
-      tags$head(tags$style(HTML("a {color: #C0C0C0}"))),
+      tags$head(tags$style(HTML("a {color: #000000}"))),
       tags$style(type = "text/css",
                  "@import url('//fonts.googleapis.com/css?family=Open+Sans|Cabin:400,700');",
                  "label {font-size: 10px;}", ".recalculating {opacity: 1.0;}",
@@ -49,7 +49,8 @@ shinyUI(
 
 # Title -------------------------------------------------------------------
 tabPanel("Home", fluid = TRUE, 
-         setBackgroundImage(src = "shiny_background8.png"),
+      #   setBackgroundImage(src = "shiny_background8.png"),
+      #   setBackgroundColor(color = "black"),
          shinyjs::useShinyjs(),
          tags$h1("Automated Psychometrics",
                  tags$img(src = "hex5.png", height = 149, width = 135, 
@@ -61,47 +62,13 @@ tabPanel("Home", fluid = TRUE,
                  tags$style(HTML(h2_css))
          ),
          hr(),
-         tags$h3("Lead Architect: Dr Matthew Courtney (PhD)",                                                     # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
-                        "matthew.courtney@nu.edu.kz"
-                 ),
-                 tags$style(HTML(h3_css))
-         ),
-         tags$h3("Lead Developer: Dr Kevin Chang (PhD)",                                                    # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:kcha193@aucklanduni.ac.nz?Subject=Shiny%20Help",
-                        "kcha193@aucklanduni.ac.nz"
-                 ),
-                 tags$style(HTML(h3_css))
-         ),
-         tags$h3("Lead Psychometrician: Dr Bing Mei (PhD)",                                       # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "b.mei@auckland.ac.nz"),
-                 tags$style(HTML(h3_css))
-         ),
-         tags$h3("Contributing Psychometrician: Dr Kane Meissel (PhD)",                               # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:k.meissel@auckland.ac.nz?Subject=Shiny%20Help",
-                        "k.meissel@auckland.ac.nz"),
-                 tags$style(HTML(h3_css))
-         ),
-         tags$h3("Contributing Psychometrician: Dr Luke Rowe (PhD)",                               # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:luke.rowe@acu.edu.au?Subject=Shiny%20Help",
-                        "luke.rowe@acu.edu.au"
-                 ),
-                 tags$style(HTML(h3_css))
-         ),
-         tags$h3("Contributing Mathematician: Xx Xxxxx Xxxxxxxx (B.Math, M.Ed)",                                 # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:Xxxxx.xxxxxxx@gmail.com?Subject=Shiny%20Help",
-                        "Xxxxx.xxxxxxx@gmail.com"
-                 ),
-                 tags$style(HTML(h3_css))
-         ),
+         HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/_IL7ybAyX6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
          fluidRow(
            column(11, 
                   wellPanel(
                     h4("Introduction"),
                     p("Welcome to Automated Psychometrics, a novel website that allows teachers, 
-                      school assessment leaders, test developers, educational institutions, 
-                      and researchers to:"),
+                      school and university assessment experts, test developers, and researchers to:"),
                     p(""),
                     p("(1) Check the general quality of student assessments and 
                       developmental rubrics,"),
@@ -121,38 +88,78 @@ tabPanel("Home", fluid = TRUE,
                     h4("Team Vision"),
                     p("The autopsych team draws on extensive expertise in educational and 
                     psychological assessment, quantitative research methods, statistical programming, 
-                    web-design, teaching pedagogy, and online learning. The team collaborates to provide 
-                    this app and its various features from different parts of the Asia-Pacific region 
-                    including New Zealand, Australia, China, and Central Asia. The team's visions is 
-                    to promote high quality assessment and research  accessible to the developed and 
-                    developing world.")
-                  ),   # WellPanel
+                    web-design, teaching pedagogy, and online learning. The team collaborates from different 
+                    parts of the Asia-Pacific region based on a common interest--to provide equitable access 
+                    to high quality educational assessment and research in the developed and 
+                    developing world."),
+                    # img(src='wbphoto1.png', align = "center", width="900", height="550"),
+                    # p(""),
+                    # p(a("Students taking year end exams",
+                    #           href = "https://search.creativecommons.org/photos/0897debb-d745-41ed-8313-75e092d3653f"),
+                    #  "by",
+                    #   a("World Bank Photo Collection",
+                    #         href = "https://search.creativecommons.org/photos/0897debb-d745-41ed-8313-75e092d3653f"),
+                    #  "is licensed under ",
+                    #  a("CC-BY-NC-ND 2.0.",
+                    #     href = "https://creativecommons.org/licenses/by-nc-nd/2.0/?ref=ccsearch&atype=rich"))
+                           ),   # WellPanel
                   wellPanel(
-                    h4("Use"),
+                    h4("Use of autopsych App"),
                     p("The website and all functionality was built using the open-source R programming 
                     language and received no external funding. The autopsych app is a free software 
                     and you can redistribute it and or modify it under the terms of the GNU GPL 3. 
                     In your work, cite as:"),
                     p(""),
-                    p("Courtney, M. G. R., Xxxxx, X., Xxxxx, X., & Xxxxxx, X. (XXXX). autopsych: a 
+                    p("Courtney, M. G. R., Chang, K. C-T., Mei, E., Meissel, K., Rowe, L. I., & Issayeva, L. B. (2021). autopsych: a 
                     novel shiny app for the psychometric analysis and scoring of assessment and 
-                    survey data. The X Journal, X(X), XXX-XXX. doi. XXXXXXXXXXXXX."),
+                    survey data. XXXX XXX"),
                     p("")
                   ),   # WelPanel
                   wellPanel(
                     h4("Distribution"),
-                    p("In accordance with the GNU General Public License (GPL) 3:"),
+                    p("In accordance with the GNU General Public License,",
+                      a("GPL-3.0:",
+                        href = "https://www.gnu.org/licenses/gpl-3.0.en.html"),
+                     ),
                     p(""),
                     p("'If you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the 
                     same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you 
-                    must show them these terms so they know their rights' (https://www.gnu.org/licenses/gpl-3.0.en.html)"),
+                    must show them these terms so they know their rights'", a("GPL-3.0", href = "https://www.gnu.org/licenses/gpl-3.0.en.html")
+                      ),
                     p(""),
                     p("'The intention is to enshrine the rights of users to share and build on ideas falls into the philospohical 
                       concept of common heritage (i.e., standing on the shoulders of giants). It is a bridging mechanism that 
-                      encourages growth from social knowledge' https://snyk.io")
-                  )
+                      encourages growth from social knowledge'", a("(Copyleft).", 
+                                                                   href = "https://snyk.io/learn/what-is-copyleft-license/")
+                    ),
+                    p("")
+                  ),   # WelPanel
+                  wellPanel(
+                    h4("Attribution for the autopsych Hex Sticker"),
+                    p(""),
+                    p("The autopsych hex sticker (top-right) was made with the assistance of the R Shiny", 
+                      a("hexmake", 
+                        href = "https://connect.thinkr.fr/hexmake/"),
+                      "app."),
+                    p(""),
+                    p("The Greek", 
+                      a("'Psi'",
+                        href = "https://commons.wikimedia.org/wiki/File:Psi2.svg"),
+                      "used in the hex symbol was created by",
+                      a("Gdh",
+                        href = "https://is.wikipedia.org/wiki/Notandi:Gdh?rdfrom=commons:User:Gdh~commonswiki"),
+                      "licensed under",
+                      a("CC-BY 4.0",
+                        href = "https://creativecommons.org/licenses/")
+                     )
+                           )  # wellPanel
            ),        # Column
-         ),           # fluidRow
+         )           # fluidRow
+
+      
+      
+      
+      
 ),                    # Home
 
 # Uni-Dim Rasch (MML) -----------------------------------------------------
@@ -169,20 +176,20 @@ tabPanel("Uni-Dim Rasch (MML)",
                 tags$style(HTML(h2_css))
          ),
          hr(), 
-         tags$h3("Architect: Dr Matthew Courtney",                                                            # h2 header is the subtitle underneath the h1 header
+         tags$h3("Architect:",                                                            # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
-                        "matthew.courtney@nu.edu.kz"
+                        "Dr Matthew Courtney (PhD)"
                        ),
                  tags$style(HTML(h3_css))
                 ),
-         tags$h3("Psychometrician: Dr Bing Mei",                                                     # h2 header is the subtitle underneath the h1 header
+         tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "b.mei@auckland.ac.nz"),
+                        "Dr Bing Mei (PhD)"),
                  tags$style(HTML(h3_css))
                 ),
-         tags$h3("Mathematician: Xx Xxxxx Xxxxxxxx",                                                     # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:Xxxxx.xxxxx@gmail.com?Subject=Shiny%20Help",
-                        "Xxxxx.xxxxxxx@gmail.com"),
+         tags$h3("Contributing Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:issayeva_l@cpi.nis.edu.kz?Subject=Shiny%20Help",
+                        "Ms Laila Issayeva (M.Sc)"),
                  tags$style(HTML(h3_css))
          ),
          fluidRow(
@@ -219,13 +226,13 @@ tabPanel("Many-Facets Rasch (DIF)",
                 tags$style(HTML(h3_css))
                 ),
          tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:chonghuachang@gmail.com?Subject=Shiny%20Help",
+                 tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
                         "Dr Bing Mei (PhD)"),
                  tags$style(HTML(h3_css))
                 ),
-         tags$h3("Mathematician: Xx Xxxxx Xxxxxxxx",                                                     # h2 header is the subtitle underneath the h1 header
-                 tags$a(href = "mailto:Xxxx.xxxxx@gmail.com?Subject=Shiny%20Help",
-                        "Dr Bing Mei (PhD)"),
+         tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
+                 tags$a(href = "mailto:issayeva_l@cpi.nis.edu.kz?Subject=Shiny%20Help",
+                        "Ms Laila Issayeva (M.Sc)"),
                  tags$style(HTML(h3_css))
          ),
          fluidRow(
@@ -267,8 +274,8 @@ tabPanel("Rasch Equating",
                                       tags$style(HTML(h3_css))
                               ),
                               tags$h3("Psychometrician:",                                                     # h2 header is the subtitle underneath the h1 header
-                                      tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                                             "Dr Bing Mei (PhD)"),
+                                      tags$a(href = "mailto:issayeva_l@cpi.nis.edu.kz?Subject=Shiny%20Help",
+                                             "Ms Laila Issayeva (M.Sc)"),
                                       tags$style(HTML(h3_css))
                               ),
                               fluidRow(
@@ -324,7 +331,6 @@ tabPanel("Rasch Equating",
 
 tabPanel("ANOVA",
          fluid = TRUE, 
-         setBackgroundImage(src = "shiny_background8.png"),
          shinyjs::useShinyjs(),                                                         # activate javascript in the application
          tags$h1("One-Way ANOVA Analysis",
                  tags$img(src = "hex5.png", height = 149, width = 135, 
@@ -336,6 +342,7 @@ tabPanel("ANOVA",
                  tags$style(HTML(h2_css))
          ),
          hr(),  
+         HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/iXhcokykmm4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
          tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:kcha193@aucklanduni.ac.nz?Subject=Shiny%20Help",
                         "Dr Kevin Chang (PhD)"
@@ -381,29 +388,29 @@ tabPanel("Inter-Rater Reliability",
                  ),
                  tags$style(HTML(h1_css))
          ),
-         tags$h2("Toward Valid Assessments and Developmental Rubrics",                  # h2 header is the subtitle underneath the h1 header
+         tags$h2("Toward Valid Assessment and Developmental Rubrics",                  # h2 header is the subtitle underneath the h1 header
                  tags$style(HTML(h2_css))
          ),
          hr(), 
-         tags$h3("Architect: Dr Bing Mei",                                                          # h2 header is the subtitle underneath the h1 header
+         tags$h3("Architect:",                                                          # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:b.mei@auckland.ac.nz?Subject=Shiny%20Help",
-                        "b.mei@auckland.ac.nz"
+                        "Dr Bing Mei (PhD)"
                  ),
                  tags$style(HTML(h3_css))
          ),
-         tags$h3("Psychometrician: Dr Matthew Courtney",                                                    # h2 header is the subtitle underneath the h1 header
+         tags$h3("Psychometrician:",                                                    # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
-                        "matthew.courtney@nu.edu.kz"),
+                        "Dr Matthew Courtney (PhD)"),
                  tags$style(HTML(h3_css))
          ),
-         tags$h3("Contributing Psychometrician: Dr Kane Meissel (PhD)",                               # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Psychometrician:",                               # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:k.meissel@auckland.ac.nz?Subject=Shiny%20Help",
-                        "k.meissel@auckland.ac.nz"),
+                        "Dr Kane Meissel (PhD)"),
                  tags$style(HTML(h3_css))
          ),
-         tags$h3("Contributing Psychometrician: Dr Luke Rowe (PhD)",                               # h2 header is the subtitle underneath the h1 header
+         tags$h3("Contributing Psychometrician:",                               # h2 header is the subtitle underneath the h1 header
                  tags$a(href = "mailto:luke.rowe@acu.edu.au?Subject=Shiny%20Help",
-                        "luke.rowe@acu.edu.au"
+                        "Dr Luke Rowe (PhD)"
                  ),
          tags$style(HTML(h3_css))
          ),
@@ -426,7 +433,7 @@ tabPanel(paste0("autopsych Version ", version_number),
                  ),
                  tags$style(HTML(h1_css))
          ),
-         tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+         tags$h2("Toward Valid Assessment and Educational Research",                   # h2 header is the subtitle underneath the h1 header
                  tags$style(HTML(h2_css))
          ),
          hr(), 
@@ -441,8 +448,8 @@ tabPanel(paste0("autopsych Version ", version_number),
                     p("")
                   ),
                   wellPanel(
-                    h4("autopsych_0.1.0"),
-                    p("The autopsych_0.1.0 build version includes five main functionalities 
+                    h4("autopsych_1.0.0"),
+                    p("The autopsych_1.0.0 build version includes five main functionalities 
                                   inclusive of:"),
                     p(""),
                     p("(1) Uni-Dim Rasch (unidimensional Rasch analysis) that provides CTT 
@@ -465,7 +472,7 @@ tabPanel(paste0("autopsych Version ", version_number),
                     p("[Release Date: 21 November, 2020]"),
                     p(""),
                     p("Contributors: Drs Matthew Courtney, Kevin Chang, Eric 
-                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Xx Xxxxx Xxxxxxxx")
+                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Ms Laila Issayeva.")
                   )
            )       # column
          )        # fluidRow
@@ -485,20 +492,22 @@ tabPanel("Team",
                                       ),
                                       tags$style(HTML(h1_css))
                               ),
-                              tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                              tags$h2("Toward Valid Assessment and Educational Research",                   # h2 header is the subtitle underneath the h1 header
                                      tags$style(HTML(h2_css))
                               ),
                               hr(), 
-                              fluidRow(
+                              fluidRow(img(src='matt.png', 
+                                           align = "center", width="340", 
+                                           height="300", style = 'text-align:right;'),
                                 column(11,
                                        wellPanel(
                                          h4("Lead Architect:"),
                                          p(""),
                                          p("Dr Matthew Gordon Ray Courtney (PhD)"),
                                          p(""),
-                                         p("The Lead Architect, Dr Courtney, is the founder of the website and provides expertise in psychometrics, 
-                                     quantitative research methods, automation of technical reports and outputs, web UI development, and related 
-                                     research and communication.")
+                                         p("The Lead Architect, Dr Courtney, is the founder of the website and provides expertise in educational assessment, 
+                                         psychometrics, quantitative research methods, automation, R Shiny UI development, and related research and 
+                                           communication.")
                                        ),
                                        wellPanel(
                                          h4("Qualifications:"),
@@ -515,34 +524,44 @@ tabPanel("Team",
                                        ),
                                        wellPanel(
                                          h4("Bio:"),
-                                         p("Dr Courtney is an education expert, psychometrician, and R Shiny statistical software developer 
-                                   from New Zealand. He has expertise in both classical and item-response theories, automated statistical 
-                                   analysis and reporting, web UI development, and online learning. Dr Courtney completed his PhD in 
-                                   Education from The University of Auckland in 2015. For his doctorate he made use of advanced 
-                                   quantitative methods to identify the drivers of educational commitment and learning of international 
-                                   university students across Australasia."),
+                                         p("Dr Courtney is an educational assessment expert, psychometrician, and R Shiny statistical software developer 
+                                   from New Zealand. He has expertise in both classical test theory (CTT) and item-response theory (IRT), automated statistical 
+                                   analysis and reporting, R Shiny UI development, and online learning. 
+                                   Dr Courtney completed his PhD in Education from The University of Auckland in 2015. His PhD supervisors 
+                                   included Professor Gavin Brown and Laureate Professor John Hattie. For his doctorate he made use of advanced quantitative 
+                                   methods to identify the drivers of key learning outcomes of international university students 
+                                   in both Australia and New Zealand, and remains commited to advancing educational assessment and research in 
+                                   the Asia-Pacific region."),
                                          p(""),
                                          p("After completing his PhD, he spent two years 
-                                    as a Post-Doctoral Research Fellow in the Quantitative Data Analysis and Research Unit at The Faculty of 
-                                    Education and Social Work at The University of Auckland. During his time there, Dr Courtney contributed 
-                                    to multiple research projects and academic journal publications and provided consultation to staff 
-                                    and post-graduate students. Thereafter, Dr Courtney worked for over three years as a Research Fellow 
-                                    at the Assessment Research Centre, Graduate School of Education, The University of Melbourne. There 
-                                    Dr Courtney contributed to multiple state, federal, and international projects which focussed on educational 
-                                    measurement and assessment. At the Graduate School of Education, Dr Courtney completed extensive training in the 
-                                    fields of classical test theory, item-response theory, and R statistical programming under the tutelage of 
-                                    world-renowned statistician, Professor Margaret Wu. Currently, Dr Courtney works as 
-                                    an Assistant Professor at the Nazarbayev University Graduate School of Education, a research intensive 
-                                    university in Kazakhstan, Central Asia. Dr Courtney enjoys introduciung post-graduate students to fun topics 
-                                    including educational assessment, educational statistics, classical test theory, item response theory, 
-                                    growth modelling, and R programming. A list of Dr Courtney's published journal articles, R statistical 
-                                    packages, and encyclopedia chapters are provided below:"),
+                                    as a Post-Doctoral Research Fellow in the Quantitative Data Analysis and Research Unit (Quant-DARE) at 
+                                    The University of Auckland. During his time there, Dr Courtney contributed to multiple research projects 
+                                    and academic journal articles and provided consultation to staff and post-graduate students. Thereafter, 
+                                    Dr Courtney worked for over three years as a Research Fellow at the Assessment Research Centre, Graduate 
+                                    School of Education, The University of Melbourne. There Dr Courtney contributed to multiple state, federal, 
+                                    and international projects which focused on student assessment and educational measurement. At the Graduate 
+                                    School of Education, Dr Courtney completed extensive training in the fields of classical test theory, 
+                                    item-response theory, statistical programming, and automated reporting under the tutelage of 
+                                    world-renowned statistician, teacher, and software developer, Professor Margaret Wu (creator, ACER ConQuest)."),
+                                         p(""),
+                                         p("Currently, Dr Courtney works as an Assistant Professor at the Nazarbayev University Graduate 
+                                    School of Education, a research intensive university in Kazakhstan, Central Asia. He has international experience providing 
+                                    staff training and technical leadership for large-scale student assessment research projects in developing nations, such as Afghanistan. 
+                                    Dr Courtney leads the autopsych team to build open-source software architecture that (1) provides insights into the quality of 
+                                    student assessments, (2) supports the formative use of assessment, and (3) offers an analysis of student demographic 
+                                    and group conditions on student performance. He views the professional administration of valid student assessments 
+                                    as essential to informing system-level educational policy and practice. Dr Courtney and his team build sustainable 
+                                    (non-foreign reliant) local research capacity as a means to effect change. In terms of teaching, Dr Courtney 
+                                    lectures masters and PhD students on topics related to educational assessment, quantitative research designs, 
+                                    classical test theory, item response theory, structural equation modelling, latent growth modelling, and statistical 
+                                    programming to measure, track, model, and understand student learning. A list of Dr Courtney's published journal articles, 
+                                    R statistical packages, encyclopedia chapters, and selected commissioned work is provided below:"),
                                        ),
                                        wellPanel(
                                          h4("ACADEMIC JOURNAL ARTICLES:"),
                                          h4("R Statistical Packages and R Shiny Applications"),
                                          p("1.	Courtney, M. G. R., & Chang, K. (2018). Dealing with non-normality: An introduction and step-by-step 
-                                   guide using R. Teaching Statistics, 40(2), 51-59. doi: https://doi.org/10.1111/test.12154 (IF: 12; Q4)"),
+                                   guide using R. Teaching Statistics, 40(2), 51-59. doi: https://doi.org/10.1111/test.12154 (IF: 13; Q2)"),
                                          p(""),
                                          p("R package details: https://cran.r-project.org/web/packages/normalr/normalr.pdf"),
                                          p(""),
@@ -550,47 +569,56 @@ tabPanel("Team",
                                          p(""),
                                          h4("Educational Measurement and Assessment"),
                                          p(""),
-                                         p("2. Courtney, M. G. R. (2013). Determining the number of factors to retain in EFA: Using the SPSS R-Menu 
+                                         p("2.	Hernández-Torrano, D., & Courtney, M. G. R. (2021). Modern international large-scale assessment in 
+                                           education: An integrative review and mapping of the literature. Large-Scale Assessment in Education. 
+                                           doi: 10.1186/s40536-021-00109-1 (H = 12, Q1)"),
+                                         p(""),
+                                         p("3. Courtney, M. G. R. (2013). Determining the number of factors to retain in EFA: Using the SPSS R-Menu 
                                    v-2.0 to make more judicious estimations. Practical Assessment, Research & Evaluation, 18(8). 
-                                   Retrieved from http://pareonline.net/pdf/v18n8.pdf (H = 48; Q2)"),
-                                         p("3. Panadero, E., Brown, G. T., & Courtney, M. 
+                                           http://pareonline.net/pdf/v18n8.pdf (H = 52; Q2)"),
+                                         p(""),
+                                         p("4. Panadero, E., Brown, G. T., & Courtney, M. 
                                     G. R. (2014). Teachers’ reasons for using self-assessment: A survey self-report of Spanish teachers. Assessment 
                                     in Education: Principles, Policy & Practice, 21(4), 365-383. doi: 10.1080/0969594X.2014.919247 (H = 39; 
                                     Q1)"),
                                          p(""),
-                                         p("4. Langdon, F., Alexander, P. A., Tesar, M., 
+                                         p("5. Langdon, F., Alexander, P. A., Tesar, M., 
                                     Courtney, M. G. R., & Palmer, M. (2016). Induction and mentoring in early childhood educational organizations: 
                                     embracing the complexity of teacher learning in contexts. Teaching and Teacher Education, 57, 150-160. doi: 
                                     10.1016/j.tate.2016.03.016 (H = 114; Q1)"),
                                          p(""),
-                                         h4("Higher Education"),
+                                         h4("Higher Education & Collaborative Problem-Solving"),
                                          p(""),
-                                         p("5. Qanay, G., Courtney, M. G. R., & Nam, A. (2021). Supporting teacher leadership development in schools 
+                                         p("6. Costley, J., Courtney, M. G. R., Fanguy, M. (in press). Online collaborative note-taking behaviors, note 
+                                           completeness, and course performance for a 10-week writing program. The Internet and Higher Education. 
+                                           doi:10.1016/j.iheduc.2021.100831 (IF: 90; Q1)"),
+                                         p(""),
+                                         p("7. Qanay, G., Courtney, M. G. R., & Nam, A. (2021). Supporting teacher leadership development in schools 
                                      in Kazakhstan: a mixed-methods study. International Journal of Leadership Education. doi: 
                                      10.1080/13603124.2020.1869314 (IF: 34; Q1)"),
                                          p(""),
-                                         p("6.	Kitchen, M., Jeurissen, M., Gray, S., & Courtney, M. G. R. (2017). Teacher engagement with academic 
+                                         p("8.	Kitchen, M., Jeurissen, M., Gray, S., & Courtney, M. G. R. (2017). Teacher engagement with academic 
                                      reading in a post-service TESOL course. Indonesian Journal of Applied Linguistics, 6(2), 260-270. doi: 
-                                     10.17509/ijal.v6i2 (H = 7, Q2)"),
+                                     10.17509/ijal.v6i2 (H = 9, Q2)"),
                                          p(""),
-                                         p("7. Courtney, M. G. R. (2018). Emerging Academic and Social Spaces: Toward a Modern Understanding of 
+                                         p("9. Courtney, M. G. R. (2018). Emerging Academic and Social Spaces: Toward a Modern Understanding of 
                                    International Student Integration in Australasia. International Journal of Cyber Behavior, Psychology, 
                                    and Learning, 8(3), 36-47. doi: 10.4018/IJCBPL.2018070104 (H = 14; Q4)"),
                                          p(""),
-                                         p("8. Lee-Morgan, J., Courtney, M. G. R., & Muller, M. (2019). New Zealand Māori-Medium Teacher Education: 
+                                         p("10. Lee-Morgan, J., Courtney, M. G. R., & Muller, M. (2019). New Zealand Māori-Medium Teacher Education: 
                                    An Examination of Students' Academic Confidence and Preparedness. Asia-Pacific Journal of Teacher Education. 
                                    doi: 10.1080/1359866X.2018.1539214 (IF: 32; Q1)"),
                                          p(""),
-                                         p("9. Lee, K., Courtney, M. G. R., McGlashan, A., Neveldsen, P., Toso, M. (2019). Initial teacher education 
+                                         p("11. Lee, K., Courtney, M. G. R., McGlashan, A., Neveldsen, P., Toso, M. (2019). Initial teacher education 
                                    students’ perceptions of technology and technology education in New Zealand. International Journal of 
                                    Technology and Design Education. doi: 10.1007/s10798-019-09516-6 (IF: 37; Q1)"),
                                          p(""),
                                          h4("Youth Program Evaluation"),
-                                         p("10.	Chapman, C. M., Deane, K. L., Harré, N., Courtney, M. G. R., & Moore, J. (2017). Engagement and mentor 
+                                         p("12.	Chapman, C. M., Deane, K. L., Harré, N., Courtney, M. G. R., & Moore, J. (2017). Engagement and mentor 
                                    support as drivers of social development in the Project K youth development program. Journal of Youth and 
                                    Adolescence, 1-12. doi: 10.1007/s10964-017-0640-5 (H = 110; Q1)"                                        ),
                                          p(""),
-                                         p("11.	Deane, K., Harré, N., Moore, J., & Courtney, M. G. R. (2016). The impact of the Project K Youth Development 
+                                         p("13.	Deane, K., Harré, N., Moore, J., & Courtney, M. G. R. (2016). The impact of the Project K Youth Development 
                                    Program on self-efficacy: a randomized control trial. Journal of Youth and Adolescence, March 6, 1-22. doi: 
                                    10.1007/s10964-016-0463-9 (H = 110; Q1)")
                                        ),
@@ -605,7 +633,20 @@ tabPanel("Team",
                                          p(""),
                                          p("3. Courtney, M. G. R. (2018). IBM SPSS Statistics. In B. Frey (Ed.), The SAGE encyclopedia of education 
                                      research, measurement and evaluation (pp. 1577-1583). Thousand Oaks, CA: Sage. doi: 10.4135/9781506326139.n655")
-                                       ) # End wellPanel
+                                       ) ,
+                                       wellPanel(
+                                         h4("SELECTED COMMISSIONED WORK:"),
+                                         p("1. Wilson, M., Wolfe, R., & Courtney, M. G. R. (Nov, 2018). Technical Review of NAPLAN Online. Federal Report 
+                                           Commissioned by the Australian Education Senior Officials Committee (AESOC)."),
+                                         p(""),
+                                         p("2. McGaw, B., Luo, R., Collins, M., Courtney, M. G. R., & Nguyen, C. (2017). Evaluation of the External 
+                                           Assessment Trials for Queensland Curriculum and Assessment Authority. Milestone reports 3 to 5: Analysis 
+                                           of Test Data and Reliability."),
+                                         p(""),
+                                         p("3. Kushner, S., Cochise, A., Courtney, M. G. R., Sinnema, C., & Brown, G. (2016). International 
+                                           Baccalaureate Primary Years Programme in Aotearoa New Zealand: A case-study in whole-school innovation. 
+                                           Bethesda, MD: International Baccalaureate Organization.")
+                                       )    # End wellPanel
                                 )           # End column 11 units wide
                               )             # End Chief Architect fluid row
          ),                   # End Chief Architect inner tab panel
@@ -621,18 +662,20 @@ tabPanel("Team",
                           ),
                           tags$style(HTML(h1_css))
                   ),
-                  tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                  tags$h2("Toward Valid Assessment and Educational Research",                   # h2 header is the subtitle underneath the h1 header
                          tags$style(HTML(h2_css))
                   ),
                   hr(), 
-                  fluidRow(
+                  fluidRow(img(src='kevin.png', 
+                               align = "center", width="320", 
+                               height="300", style = 'text-align:right;'),
                     column(11,
                            wellPanel(
                              h4("Lead Developer:"),
                              p(""),
                              p("Dr Kevin Chang (PhD)"),
                              p(""),
-                             p("As Lead Developer, Dr Chang provides expertise in experimental methods, reactive programming, 
+                             p("As Lead Developer, Dr Chang provides expertise in statistics, experimental methods, reactive programming, 
                                    R Shiny software development, IT operations, and software testing.")
                            ),
                            wellPanel(
@@ -647,8 +690,8 @@ tabPanel("Team",
                            ),
                            wellPanel(
                              h4("Bio:"),
-                             p("Dr Chang is an experienced Data Analyst with a demonstrated history working in the research inductry. He is highly 
-                                     skilled in Research, Data Analysis, Experimental Design, and R Programming."),
+                             p("Dr Chang is an experienced statistician with a demonstrated history working in the scientific research industry. He is highly 
+                                     skilled in quantitative research methods, psychometrics, experimental design, and statistical programming."),
                              p(""),
                              p("For his PhD, Dr Chang developed a method for optimally designing experiments 
                                      which involve two phases, the second phases to be needed for the observations to be made, such as in proteomics 
@@ -656,7 +699,9 @@ tabPanel("Team",
                                      which minimize the resources required to conduct such experiments while maximizing the information that can 
                                      be drawn from them."),
                              p(""),
-                             p("After completing his PhD, he spent XXX years...Dr Chang is an  A list of Dr Chang's publications are provided below:"
+                             p("After completing his PhD, he spent several years as a quantitative specialist at The University of Auckland and 
+                               contributed to multiple research projects and papers relating to child wellbeing and youth outcomes, psychometrics, 
+                               R statististical packages, and biology and medicine. A list of Dr Chang's journal articles are provided below:"
                              ),
                            ),
                            wellPanel(
@@ -664,11 +709,12 @@ tabPanel("Team",
                              p(""),
                              h4("Child and Youth Health and Wellbeing"),
                              p(""),
-                             p("1. Shackleton, N., Chang, K., Lay-yee, R. et al. (2019). Microsimulation model of child and adolescent overweight: 
+                             p("1. Shackleton, N., Chang, K., Lay-Yee, R. et al. (2019). Microsimulation model of child and adolescent overweight: 
                                      making use of what we already know. International Journal of Obesity, 43, 2322–2332. doi: 10.1038/s41366-019-0426-9 
                                      (H = 218; Q1)"),
+                             p(""),
                              p("2. Zhao, J., Mackay, L., Chang, K., Mavoa, S., Stewart, T., Ikeda, E., Donnellan, N., & Smith, M. (2019). Visualising 
-                                   combined time use patterns of children’s zctivities and their association with weight status and neighbourhood context. 
+                                   combined time use patterns of children’s activities and their association with weight status and neighbourhood context. 
                                    International Journal of Environmental Research and Public Health, 16(5), 1-17. doi. 10.3390/ijerph16050897 (H = 92; Q2)"),
                              p(""),
                              p("3. Lay-Yee, R., Milne, B. J., Shackleton, N., Chang, K., & Davis, P. (2018). Preventing youth depression: Simulating the 
@@ -689,7 +735,56 @@ tabPanel("Team",
                              p(""),
                              p("6. Chang, K., & Ruggiero, K. (2020). Package 'infoDecompuTE."),
                              p(""),
-                             p("R package details: https://cran.r-project.org/web/packages/infoDecompuTE/index.html")
+                             p("R package details: https://cran.r-project.org/web/packages/infoDecompuTE/index.html"),
+                             p(""),
+                             h4("Biology and Medicine"),
+                             p(""),
+                             p("7. Hoggard, M., Jacob, B., Wheeler, D., Zoing, M., Chang, K., Biswas, K., Middleditch, M., 
+                               Douglas, R. G., & Taylor, M. W. (2020). Multiomic analysis identifies natural intrapatient temporal variability 
+                               and changes in response to systemic corticosteroid therapy in chronic rhinosinusitis. Immunity, Inflamation and 
+                               Disease, 1-18. doi.10.1002/iid3.349"),
+                             p(""),
+                             p("8. Zha, H. Liu, F., Ling, Z., Chang, K., Yang, J., & Li, L. (2021). Multiple bacteria associated with 
+                               the more dysbiotic genitourinary microbiomes in patients with type 2 diabetes mellitus. Scientific Reports, 
+                               1824. doi.s41598-021-81507-x"),
+                             p(""),
+                             p("9. Zha, H., Fang, Q-D., van der Reis, A., Chang, K., Yang, L-Y., Xie, J-J., Shi, D., Xu, Q-M., Li, Y-T., &
+                             Li, L-J. (2020). Vital members in the gut microbiotas altered by two probiotic Bifidobacterium strains against liver 
+                               damage in ratsBMC Microbiology, 20(144), 1-12. doi.10.1186/s12866-020-01827-2"),
+                             p(""),
+                             p("10. Zha, H., Lu, H., Wu, J., Chang, K., Wang, Q., Zhang, H., Li, J., Luo, Q., Lu, Y., & Li, L. (2020).
+                               Vital Members in the More Dysbiotic Oropharyngeal Microbiotas in H7N9-Infected Patients. Frontiers in Medicince, 7(396), 1-16. 
+                               doi.10.3389/fmed.2020.00396"),
+                             p(""),
+                             p("11. Zha, H., Chen, Y., Wu, J., Chang, K., Lu, Y., Zhang, H., Xie, J., Wang, Q., Tang, R., & Li, L. (2020). 
+                             Characteristics of three microbial colonization states in the duodenum of the cirrhotic patients. Future Microbiology, 15(10). 
+                               doi.10.2217/fmb-2019-0270"),
+                             p(""),
+                             p("12. Mackenzie, B. W., Chang, K., Zoing, M., Jain, R., Hoggard, M., Biswas, K., Douglas, R. G., & Taylor, M. W. (2019). 
+                             Longitudinal study of the bacterial and fungal microbiota in the human sinuses reveals seasonal and annual changes in diversity. 
+                             Scientific Reports, 9(17416). doi.s41598-019-53975-9"),
+                             p(""),
+                             p("13. Sutherland, K., Clatworthy, M., Chang, K., Rahardja, S., & Young, S. W. (2019). Risk Factors for Revision Anterior 
+                             Cruciate Ligament Reconstruction and Frequency With Which Patients Change Surgeons. Orthopaedic Journal of Sports Medicine, 
+                             7(11), 1-8. doi.10.1177/2325967119880487"),
+                             p(""),
+                             p("14. Sutherland, K., Clathworthy, M., Fulcher, M., Chang, K., & Young, S. W. (2019). Marked increase in the incidence of 
+                               anterior cruciate ligament reconstructions in young females in New Zealand. ANZ Journal of Surgery, 89, 1151-1155. 
+                               doi.10.1111/ans.15404"),
+                             p(""),
+                             p("15. Zha, H., Lewis, G., Waite, D. W., Wu, J., Chang, K., Dong, Y., & Jeffs, A., (2019). Bacterial communities associated 
+                               with tail fan necrosis in spiny lobster, Jasus edwardsii. FEMS Microbiology Ecology, 95(6), 1-9. doi.10.1093/femsec/fiz070"),
+                             p(""),
+                             p("16. Ng, J., Kaur, H., Collier, T., Chang, K., Brooks, A. E. S., Allison, J. R., Brimble, M. A., Hickey, A., & Birch, N. P. 
+                               (2019). Site-specific glycation of Aβ1–42 affects fibril formation and is neurotoxic. Journal of Biological Chemistry, 294(22), 
+                               8806-8818. doi.10.1074/jbc.RA118.006846"),
+                             p(""),
+                             p("17. Biswas, K., Cavubati, R., Gunaratna, S., Hoggard, M., Waldvogal-Thurlow, S., Hong, J., Chang, K., Mackenzie, B. W., Taylor, 
+                               M. W., & Douglas, R. G. (2019). Comparison of Subtyping Approaches and the Underlying Drivers of Microbial Signatures for Chronic 
+                               Rhinosinusitis. mSphere, 4(1), 1-13. doi.10.1128/mSphere.00679-18"),
+                             p(""),
+                             p("18. Hoggard, M., Waldvogel-Thurlow, S., Zoing, M., Chang, K., Radcliff, F. J., Mackenzie, B. W., Biswas, K., Douglas, R. G.,
+                               & Taylor, M. W. (2018). Frontiers in Immuniology. doi.10.3389/fimmu.2018.02065")
                            ) # End wellPanel
                     )           # End column 11 units wide
                   )             # End Chief Architect fluid row
@@ -706,11 +801,13 @@ tabPanel("Team",
                           ),
                           tags$style(HTML(h1_css))
                   ),
-                  tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                  tags$h2("Toward Valid Assessment and Educational Research",                   # h2 header is the subtitle underneath the h1 header
                          tags$style(HTML(h2_css))
                   ),
                   hr(), 
-                  fluidRow(
+                  fluidRow(img(src='eric.png', 
+                               align = "center", width="320", 
+                               height="300", style = 'text-align:right;'),
                     column(11,
                            wellPanel(
                              h4("Lead Psychometrician:"),
@@ -737,7 +834,7 @@ tabPanel("Team",
                                      potential use of AR/VR in the educational context."),
                              p(""),
                              p("After completing his PhD, he spent two years working as a project assistant and one year 
-                                     working as a research fellow at the University of Auckland."),
+                                     working as a research fellow at The University of Auckland."),
                              p("") ),
                            wellPanel(
                              h4("ACADEMIC JOURNAL ARTICLES:"),
@@ -797,69 +894,89 @@ tabPanel("Team",
                           ),
                            tags$style(HTML(h1_css))
                   ),
-                  tags$h2("Toward Valid Assessments and Educational Research",                   # h2 header is the subtitle underneath the h1 header
+                  tags$h2("Toward Valid Assessment and Educational Research",                   # h2 header is the subtitle underneath the h1 header
                          tags$style(HTML(h2_css))
                   ),
                   hr(), 
-                  fluidRow(
+                  fluidRow(img(src='kane.png', 
+                               align = "center", width="320", 
+                               height="300", style = 'text-align:right;'),
                     column(11,
                            wellPanel(
-                             h4("Contributing Psychometrician"),
+                             h4("Contributing Psychometrician:"),
                              p(""),
                              p("Dr Kane Meissel (PhD)"),
                              p(""),
-                             p("As a Contributing Psychometrician, Dr Kane Miessel has expertise in educational statistics,
-                                   especially in the application of multi-level models to educational data, R programming, and 
-                                   online learning.")
+                             p("As a Contributing Psychometrician, Dr Kane Meissel has expertise in educational statistics,
+                               especially in the application of multi-level statistical models of longitudinal data as well 
+                               as to account for student nesting in classes, schools, and jurisdictions; non-parametric effect sizes; 
+                               R programming; and the application of robust statistical methods.")
                            ),
                            wellPanel(
                              h4("Qualifications:"),
                              p(""),
-                             p("Doctor of Psychology [2013], The University of Auckland, 201X"),
+                             p("PhD in Education, The University of Auckland"),
                              p(""),               
-                             p("Master of Education [2010], The University of Auckland, 201X"),
-                             p(""), 
-                             p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
-                                     XXXXXXXXX, XXXXXXXXXXX"),
+                             p("Master of Science (Psychology, 1st class hons), The University of Auckland"),
                              p("")
                            ),
                            wellPanel(
                              h4("Bio:"),
-                             p("Dr Meissel is an experienced psychometrician and educational statistician. He has experience providing support to post-graduate 
-                                   students looking to manage data and apply multivariate statistics for educational insights."),
+                             p("Dr Kane Meissel is a Senior Lecturer in Educational Psychology in the School of Learning, 
+                               Development and Professional Practice, in the Faculty of Education and Social Work. Kane’s 
+                               research focuses on the use of advanced quantitative methodologies to identify and reduce 
+                               educational disparities, as well as promote equity and social justice for traditionally 
+                               marginalised learners. A particular focus of Kane's research is the identification of 
+                               specific factors that relate to resilience among under-served learner groups."),
                              p(""),
-                             p("For his PhD, Dr Meissel..."),
+                             p("Dr Meissel is also the Education Domain lead investigator for Growing Up in New Zealand, 
+                               a major, multi-disciplinary longitudinal study following almost 7000 New Zealand children 
+                               from before birth through to adulthood. The study participants reflect the contemporary 
+                               diversity of Aotearoa New Zealand, and is designed to provide unique, detailed 
+                               information about what shapes children and young people's early development, and 
+                               aims to improve the lives of all New Zealand’s children by providing insight into 
+                               how interventions can be targeted at the earliest opportunity to give every child 
+                               the best start in life."),
                              p(""),
-                             p("After completing his PhD, he spent XXX years...Dr Meissel is an... A list of Dr Mei's publications are provided below:"),
+                             p("A selection of Dr Meissel's publications is provided below:")
                            ),
                            wellPanel(
                              h4("ACADEMIC JOURNAL ARTICLES:"),
-                             p(""),
-                             h4("Psychometrics"),
-                             p(""),
-                             p("1. (H = XXX; QX)"),
-                             p(""),
-                             p("2. (H = XXX; QX)"),
-                             p(""),
-                             p("3. (H = XXX; QX)"),
-                             p(""),
-                             h4("Educational Psychology"),
-                             p("4. (H = XXX; QX)"),
-                             p(""),
-                             p("5. (H = XXX; QX)"),
-                             p(""),
-                             p("6. (H = XXX; QX)"),
-                             p(""),
-                             h4("Educational Measurement"),
-                             p("7.  (H = XXX; QX)"),
-                             p(""),
-                             p("8.  (H = XXX; QX)"),
-                             p(""),
-                             p("9.  (H = XXX; QX)"),
-                             p(""),
-                             p("10.  (H = XXX; QX)"),
-                             p(""),
-                             p("11.  (H = XXX; QX)"),
+                             p("1. Yao, E. S., Meissel, K., Bullen, P., Carr, P. A., Clark, T. C., & Morton, S. M. B. (2021).
+                               Classifying multiple ethnic identifications: Methodological effects on child, adolescent, and 
+                               adult ethnic distributions. Demographic Research, 44(21), 481-512. doi.10.4054/DemRes.2021.44.21"),
+                             p("2. Rubie-Davies, C., Meissel, K., Alansari, M., Watson, P., Flint, A., & McDonald, L. (2020). 
+                             Achievement and beliefs outcomes of students with high and low expectation teachers. Social 
+                               Psychology of Education, 23(5), 1173-1201. doi.10.1007/s11218-020-09574-y"),
+                             p("3. Meyer, F., Yao, E. S., & Meissel, K. (2020). The summer learning effect in writing in New Zealand. 
+                               Reading and Writing, 33(5), 1183-1210. doi.10.1007/s11145-019-10003-6"),
+                             p("4. Turnbull, S. M., Meissel, K., Locke, K., & O'Neale, D. R. J. (2020). The Impact 
+                               of Science Capital on Self-Concept in Science: A Study of University Students in New Zealand. 
+                               Frontiers in Education, 5(27). doi:10.3389/feduc.2020.00027"),
+                             p("5. Wang, S., Rubie-Davies, C. M., & Meissel, K. (2020). The stability and trajectories of teacher 
+                               expectations: Student achievement level as a moderator. Learning and Individual Differences, 78, 
+                               1-10. doi:10.1016/j.lindif.2019.101819"),
+                             p("6. Bullen, P, Deane, K. L., Meissel, K., & Bhatnagar, S. (2019). What constitutes globalised evidence? 
+                                Cultural tensions and critical reflections of the evidence-based movement in New Zealand. 
+                                International Journal of Psychology, 1-10. doi:10.1002/ijop.12574"),
+                             p("7. Watson, P. W., Rubie-Davies, C. M., Meissel, K., Peterson, E. R., Flint, A., Garrett, & L., McDonald, 
+                                L. (2017). Teacher gender, and expectation of reading achievement in New Zealand elementary school 
+                                students: Essentially a barrier? Gender and Education, 1–20. doi:10.1080/09540253.2017.1410108"),
+                             p("8. Watson, P. W., Rubie-Davies, C. M., & Meissel, K. (2019). Mathematics Self-Concept in New Zealand 
+                                Elementary School Students: Evaluating Age-Related Decline. Frontiers in Psychology, 10, 1-12. 
+                                doi:10.3389/fpsyg.2019.02307"),
+                             p("9. Wang, S., Rubie-Davies, C. M., & Meissel, K. (2019). Instructional practices and classroom interactions 
+                                of high and low expectation teachers in China. Social Psychology of Education. doi:10.1007/s11218-019-09507-4"),
+                             p("10. Davies, M. J., Meissel, K. (2018). Secondary Students Use of Dialogical Discussion Practices to Foster Greater Interaction. 
+                                NZ J Educ Stud 53, 209–225. doi.10.1007/s40841-018-0119-2"),
+                             p("11. Deane, K. L., Meissel, K., Moore, J., & Gillham, B. (2017). Positive youth development profiles of cross-age 
+                                peer mentors. Applied Developmental Science, 1–15. doi:10.1080/10888691.2017.1295810"),
+                             p("12. Wang, S., Rubie-Davies, C. M., & Meissel, K. (2018). A systematic review of the teacher expectation 
+                               literature over the past 30 years. Educational Research and Evaluation, 24(3-5), 124–179. 
+                               doi:10.1080/13803611.2018.1548798"),
+                             p("13. Davies, M., Kiemer, K., & Meissel, K. (2017). Quality Talk and dialogic teaching-an examination of a 
+                             professional development programme on secondary teachers’ facilitation of student talk. British Educational 
+                             Research Journal, 1-20. doi:10.1002/berj.3293"),
                              p("")
                            ) # End wellPanel
                     )           # End column 11 units wide
@@ -881,63 +998,42 @@ tabPanel("Team",
                          tags$style(HTML(h2_css))
                   ),
                   hr(), 
-                  fluidRow(
+                  fluidRow(img(src='luke.png', 
+                               align = "center", width="320", 
+                               height="300", style = 'text-align:right;'),
                     column(11,
                            wellPanel(
                              h4("Contributing Psychometrician"),
                              p(""),
                              p("Dr Luke Rowe (PhD)"),
                              p(""),
-                             p("As a Contributing Psychometrician, Dr Luke Rowe expertise in educational statistics, meta-analysis, online education, and R programming.")
+                             p("As a Contributing Psychometrician, Dr Luke Rowe has expertise in educational statistics, meta-analysis, online education, and R programming.")
                            ),
                            wellPanel(
                              h4("Qualifications:"),
                              p(""),
-                             p("Doctor of Education [201X], The University of Melbourne, 201X"),
+                             p("Doctor of Education [2019], The University of Melbourne"),
                              p(""),               
-                             p("Master of Education [201X], The University of XXXXXXXX, 201X"),
-                             p(""), 
-                             p("Bachelor of XXX (specialization: xxxxxxxxxxx) in [201X], The University of 
-                                     XXXXXXXXX, XXXXXXXXXXX"),
-                             p("")
                            ),
                            wellPanel(
                              h4("Bio:"),
-                             p("Dr Rowe is an expert quantitative educational researcher and has worked on a number of projects devoted to 
-                                   measuring and understanding student learning, collective intelligence, and computer supported collaborative learning."),
+                             p("Dr Rowe is an early career academic and proficient quantitative educational researcher and has worked on 
+                               a number of projects devoted to measuring and understanding student and group learning, collective 
+                               intelligence, and computer supported collaborative learning. Dr Rowe has expertise in applied statistics 
+                               for educational contexts (especially meta-analyses), a developing competence in R programming, a keen 
+                               interest in building tools to help teachers ensure the inter-rater reliability of rubrics designed to 
+                               assess student artefacts (such as essays) and demonstrated performances (e.g., sporting performances)."),
                              p(""),
-                             p("For his PhD, Dr Rowe..."),
+                             p("For his PhD, Dr Rowe undertook a research project focused on 'collective intelligence' under the supervision of 
+                               Professor John Hattie and Associate Professor John Munro at The University of Melbourne, Australia."),
                              p(""),
-                             p("After completing his PhD, he spent XXX years...Dr Rowe is an...  A list of Dr Rowe's publications are provided below:"),
+                             p("Dr Rowe's publications are provided below:"),
                            ),
                            wellPanel(
-                             h4("ACADEMIC "),
+                             h4("ACADEMIC JOURNAL ARTICLES"),
                              p(""),
-                             h4("Psychometrics"),
-                             p(""),
-                             p("1. (H = XXX; QX)"),
-                             p(""),
-                             p("2. (H = XXX; QX)"),
-                             p(""),
-                             p("3. (H = XXX; QX)"),
-                             p(""),
-                             h4("Educational Psychology"),
-                             p("4. (H = XXX; QX)"),
-                             p(""),
-                             p("5. (H = XXX; QX)"),
-                             p(""),
-                             p("6. (H = XXX; QX)"),
-                             p(""),
-                             h4("Educational Measurement"),
-                             p("7.  (H = XXX; QX)"),
-                             p(""),
-                             p("8.  (H = XXX; QX)"),
-                             p(""),
-                             p("9.  (H = XXX; QX)"),
-                             p(""),
-                             p("10.  (H = XXX; QX)"),
-                             p(""),
-                             p("11.  (H = XXX; QX)"),
+                             p("1. Rowe, L. I., Hattie, J., & Hester, R. (2021). G versus c: comparing individual and collective intelligence across two 
+                                meta-analyses. Cognitive Research: Principles and Implications, 3-6(1):26. doi:10.1186/s41235-021-00285-2"),
                              p("")
                            ) # End wellPanel
                     )           # End column 11 units wide
@@ -963,15 +1059,18 @@ tabPanel("Team",
                          tags$style(HTML(h2_css))
                   ),
                   hr(), 
-                  fluidRow(
+                  fluidRow(img(src='laila.png', 
+                               align = "center", width="320", 
+                               height="300", style = 'text-align:right;'),
                     column(11,
                            wellPanel(
                              h4("Contributing Psychometrician"),
                              p(""),
-                             p("Xx Xxxxx Xxxxxxxx (B.Mathematics, M. Ed)"),
+                             p("Ms Laila Baudinovna Issayeva (B.Mathematics, M.Sc)"),
                              p(""),
-                             p("As a Contributing Psychometrician, Xx Xxxxx Xxxxxxxx has expertise in item writing, test development, psychometrics, 
-                                     and a developing interest in R programming.")
+                             p("As a Contributing Psychometrician, Ms Laila B. Issayeva has a formal background in mathematics 
+                             and computer science, expertise in item writing, test development, statistical programming, 
+                               and psychometrics.")
                            ),
                            wellPanel(
                              h4("Qualifications:"),
@@ -985,82 +1084,80 @@ tabPanel("Team",
                            ),
                            wellPanel(
                              h4("Bio:"),
-                             p("Xx Xxxxx Xxxxxxxx is an experienced educator with more than 10 years of teaching Mathematics 
+                             p("Ms Laila Issayeva is an experienced educator with more than 10 years of teaching Mathematics 
                                    to secondary and high school students, including teaching IGCSE, AS level, and A level. During 
-                                   her teaching time, Xxxxx  was instrumental in developing lesson plans, integrated Mathematics 
+                                   her teaching time, Ms Issayeva  was instrumental in developing lesson plans, integrated Mathematics 
                                    subject programs collaboratively with Cambridge Assessment International Education (CAIE, 
                                    Cambridge, the UK)."),
                              p(""),
-                             p("Xx Xxxxxxx is an Educational Measurement specialist and has good skills at developing 
+                             p("Ms Issayeva is an Educational Measurement specialist and has expertise in developing 
                                    assessment tools, processing exams, setting standards, analyzing (CTT & IRT), interpreting, and 
-                                   presenting data (reports, slides). Xx XXXXXX has been overseeing the development and implementation 
+                                   presenting data (reports, slides). Ms Issayeva has been overseeing the development and implementation 
                                    of a national Student Performance Monitoring system for Mathematics in cooperation with the 
                                    psychometricians from the Institute for Educational Measurement Cito (Cito, Arnhem, the Netherlands) 
                                    for six years. Now, she spearheads the process of shifting its format from computer-based to 
-                                   computerized adaptive testing (CAT)"),
+                                   computerized adaptive testing (CAT)."),
                              p(""),
-                             p("XXxxxx is actively involved into the process of developing, marking, and grading External Summative 
+                             p("Ms Issayeva is actively involved into the process of developing, marking, and grading External Summative 
                                    Assessment Examinations accredited by CAIE. Recently, she has conceptualized and administered 
                                    functional literacy tests for Mathematics, Reading, and Sciences nationwide."), 
                              p(""),
-                             p("Within the Masters program, Xxxxxx completed a qualitative study to explore the extent of 
+                             p("Within the Masters program, Ms Issayeva completed a qualitative study to explore the extent of 
                                    accessibility and applicability of Student Performance Monitoring reports for Mathematics teachers, 
                                    and eventually optimized those reports."),
                              p(""),
-                             p("Starting from 2016, Xx XXXxxxx has taken part in the international annual conferences of AEA-Europe 
+                             p("Starting from 2016, Ms Issayeva has taken part in the international annual conferences of AEA-Europe 
                                    and IAEA and has produced several papers (available on www.researchgate.net) and presentations based on 
                                    the research projects. She has co-authored several manuals and guidelines for educators to help them 
-                                   develop a valid and reliable student performance monitoring system. A list of Xxxxx Xxxxxxxx’s 
+                                   develop a valid and reliable student performance monitoring system. A list of Laila Issayeva’s 
                                    research outputs is provided below:"),
                              p("")
                            ),
                            wellPanel(
-                             h4("CONFERENCE PAPERS AND PRESENTATIONS:"),
+                             h4("MANUSCRIPTS, CONFERENCE PAPERS, AND PRESENTATIONS:"),
                              p(""),
-                             h4("Psychometrics"),
+                             h4("Educational Measurement and Assessment"),
                              p(""),
-                             p("Issayeva L., Rakhymbayeva Z., & Temirtassov, D. (2018, October 25). The unification of a 
-                                   student ability scale: first results of the psychometric research study [Presentation]. The 10th 
-                                   NIS International Research-to-Practice Conference “Next Generation Schools”, Astana, Kazakhstan. 
-                                   https://www.researchgate.net/publication/340816106"),
+                             p("1. Issayeva, L. B., Temirtassov, D. K., Tursynova, L., & Mozhayeva, O. I. (2019). Guidelines for item 
+                               development to conduct Student Performance Monitoring for Mathematics at Intellectual Schools. Unpublished 
+                               manuscript. ISBN 978-601-328-598-6. https://www.researchgate.net/publication/335160752"),
                              p(""),
-                             p("Issayeva L., Dieteren, N., & Crans, S. (2018, October 15). Curriculum sampling as a strategy 
-                                   employed for a student performance monitoring system for Mathematics at Nazarbayev Intellectual 
-                                   Schools [Conference paper]. The 44 th International Association for Educational Assessment 
-                                   Conference “Assessment and Big Data”, Oxford, the UK. https://www.researchgate.net/publication/328293279"),
+                             p("2. Issayeva, L. B., Temirtassov, D. K., Tursynova, L., & Mozhayeva, O. I. (2019). Guidelines for using 
+                               reports upon Student Performance Monitoring at Intellectual Schools in teaching practice. Unpublished 
+                               manuscript. ISBN 978-601-328-597-9. https://www.researchgate.net/publication/335161015"),
                              p(""),
-                             p("Issayeva L., Dieteren, N., & Crans, S. (2017, November 9). Assessment tool validation research 
-                                   at Nazarbayev Intellectual Schools: student performance monitoring system for Mathematics [Conference paper]. 
-                                   The 18th Association for Educational Assessment in Europe Conference 'Assessment cultures in a globalised world', 
-                                   Prague, Czech Republic. https://www.researchgate.net/publication/335033501"),
+                             p("3. Mozhayeva, O. I., Tursynova, L., Temirtassov, D. K., & Issayeva, L. B. (2019). Conceptual framework of 
+                               a Student Performance Monitoring system at Intellectual Schools. Unpublished manuscript. ISBN 978-601-328-596-2. 
+                               https://www.researchgate.net/publication/335160822"),
                              p(""),
-                             p("Issayeva, L., Temirtassov, D. (2017, October 26). Current approaches to the external assessment 
-                                   of student achievement in Mathematics at Nazarbayev Intellectual Schools [Presentation]. The 9 th NIS 
-                                   International Research-to-Practice Conference “Values, Wellbeing and Innovation for the Future of 
-                                   Education”, Astana, Kazakhstan. https://www.researchgate.net/publication/340931566"),
+                             p("4. Mozhayeva, O. I., Tursynova, L., Temirtassov, D. K., Issayeva, L. B., & Bissenov, Y. M. (2019). Instructions 
+                               for organizing and conducting a Student Performance Monitoring for Mathematics at Intellectual Schools. 
+                               Unpublished manuscript. ISBN 978-601-328-599-3. https://www.researchgate.net/publication/335160711"),
                              p(""),
-                             p("Issayeva, L., Temirtassov, D., Dieteren, N., Crans, S., & Kamphuis, F. (2016, November 5). 
-                                   Student performance monitoring for Mathematics as an effective instrument to adjust individual 
-                                   learning paths for students and to enhance didactic tools for teachers at Nazarbayev Intellectual 
-                                   Schools [Conference paper]. The 17 th Association for Educational Assessment in Europe Conference 
-                                   'Social and Political underpinnings of educational assessment: Past, present and future', Limassol, 
-                                   Cyprus. https://www.researchgate.net/publication/340931730"),
+                             p("5. Issayeva L. B., Rakhymbayeva Z. K., & Temirtassov, D. K. (2018, October 25). The unification of a student 
+                               ability scale: first results of the psychometric research study [Presentation]. The 10th NIS International 
+                               Research-to-Practice Conference “Next Generation Schools”, Astana, Kazakhstan. https://www.researchgate.net/publication/340816106"),
                              p(""),
-                             p("Issayeva, L., Temirtassov, D., Tursynova, L., & Mozhayeva, O. (2019). Guidelines for item 
-                                   development to conduct Student Performance Monitoring for Mathematics at Intellectual Schools. 
-                                   Unpublished manuscript. ISBN 978-601-328-598-6. https://www.researchgate.net/publication/335160752"),
+                             p("6. Issayeva L. B., Dieteren, N. M. A., & Crans, S. E. (2018, October 15). Curriculum sampling as a strategy employed 
+                               for a student performance monitoring system for Mathematics at Nazarbayev Intellectual Schools [Conference paper]. 
+                               The 44 th International Association for Educational Assessment Conference “Assessment and Big Data”, Oxford, 
+                               the UK. https://www.researchgate.net/publication/328293279"),
                              p(""),
-                             p("Issayeva, L., Temirtassov, D., Tursynova, L., & Mozhayeva, O. (2019). Guidelines for using 
-                                   reports upon Student Performance Monitoring at Intellectual Schools in teaching practice. 
-                                   Unpublished manuscript. ISBN 978-601-328-597-9. https://www.researchgate.net/publication/335161015"),
+                             p("7. Issayeva L. B., Dieteren, N. M. A., & Crans, S. E. (2017, November 9). Assessment tool validation research at 
+                               Nazarbayev Intellectual Schools: student performance monitoring system for Mathematics [Conference paper]. 
+                               The 18th Association for Educational Assessment in Europe Conference 'Assessment cultures in a globalised world', 
+                               Prague, Czech Republic. https://www.researchgate.net/publication/335033501"),
                              p(""),
-                             p("Mozhayeva, O., Tursynova, L., Temirtassov, D., & Issayeva, L. (2019). Conceptual framework 
-                                   of a Student Performance Monitoring system at Intellectual Schools. Unpublished manuscript. 
-                                   ISBN 978-601-328-596-2. https://www.researchgate.net/publication/335160822"),
+                             p("8. Issayeva, L. B., Temirtassov, D. K. (2017, October 26). Current approaches to the external assessment of 
+                               student achievement in Mathematics at Nazarbayev Intellectual Schools [Presentation]. The 9 th NIS International 
+                               Research-to-Practice Conference “Values, Wellbeing and Innovation for the Future of Education”, Astana, 
+                               Kazakhstan. https://www.researchgate.net/publication/340931566"),
                              p(""),
-                             p("Mozhayeva, O., Tursynova, L., Temirtassov, D., Issayeva, L., & Bissenov, Y. (2019). Instructions 
-                                   for organizing and conducting a Student Performance Monitoring for Mathematics at Intellectual Schools. 
-                                   Unpublished manuscript. ISBN 978-601-328-599-3. https://www.researchgate.net/publication/335160711"),
+                             p("9. Issayeva, L. B., Temirtassov, D. K., Dieteren, N. M. A., Crans, S. E., & Kamphuis, F. (2016, November 5). 
+                               Student performance monitoring for Mathematics as an effective instrument to adjust individual learning paths 
+                               for students and to enhance didactic tools for teachers at Nazarbayev Intellectual Schools [Conference paper]. 
+                               The 17 th Association for Educational Assessment in Europe Conference 'Social and Political underpinnings of 
+                               educational assessment: Past, present and future', Limassol, Cyprus. https://www.researchgate.net/publication/340931730"),
                              p("")
                            ) # End wellPanel
                     )           # End column 11 units wide
@@ -1079,32 +1176,48 @@ tabPanel("Highlights",
                  ),
                   tags$style(HTML(h1_css))
          ),
-         tags$h2("Squad Achievements",                   # h2 header is the subtitle underneath the h1 header
+         tags$h2("Squad Goals and Achievements so Far!",                   # h2 header is the subtitle underneath the h1 header
                 tags$style(HTML(h2_css))
          ),
          hr(), 
          fluidRow(
            column(11,
                   wellPanel(
-                    h4("Achievements so Far..."),
-                    p("This page is dedicated to providing information about the achievements of 
-                                   the autopsych team, research, and related activities, hitherto."),
+                    h4("This page provides information about the goals and current achievements of the autopsych team."),
+                    p(""),
                     p("")
                   ),
                   wellPanel(
-                    h4("Endorsement of autopsych Shiny app by XXXXXXX"),
-                    p("The onliine Shiny app was used and endorsed by XXXXX, with the following endorsement made by XXXX XXXXX"),
+                    h4("Baseline testing for early reading and mathematics ability of children in Kabul, Afghanistan"),
+                    p("The autopsych app was successfully applied to check the validity of piloted early child reading and 
+                      numeracy assessments in Kabul, Afghanistan. Dr Courtney carried out local training for lead 
+                      assessors and their teams in Kabul in April 2021. The finalized assessment was then successfully administered to 
+                      all provinces across Afghanistan providing a baseline understanding of child numeracy and literacy in the region."),
                     p(""),
-                    p("Previously, .......")
+                    p("Ultimately, the project aims to investigate the effect of remedial academic programs and 
+                    international support infrastructure on student learning."),
+                    # tags$iframe(width="560", height="315", src="https://www.youtube.com/watch?v=KgNSUbD6eRs",
+                    #             frameborder="0", allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", allowfullscreen=NA),
+                    # p(""),
+                    # p("In collaboration with local partners, the autopsych team donated 15 whiteboards to a pilot school in the Kabul region."),
+                    # img(src='kabul2.png', align = "center", width="900", height="550"),
+                    # p("Photo courtesy of autopsych 2021"),
+                   p("")
                   ),
-                  wellPanel(h4("Launch of autopsych_0.1.0 on CRAN"),
-                            p("The autopsych_0.1.0 build version was launched on CRAN, the Comprehensive R Archive Network on XX January,
-                                  202X, making the latest build of the app available to users on their local machines."),
-                            p(""),
-                            p("[Release Date: 21 November, 2020]"),
-                            p(""),
-                            p("Contributors: Drs Matthew Courtney, Kevin Chang, Eric 
-                                  'Bing' Mei, Kane Meissel, Luke Rowe, & Xxxxx Xxxxxxxx")
+                  wellPanel(
+                    h4("Monitoring tri-lingual child literacy development in Kazakhstan"),
+                    p("The autopsych app was successfully applied to check the validity of and perform fixed 
+                    anchor test equating for multiple assessment instruments used to monitor early child literacy in Kazakhstan. 
+                    The program involved thousands of students from 30 pilot and control schools. The goal was to 
+                    examine the effects of the updated curriculum on student academic outcomes. For this project, 
+                    elementary school childrens' language development in Kazakh, Russian, and Uyghur was tracked 
+                    from 2015 to 2019."),
+                    p(""),
+                    p("Using multi-level latent growth modelling, preliminary results suggest positive effects of the 
+                    updated curriculum for both urban and rural settings. In collaboration with local 
+                    partners, it is expected that the results of the study will be published in an academic 
+                    journal sometime soon!"),
+                    p("")
                   )
            )       # column
          )        # fluidRow
@@ -1120,21 +1233,19 @@ tabPanel("Contact",
                  ),
                   tags$style(HTML(h1_css))
          ),
-         tags$h2("To Contact autopsych...",                   # h2 header is the subtitle underneath the h1 header
+         tags$h2("For enquiries, contact...",                   # h2 header is the subtitle underneath the h1 header
                 tags$style(HTML(h2_css))
          ),
          hr(), 
          fluidRow(
            column(11,
-                  wellPanel(
-                    h4("Enquiries:"),
-                    p("For enquiries, contact:"),
-                    p(""),
-                    p("info@autopsych.com"),
-                    p("")
-                  )
-           )       # column
-         )        # fluidRow
+                  tags$h3("Lead Architect: Dr Matthew Courtney (PhD)",                                                     # h2 header is the subtitle underneath the h1 header
+                          tags$a(href = "mailto:matthew.courtney@nu.edu.kz?Subject=Shiny%20Help",
+                                        "matthew.courtney@nu.edu.kz"
+                                ), tags$style(HTML(h3_css))
+                           )
+                  ) # column
+                 )  # fluidRow
 )                # Contact tabPanel end
       )                   # tabsetPanel
 )                      # fluidPage
