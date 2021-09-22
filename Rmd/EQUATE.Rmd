@@ -24,10 +24,10 @@ title:  |
   | 
   | 
 author:  | 
-  | Courtney, M. G. R., Chang, K. C-T., Mei, E., & Rowe, L., Issayeva, L. (2021).
-  | autopsych: A Novel Shiny Tool for the Validation and Psychometric 
-  | Analysis of Assessment Data. Journal of Xxxxxxxx Xxxxxxxxx, X(X). doi. 
-  | XXXXXXXXXX/XXXXXXX
+  | Courtney, M. G. R., Chang, K., Mei, E., Meissel, K., Rowe, L., & 
+  | Issayeva, L. B. (2021). autopsych: a novel shiny app for the psychometric 
+  | analysis and scoring of assessment and survey data. PLOS ONE.
+  | doi:10.1371/journal.pone.0257682
 
 output: pdf_document
 includes:

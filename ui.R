@@ -110,9 +110,9 @@ tabPanel("Home", fluid = TRUE,
                     and you can redistribute it and or modify it under the terms of the GNU GPL 3. 
                     In your work, cite as:"),
                     p(""),
-                    p("Courtney, M. G. R., Chang, K. C-T., Mei, E., Meissel, K., Rowe, L. I., & Issayeva, L. B. (2021). autopsych: a 
-                    novel shiny app for the psychometric analysis and scoring of assessment and 
-                    survey data. XXXX XXX"),
+                    p("Courtney, M. G. R., Chang, K., Mei, E., Meissel, K., Rowe, L., &  Issayeva, L. B. (2021). 
+                    autopsych: a novel shiny app for the psychometric analysis and scoring of assessment and survey
+                    data. PLOS ONE. doi:10.1371/journal.pone.0257682"),
                     p("")
                   ),   # WelPanel
                   wellPanel(
