@@ -1,0 +1,14 @@
+name: version_x
+title: version_x
+username:
+account: autopsych
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4158336
+bundleId: 4619352
+url: https://autopsych.shinyapps.io/version_x/
+when: 1621498061.72758
+lastSyncTime: 1621498061.72763
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: data
